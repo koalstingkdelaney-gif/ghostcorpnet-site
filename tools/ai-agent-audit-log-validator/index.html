@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://gumroad.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content, viewport-fit=cover">
+<title>AI Agent Audit Log Validator — Free Tool | ghostcorpnet</title>
+<meta name="description" content="Free audit log validator: paste a sample agent log entry and instantly score it against EU AI Act Article 12 record-keeping requirements — timestamps, agent identity, inputs, outputs, oversight, retention, and log integrity.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#121212">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ghostcorpnet">
+<meta property="og:url" content="https://ghostcorpnet.com/tools/ai-agent-audit-log-validator/">
+<meta property="og:title" content="AI Agent Audit Log Validator — Free Tool | ghostcorpnet">
+<meta property="og:description" content="Paste a sample agent log entry and score it against EU AI Act Article 12 record-keeping: timestamps, identity, inputs, outputs, oversight, retention, and integrity.">
+<meta property="og:image" content="https://ghostcorpnet.com/assets/studio-edition-cover.jpg">
+<link rel="canonical" href="https://ghostcorpnet.com/tools/ai-agent-audit-log-validator/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"AI Agent Audit Log Validator","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free audit log validator: paste a sample agent log entry and score it against EU AI Act Article 12 record-keeping requirements.","url":"https://ghostcorpnet.com/tools/ai-agent-audit-log-validator/"}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-541TCHWW98"></script>
+<script>(function(){try{if(new URLSearchParams(location.search).get('admin')==='1'){localStorage.setItem('kestrelattice_admin','1');}}catch(e){}})();</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}try{if(localStorage.getItem('kestrelattice_admin')!=='1'){gtag('js',new Date());gtag('config','G-541TCHWW98');}}catch(e){gtag('js',new Date());gtag('config','G-541TCHWW98');}</script>
+<style>
+:root{color-scheme:dark;--bg:#0f0e0d;--bg-soft:#141210;--panel:#1a1714;--panel2:#211c17;--line:#2c261e;--line-soft:#221d15;--text:#f1ebdd;--muted:#a89d89;--faint:#978b74;--accent:#e07a5f;--accent-bright:#f09474;--accent-dim:#c06a4e;--accent-ink:#1a0f08;--accent-soft:rgba(224,122,95,.1);--radius:12px;--green:#7fc97f;--amber:#e8b04b;--red:#e06a5f;--ease:cubic-bezier(.2,.7,.25,1)}
+*{margin:0;padding:0;box-sizing:border-box}::selection{background:var(--accent);color:var(--accent-ink)}html{scroll-behavior:smooth;scrollbar-gutter:stable}html,body{overflow-x:clip}
+body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--accent-bright);outline-offset:3px;border-radius:4px}
+header.site{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;background:rgba(15,14,13,.92);backdrop-filter:blur(10px)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;min-height:56px;max-width:1040px;margin:0 auto;padding:0 24px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;color:var(--text);text-decoration:none}
+nav.main{display:flex;gap:20px}nav.main a{color:var(--muted);font-size:.88rem;font-weight:500;text-decoration:none}nav.main a:hover{color:var(--accent-bright)}
+.wrap{max-width:68ch;margin:0 auto;padding:40px 24px 64px}.crumb{color:var(--muted);font-size:.85rem;margin-bottom:24px}.crumb a{color:var(--accent);text-decoration:none}
+h1{font-size:clamp(1.6rem,3vw + .8rem,2.1rem);font-weight:800;letter-spacing:-.02em;line-height:1.25;margin-bottom:8px}h2{font-size:1.35rem;margin:40px 0 12px}h3{font-size:1.1rem;margin:24px 0 10px}
+p{margin:0 0 16px}ul{margin:0 0 16px 24px}li{margin:6px 0}a{color:var(--accent)}code{background:var(--panel);padding:2px 6px;border-radius:4px;font-size:.88em}
+.lead{font-size:1.08rem;color:var(--muted)}.pill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);border-radius:999px;padding:5px 14px;margin-bottom:18px}
+.hero-tool{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,var(--panel2),var(--panel));padding:28px;margin:32px 0}
+textarea{width:100%;min-height:220px;background:var(--bg-soft);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:14px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;line-height:1.5}
+.btn{display:inline-block;background:linear-gradient(180deg,var(--accent-bright),var(--accent));color:var(--accent-ink);font-weight:700;padding:14px 30px;border-radius:8px;text-decoration:none;border:0;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn-ghost{background:var(--panel);color:var(--muted);border:1px solid var(--line)}.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.error-note{display:none;color:var(--red);font-size:.9rem;margin-top:12px;font-weight:600}.error-note.show{display:block}
+.checks{display:grid;gap:8px;margin:16px 0}.checks label{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line-soft);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:.94rem}.checks input{margin-top:5px;accent-color:var(--accent);width:17px;height:17px;flex:none}
+#results{display:none;border:1px solid var(--accent-dim);border-radius:var(--radius);background:linear-gradient(180deg,var(--panel2),var(--panel));padding:28px;margin-top:24px}#results.show{display:block}
+.score-line{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:16px}.score-ring{width:110px;height:110px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;border:5px solid var(--accent);font-weight:800}.score-ring .num{font-size:2rem;line-height:1}.score-ring .of{font-size:.7rem;color:var(--muted)}
+.fix{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0;background:var(--bg-soft)}.fix .prio{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}.prio.crit{color:var(--red)}.prio.ok{color:var(--green)}.fix p{color:var(--muted);font-size:.9rem;margin:6px 0 0}
+.cta{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--accent-dim);border-radius:var(--radius);padding:28px;margin:48px 0;text-align:center}.cta p{color:var(--muted)}
+.disclaimer{font-size:.82rem;color:var(--faint);border:1px dashed var(--line);border-radius:8px;padding:12px 16px;margin:32px 0}
+.faq details{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:14px 18px;margin:10px 0}.faq summary{font-weight:700;cursor:pointer}.faq details p{color:var(--muted);margin:10px 0 4px;font-size:.94rem}
+footer.site{border-top:1px solid var(--line);background:var(--bg-soft);padding:22px 0;margin-top:48px}footer.site .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;max-width:1040px;padding:0 24px}footer.site{color:var(--muted);font-size:.82rem}footer.site a{color:var(--muted);text-decoration:none;margin-left:14px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--accent-ink);padding:10px 18px;font-weight:700;z-index:200}.skip:focus{left:0}
+@media(max-width:640px){nav.main a:not(:last-child){display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+<a class="brand" href="../../">ghostcorpnet</a>
+<nav class="main" aria-label="Primary"><a href="../../">Home</a><a href="../../products/">Catalog</a><a href="../../brands/">Stores</a><a href="../../ecosystem/">Ecosystem</a><a href="../../articles/">Articles</a><a href="../../changelog.html">Changelog</a></nav>
+</div></header>
+<main class="wrap" id="main" tabindex="-1">
+<p class="crumb"><a href="../../">Home</a> · <a href="../">Free tools</a></p>
+<p class="pill">Free tool · Article 12</p>
+<h1>AI Agent Audit Log Validator</h1>
+<p class="lead">Paste one sample agent log entry below — or tick the fields your logs already capture — and instantly score your logging against EU AI Act Article 12 record-keeping. Everything runs in your browser; nothing you paste leaves your device.</p>
+
+<div class="hero-tool" id="validator" aria-label="AI agent audit log validator">
+<h2 style="margin-top:0">1. Paste a sample log entry (JSON)</h2>
+<p style="color:var(--muted)">Use one real, redacted log line from your agent. The validator searches keys and values, case-insensitively, for the fields Article 12 record-keeping needs — for example <code>timestamp</code>, <code>agent_id</code>, <code>event_type</code>, <code>input</code>, <code>output</code>, <code>operator</code>, <code>data_source</code>, <code>retention_days</code>, and <code>record_hash</code>.</p>
+<textarea id="logentry" aria-label="Sample agent log entry JSON" placeholder='{"timestamp":"2026-11-04T08:00:00Z","agent_id":"support-agent","agent_version":"1.4.0","event_type":"tool_call","input_ref":"ticket-4821","output":"Drafted a reply","operator":"j.chen"}'></textarea>
+<p class="error-note" id="error-note" role="alert">That JSON could not be parsed. Fix it, or use the checklist below instead — the checklist works on its own.</p>
+<div class="btn-row">
+<button type="button" class="btn" id="sample-btn">Load a sample with gaps</button>
+<button type="button" class="btn btn-ghost" id="clear-btn">Clear</button>
+</div>
+
+<h2>2. Or confirm log fields manually</h2>
+<p style="color:var(--muted)">Tick every field your logs actually capture today — not fields that are planned. Manual ticks are combined with anything found in your JSON.</p>
+<div class="checks" id="checks"></div>
+<div class="btn-row">
+<button type="button" class="btn" id="analyze-btn">Validate my audit log</button>
+<button type="button" class="btn btn-ghost" id="report-btn" disabled>Download validation report</button>
+</div>
+
+<div id="results" role="status" aria-live="polite">
+<div class="score-line"><div class="score-ring"><span class="num" id="score-num">0</span><span class="of">/ 100</span></div><p id="tier-line" style="font-weight:800;font-size:1.15rem"></p></div>
+<h3>Your compliance score and gap list</h3>
+<div id="fix-list"></div>
+<p class="disclaimer" style="margin:20px 0 0">This is an informational self-assessment, not legal advice. It checks a sample entry against the record-keeping fields described in Article 12 — it does not determine your legal classification under the EU AI Act. For binding answers, consult qualified counsel.</p>
+</div>
+</div>
+
+<h2>What Article 12 actually requires</h2>
+<p>Article 12 requires high-risk AI systems to be designed with logging capabilities that automatically record events over their lifetime, so that post-market monitoring, incident investigation, and supervision by operators and authorities are actually possible. The logs must let you identify situations that may cause the system to present a risk or undergo a substantial modification, and they must be kept for a period appropriate to the intended purpose — at least six months, unless other law provides otherwise.</p>
+<ul>
+<li><strong>Automatic event recording (Art. 12(1)):</strong> events are logged automatically while the system operates — not reconstructed afterwards.</li>
+<li><strong>Traceability (Art. 12(2)):</strong> the recording makes the system's functioning traceable over its whole lifetime, including which agent, version, and operation were involved.</li>
+<li><strong>Risk identification (Art. 12(3)):</strong> the level of detail lets you identify risky situations, incidents, and substantial modifications after the fact.</li>
+<li><strong>Reference data (Art. 12(3)):</strong> entries link back to the input data or references that produced the output, so a decision can be replayed and challenged.</li>
+<li><strong>Retention (Art. 12(4)):</strong> logs are kept for a defined period appropriate to the purpose — at least six months as a floor — under the control of the deployer or provider as your role requires.</li>
+</ul>
+<p>A log that only stores a free-text message fails most of this. An auditor — or an enterprise buyer doing diligence — needs structured fields: when it happened, which agent and version acted, what went in, what came out, who oversaw it, and proof the record was not edited afterwards.</p>
+
+<h2>FAQ</h2>
+<div class="faq">
+<details><summary>Is this legal advice?</summary><p>No. This tool is an informational self-assessment for operational readiness — it is not legal advice and does not determine your legal classification under the EU AI Act.</p></details>
+<details><summary>Does my pasted log entry leave my device?</summary><p>No. The analysis runs entirely in your browser with JavaScript. Nothing you paste is sent to a server. Redact personal data before pasting anyway, as good practice.</p></details>
+<details><summary>What if I don't have a JSON log entry?</summary><p>Use the manual checklist in step 2. It covers the same nine fields and produces the same compliance score and gap list.</p></details>
+<details><summary>How long must logs be kept?</summary><p>Article 12(4) sets a floor: logs must be kept for a period appropriate to the intended purpose, and at least six months, unless other applicable law sets a specific period. This validator flags a stated retention under 180 days as a gap.</p></details>
+<details><summary>What counts as a gap?</summary><p>Any of the nine Article 12 record-keeping fields that is neither found in your sample entry nor ticked in the checklist. Each gap is listed with the duty it maps to and the concrete fix.</p></details>
+</div>
+
+<div class="cta">
+<h2>Close the gaps, don't just list them</h2>
+<p>The Governed Agent Mesh Playbook — Studio Edition ($29) gives you the audit-trail templates, approval-gate patterns, log-retention setup, and incident runbook behind every fix on your list, ready to run.</p>
+<a class="btn" href="https://koalstin.gumroad.com/l/hdigmr" referrerpolicy="no-referrer">Get the Studio Edition — $29</a>
+<p style="margin-top:12px"><a href="../../products/">Or browse the full catalog of products &rarr;</a></p>
+</div>
+</main>
+<footer class="site"><div class="wrap">
+<span>© <span id="yr">2026</span> ghostcorpnet · An independent studio</span>
+<span><a href="../../">Home</a><a href="../../products/">Catalog</a><a href="../../articles/">Articles</a><a href="../../sitemap.html">Site index</a><a href="mailto:corpghost420@gmail.com">Contact</a><a href="../../terms.html">Terms</a><a href="../../privacy.html">Privacy</a></span>
+</div></footer>
+<script>
+(function(){
+var FIELDS=[
+ {id:'timestamp',label:'Timestamp for every event (UTC)',ref:'Art. 12(1)',keys:['timestamp','event_time','created_at','logged_at','occurred_at','"ts"','time_utc'],fix:'Add a UTC timestamp to every log entry, recorded automatically when the event happens.',why:'Without a reliable timestamp, events cannot be ordered, correlated, or investigated — the record proves nothing.'},
+ {id:'agent_identity',label:'Agent / system identity and version',ref:'Art. 12(2)',keys:['agent_id','system_id','agent_name','model_id','agent_version','system_version','model_version','version'],fix:'Record the agent or system ID and its version (and model version, where it applies) on every entry.',why:'Article 12 traceability means knowing exactly which system, at which version, produced an output — "the agent did it" is not traceable.'},
+ {id:'event_type',label:'Event / action type',ref:'Art. 12(1)–(2)',keys:['event_type','action','operation','tool_call','event','activity_type','decision_type'],fix:'Type every entry — decision, tool call, approval, override, error — so events can be filtered and counted.',why:'A wall of untyped messages cannot show how often an agent took a consequential action, or which actions were risky.'},
+ {id:'input_record',label:'Input recorded or referenced',ref:'Art. 12(3)',keys:['input','prompt','input_ref','input_hash','request','user_input','instruction'],fix:'Store the input itself, a hash of it, or a durable reference to it on every entry.',why:'Without the input, an output can never be replayed, explained, or challenged — the core of Article 12(3) reference-data traceability.'},
+ {id:'output_record',label:'Output recorded or referenced',ref:'Art. 12(3)',keys:['output','response','result','output_ref','output_hash','decision','completion'],fix:'Store the output itself, a hash of it, or a durable reference to it on every entry.',why:'Incident investigation starts from a disputed output. If the output is not in the log, there is nothing to investigate.'},
+ {id:'actor',label:'Actor / human overseer identity',ref:'Art. 12 + oversight',keys:['operator','overseer','approver','actor','user_id','operator_id','reviewer','approved_by'],fix:'Record who or what initiated, approved, or oversaw the action — a user, operator, or overseer ID.',why:'Accountability requires a who. Entries with no actor cannot show that human oversight actually happened.'},
+ {id:'data_reference',label:'Input-data / source reference',ref:'Art. 12(3)',keys:['data_source','dataset','source_ref','reference_id','document_id','record_id','data_ref'],fix:'Link each entry to the data it used — a dataset, document, ticket, or record reference.',why:'Article 12(3) expects the reference database or source behind an output to be identifiable, so its provenance can be checked.'},
+ {id:'retention',label:'Defined retention period (at least 6 months)',ref:'Art. 12(4)',keys:['retention_days','retention','retention_policy','retention_months','keep_days','ttl_days'],fix:'Define and enforce a retention period of at least six months (180 days), appropriate to the system\u2019s purpose.',why:'Article 12(4) sets a six-month floor. Logs deleted after 30 days are gone long before most incidents surface.',minRetention:180},
+ {id:'integrity',label:'Log integrity protection',ref:'Art. 12(1)',keys:['record_hash','hash_chain','prev_hash','signature','checksum','immutable','tamper','integrity_hash','signed'],fix:'Protect entries against silent edits — hash chaining, signatures, or append-only / immutable storage.',why:'A log anyone can quietly rewrite is evidence of nothing. Integrity protection is what makes the rest of the record believable.'}
+];
+var checks=document.getElementById('checks');
+FIELDS.forEach(function(c){var l=document.createElement('label');l.innerHTML='<input type="checkbox" id="chk-'+c.id+'"> <span><strong>'+c.label+'</strong> — '+c.ref+'</span>';checks.appendChild(l);});
+function flatten(v,out){if(v&&typeof v==='object'){Object.keys(v).forEach(function(k){out.push(k.toLowerCase());flatten(v[k],out);});}else if(typeof v==='string'){out.push(v.toLowerCase());}else if(typeof v==='number'){out.push(String(v));}return out;}
+function findRetention(v){var found=null;(function walk(o){if(o&&typeof o==='object'){Object.keys(o).forEach(function(k){var lk=k.toLowerCase();if((lk.indexOf('retention')!==-1||lk==='keep_days'||lk==='ttl_days')&&typeof o[k]==='number')found=o[k];walk(o[k]);});}})(v);return found;}
+var lastReport='';
+document.getElementById('sample-btn').addEventListener('click',function(){document.getElementById('logentry').value=JSON.stringify({timestamp:'2026-11-04T08:00:00Z',agent:'support-agent',event:'reply_sent',message:'Drafted a reply to ticket 4821'},null,2);});
+document.getElementById('clear-btn').addEventListener('click',function(){document.getElementById('logentry').value='';document.getElementById('error-note').classList.remove('show');});
+document.getElementById('report-btn').addEventListener('click',function(){if(!lastReport)return;var b=new Blob([lastReport],{type:'text/plain'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='audit-log-validation-report.txt';a.click();setTimeout(function(){URL.revokeObjectURL(a.href);},2000);});
+document.getElementById('analyze-btn').addEventListener('click',function(){
+ var raw=document.getElementById('logentry').value.trim(),tokens=[],parseError=false,parsed=null;
+ if(raw){try{parsed=JSON.parse(raw);tokens=flatten(parsed,[]);}catch(e){parseError=true;}}
+ document.getElementById('error-note').classList.toggle('show',parseError);
+ var retentionDays=parsed?findRetention(parsed):null;
+ var found={},gaps=[];
+ FIELDS.forEach(function(c){
+   var inJson=c.keys.some(function(k){return tokens.some(function(t){return t.indexOf(k.replace(/"/g,''))!==-1;});});
+   var manual=document.getElementById('chk-'+c.id).checked;
+   var ok=inJson||manual;
+   if(c.id==='retention'&&ok&&retentionDays!==null&&retentionDays<180)ok=false;
+   if(ok)found[c.id]=true;else gaps.push(c);
+ });
+ var score=Math.round((FIELDS.length-gaps.length)/FIELDS.length*100);
+ document.getElementById('score-num').textContent=score;
+ var tier=gaps.length===0?'Audit-ready — all nine Article 12 fields found':gaps.length<=2?'Close — a few record-keeping fields are missing':gaps.length<=5?'Exposed — core traceability fields are missing':'High exposure — this log would not survive an audit';
+ document.getElementById('tier-line').textContent=tier;
+ var list=document.getElementById('fix-list');list.innerHTML='';
+ if(!gaps.length){list.innerHTML='<div class="fix"><p class="prio ok">Complete</p><strong>All nine fields were found.</strong><p>Re-run this validation whenever the agent, its logging format, or its retention policy changes.</p></div>';}
+ gaps.forEach(function(c,i){var extra=(c.id==='retention'&&retentionDays!==null&&retentionDays<180)?' Your stated retention is '+retentionDays+' days — below the 180-day floor.':'';var d=document.createElement('div');d.className='fix';d.innerHTML='<p class="prio crit">Gap '+(i+1)+' · Missing · '+c.ref+'</p><strong>'+c.fix+'</strong><p>'+c.why+extra+'</p>';list.appendChild(d);});
+ FIELDS.filter(function(c){return found[c.id];}).forEach(function(c){var d=document.createElement('div');d.className='fix';d.innerHTML='<p class="prio ok">Found · '+c.ref+'</p><strong>'+c.label+'</strong><p>Detected in your input. Keep it automatic and consistent across every entry.</p>';list.appendChild(d);});
+ lastReport='AI Agent Audit Log Validator — Article 12 validation report\nScore: '+score+'/100 — '+tier+'\n\nGaps:\n'+(gaps.length?gaps.map(function(c,i){return (i+1)+'. ['+c.ref+'] '+c.fix;}).join('\n'):'None — all nine fields found.')+'\n\nInformational self-assessment only, not legal advice.';
+ document.getElementById('report-btn').disabled=false;
+ var r=document.getElementById('results');r.classList.add('show');r.scrollIntoView({block:'start',behavior:'smooth'});
+});
+})();
+</script>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>try{var _d=new Date().toISOString().slice(0,10);if(!localStorage.getItem("gc_pv_"+_d)){localStorage.setItem("gc_pv_"+_d,"1");fetch("https://kestrelattice-approvals.koalstin-g-k-delaney.workers.dev/pv?p="+encodeURIComponent(location.pathname),{mode:"no-cors",keepalive:true}).catch(function(){})}}catch(e){}</script>
+</body>
+</html>
