@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content, viewport-fit=cover">
+<title>EU AI Act 'High-Risk' Self-Assessment Utility — Free Tool | ghostcorpnet</title>
+<meta name="description" content="Assess EU AI Act 'High-Risk' status with our interactive tool — categorize your AI agent by type, intended application, and data scope, and download a Readiness Gap Report.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#121212">
+<link rel="canonical" href="https://ghostcorpnet.com/tools/eu-ai-act-high-risk-self-assessment/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ghostcorpnet">
+<meta property="og:url" content="https://ghostcorpnet.com/tools/eu-ai-act-high-risk-self-assessment/">
+<meta property="og:title" content="EU AI Act 'High-Risk' Self-Assessment Utility — Free Tool | ghostcorpnet">
+<meta property="og:description" content="Categorize your AI agent under EU AI Act thresholds and download a Readiness Gap Report. Free, no signup.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"EU AI Act 'High-Risk' Self-Assessment Utility","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Assess EU AI Act 'High-Risk' status with our interactive tool","url":"https://ghostcorpnet.com/tools/eu-ai-act-high-risk-self-assessment/"}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-541TCHWW98"></script>
+<script>
+(function(){try{if(new URLSearchParams(location.search).get('admin')==='1'){localStorage.setItem('kestrelattice_admin','1');}}catch(e){}})();
+</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+try{if(localStorage.getItem('kestrelattice_admin')!=='1'){gtag('js', new Date());gtag('config', 'G-541TCHWW98');}}catch(e){gtag('js', new Date());gtag('config', 'G-541TCHWW98');}
+</script>
+<style>
+  :root{color-scheme:dark;--bg:#0f0e0d;--bg-soft:#141210;--panel:#1a1714;--panel2:#211c17;--line:#2c261e;--text:#f1ebdd;--muted:#a89d89;--accent:#e07a5f;--accent-bright:#f09474;--accent-dim:#c06a4e;--accent-ink:#1a0f08;--radius:12px;--green:#7fc97f;--amber:#e8b04b;--red:#e06a5f}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+  header.site{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;background:rgba(15,14,13,.92);backdrop-filter:blur(10px)}
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;min-height:56px;max-width:1040px;margin:0 auto;padding:0 24px}
+  .brand{font-weight:700;color:var(--text);text-decoration:none}
+  nav.main{display:flex;gap:20px} nav.main a{color:var(--muted);font-size:.88rem;font-weight:500;text-decoration:none} nav.main a:hover{color:var(--accent-bright)}
+  .wrap{max-width:68ch;margin:0 auto;padding:40px 24px 64px}
+  .crumb{color:var(--muted);font-size:.85rem;margin-bottom:24px}.crumb a{color:var(--accent);text-decoration:none}
+  h1{font-size:clamp(1.6rem,3vw + .8rem,2.1rem);font-weight:800;letter-spacing:-.02em;line-height:1.25;margin-bottom:8px}
+  h2{font-size:1.3rem;margin:36px 0 12px}
+  .lead,p{color:var(--muted)} p{margin-bottom:14px}
+  fieldset{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:20px 22px;margin:0 0 18px}
+  legend{font-weight:700;color:var(--text);padding:0 6px}
+  label{display:block;margin:8px 0;color:var(--text);font-size:.95rem;cursor:pointer}
+  input[type=radio],input[type=checkbox]{accent-color:var(--accent);margin-right:8px}
+  .hint{color:var(--muted);font-size:.85rem;margin:4px 0 10px}
+  button.go{background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:13px 22px;font-weight:800;font-size:1rem;cursor:pointer}
+  button.go:hover{background:var(--accent-bright)}
+  #result{display:none;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,var(--panel2),var(--panel));padding:24px;margin-top:24px}
+  #result.show{display:block}
+  .badge{display:inline-block;font-weight:800;padding:4px 14px;border-radius:999px;margin-bottom:10px;color:#141210}
+  .b-prohibited{background:var(--red)} .b-high{background:var(--amber)} .b-limited{background:#8fb8d8} .b-minimal{background:var(--green)}
+  #result li{color:var(--muted);margin-left:20px;margin-bottom:6px}
+  .cta{border:1px solid var(--accent-dim);border-radius:var(--radius);padding:22px;margin-top:28px;background:var(--panel)}
+  .cta a{color:var(--accent-bright);font-weight:800}
+  .dl{display:none;margin-top:16px}.dl.show{display:block}
+  footer.site{border-top:1px solid var(--line);background:var(--bg-soft);padding:22px 0;margin-top:48px;color:var(--muted);font-size:.82rem}
+  footer.site .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;max-width:1040px;padding:0 24px}
+  footer.site a{color:var(--muted);text-decoration:none;margin-left:14px}
+  .note{font-size:.85rem;color:var(--muted)}
+  @media(max-width:640px){nav.main a:not(:last-child){display:none}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../../">ghostcorpnet</a>
+  <nav class="main" aria-label="Primary"><a href="../../">Home</a><a href="../../products/">Catalog</a><a href="../">Free tools</a><a href="../../articles/">Articles</a></nav>
+</div></header>
+<main class="wrap" id="main">
+  <p class="crumb"><a href="../../">Home</a> · <a href="../">Free tools</a> · EU AI Act High-Risk Self-Assessment</p>
+  <h1>EU AI Act 'High-Risk' Self-Assessment Utility</h1>
+  <p class="lead">A rapid decision-tree for AI product leads: categorize your agent under the EU AI Act's risk thresholds by agent type, intended application, and data processing scope — then download a Readiness Gap Report for your next AI compliance audit.</p>
+
+  <h2>Introduction</h2>
+  <p>The EU AI Act sorts AI systems into four tiers: <strong>prohibited</strong> practices (banned outright), <strong>high-risk</strong> systems (listed in Annex III, or safety components of regulated products — these carry the full set of obligations: risk management, data governance, technical documentation, record-keeping, transparency, human oversight, accuracy and robustness), <strong>limited-risk</strong> systems (transparency obligations, e.g. chatbots and synthetic content), and <strong>minimal-risk</strong> systems (no mandatory obligations). Most teams do not need a lawyer to find their likely tier — they need an honest walk through the categories. That is what this tool does.</p>
+  <p class="note">This is an informational self-assessment, not legal advice and not a binding classification. Confirm borderline cases with qualified counsel.</p>
+
+  <h2>Self-Assessment Tool</h2>
+  <form id="assess" novalidate>
+    <fieldset>
+      <legend>1. Agent type</legend>
+      <p class="hint">What kind of system is it, at its core?</p>
+      <label><input type="radio" name="atype" value="safety">A safety component of a regulated product (e.g. medical device, vehicle, machinery), or a product itself covered by EU harmonisation legislation</label>
+      <label><input type="radio" name="atype" value="biometric">A biometric identification or categorisation system</label>
+      <label><input type="radio" name="atype" value="decision">A decision-making agent — it scores, ranks, approves, denies, or allocates something for people</label>
+      <label><input type="radio" name="atype" value="conversational">A conversational agent / chatbot that interacts with people</label>
+      <label><input type="radio" name="atype" value="generative">A generative system producing text, image, audio, or video content</label>
+      <label><input type="radio" name="atype" value="backoffice">A back-office automation agent with no direct effect on individuals</label>
+    </fieldset>
+    <fieldset>
+      <legend>2. Intended application</legend>
+      <p class="hint">The Annex III test: what is it used for? Pick the closest match.</p>
+      <label><input type="radio" name="app" value="annex3">Biometrics, critical infrastructure, education access or assessment, employment / worker management, access to essential services (credit, insurance, benefits), law enforcement, migration or border control, or administration of justice / democratic processes</label>
+      <label><input type="radio" name="app" value="profiling">Profiling or evaluation of individuals in another context not listed above</label>
+      <label><input type="radio" name="app" value="general">A general business or consumer application not listed above</label>
+    </fieldset>
+    <fieldset>
+      <legend>3. Data processing scope</legend>
+      <p class="hint">What data does it process, and at what scale?</p>
+      <label><input type="radio" name="data" value="special">Biometric data or special-category personal data (health, political opinions, etc.)</label>
+      <label><input type="radio" name="data" value="personal-scale">Personal data at scale (many data subjects, ongoing processing)</label>
+      <label><input type="radio" name="data" value="personal-limited">Limited personal data (small scale, incidental)</label>
+      <label><input type="radio" name="data" value="none">No personal data</label>
+    </fieldset>
+    <fieldset>
+      <legend>4. Prohibited-practice screen</legend>
+      <p class="hint">Article 5 bans, among others: social scoring of people, manipulative or exploitative techniques, untargeted scraping of facial images, emotion inference at work or in education, and most real-time remote biometric identification in public spaces for law enforcement.</p>
+      <label><input type="radio" name="prohib" value="yes">Yes — it does one of these</label>
+      <label><input type="radio" name="prohib" value="unsure">Not sure</label>
+      <label><input type="radio" name="prohib" value="no">No — none of these</label>
+    </fieldset>
+    <fieldset>
+      <legend>5. Controls you already have</legend>
+      <p class="hint">Tick what exists today. Anything unticked becomes a gap in your report.</p>
+      <label><input type="checkbox" name="ctl" value="Risk management system (Art. 9)">Risk management system (Art. 9)</label>
+      <label><input type="checkbox" name="ctl" value="Data and data governance records (Art. 10)">Data and data governance records (Art. 10)</label>
+      <label><input type="checkbox" name="ctl" value="Technical documentation (Art. 11)">Technical documentation (Art. 11)</label>
+      <label><input type="checkbox" name="ctl" value="Record-keeping / logging (Art. 12)">Record-keeping / logging (Art. 12)</label>
+      <label><input type="checkbox" name="ctl" value="Transparency information for deployers (Art. 13)">Transparency information for deployers (Art. 13)</label>
+      <label><input type="checkbox" name="ctl" value="Human oversight measures (Art. 14)">Human oversight measures (Art. 14)</label>
+      <label><input type="checkbox" name="ctl" value="Accuracy, robustness and cybersecurity testing (Art. 15)">Accuracy, robustness and cybersecurity testing (Art. 15)</label>
+    </fieldset>
+    <button class="go" type="submit">Assess my risk level &rarr;</button>
+  </form>
+
+  <section id="result" aria-live="polite">
+    <h2 style="margin-top:0">Results and Recommendations</h2>
+    <span class="badge" id="badge"></span>
+    <p id="summary" style="color:var(--text)"></p>
+    <h3 style="margin:14px 0 8px">Recommendations</h3>
+    <ul id="recs"></ul>
+    <h3 style="margin:14px 0 8px">Readiness gaps</h3>
+    <ul id="gaps"></ul>
+    <div class="dl" id="dlwrap">
+      <h3 style="margin:14px 0 8px">Download Readiness Gap Report</h3>
+      <p>Your answers, risk level, gaps, and recommendations as a plain-text report — generated in your browser; nothing is uploaded.</p>
+      <button class="go" type="button" id="dlbtn">Download Readiness Gap Report (.txt)</button>
+    </div>
+  </section>
+
+  <div class="cta">
+    <p style="color:var(--text)"><strong>Running agents in production?</strong> Get the $29 Governed Agent Mesh Playbook to ensure AI compliance — approval gates, audit trails, and fail-closed controls you can put in place before an auditor asks. <a href="https://koalstin.gumroad.com/l/hdigmr">Get the Playbook &rarr;</a></p>
+  </div>
+  <p class="note" style="margin-top:20px">Free tool from ghostcorpnet. No signup, no data leaves your browser. Not legal advice.</p>
+</main>
+<footer class="site"><div class="wrap"><span>© ghostcorpnet</span><span><a href="../">Free tools</a><a href="../../products/">Catalog</a><a href="../../articles/">Articles</a></span></div></footer>
+<script>
+(function(){
+  var ALL_CONTROLS=["Risk management system (Art. 9)","Data and data governance records (Art. 10)","Technical documentation (Art. 11)","Record-keeping / logging (Art. 12)","Transparency information for deployers (Art. 13)","Human oversight measures (Art. 14)","Accuracy, robustness and cybersecurity testing (Art. 15)"];
+  var lastReport="";
+  function val(name){var el=document.querySelector('input[name="'+name+'"]:checked');return el?el.value:null;}
+  document.getElementById('assess').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var atype=val('atype'),app=val('app'),data=val('data'),prohib=val('prohib');
+    if(!atype||!app||!data||!prohib){alert('Please answer all four assessment questions.');return;}
+    var have=[];document.querySelectorAll('input[name="ctl"]:checked').forEach(function(c){have.push(c.value);});
+    var gaps=ALL_CONTROLS.filter(function(c){return have.indexOf(c)===-1;});
+    var level,cls,summary,recs=[];
+    if(prohib==='yes'){level='Potentially prohibited';cls='b-prohibited';summary='Your answers indicate a practice the EU AI Act prohibits under Article 5. If that reading is correct, the system cannot be placed on the EU market in that form — this needs qualified legal review before any deployment, not a readiness programme.';recs=['Stop and get qualified legal counsel on the specific practice before further deployment.','Document exactly which Article 5 practice your screening flagged, and who reviewed it.','Redesign the use case to remove the prohibited element rather than trying to mitigate it.'];}
+    else if(atype==='safety'||atype==='biometric'||app==='annex3'){level='High-risk (likely)';cls='b-high';summary='Your agent type or intended application falls in the EU AI Act high-risk tier (Annex III categories, biometric systems, or safety components of regulated products). The full obligations apply: risk management, data governance, technical documentation, logging, transparency, human oversight, and accuracy/robustness — plus conformity assessment and registration duties for providers.';recs=['Work the readiness gaps below in order — Articles 9–15 are the core provider obligations.','Establish human oversight with a named person who can intervene and override (Art. 14).','Keep logs sufficient to reconstruct decisions after an incident (Art. 12).','Plan for conformity assessment and EU registration before the high-risk obligations apply to your category.'];}
+    else if(app==='profiling'||atype==='conversational'||atype==='generative'){level='Limited risk — transparency obligations';cls='b-limited';summary='Your system does not read as Annex III high-risk on these answers, but transparency obligations apply: people must know they are interacting with an AI, and synthetic content must be marked / machine-readable where the Act requires it. If you later move into an Annex III use, the tier changes with the use — re-run this assessment.';recs=['Disclose AI interaction clearly to users.','Mark generated or manipulated content as the Act requires for your modality.','Re-assess whenever the intended application changes — classification follows use, not technology.'];}
+    else{level='Minimal risk (on these answers)';cls='b-minimal';summary='Nothing in your answers places this system in the prohibited, high-risk, or transparency tiers. No mandatory obligations apply on this reading, though voluntary codes of conduct and ordinary product, privacy, and security law still do. Classification follows intended use — re-run this assessment if the application changes.';recs=['Record this assessment and the answers behind it.','Re-run the assessment when the use case, data scope, or autonomy changes.','Keep basic logging and oversight anyway — they are cheap now and expensive to retrofit.'];}
+    if(prohib==='unsure'&&level.indexOf('prohibited')===-1){recs.push('You were unsure on the prohibited-practice screen — resolve that question first; it outranks every other tier.');}
+    if(data==='special'&&(cls==='b-high')){recs.push('You process biometric or special-category data: expect heightened data-governance scrutiny (Art. 10) and check GDPR special-category conditions separately.');}
+    document.getElementById('badge').textContent=level;document.getElementById('badge').className='badge '+cls;
+    document.getElementById('summary').textContent=summary;
+    var r=document.getElementById('recs');r.innerHTML='';recs.forEach(function(t){var li=document.createElement('li');li.textContent=t;r.appendChild(li);});
+    var g=document.getElementById('gaps');g.innerHTML='';
+    if(cls==='b-high'){if(gaps.length){gaps.forEach(function(t){var li=document.createElement('li');li.textContent='Missing: '+t;r;g.appendChild(li);});}else{var li=document.createElement('li');li.textContent='No Article 9–15 control gaps on your answers — keep the evidence current.';g.appendChild(li);}}
+    else{var li2=document.createElement('li');li2.textContent='Readiness-gap detail applies to high-risk systems; on your tier, focus on the recommendations above.';g.appendChild(li2);}
+    document.getElementById('result').className='show';document.getElementById('dlwrap').className='dl show';
+    var lines=['EU AI Act High-Risk Self-Assessment — Readiness Gap Report','Generated: '+new Date().toISOString(),'Source: https://ghostcorpnet.com/tools/eu-ai-act-high-risk-self-assessment/','','Agent type: '+atype,'Intended application: '+app,'Data processing scope: '+data,'Prohibited-practice screen: '+prohib,'','Risk level assessment: '+level,'',summary,'','Recommendations:'];recs.forEach(function(t){lines.push('- '+t);});lines.push('','Readiness gaps (controls not in place):');if(cls==='b-high'&&gaps.length){gaps.forEach(function(t){lines.push('- '+t);});}else if(cls==='b-high'){lines.push('- None on the answers given.');}else{lines.push('- Gap detail applies to high-risk systems.');}lines.push('','Disclaimer: informational self-assessment only — not legal advice and not a binding classification under the EU AI Act.');
+    lastReport=lines.join('\n');
+    document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  });
+  document.getElementById('dlbtn').addEventListener('click',function(){
+    var blob=new Blob([lastReport],{type:'text/plain'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='eu-ai-act-readiness-gap-report.txt';a.click();setTimeout(function(){URL.revokeObjectURL(a.href);},2000);
+  });
+})();
+</script>
+</body>
+</html>
