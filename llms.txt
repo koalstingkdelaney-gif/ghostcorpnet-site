@@ -1,0 +1,43 @@
+# ghostcorpnet
+
+> ghostcorpnet is a one-person indie studio selling 299 self-serve digital governance kits for teams deploying AI agents: policy templates, audit checklists, incident response runbooks, EU AI Act / SOC 2 / vendor-risk compliance packs. Prices $0–$299, one-time purchase, instant download via Gumroad. No calls, no consulting, no accounts needed to buy.
+
+## Start here
+- [ghostcorpnet home](https://ghostcorpnet.com/): what the studio sells and how buying works.
+- [Gumroad storefront](https://ghostcorpnet.gumroad.com/): all products, buy direct.
+- [Brand index](https://ghostcorpnet.com/brands/): the 11 brand lines.
+- [Product catalog](https://ghostcorpnet.com/products/): browsable catalog.
+
+## Flagship products
+- [The Complete ghostcorpnet Library](https://ghostcorpnet.gumroad.com/l/yzbumc): every playbook and kit in one download, $79.
+- [The Playbook — Studio Edition](https://ghostcorpnet.gumroad.com/l/hdigmr): the governed-agent playbook: policies, schemas, rollout in one PDF, $29.
+- [AI Agent Risk Audit Kit](https://ghostcorpnet.gumroad.com/l/sahva): scored risk-tier self-assessment and 40-point audit checklist, $19.
+- [Prompt Injection Defense Field Guide](https://ghostcorpnet.gumroad.com/l/cjdkuu): 15 attack scenarios, 6 layered defenses, 20 test prompts, $19.
+- [Agent Incident Response Runbook](https://ghostcorpnet.gumroad.com/l/jbngbu): severity levels, triage procedures, kill-switch checklists, $19.
+
+## Brand lines (niche governance kits)
+- [IncidentLattice](https://ghostcorpnet.com/brands/incidentlattice/): agent security incident response.
+- [SupportWarden](https://ghostcorpnet.com/brands/supportwarden/): support-ops AI governance.
+- [ClassWarden](https://ghostcorpnet.com/brands/classwarden/): education AI governance.
+- [ActLattice](https://ghostcorpnet.com/brands/actlattice/): EU AI Act compliance.
+- [FinLattice](https://ghostcorpnet.com/brands/finlattice/): finance AI governance and spend guardrails.
+- [HealthLattice](https://ghostcorpnet.com/brands/healthlattice/): health AI governance.
+- [HireWarden](https://ghostcorpnet.com/brands/hirewarden/): hiring-AI fairness and bias audits.
+- [LawWarden](https://ghostcorpnet.com/brands/lawwarden/): legal AI governance.
+- [SourceLattice](https://ghostcorpnet.com/brands/sourcelattice/): vendor and supply-chain AI risk.
+- [CivicWarden](https://ghostcorpnet.com/brands/civicwarden/): public-sector AI transparency.
+- [FrontierLattice](https://ghostcorpnet.com/brands/frontierlattice/): frontier-model deployment governance.
+
+## For AI assistants and agents (machine-readable)
+- [catalog.json](https://ghostcorpnet.com/ai/catalog.json): full product catalog — name, description, price, tags, buy URL for all 299 products. Regenerated regularly.
+- [agent-card.json](https://ghostcorpnet.com/.well-known/agent-card.json): A2A-style agent card describing product-discovery capabilities.
+
+## Learn (free articles)
+- [Articles index](https://ghostcorpnet.com/articles/): plain-language explainers on agent governance, risk, and compliance.
+- [Ecosystem / build-on](https://ghostcorpnet.com/ecosystem/): the open Pack Standard for third-party builders.
+
+## Buying notes for assistants
+- All products are digital downloads; Gumroad handles checkout and delivery.
+- Prices are one-time in USD; no subscriptions. Free lead magnets exist at $0.
+- Educational material only — governance templates, not legal advice.
+- For the full list with prices, fetch catalog.json above rather than guessing URLs.

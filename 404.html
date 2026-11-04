@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+<title>Page not found — ghostcorpnet</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#101010">
+<meta name="description" content="This agent wandered outside its approval gate — the page you're looking for doesn't exist.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ghostcorpnet by GhostCorp">
+<meta property="og:title" content="Page not found — ghostcorpnet">
+<meta property="og:description" content="This agent wandered outside its approval gate — the page you're looking for doesn't exist.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:image" content="https://ghostcorpnet.com/assets/studio-edition-cover.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1600">
+<meta property="og:image:alt" content="The Governed Agent Mesh Playbook — Studio Edition cover">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Page not found — ghostcorpnet">
+<meta name="twitter:description" content="This agent wandered outside its approval gate — the page you're looking for doesn't exist.">
+<meta name="twitter:image" content="https://ghostcorpnet.com/assets/studio-edition-cover.jpg">
+<meta name="twitter:image:alt" content="The Governed Agent Mesh Playbook — Studio Edition cover">
+<style>
+body{margin:0;background:#101010;color:#f1ebdd;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:24px}
+.card{max-width:520px}
+h1{font-size:4.5rem;margin:0;color:#e07a5f;letter-spacing:.02em}
+p{color:#a89d89;line-height:1.6}
+.brand{font-weight:700;color:#f1ebdd}
+a.btn{display:inline-block;margin:8px 6px 0;padding:12px 22px;border-radius:8px;background:#e07a5f;color:#101010;font-weight:700;text-decoration:none}
+a.ghost{color:#e07a5f;text-decoration:none;border-bottom:1px solid #e07a5f}
+a:focus-visible{outline:3px solid #f09474;outline-offset:3px;border-radius:4px}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>404</h1>
+<p class="brand">ghostcorpnet</p>
+<p id="c404">This agent wandered outside its approval gate — the page you're looking for doesn't exist.</p>
+<form action="/kestrelattice/products/" method="get" role="search" style="margin:14px 0 6px">
+<label for="s404" style="position:absolute;left:-9999px">Search the catalog</label>
+<input id="s404" name="q" type="search" placeholder="Search the catalog…" style="width:100%;max-width:340px;padding:11px 14px;border-radius:8px;border:1px solid #e07a5f;background:#1a1714;color:#f1ebdd;font-size:.95rem">
+<button type="submit" class="btn" style="margin:8px 0 0 8px;cursor:pointer;border:none">Search</button>
+</form>
+<p>
+<a class="btn" href="/kestrelattice/products/">Browse the catalog</a>
+<a class="btn" href="/kestrelattice/" style="background:transparent;border:1px solid #e07a5f;color:#e07a5f">Homepage</a>
+<a class="btn" href="/kestrelattice/quiz/" style="background:transparent;border:1px solid #e07a5f;color:#e07a5f">Find your playbook</a>
+</p>
+<p><a class="ghost" href="/kestrelattice/articles/">Read the articles</a></p>
+<nav aria-label="Site navigation" style="margin:16px 0 6px;font-size:.92rem">
+<a class="ghost" href="/kestrelattice/" style="margin:0 10px">Home</a>
+<a class="ghost" href="/kestrelattice/products/" style="margin:0 10px">Products</a>
+<a class="ghost" href="/kestrelattice/articles/" style="margin:0 10px">Articles</a>
+<a class="ghost" href="/kestrelattice/brands/" style="margin:0 10px">Brands</a>
+</nav>
+</div>
+<script>
+/* Locale-aware 404: GitHub Pages only serves this ROOT 404.html for every 404,
+   including /kestrelattice/es/* and /kestrelattice/pt/*. Detect a locale prefix
+   in the path and swap to the localized copy + recovery links. /es/products/
+   and /pt/products/ do not exist in the repo, so all recovery links fall back
+   to the localized home. noindex is kept. */
+(function(){
+  var p = location.pathname;
+  var loc = p.indexOf('/kestrelattice/es/') === 0 ? 'es'
+          : p.indexOf('/kestrelattice/pt/') === 0 ? 'pt' : null;
+  if (!loc) return;
+  var L = {
+    es: {lang:'es', title:'Página no encontrada — ghostcorpnet',
+         body:'Este agente salió de su puerta de aprobación — la página que buscas no existe.',
+         home:'Inicio', homeHref:'/kestrelattice/es/'},
+    pt: {lang:'pt', title:'Página não encontrada — ghostcorpnet',
+         body:'Este agente saiu da sua porta de aprovação — a página que você procura não existe.',
+         home:'Início', homeHref:'/kestrelattice/pt/'}
+  }[loc];
+  document.title = L.title;
+  document.documentElement.lang = L.lang;
+  var b = document.getElementById('c404');
+  if (b) b.textContent = L.body;
+  var btns = document.querySelectorAll('a.btn, a.ghost');
+  btns.forEach(function(a, i){
+    var h = a.getAttribute('href') || '';
+    if (h.indexOf('/kestrelattice/') !== 0) return;
+    if (i === 0) {
+      /* Primary recovery action: localized home. /es/products/ and
+         /pt/products/ do not exist, so all recovery links fall back here. */
+      a.setAttribute('href', L.homeHref);
+      a.textContent = L.home;
+    } else {
+      a.style.display = 'none';
+    }
+  });
+})();
+</script>
+</body>
+</html>

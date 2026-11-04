@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ghostcorpnet.com/sitemap-index.xml
+
+# AI-training: see /llms.txt for the content-use policy
+# llms.txt: https://ghostcorpnet.com/llms.txt

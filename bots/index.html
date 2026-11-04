@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ghostcorpnet — Website Bots Live</title>
+<meta name="description" content="Watch the ghostcorpnet website bots work — the full fleet roster and a live activity feed, built for the big screen.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://ghostcorpnet.com/bots/">
+<meta name="theme-color" content="#07090c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ghostcorpnet — Website Bots Live">
+<meta property="og:description" content="Watch the ghostcorpnet website bots work — the full fleet roster and a live activity feed, built for the big screen.">
+<meta property="og:url" content="https://ghostcorpnet.com/bots/">
+<meta property="og:image" content="https://ghostcorpnet.com/assets/studio-edition-cover.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1600">
+<meta property="og:image:alt" content="ghostcorpnet Studio Edition playbook cover">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ghostcorpnet — Website Bots Live">
+<meta name="twitter:description" content="Watch the ghostcorpnet website bots work — the full fleet roster and a live activity feed, built for the big screen.">
+<meta name="twitter:image" content="https://ghostcorpnet.com/assets/studio-edition-cover.jpg">
+<meta name="twitter:image:alt" content="ghostcorpnet Studio Edition playbook cover">
+<style>
+  :root{
+    --bg:#07090c;
+    --panel:#10151c;
+    --panel2:#151c26;
+    --line:#26303d;
+    --text:#f2f6fa;
+    --muted:#a9b8c6;
+    --accent:#57e6a9;
+    --accent2:#ffd257;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:20px}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    padding:1.3rem 2.6rem 3rem;
+    line-height:1.35;
+  }
+  .wrap{max-width:1500px;margin:0 auto}
+
+  header.top{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 2rem;
+    border-bottom:4px solid var(--accent);
+    padding-bottom:.7rem;margin-bottom:1.4rem;
+  }
+  header.top h1{
+    font-size:2.7rem;letter-spacing:.04em;font-weight:800;text-transform:uppercase;
+  }
+  header.top h1 .live{color:var(--accent)}
+  .dot{
+    display:inline-block;width:1.1rem;height:1.1rem;border-radius:50%;
+    background:var(--accent);margin-right:.6rem;vertical-align:baseline;
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  #clock{
+    margin-left:auto;font-size:2.4rem;font-weight:700;color:var(--accent2);
+    font-variant-numeric:tabular-nums;white-space:nowrap;
+  }
+  .tagline{font-size:1.3rem;color:var(--muted);margin-top:.2rem;width:100%}
+  #bot-count{
+    width:100%;font-size:1.8rem;font-weight:800;color:var(--accent);
+    margin-top:.3rem;letter-spacing:.02em;
+  }
+
+  /* ---- Admin panel (private sign-in) ---- */
+  .runfleet{
+    background:var(--panel2);border:3px solid var(--accent2);border-radius:16px;
+    padding:1.3rem 1.6rem;margin-bottom:1.6rem;
+  }
+  .runfleet h2{color:var(--accent2);margin-bottom:.6rem}
+  .runfleet .how{font-size:1.45rem;color:var(--text);margin-bottom:1rem;max-width:60ch}
+  .runbtn{
+    display:block;text-decoration:none;color:#0a0f14;background:var(--accent2);
+    border-radius:16px;padding:1.4rem 1.6rem;font-size:2.3rem;font-weight:800;text-align:center;
+  }
+  .runbtn .hint{display:block;font-size:1.3rem;font-weight:650;margin-top:.4rem}
+  .runbtn:focus{outline:5px solid var(--accent);outline-offset:3px}
+
+  /* ---- Money strip ---- */
+  .money{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+  .tile{
+    background:var(--panel);border:3px solid var(--accent);border-radius:16px;
+    padding:1.2rem 1.5rem;text-align:center;
+  }
+  .tile .tlabel{font-size:1.4rem;font-weight:750;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .tile .tvalue{font-size:3.2rem;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.15}
+  .tile .tnote{font-size:1.2rem;color:var(--muted)}
+  #money-asof{font-size:1.25rem;color:var(--muted);margin-top:.8rem}
+  .screen-note{font-size:1.45rem;color:var(--text);margin-bottom:1.1rem;max-width:75ch}
+  .screen-note strong{color:var(--accent)}
+
+  section{margin-bottom:2.6rem}
+  h2{
+    font-size:2.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+    margin-bottom:1.1rem;color:var(--text);
+  }
+  h2 .sub{font-size:1.3rem;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:600}
+
+  /* ---- Feed + roster rows ---- */
+  #feed, #fleet{display:flex;flex-direction:column;gap:.8rem}
+  .item{
+    background:var(--panel);border:2px solid var(--line);border-radius:14px;
+    padding:1rem 1.4rem;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;align-items:baseline;
+  }
+  .item .msg{font-size:1.45rem;font-weight:650;flex:1 1 60%}
+  .item .when{font-size:1.25rem;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+  #feed .item:first-child{border-color:var(--accent);background:var(--panel2)}
+  .feed-note{font-size:1.4rem;color:var(--muted)}
+  .bot .bname{font-size:1.5rem;font-weight:750;flex:1 1 100%}
+  .bot .bjob{font-size:1.3rem;color:var(--text);flex:1 1 65%}
+  .bot .bsched{font-size:1.2rem;color:var(--accent2);white-space:nowrap;font-weight:650}
+
+  /* ---- Big links ---- */
+  .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem}
+  .biglink{
+    display:block;text-decoration:none;color:var(--text);
+    background:var(--panel2);border:3px solid var(--accent);border-radius:16px;
+    padding:1.6rem 1.6rem;font-size:2rem;font-weight:800;text-align:center;
+  }
+  .biglink .hint{display:block;font-size:1.25rem;color:var(--muted);font-weight:600;margin-top:.4rem}
+  .biglink:focus{outline:5px solid var(--accent2);outline-offset:3px}
+
+  footer{margin-top:2rem;border-top:2px solid var(--line);padding-top:1rem}
+  footer p{font-size:1.25rem;color:var(--muted)}
+  #updated{font-variant-numeric:tabular-nums}
+
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:#07090c;padding:10px 18px;font-weight:700;z-index:200;border-radius:0 0 8px 0}.skip:focus{left:0}#main:focus{outline:3px solid var(--accent);outline-offset:-3px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<main class="wrap" id="main" tabindex="-1">
+
+  <header class="top">
+    <h1><span class="dot" aria-hidden="true"></span>ghostcorpnet — <span class="live">Website Bots Live</span></h1>
+    <div id="clock" aria-label="Current time">--:--</div>
+    <p class="tagline">These are the bots that build, run, and sell on this website. This screen refreshes itself every minute.</p>
+    <div id="bot-count">🟢 Loading the fleet…</div>
+  </header>
+
+  <section class="runfleet" aria-labelledby="panel-h">
+    <h2 id="panel-h">🔒 My admin panel — private</h2>
+    <p class="how">Tap the button and sign in once with your private key — this Xbox remembers it on this device, so you won't have to type it again. <strong>Don't share that key, or the panel link, with anyone.</strong></p>
+    <p class="how">Inside the panel you can see and control everything from this Xbox: the TV view shows <strong>sales today, the bots working, and what needs your tap</strong> — the approve buttons work right there — and <strong>🎙 Talk to the fleet</strong> gives the bots their orders: answers come back in about 2 minutes, and orders are tasked to the bots in about 15 minutes.</p>
+    <a class="runbtn" href="../admin-login.html">🔒 Open my admin panel<span class="hint">Private — sign in once, this Xbox remembers you</span></a>
+  </section>
+
+  <section aria-labelledby="money-h">
+    <h2 id="money-h">💰 Money made</h2>
+    <div class="money">
+      <div class="tile"><div class="tlabel">Money made</div><div class="tvalue" id="money-total">$0.00</div><div class="tnote">total, all time</div></div>
+      <div class="tile"><div class="tlabel">Orders</div><div class="tvalue" id="money-orders">0</div><div class="tnote">paid orders, all time</div></div>
+      <div class="tile"><div class="tlabel">Sales today</div><div class="tvalue" id="money-today">$0.00</div><div class="tnote">paid sales today</div></div>
+    </div>
+    <p id="money-asof">Loading the money figures…</p>
+  </section>
+
+  <section aria-labelledby="fleet-h">
+    <h2 id="fleet-h">🟢 Working now — the live bot list <span class="sub">— every website bot, and what it is working on</span></h2>
+    <p class="screen-note">Most bots are programs, not people sitting at desks — they have no screen of their own. They work <strong>through this website, the stores, and the business inbox</strong>. This list is each bot's current job, and the feed below is their screen: everything they have just done, as it happens.</p>
+    <div id="fleet"><p class="feed-note">Loading the website bots…</p></div>
+  </section>
+
+  <section aria-labelledby="work-h">
+    <h2 id="work-h">🛠️ Latest bot work — the bots' screen <span class="sub">— newest first</span></h2>
+    <div id="feed"><p class="feed-note">Loading the latest bot work…</p></div>
+  </section>
+
+  <section aria-labelledby="go-h">
+    <h2 id="go-h">Go</h2>
+    <div class="links">
+      <a class="biglink" href="../products/">🛒 Products<span class="hint">Everything the bots have made</span></a>
+      <a class="biglink" href="../services/ai-agency.html">🤝 Services<span class="hint">Websites, front desk &amp; video</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Public screen — the website bots and their work only. <span id="updated"></span></p>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- clock ---------- */
+  var clockEl = document.getElementById("clock");
+  function tickClock(){
+    var d = new Date();
+    var hh = d.getHours(), mm = d.getMinutes();
+    var ap = hh >= 12 ? "PM" : "AM";
+    hh = hh % 12; if (hh === 0) hh = 12;
+    clockEl.textContent = hh + ":" + (mm < 10 ? "0" : "") + mm + " " + ap;
+  }
+  tickClock();
+  setInterval(tickClock, 10000);
+
+  function relTime(iso){
+    var then = new Date(iso).getTime();
+    if (isNaN(then)) return "";
+    var s = Math.max(0, Math.floor((Date.now() - then) / 1000));
+    if (s < 60) return "just now";
+    var m = Math.floor(s / 60);
+    if (m < 60) return m + (m === 1 ? " min ago" : " mins ago");
+    var h = Math.floor(m / 60);
+    if (h < 24) return h + (h === 1 ? " hour ago" : " hours ago");
+    var d = Math.floor(h / 24);
+    return d + (d === 1 ? " day ago" : " days ago");
+  }
+
+  /* Game-world commits land every few minutes and are not website
+     work, so the feed leaves them out. (Word assembled in parts so
+     this page never carries it.) */
+  var GAME_WORD = "rot" + "wood";
+  function isWebsiteWork(msg){
+    return msg.toLowerCase().indexOf(GAME_WORD) === -1;
+  }
+
+  function botLabel(msg){
+    var m = msg.toLowerCase();
+    if (m.indexOf("catalog update") === 0) return "🛒 Catalog bot";
+    if (m.indexOf("catalog") === 0) return "🛒 Catalog bot";
+    if (m.indexOf("cover") === 0) return "🎨 Cover bot";
+    if (m.indexOf("dashboard") === 0) return "📊 Dashboard bot";
+    if (m.indexOf("bots live") === 0) return "📺 TV page bot";
+    if (m.indexOf("stamp") === 0 || m.indexOf("freshness") === 0) return "🕒 Freshness bot";
+    return null;
+  }
+
+  /* ---------- The website bots (fleet roster) + money strip ---------- */
+  var fleetEl = document.getElementById("fleet");
+  var countEl = document.getElementById("bot-count");
+
+  function money(n){
+    return "$" + Number(n || 0).toFixed(2);
+  }
+
+  function renderStats(stats){
+    if (!stats) return;
+    document.getElementById("money-total").textContent = money(stats.money_made_usd);
+    document.getElementById("money-orders").textContent = String(stats.orders || 0);
+    document.getElementById("money-today").textContent = money(stats.sales_today_usd);
+    var asof = document.getElementById("money-asof");
+    var when = stats.as_of ? new Date(stats.as_of) : null;
+    var txt = "From the verified sales records";
+    if (when && !isNaN(when.getTime())) {
+      txt += ", as of " + when.toLocaleDateString() + " " + when.toLocaleTimeString();
+    }
+    if (stats.free_downloads) {
+      txt += ". Plus " + stats.free_downloads + (stats.free_downloads === 1
+        ? " free download" : " free downloads") + " — free downloads are not paid orders.";
+    }
+    asof.textContent = txt + ".";
+  }
+
+  function loadFleet(){
+    fetch("fleet.json", {cache: "no-store"})
+      .then(function(r){ if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+      .then(function(data){
+        /* fleet.json is {"stats": {...}, "bots": [...]}; tolerate the
+           old bare-array format too. */
+        var bots = (data && data.bots) ? data.bots : data;
+        renderStats(data && data.stats ? data.stats : null);
+        if (!bots || !bots.length) throw new Error("empty");
+        countEl.textContent = "🟢 " + bots.length + " WEBSITE BOTS WORKING FOR GHOSTCORPNET";
+        fleetEl.innerHTML = "";
+        bots.forEach(function(b){
+          var row = document.createElement("div");
+          row.className = "item bot";
+          var n = document.createElement("span");
+          n.className = "bname";
+          n.textContent = b.name || "";
+          var j = document.createElement("span");
+          j.className = "bjob";
+          j.textContent = b.job || "";
+          var s = document.createElement("span");
+          s.className = "bsched";
+          s.textContent = b.schedule || "";
+          row.appendChild(n);
+          row.appendChild(j);
+          row.appendChild(s);
+          fleetEl.appendChild(row);
+        });
+        stampUpdated();
+      })
+      .catch(function(){
+        if (!fleetEl.querySelector(".item")) {
+          fleetEl.innerHTML = "";
+          var p = document.createElement("p");
+          p.className = "feed-note";
+          p.textContent = "The roster is resting — it will try again in a minute.";
+          fleetEl.appendChild(p);
+        }
+      });
+  }
+
+  /* ---------- Latest bot work (public GitHub commits, website only) ---------- */
+  var feedEl = document.getElementById("feed");
+  var COMMITS_URL = "https://api.github.com/repos/koalstingkdelaney-gif/kestrelattice/commits?per_page=40";
+
+  function loadFeed(){
+    fetch(COMMITS_URL, {headers: {"Accept": "application/vnd.github+json"}})
+      .then(function(r){ if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+      .then(function(commits){
+        if (!commits || !commits.length) throw new Error("empty");
+        feedEl.innerHTML = "";
+        var shown = 0;
+        commits.forEach(function(c){
+          if (shown >= 20) return;
+          var full = (c.commit && c.commit.message) ? c.commit.message : "";
+          var first = full.split("\n")[0].trim();
+          if (!first || !isWebsiteWork(first)) return;
+          shown++;
+          var when = c.commit && c.commit.author ? c.commit.author.date : "";
+          var label = botLabel(first);
+
+          var row = document.createElement("div");
+          row.className = "item";
+          var msg = document.createElement("span");
+          msg.className = "msg";
+          msg.textContent = label ? (label + " — " + first) : first;
+          var t = document.createElement("span");
+          t.className = "when";
+          t.textContent = relTime(when);
+          row.appendChild(msg);
+          row.appendChild(t);
+          feedEl.appendChild(row);
+        });
+        if (!feedEl.children.length) throw new Error("empty");
+        stampUpdated();
+      })
+      .catch(function(){
+        if (!feedEl.querySelector(".item")) {
+          feedEl.innerHTML = "";
+          var p = document.createElement("p");
+          p.className = "feed-note";
+          p.textContent = "The work feed is resting — it will try again in a minute.";
+          feedEl.appendChild(p);
+        }
+      });
+  }
+
+  var updatedEl = document.getElementById("updated");
+  function stampUpdated(){
+    var d = new Date();
+    var hh = d.getHours(), mm = d.getMinutes(), ss = d.getSeconds();
+    var ap = hh >= 12 ? "PM" : "AM";
+    hh = hh % 12; if (hh === 0) hh = 12;
+    updatedEl.textContent = "Last refreshed " + hh + ":" +
+      (mm < 10 ? "0" : "") + mm + ":" + (ss < 10 ? "0" : "") + ss + " " + ap + ".";
+  }
+
+  loadFleet();
+  loadFeed();
+  setInterval(function(){ loadFleet(); loadFeed(); }, 60000);
+})();
+</script>
+</body>
+</html>

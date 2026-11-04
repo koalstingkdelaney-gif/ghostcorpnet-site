@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>ghostcorpnet articles</title>
+  <link>https://ghostcorpnet.com/articles/</link>
+  <description>Agent governance playbooks, checklists, and field notes from ghostcorpnet.</description>
+  <language>en</language>
+  <lastBuildDate>Sun, 04 Oct 2026 13:30:08 GMT</lastBuildDate>
+  <item>
+    <title>AI Agent Red Team Testing Checklist — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/ai-agent-red-team-testing-checklist.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/ai-agent-red-team-testing-checklist.html</guid>
+    <pubDate>Sun, 04 Oct 2026 00:00:00 GMT</pubDate>
+    <description>Run these 12 adversarial red-team tests before your AI agents touch production: prompt injection, spend abuse, exfiltration, and escalation drills.</description>
+  </item>
+  <item>
+    <title>AI Agent Approval Workflow: Fast Gates That Work</title>
+    <link>https://ghostcorpnet.com/articles/ai-agent-approval-workflow.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/ai-agent-approval-workflow.html</guid>
+    <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+    <description>Build an AI agent approval workflow that keeps agents fast: three-tier approvals, recorded decisions, fail-closed blocks, and per-plan spend ceilings.</description>
+  </item>
+  <item>
+    <title>AI Agent Audit Logs: Schema &amp; Retention Guide — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/ai-agent-audit-log-schema-retention.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/ai-agent-audit-log-schema-retention.html</guid>
+    <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+    <description>What belongs in an AI agent audit log: the minimum schema, tamper-evident storage, retention tiers, and what reviewers actually ask for.</description>
+  </item>
+  <item>
+    <title>AI Agent Incident Response: The Complete Runbook</title>
+    <link>https://ghostcorpnet.com/articles/ai-agent-incident-response-plan.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/ai-agent-incident-response-plan.html</guid>
+    <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+    <description>Build a robust AI agent incident response plan to stop runaway loops, prompt injections, and unauthorized actions before they break production.</description>
+  </item>
+  <item>
+    <title>AI Agent Vendor Risk: 20 Questions Before You Buy</title>
+    <link>https://ghostcorpnet.com/articles/ai-agent-vendor-risk-assessment.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/ai-agent-vendor-risk-assessment.html</guid>
+    <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+    <description>20 due-diligence questions to ask before buying a third-party AI agent: identity, approvals, spend controls, audit logs, data handling, exit terms.</description>
+  </item>
+  <item>
+    <title>AI Agent Governance FAQ: Permissions, Costs, Identity</title>
+    <link>https://ghostcorpnet.com/articles/agent-governance-faq.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/agent-governance-faq.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>Straight answers to the most-asked agent governance questions: prompt fatigue, runaway costs, agent inventory, and payment permissions.</description>
+  </item>
+  <item>
+    <title>Agent Permissions by Consequence, Not Frequency</title>
+    <link>https://ghostcorpnet.com/articles/agent-permissions-tier-by-consequence.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/agent-permissions-tier-by-consequence.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>Who can use which agent? What can each agent access? A three-tier permission model — hard-gated, bounded auto, draft-only — plus tiering heuristics.</description>
+  </item>
+  <item>
+    <title>AI Agent Permissions Audit: 12 Key Questions — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/ai-agent-permissions-audit.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/ai-agent-permissions-audit.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A practical permissions audit for AI agents in production: 12 questions on grants, credentials, spend ceilings, and audit trails — before something breaks.</description>
+  </item>
+  <item>
+    <title>AI Agent Policy Template Checklist — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/ai-agent-policy-templates-what-to-include.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/ai-agent-policy-templates-what-to-include.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>Writing AI agent policies from scratch wastes weeks. Here is exactly what a complete agent policy pack contains — and the ready-made templates for each piece.</description>
+  </item>
+  <item>
+    <title>Buy the Observability, Build the Governance — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/buy-observability-build-governance.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/buy-observability-build-governance.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>Prompt engineering cannot enforce boundaries on multi-agent systems. Score vendors against the governance gap — then build the kill switch yourself.</description>
+  </item>
+  <item>
+    <title>EU AI Act: Agent Evidence Checklist for Deployers</title>
+    <link>https://ghostcorpnet.com/articles/eu-ai-act-agent-evidence-checklist.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/eu-ai-act-agent-evidence-checklist.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>EU AI Act enforcement began August 2, 2026. If your company deploys AI agents for EU users, here is the evidence checklist regulators expect.</description>
+  </item>
+  <item>
+    <title>Governance Economics: Pay for the Right Layer — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/governance-economics-paying-wrong-layer.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/governance-economics-paying-wrong-layer.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>LangSmith is $39/seat/month. AgentOps runs $49–$199/month. Both sell observability. The layer that stops incidents — policy and enforcement — costs $0.</description>
+  </item>
+  <item>
+    <title>Ley de IA de la UE: lista de verificación — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/ley-ia-ue-lista-verificacion-agentes.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/ley-ia-ue-lista-verificacion-agentes.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>La Ley de IA de la UE entró en aplicación el 2 de agosto de 2026. Si tu empresa usa agentes de IA con usuarios europeos, esta lista de verificación práctica.</description>
+  </item>
+  <item>
+    <title>Observability vs Governance for AI Agents — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/observability-vs-governance.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/observability-vs-governance.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>Teams buy observability and call it governance. Dashboards show what happened; only fail-closed controls stop what should not happen. The $0 spend ceiling.</description>
+  </item>
+  <item>
+    <title>Stop Runaway Agent Costs: Spend Ceilings — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/runaway-agent-costs-spend-ceilings.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/runaway-agent-costs-spend-ceilings.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A dev watched an AI agent burn $700+ in 72 hours. The fix: per-plan spend ceilings that fail closed, plus three more controls that cost $0.</description>
+  </item>
+  <item>
+    <title>Scoped Expiring Grants for AI Agents — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/scoped-expiring-grants-agents.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/scoped-expiring-grants-agents.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>Never hand an agent your raw production key. Issue a grant instead — a record with five explicit fields, three rules, and no auto-grant path, ever.</description>
+  </item>
+  <item>
+    <title>Selling AI Products to Europe: Buyer Demands — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/selling-ai-products-to-europe.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/selling-ai-products-to-europe.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>EU AI Act enforcement is pushing audit-trail requirements into B2B procurement. Build a governance evidence pack that shortens enterprise sales cycles.</description>
+  </item>
+  <item>
+    <title>US State AI Laws 2026: What Deployers Must Do — ghostcorpnet</title>
+    <link>https://ghostcorpnet.com/articles/us-state-ai-laws-agents-2026.html</link>
+    <guid isPermaLink="true">https://ghostcorpnet.com/articles/us-state-ai-laws-agents-2026.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>Texas TRAIGA, California's AI transparency laws, shifting Colorado rules — the 2026 US state AI law landscape for teams running AI agents.</description>
+  </item>
+</channel>
+</rss>
