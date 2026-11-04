@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-03T13:16:11Z",
+ "generated_at": "2026-11-04T13:16:09Z",
  "stats": {
   "money_made_usd": 0.0,
   "orders": 0,
   "sales_today_usd": 0.0,
   "orders_today": 0,
   "free_downloads": 1,
-  "as_of": "2026-11-03T13:16:11Z",
+  "as_of": "2026-11-04T13:16:09Z",
   "source": "Verified sales ledger + Gumroad sales check"
  },
  "bots": [
@@ -1074,6 +1074,11 @@
    "name": "Site Improver (hive)",
    "job": "Make the marketing site better and SHIP the best improvement: one highest-impact change per run — conversion, SEO, copy quality, mobile, accessibility —…",
    "schedule": "On demand · hive"
+  },
+  {
+   "name": "Site sync — private repo to public site repo",
+   "job": "Site sync — private repo to public site repo",
+   "schedule": "Every 10 min"
   },
   {
    "name": "Site Updater (hive)",
