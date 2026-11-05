@@ -88,7 +88,7 @@
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/</loc><lastmod>2026-11-03</lastmod>
+    <loc>https://ghostcorpnet.com/articles/</loc><lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -6691,4 +6691,18 @@
     <loc>https://ghostcorpnet.com/articles/ai-agent-policy-exception-template.html</loc><lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url><loc>https://ghostcorpnet.com/products/type-approval-readiness-scorer/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/igqpbt.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/auto-safety-documentation-prompts/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/vsxgzr.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/tara-prompt-library/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/okzvt.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/av-validation-prompts/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/qrhikn.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/automotive-hmi-prompts/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/sncwcj.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/supplier-requirement-prompts/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/gztjhb.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/auto-incident-prompts/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/rcffre.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/recall-planning-prompts/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/lkanh.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/auto-ai-safety-board-deck/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/uicfme.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/av-validation-report-deck/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/qjleq.png</image:loc></image:image></url>
 </urlset>
