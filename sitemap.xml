@@ -236,16 +236,16 @@
   <url><loc>https://ghostcorpnet.com/products/agent-fleet-tco-calculator/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/zjvbe.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/incident-postmortem-template-pack/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/tqxud.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/brands/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/incidentlattice/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/supportwarden/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/classwarden/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/actlattice/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/finlattice/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/healthlattice/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/hirewarden/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/lawwarden/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/sourcelattice/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/civicwarden/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/incidentlattice/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/supportwarden/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/classwarden/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/actlattice/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/finlattice/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/healthlattice/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/hirewarden/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/lawwarden/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/sourcelattice/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/civicwarden/</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://ghostcorpnet.com/products/healthcare-ai-agent-governance-pack-meridian-studio/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jkgwyx.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/finance-ai-agent-governance-pack-ledgerline-studio/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/zeqdxq.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/education-ai-agent-governance-pack-blackboard-studio/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/kakqjj.png</image:loc></image:image></url>
@@ -360,7 +360,7 @@
   <url><loc>https://ghostcorpnet.com/brands/lawwarden/articles/legal-ai-agent-privilege-confidentiality.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/sourcelattice/articles/open-source-agent-stack-governance-checklist.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/supportwarden/articles/support-agent-refund-authority-guardrails.html</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/frontierlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/frontierlattice/</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://ghostcorpnet.com/code-bot/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/incident-response-plan.html</loc><lastmod>2026-11-03</lastmod></url>
@@ -6716,4 +6716,18 @@
   <url><loc>https://ghostcorpnet.com/brands/incidentlattice/articles/evidence-preservation-ai-agent-incidents.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/lawwarden/articles/matter-walls-conflicts-controls-legal-ai-agents.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/sourcelattice/articles/provenance-checks-ai-agent-dependencies.html</loc><lastmod>2026-11-05</lastmod></url>
+  <url>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url><loc>https://ghostcorpnet.com/products/auto-ai-incident-deck/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/tgesfg.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/automotive-ai-strategy-deck/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/oclgou.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/tara-record-schema/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/rcfveu.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/av-test-result-table/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/eiqucp.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/av-test-planner/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/acdycj.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/auto-ai-compliance-checker/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/pdwtez.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/auto-regulator-ai-deck/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/smlpv.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/asil-determination-table/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/eamel.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/hazard-analysis-register/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/fjrob.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/auto-ai-supplier-register/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/aupqzv.png</image:loc></image:image></url>
 </urlset>
