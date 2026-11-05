@@ -24,6 +24,11 @@
   .row input{accent-color:var(--accent)}
   button{width:100%;background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:13px;font-size:1rem;font-weight:700;cursor:pointer}
   button:hover{background:var(--accent-bright)}
+  .gbtn{display:block;width:100%;text-align:center;background:#ece6d9;color:#1a0f08;border:0;border-radius:8px;padding:13px;font-size:1rem;font-weight:700;text-decoration:none;cursor:pointer}
+  .gbtn:hover{background:#ffffff}
+  .gnote{color:var(--muted);font-size:.82rem;margin-top:10px;text-align:center}
+  .ordiv{display:flex;align-items:center;gap:10px;color:var(--faint);font-size:.78rem;margin:22px 0 16px}
+  .ordiv:before,.ordiv:after{content:"";flex:1;border-top:1px solid var(--line)}
   .err{color:#e07a5f;font-size:.85rem;margin-top:12px;min-height:1.2em}
   .fine{margin-top:18px;font-size:.78rem;color:var(--faint);line-height:1.5}
   .fine a{color:var(--faint);text-decoration:underline;cursor:pointer}
@@ -34,7 +39,11 @@
 <div class="card">
   <div class="brand">ghostcorpnet</div>
   <h1>Admin sign in</h1>
-  <p>Enter your private admin key to open the control panel. Nothing here works without it.</p>
+  <p>Sign in with your business email, or use your private admin key. Nothing here works without one of them.</p>
+  <a class="gbtn" href="https://kestrelattice-approvals.koalstin-g-k-delaney.workers.dev/auth/google/start">Sign in with your business email</a>
+  <div class="gnote">Only corpghost420@gmail.com is accepted.</div>
+  <div class="err" id="autherr"></div>
+  <div class="ordiv">or use your admin key</div>
   <form id="f">
     <label for="key">Admin key</label>
     <input type="password" id="key" autocomplete="off" placeholder="Paste your admin key" autofocus>
@@ -58,6 +67,11 @@
   function go(key){
     location.href = WORKER + "/admin?key=" + encodeURIComponent(key);
   }
+  try {
+    if (new URLSearchParams(location.search).get("err") === "auth") {
+      document.getElementById("autherr").textContent = "That sign-in didn't work — use an allowed business email or your admin key.";
+    }
+  } catch(e){}
   try {
     var saved = localStorage.getItem(LS);
     if (saved) { go(saved); return; }

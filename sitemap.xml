@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://ghostcorpnet.com/</loc><lastmod>2026-11-03</lastmod>
+    <loc>https://ghostcorpnet.com/</loc><lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/hire.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/hire.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/terms.html</loc><lastmod>2026-11-02</lastmod>
+    <loc>https://ghostcorpnet.com/terms.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/privacy.html</loc><lastmod>2026-11-02</lastmod>
+    <loc>https://ghostcorpnet.com/privacy.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/support.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/support.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/services/ai-break-test.html</loc><lastmod>2026-10-30</lastmod>
+    <loc>https://ghostcorpnet.com/services/ai-break-test.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/services/ai-agency.html</loc><lastmod>2026-11-02</lastmod>
+    <loc>https://ghostcorpnet.com/services/ai-agency.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/accessibility.html</loc><lastmod>2026-11-02</lastmod>
+    <loc>https://ghostcorpnet.com/accessibility.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/refunds.html</loc><lastmod>2026-11-02</lastmod>
+    <loc>https://ghostcorpnet.com/refunds.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/ai-policy.html</loc><lastmod>2026-11-02</lastmod>
+    <loc>https://ghostcorpnet.com/ai-policy.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -76,24 +76,24 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/tag-synthetic-rows-20261010.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/tag-synthetic-rows-20261010.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/requires-owner-action-20261010.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/requires-owner-action-20261010.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/governance-budget-redirect-20261010.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/governance-budget-redirect-20261010.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/</loc><lastmod>2026-11-01</lastmod>
+    <loc>https://ghostcorpnet.com/articles/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/directory/</loc><lastmod>2026-10-19</lastmod>
+    <loc>https://ghostcorpnet.com/directory/</loc><lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -103,15 +103,15 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://ghostcorpnet.com/articles/runaway-agent-costs-spend-ceilings.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/agent-permissions-tier-by-consequence.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/observability-vs-governance.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/scoped-expiring-grants-agents.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/buy-observability-build-governance.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/governance-economics-paying-wrong-layer.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/agent-governance-faq.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/ai-agent-permissions-audit.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/ai-agent-red-team-testing-checklist.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/runaway-agent-costs-spend-ceilings.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/agent-permissions-tier-by-consequence.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/observability-vs-governance.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/scoped-expiring-grants-agents.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/buy-observability-build-governance.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/governance-economics-paying-wrong-layer.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/agent-governance-faq.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/ai-agent-permissions-audit.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/ai-agent-red-team-testing-checklist.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
   <url><loc>https://ghostcorpnet.com/products/the-playbook-studio-edition/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/hdigmr.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-agent-risk-audit-kit/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/sahva.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/agent-incident-response-runbook/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jbngbu.png</image:loc></image:image></url>
@@ -143,7 +143,7 @@
   <url><loc>https://ghostcorpnet.com/products/denied-action-log-template-pack/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/tzxqoa.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/emergency-override-exception-template/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/efqvau.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/customer-facing-incident-runbook-excerpt/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/wjzdei.png</image:loc></image:image></url>
-  <url><loc>https://ghostcorpnet.com/quiz/</loc><lastmod>2026-10-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ghostcorpnet.com/quiz/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://ghostcorpnet.com/products/monthly-fleet-spend-forecast-calculator/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/monthly-fleet-spend-forecast.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-model-rotation-policy-one-pager/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/model-rotation-policy.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/incident-communication-template-pack/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/incident-communication-templates.png</image:loc></image:image></url>
@@ -152,13 +152,13 @@
   <url><loc>https://ghostcorpnet.com/products/grant-issuance-audit-template/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/grant-issuance-audit.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-model-provider-vendor-scorecard/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/model-provider-vendor-scorecard.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/human-in-the-loop-policy-one-pager/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/human-in-the-loop-policy.png</image:loc></image:image></url>
-  <url><loc>https://ghostcorpnet.com/articles/eu-ai-act-agent-evidence-checklist.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/us-state-ai-laws-agents-2026.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/selling-ai-products-to-europe.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/es/</loc><lastmod>2026-11-02</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/pt/</loc><lastmod>2026-11-02</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/articles/ai-agent-policy-templates-what-to-include.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/ley-ia-ue-lista-verificacion-agentes.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/eu-ai-act-agent-evidence-checklist.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/us-state-ai-laws-agents-2026.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/selling-ai-products-to-europe.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/es/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/pt/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/articles/ai-agent-policy-templates-what-to-include.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/ley-ia-ue-lista-verificacion-agentes.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
   <url><loc>https://ghostcorpnet.com/products/external-outreach-policy-one-pager/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/zqnprx.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/grant-expiry-enforcement-template-pack/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/mdhcvk.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/the-boardroom-briefing-pack/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/iljwilz.png</image:loc></image:image></url>
@@ -206,25 +206,25 @@
   <url><loc>https://ghostcorpnet.com/products/50-agent-oversight-prompts/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/50-agent-oversight-prompts.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/studio-edition-deluxe/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/studio-edition-deluxe.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/eu-ai-act-deluxe/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/eu-ai-act-deluxe.png</image:loc></image:image></url>
-  <url><loc>https://ghostcorpnet.com/build/</loc><lastmod>2026-10-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/build/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url>
-    <loc>https://ghostcorpnet.com/affiliates/</loc><lastmod>2026-10-05</lastmod>
+    <loc>https://ghostcorpnet.com/affiliates/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/ecosystem/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/ecosystem/</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://ghostcorpnet.com/products/healthcare-ai-agent-governance/</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/products/finance-ai-agent-governance/</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/products/education-ai-agent-governance/</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/products/eu-ai-act-compliance-pack/</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/products/customer-support-agent-governance/</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/products/open-source-agent-stack-governance/</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/products/legal-ai-agent-governance/</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/products/public-sector-agent-governance/</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/products/healthcare-ai-agent-governance/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/products/finance-ai-agent-governance/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/products/education-ai-agent-governance/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/products/eu-ai-act-compliance-pack/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/products/customer-support-agent-governance/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/products/open-source-agent-stack-governance/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/products/legal-ai-agent-governance/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/products/public-sector-agent-governance/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq></url>
   <url><loc>https://ghostcorpnet.com/products/adversarial-eval-use-case-bank/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/fjkfh.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/bug-bounty-scope-audit-template/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/dmbwdu.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/build-vs-buy-matrix-worksheet/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/dvrerp.png</image:loc></image:image></url>
@@ -235,17 +235,17 @@
   <url><loc>https://ghostcorpnet.com/products/agent-egress-allowlist-checklist/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/hibpfj.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/agent-fleet-tco-calculator/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/zjvbe.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/incident-postmortem-template-pack/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/tqxud.png</image:loc></image:image></url>
-  <url><loc>https://ghostcorpnet.com/brands/</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/incidentlattice/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/supportwarden/</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/classwarden/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/actlattice/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/finlattice/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/healthlattice/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/hirewarden/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/lawwarden/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/sourcelattice/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/civicwarden/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/incidentlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/supportwarden/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/classwarden/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/actlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/finlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/healthlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/hirewarden/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/lawwarden/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/sourcelattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/civicwarden/</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/products/healthcare-ai-agent-governance-pack-meridian-studio/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jkgwyx.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/finance-ai-agent-governance-pack-ledgerline-studio/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/zeqdxq.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/education-ai-agent-governance-pack-blackboard-studio/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/kakqjj.png</image:loc></image:image></url>
@@ -346,41 +346,41 @@
   <url><loc>https://ghostcorpnet.com/products/job-description-neutrality-checklist/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/xenfn.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/candidate-notice-templates/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ikbzah.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/interview-record-retention-pack/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/gqjvee.png</image:loc></image:image></url>
-  <url><loc>https://ghostcorpnet.com/articles/ai-agent-vendor-risk-assessment.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/ai-agent-incident-response-plan.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/articles/ai-agent-audit-log-schema-retention.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-deployer-duties-explained.html</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/civicwarden/articles/public-sector-ai-audit-trail-citizens-trust.html</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/classwarden/articles/classroom-ai-agent-policy-guide.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/finlattice/articles/money-moving-agent-approval-gates.html</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/frontierlattice/articles/new-frontier-model-pre-deployment-checklist.html</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/healthlattice/articles/phi-safe-healthcare-agent-deployment.html</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/hirewarden/articles/hiring-agent-bias-audit-before-launch.html</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/incidentlattice/articles/ai-agent-incident-postmortem-template.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/lawwarden/articles/legal-ai-agent-privilege-confidentiality.html</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/sourcelattice/articles/open-source-agent-stack-governance-checklist.html</loc><lastmod>2026-10-05</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/supportwarden/articles/support-agent-refund-authority-guardrails.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/frontierlattice/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/code-bot/</loc><lastmod>2026-10-05</lastmod></url>
-<url><loc>https://ghostcorpnet.com/glossary/incidentlattice/</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/incident-response-plan.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/kill-switch.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/blameless-postmortem.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/containment.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/forensic-log-capture.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/actlattice/</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/actlattice/conformity-assessment.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/actlattice/deployer.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/actlattice/human-oversight.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/actlattice/risk-tiering.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/actlattice/transparency-notice.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/finlattice/</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/finlattice/approval-gate.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/finlattice/hard-stop.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/finlattice/reconciliation.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/finlattice/segregation-of-duties.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/finlattice/spend-limit.html</loc><lastmod>2026-10-29</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/articles/ai-agent-vendor-risk-assessment.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/ai-agent-incident-response-plan.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/ai-agent-audit-log-schema-retention.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-deployer-duties-explained.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/civicwarden/articles/public-sector-ai-audit-trail-citizens-trust.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/classwarden/articles/classroom-ai-agent-policy-guide.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/finlattice/articles/money-moving-agent-approval-gates.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/frontierlattice/articles/new-frontier-model-pre-deployment-checklist.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/healthlattice/articles/phi-safe-healthcare-agent-deployment.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/hirewarden/articles/hiring-agent-bias-audit-before-launch.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/incidentlattice/articles/ai-agent-incident-postmortem-template.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/lawwarden/articles/legal-ai-agent-privilege-confidentiality.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/sourcelattice/articles/open-source-agent-stack-governance-checklist.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/supportwarden/articles/support-agent-refund-authority-guardrails.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/frontierlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/code-bot/</loc><lastmod>2026-11-03</lastmod></url>
+<url><loc>https://ghostcorpnet.com/glossary/incidentlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/incident-response-plan.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/kill-switch.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/blameless-postmortem.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/containment.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/incidentlattice/forensic-log-capture.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/actlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/actlattice/conformity-assessment.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/actlattice/deployer.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/actlattice/human-oversight.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/actlattice/risk-tiering.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/actlattice/transparency-notice.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/approval-gate.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/hard-stop.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/reconciliation.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/segregation-of-duties.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/spend-limit.html</loc><lastmod>2026-11-03</lastmod></url>
 
   
   <url><loc>https://ghostcorpnet.com/products/incident-runbook-automator-cli-python/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/incident-runbook-automator-cli.png</image:loc></image:image></url>
@@ -389,7 +389,7 @@
   <url><loc>https://ghostcorpnet.com/products/ai-deployer-obligation-checklist/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ai-deployer-obligation-checklist.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-act-transparency-disclosure-pack/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ai-act-transparency-disclosure-pack.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/voice-agent-governance-complete-pack-collection/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/voice-agent-governance-complete-pack-collection.png</image:loc></image:image></url>
-  <url><loc>https://ghostcorpnet.com/articles/ai-agent-approval-workflow.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/articles/ai-agent-approval-workflow.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq></url>
   <url><loc>https://ghostcorpnet.com/products/tamper-evident-agent-audit-logger-python/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ttexq.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/support-ticket-triage-classifier-python/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/yyrpyf.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/pii-phi-redaction-tool-python/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/kohrxu.png</image:loc></image:image></url>
@@ -486,8 +486,8 @@
   <url><loc>https://ghostcorpnet.com/products/shadow-frontier-adoption-audit/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/boxli.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/real-time-model-verification-kit/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ymujf.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/built-on-ghostcorpnet-certification-badge-license/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/built-on-ghostcorpnet-certification.png</image:loc></image:image></url>
-  <url><loc>https://ghostcorpnet.com/about.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq></url>
-  <url><loc>https://ghostcorpnet.com/brands/joblattice/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/about.html</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://ghostcorpnet.com/brands/joblattice/</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/products/after-hours-call-handling-scripts-for-contractors/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/after-hours-call-handling-scripts-for-contractors.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-call-quality-audit-improvement-workshop/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ai-call-quality-audit-improvement-workshop.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/contractor-s-ai-receptionist-governance-bundle/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/contractors-ai-receptionist-governance-bundle.png</image:loc></image:image></url>
@@ -5519,36 +5519,36 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/shadow-ai-agent-discovery-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/shadow-ai-agent-discovery-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-kill-switch.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-kill-switch.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-incident-disclosure-playbook.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-incident-disclosure-playbook.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-change-management-production-deployments.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-change-management-production-deployments.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-break-glass-emergency-access.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-break-glass-emergency-access.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-gap-assessment-12-point-self-check.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-gap-assessment-12-point-self-check.html</loc><lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/civicwarden/articles/ai-procurement-contracts-public-scrutiny.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/civicwarden/articles/ai-procurement-contracts-public-scrutiny.html</loc><lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 
@@ -5953,12 +5953,12 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/products/agent-security-incident-pack/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/products/agent-security-incident-pack/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/products/hr-recruiting-agent-governance/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/products/hr-recruiting-agent-governance/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -5968,41 +5968,41 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/ai-agent-token-cost-overrun-calculator/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/ai-agent-token-cost-overrun-calculator/</loc><lastmod>2026-11-03</lastmod>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/ai-readiness-score/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/ai-readiness-score/</loc><lastmod>2026-11-03</lastmod>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/ai-agent-incident-cost-estimator/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/ai-agent-incident-cost-estimator/</loc><lastmod>2026-11-03</lastmod>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-decommissioning-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-decommissioning-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/tools/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://ghostcorpnet.com/tools/</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/tools/eu-ai-act-article-14-agent-audit-gap-checker/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/eu-ai-act-article-14-agent-audit-gap-checker/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/tools/eu-ai-act-risk-heatmap-calculator/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/eu-ai-act-risk-heatmap-calculator/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/tools/eu-ai-act-agent-compliance-scanner/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://ghostcorpnet.com/tools/eu-ai-act-agent-compliance-scanner/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/tools/eu-ai-act-readiness-checker/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/eu-ai-act-readiness-checker/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -6017,192 +6017,192 @@
     <priority>0.9</priority>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/eu-ai-act-enforcement-is-live-why-your-ai-touchpoint-inventory-cant-wait-20261001.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/eu-ai-act-enforcement-is-live-why-your-ai-touchpoint-inventory-cant-wait-20261001.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/governance-must-become-cheap-by-default-20261001.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/governance-must-become-cheap-by-default-20261001.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/how-to-secure-your-agents-tool-access-20261001.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/how-to-secure-your-agents-tool-access-20261001.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/model-fatigue-is-breaking-static-procurement-policies-20261001.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/model-fatigue-is-breaking-static-procurement-policies-20261001.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/pin-the-layer-you-control-20261001.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/pin-the-layer-you-control-20261001.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/stop-treating-ai-incident-reporting-as-optional-20261001.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/stop-treating-ai-incident-reporting-as-optional-20261001.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/the-robo-boss-ban-makes-human-in-the-loop-a-legal-requirement-20261001.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/the-robo-boss-ban-makes-human-in-the-loop-a-legal-requirement-20261001.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/budget-envelope-tracking-costs-for-every-agent-run-20261002.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/budget-envelope-tracking-costs-for-every-agent-run-20261002.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/observability-shows-you-the-bill-governance-stops-it-20261002.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/observability-shows-you-the-bill-governance-stops-it-20261002.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/reconcile-before-you-execute-idempotency-for-agent-pipelines-20261002.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/reconcile-before-you-execute-idempotency-for-agent-pipelines-20261002.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/how-to-scope-ai-agent-permissions-without-a-nuclear-option-20261003.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/how-to-scope-ai-agent-permissions-without-a-nuclear-option-20261003.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/kill-switches-fail-when-the-actuator-isnt-gated-20261003.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/kill-switches-fail-when-the-actuator-isnt-gated-20261003.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/the-20-emails-that-shouldnt-have-been-sent-20261003.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/the-20-emails-that-shouldnt-have-been-sent-20261003.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/governance-isnt-the-brake-its-the-airbag-20261004.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/governance-isnt-the-brake-its-the-airbag-20261004.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/if-you-cant-state-your-agents-9-bounds-you-dont-have-a-plan-20261004.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/if-you-cant-state-your-agents-9-bounds-you-dont-have-a-plan-20261004.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/record-the-rejection-path-20261004.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/record-the-rejection-path-20261004.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/idempotency-keys-tool-calls-20261005.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/idempotency-keys-tool-calls-20261005.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/memory-retention-policy-20261005.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/memory-retention-policy-20261005.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/money-going-where-accountability-is-20261005.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/money-going-where-accountability-is-20261005.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/audit-logs-never-over-claim-20261006.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/audit-logs-never-over-claim-20261006.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/fail-closed-blocks-unblocks-when-20261006.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/fail-closed-blocks-unblocks-when-20261006.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/studio-level-governance-play-20261006.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/studio-level-governance-play-20261006.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/agent-clicked-i-agree-terms-20261007.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/agent-clicked-i-agree-terms-20261007.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/audit-log-guestbook-layer-order-20261007.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/audit-log-guestbook-layer-order-20261007.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/governance-scaling-constraint-20261007.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/governance-scaling-constraint-20261007.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/approval-fatigue-human-in-the-loop-20261008.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/approval-fatigue-human-in-the-loop-20261008.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/put-a-meter-in-front-of-your-framework-20261008.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/put-a-meter-in-front-of-your-framework-20261008.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/log-claims-not-events-20261009.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/log-claims-not-events-20261009.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/enforcement-layer-costs-zero-20261009.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/enforcement-layer-costs-zero-20261009.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/design-the-grant-not-the-agent-20261009.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/design-the-grant-not-the-agent-20261009.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/the-62-to-23-percent-problem-20261008.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/the-62-to-23-percent-problem-20261008.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url><loc>https://ghostcorpnet.com/products/tip-desk-off-market-lead-unlock/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/qbpgl.png</image:loc></image:image></url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-handoff-governance-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-handoff-governance-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-access-review-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-access-review-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-pre-deployment-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-pre-deployment-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-egress-controls-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-egress-controls-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-transparency-notices-for-ai-agents.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-transparency-notices-for-ai-agents.html</loc><lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/civicwarden/articles/ai-chatbots-public-services-accessibility-language-access-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/civicwarden/articles/ai-chatbots-public-services-accessibility-language-access-checklist.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/classwarden/articles/student-ai-acceptable-use-agreement-walkthrough.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/classwarden/articles/student-ai-acceptable-use-agreement-walkthrough.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/finlattice/articles/per-agent-spend-limits-budgets-alerts-hard-stops.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/finlattice/articles/per-agent-spend-limits-budgets-alerts-hard-stops.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/frontierlattice/articles/capability-evaluation-harness-before-deployment.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/frontierlattice/articles/capability-evaluation-harness-before-deployment.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/healthlattice/articles/hipaa-ai-vendor-vetting-baa-questions.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/healthlattice/articles/hipaa-ai-vendor-vetting-baa-questions.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/hirewarden/articles/structured-interview-rubrics-ai-screened-candidates.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/hirewarden/articles/structured-interview-rubrics-ai-screened-candidates.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/incidentlattice/articles/ai-agent-incident-severity-classification-rubric.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/incidentlattice/articles/ai-agent-incident-severity-classification-rubric.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/lawwarden/articles/ai-clauses-outside-counsel-engagement-letters.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/lawwarden/articles/ai-clauses-outside-counsel-engagement-letters.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/sourcelattice/articles/sbom-for-ai-agent-stack.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/sourcelattice/articles/sbom-for-ai-agent-stack.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/supportwarden/articles/support-agent-escalation-thresholds.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/supportwarden/articles/support-agent-escalation-thresholds.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-credential-rotation-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-credential-rotation-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -6216,176 +6216,176 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/fix-and-flip-calculator/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/fix-and-flip-calculator/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/photo-privacy-scrubber/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/photo-privacy-scrubber/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-rollback-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-rollback-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-identity-registry-template.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-identity-registry-template.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-plan-bound-template.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-plan-bound-template.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
     <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-timeout-retry-policy-template.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-timeout-retry-policy-template.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-risk-tier-classification-worksheet.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-risk-tier-classification-worksheet.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-record-keeping-ai-agents-logs-retention.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-record-keeping-ai-agents-logs-retention.html</loc><lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/civicwarden/articles/public-records-requests-municipal-ai-disclosures.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/civicwarden/articles/public-records-requests-municipal-ai-disclosures.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/classwarden/articles/ai-tutoring-agents-classroom-supervision-opt-outs-parent-notice.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/classwarden/articles/ai-tutoring-agents-classroom-supervision-opt-outs-parent-notice.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/finlattice/articles/reconciling-agent-made-payments-daily-ledger-review.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/finlattice/articles/reconciling-agent-made-payments-daily-ledger-review.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/frontierlattice/articles/red-teaming-frontier-models-structured-probe-plan.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/frontierlattice/articles/red-teaming-frontier-models-structured-probe-plan.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/healthlattice/articles/minimum-necessary-access-healthcare-ai-agents-phi-scoping.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/healthlattice/articles/minimum-necessary-access-healthcare-ai-agents-phi-scoping.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/hirewarden/articles/candidate-notice-consent-ai-hiring-tools.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/hirewarden/articles/candidate-notice-consent-ai-hiring-tools.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/incidentlattice/articles/ai-agent-incident-runbook-first-60-minutes.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/incidentlattice/articles/ai-agent-incident-runbook-first-60-minutes.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/lawwarden/articles/verifying-ai-generated-legal-citations-supervision-protocol.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/lawwarden/articles/verifying-ai-generated-legal-citations-supervision-protocol.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/sourcelattice/articles/governing-forks-upstream-changes-ai-agent-stack.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/sourcelattice/articles/governing-forks-upstream-changes-ai-agent-stack.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/supportwarden/articles/support-agent-quality-sampling-reviewing-bot-conversations.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/supportwarden/articles/support-agent-quality-sampling-reviewing-bot-conversations.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url><loc>https://ghostcorpnet.com/products/the-playbook-studio-edition-free-sample/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ihqce.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/agent-bounds-checklist-free/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/lttjbc.png</image:loc></image:image></url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/agent-risk-self-audit.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/agent-risk-self-audit.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-delegation-policy-template.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-delegation-policy-template.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-drift-monitoring-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-drift-monitoring-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-tool-output-validation-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-tool-output-validation-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-unblock-checklist-template.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-unblock-checklist-template.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/actlattice/articles/human-oversight-in-practice-high-risk-ai-agents.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/actlattice/articles/human-oversight-in-practice-high-risk-ai-agents.html</loc><lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/civicwarden/articles/resident-appeals-automated-decisions-municipal-ai.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/civicwarden/articles/resident-appeals-automated-decisions-municipal-ai.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/classwarden/articles/student-data-retention-deletion-ai-tools-schools.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/classwarden/articles/student-data-retention-deletion-ai-tools-schools.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/finlattice/articles/segregation-of-duties-money-moving-agents.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/finlattice/articles/segregation-of-duties-money-moving-agents.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/frontierlattice/articles/post-deployment-monitoring-drift-frontier-models.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/frontierlattice/articles/post-deployment-monitoring-drift-frontier-models.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/healthlattice/articles/healthcare-ai-breach-response-phi-incident-playbook.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/healthlattice/articles/healthcare-ai-breach-response-phi-incident-playbook.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/hirewarden/articles/adverse-impact-monitoring-ai-hiring-after-launch.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/hirewarden/articles/adverse-impact-monitoring-ai-hiring-after-launch.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/incidentlattice/articles/communicating-affected-users-ai-agent-incident.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/incidentlattice/articles/communicating-affected-users-ai-agent-incident.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/lawwarden/articles/ai-outputs-discovery-litigation-hold-law-firms.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/lawwarden/articles/ai-outputs-discovery-litigation-hold-law-firms.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/sourcelattice/articles/license-compliance-ai-agent-dependencies.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/sourcelattice/articles/license-compliance-ai-agent-dependencies.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/brands/supportwarden/articles/bot-to-human-handoff-context-support-agents.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/brands/supportwarden/articles/bot-to-human-handoff-context-support-agents.html</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-prompt-injection-defense-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-prompt-injection-defense-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/what-to-disclose-when-an-ai-agent-causes-an-incident.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/what-to-disclose-when-an-ai-agent-causes-an-incident.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/eu-ai-act-transparency-guide-ai-agents.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/eu-ai-act-transparency-guide-ai-agents.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/how-to-build-an-ai-agent-audit-trail.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/how-to-build-an-ai-agent-audit-trail.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/how-to-add-human-approval-gates-to-ai-agents.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/how-to-add-human-approval-gates-to-ai-agents.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-log-redaction-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-log-redaction-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-data-classification-policy-template.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-data-classification-policy-template.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-sandbox-testing-checklist.html</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-sandbox-testing-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url><loc>https://ghostcorpnet.com/products/prompt-injection-test-deck-60-attacks-to-run-on-your-own-ai-chatbot-break-test-diy-edition/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/xhgzml.png</image:loc></image:image></url>
@@ -6394,60 +6394,60 @@
   <url><loc>https://ghostcorpnet.com/products/done-for-you-ai-bot-testing/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/vwtqu.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-break-test-free-mini-trial/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/tsrwbt.png</image:loc></image:image></url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-tool-allowlist-template.html</loc><lastmod>2026-10-30</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-tool-allowlist-template.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-model-change-checklist.html</loc><lastmod>2026-10-30</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-model-change-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
-  <url><loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-incident-reporting-ai-agents.html</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/civicwarden/articles/ai-impact-assessments-city-services-worksheet.html</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/classwarden/articles/ai-homework-help-boundaries-teacher-guide.html</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/finlattice/articles/agent-payment-reversals-refunds-controls.html</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/frontierlattice/articles/model-upgrade-regression-gates-frontier-models.html</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/healthlattice/articles/patient-disclosure-healthcare-ai-agents-plain-language.html</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/hirewarden/articles/documenting-human-overrides-ai-hiring.html</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/incidentlattice/articles/incident-metrics-detection-containment-recovery-ai-agents.html</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/lawwarden/articles/client-consent-legal-ai-agents-disclosure.html</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/brands/sourcelattice/articles/vulnerability-response-ai-agent-dependencies.html</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/actlattice/articles/eu-ai-act-incident-reporting-ai-agents.html</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/civicwarden/articles/ai-impact-assessments-city-services-worksheet.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/classwarden/articles/ai-homework-help-boundaries-teacher-guide.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/finlattice/articles/agent-payment-reversals-refunds-controls.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/frontierlattice/articles/model-upgrade-regression-gates-frontier-models.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/healthlattice/articles/patient-disclosure-healthcare-ai-agents-plain-language.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/hirewarden/articles/documenting-human-overrides-ai-hiring.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/incidentlattice/articles/incident-metrics-detection-containment-recovery-ai-agents.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/lawwarden/articles/client-consent-legal-ai-agents-disclosure.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/brands/sourcelattice/articles/vulnerability-response-ai-agent-dependencies.html</loc><lastmod>2026-11-03</lastmod></url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-escalation-policy-template.html</loc><lastmod>2026-10-30</lastmod>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://ghostcorpnet.com/tools/ai-agent-shadow-spend-auditor/</loc><lastmod>2026-11-01</lastmod>
-  </url>
-  <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-rate-limit-policy-template.html</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-escalation-policy-template.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-least-privilege-checklist.html</loc><lastmod>2026-11-01</lastmod>
+    <loc>https://ghostcorpnet.com/tools/ai-agent-shadow-spend-auditor/</loc><lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-rate-limit-policy-template.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/bots/</loc><lastmod>2026-11-03</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-least-privilege-checklist.html</loc><lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://ghostcorpnet.com/bots/</loc><lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/ai-agent-permission-audit-shadow-spend-calculator/</loc><lastmod>2026-10-30</lastmod>
+    <loc>https://ghostcorpnet.com/tools/ai-agent-permission-audit-shadow-spend-calculator/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/debt-payoff-calculator/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/debt-payoff-calculator/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/eu-ai-act-agent-risk-heatmap-generator/</loc><lastmod>2026-10-30</lastmod>
+    <loc>https://ghostcorpnet.com/tools/eu-ai-act-agent-risk-heatmap-generator/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ghostcorpnet.com/tools/eu-ai-act-transparency-risk-matrix-calculator/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://ghostcorpnet.com/tools/eu-ai-act-transparency-risk-matrix-calculator/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -6604,7 +6604,22 @@
   <url><loc>https://ghostcorpnet.com/products/soc-2-readiness-prompts/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/wljah.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/audit-evidence-prompts/</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/rlgevp.png</image:loc></image:image></url>
   <url>
-    <loc>https://ghostcorpnet.com/articles/ai-agent-canary-deployment-checklist.html</loc><lastmod>2026-11-03</lastmod>
+    <loc>https://ghostcorpnet.com/articles/ai-agent-canary-deployment-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://ghostcorpnet.com/ecosystems/</loc><lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url><loc>https://ghostcorpnet.com/products/analytics-qa-framework/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ohska.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/analytics-cost-management/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/hpqmb.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/the-complete-analytics-reference/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ngrfik.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/soc-2-ai-readiness-pack/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ctfdx.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/soc-2-privacy-ai-pack/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/qfjrvx.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/ai-audit-readiness-assessment/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/exhgbf.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/soc-2-type-guide-for-ai/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/eoijr.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/audit-exception-ai-pack/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/cgezyk.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/exception-tracker/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/xypcdn.png</image:loc></image:image></url>
+  <url><loc>https://ghostcorpnet.com/products/control-narrative-prompts/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/cktbg.png</image:loc></image:image></url>
 </urlset>
