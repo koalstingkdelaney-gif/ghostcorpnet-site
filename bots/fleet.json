@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-04T13:16:09Z",
+ "generated_at": "2026-11-06T13:16:12Z",
  "stats": {
   "money_made_usd": 0.0,
   "orders": 0,
   "sales_today_usd": 0.0,
   "orders_today": 0,
-  "free_downloads": 1,
-  "as_of": "2026-11-04T13:16:09Z",
+  "free_downloads": 2,
+  "as_of": "2026-11-06T13:16:12Z",
   "source": "Verified sales ledger + Gumroad sales check"
  },
  "bots": [
@@ -84,11 +84,6 @@
    "name": "AI agency reply handling (intake + order flow)",
    "job": "Handles replies to agency pitches and books intake",
    "schedule": "Every 2 hr"
-  },
-  {
-   "name": "Approval watcher",
-   "job": "Executes approved work — publishes products and applies site updates",
-   "schedule": "Every 5 min"
   },
   {
    "name": "Approval Watcher Runner (hive)",
@@ -388,17 +383,17 @@
   {
    "name": "Dork Scout 1 — local business leads via Google dorking",
    "job": "Dork Scout 1 — local business leads via Google dorking",
-   "schedule": "Every 5 min"
+   "schedule": "Every 30 min"
   },
   {
    "name": "Dork Scout 2 — online business leads via Google dorking",
    "job": "Dork Scout 2 — online business leads via Google dorking",
-   "schedule": "Every 5 min"
+   "schedule": "Every 30 min"
   },
   {
    "name": "Dork Scout 3 — live demand threads via Google dorking",
    "job": "Dork Scout 3 — live demand threads via Google dorking",
-   "schedule": "Every 5 min"
+   "schedule": "Every 30 min"
   },
   {
    "name": "Ecosystem Expansion Runner (hive)",
@@ -738,7 +733,7 @@
   {
    "name": "Mesh sender (worker-outage failover)",
    "job": "Delivers queued fleet messages and retries failed sends",
-   "schedule": "Every 5 min"
+   "schedule": "Every 30 min"
   },
   {
    "name": "Micro Forge Runner (hive)",
@@ -813,7 +808,7 @@
   {
    "name": "Outreach sync (leads → pitches → send queue)",
    "job": "Keeps the customer outreach queue in sync and deduplicated",
-   "schedule": "Every 5 min"
+   "schedule": "Every 30 min"
   },
   {
    "name": "Outreach Sync Runner (hive)",
@@ -1173,7 +1168,7 @@
   {
    "name": "Taps sync",
    "job": "Syncs the owner's one-tap approvals to the fleet",
-   "schedule": "Every 5 min"
+   "schedule": "Every 30 min"
   },
   {
    "name": "Template Pack Assembler (hive)",
