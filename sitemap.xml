@@ -65,16 +65,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://ghostcorpnet.com/docs/research_buyer_demand.md</loc><lastmod>2026-09-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://ghostcorpnet.com/docs/research_pricing_econ.md</loc><lastmod>2026-09-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+  
+  
   <url>
     <loc>https://ghostcorpnet.com/articles/tag-synthetic-rows-20261010.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -5518,10 +5510,7 @@
   
   
   
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url>
     <loc>https://ghostcorpnet.com/articles/shadow-ai-agent-discovery-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -5556,406 +5545,106 @@
     <changefreq>monthly</changefreq>
   </url>
 
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <url>
     <loc>https://ghostcorpnet.com/products/agent-security-incident-pack/</loc><lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -6493,10 +6182,7 @@
   <url><loc>https://ghostcorpnet.com/products/spray-record-keeper/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/asgcj.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/farm-ai-risk-assessor/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/twxfle.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ag-drone-mission-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ymwiro.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/agronomy-ai-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ypdmcg.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/farm-autonomy-safety-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ytzwdn.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/sustainability-reporting-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/vvvwwf.png</image:loc></image:image></url>
@@ -6507,10 +6193,7 @@
   <url><loc>https://ghostcorpnet.com/products/ag-flight-log-schema/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/mbxike.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/spray-record-table/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/mbdvo.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/sustainability-metric-table/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/nohyn.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/farm-ai-training-log/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/clnkf.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ndvi-processing-pipeline/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ikjdku.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ag-traceability-code/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/fxncc.png</image:loc></image:image></url>
@@ -6521,10 +6204,7 @@
   <url><loc>https://ghostcorpnet.com/products/a-b-testing-handbook/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/rhttv.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/cohort-analysis-playbook/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jtzim.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/funnel-analysis-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/qxrnbc.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/metrics-layer-implementation/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/oellx.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/bi-governance-framework/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/roocv.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/power-bi-governance-playbook/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/bshvl.png</image:loc></image:image></url>
@@ -6535,10 +6215,7 @@
   <url><loc>https://ghostcorpnet.com/products/product-analytics-playbook/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/llttch.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/people-analytics-primer/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/cahcuj.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/supply-chain-analytics-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/sswxzl.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/anomaly-detection-playbook/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/aiyjfq.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/business-forecasting-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ufpqz.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/analytics-engineering-handbook/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/const.png</image:loc></image:image></url>
@@ -6549,17 +6226,11 @@
   <url><loc>https://ghostcorpnet.com/products/experimentation-platform-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ptgqy.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/text-analytics-playbook/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/avatfm.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/segmentation-playbook/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/vrtsebl.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/pricing-analytics-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jzrsrk.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/sports-analytics-business-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jlpcn.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/healthcare-analytics-primer/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/aqvexi.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/vintage-bar-pub-sign-design-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ibgeka.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/nurse-healthcare-appreciation-shirt-design-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/pudvy.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/teacher-school-shirt-design-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/aueea.png</image:loc></image:image></url>
@@ -6576,10 +6247,7 @@
   <url><loc>https://ghostcorpnet.com/products/analytics-certification-course/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/zrtkx.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/analytics-roadmap-templates/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/syspht.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/analytics-stakeholder-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/smsfd.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/accessible-data-viz-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/uxybqu.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/mobile-bi-design-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/otfeb.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/analytics-maturity-assessment/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/rjjehm.png</image:loc></image:image></url>
@@ -6590,10 +6258,7 @@
   <url><loc>https://ghostcorpnet.com/products/confidentiality-ai-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/rxwdvl.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-audit-evidence-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/cutnma.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-auditor-selection-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/buysct.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/ai-control-narrative-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jjhtf.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-finding-remediation-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/dpcikq.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-control-monitoring-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/iscxme.png</image:loc></image:image></url>
@@ -6604,10 +6269,7 @@
   <url><loc>https://ghostcorpnet.com/products/ai-incident-evidence-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/tylzwd.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-audit-board-briefing-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ozfkbbf.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/soc-2-readiness-scorer/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/esydfdp.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/audit-evidence-organizer/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/sdvyvk.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-control-mapper/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/aefzn.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/control-gap-analyzer/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/kogjq.png</image:loc></image:image></url>
@@ -6619,10 +6281,7 @@
     <loc>https://ghostcorpnet.com/articles/ai-agent-canary-deployment-checklist.html</loc><lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
   </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/analytics-qa-framework/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ohska.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/analytics-cost-management/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/hpqmb.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/the-complete-analytics-reference/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ngrfik.png</image:loc></image:image></url>
@@ -6643,10 +6302,7 @@
   <url><loc>https://ghostcorpnet.com/products/remediation-tracking-deck/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ykuuck.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-audit-strategy-deck/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ibfrrd.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/trust-criteria-matrix/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/bgvcwv.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/evidence-inventory/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/wamxfmr.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/control-gap-register/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/fjsymd.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/audit-exception-log/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/qzjhry.png</image:loc></image:image></url>
@@ -6657,10 +6313,7 @@
   <url><loc>https://ghostcorpnet.com/products/audit-leadership-audiobook/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/lbdwva.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/iso-26262-ai-compliance-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jhixvo.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/iso-sae-21434-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/vycjbz.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/un-r155-csms-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ccxvjw.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/un-r156-sums-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ieqkuo.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/sotif-ai-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/aqaphk.png</image:loc></image:image></url>
@@ -6671,19 +6324,13 @@
   <url><loc>https://ghostcorpnet.com/products/asil-determination-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/spduns.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/telematics-privacy-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/wbhdo.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ota-safety-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/fsgfje.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/auto-ai-supplier-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/fjwcoq.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/automotive-hmi-safety-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/fqxtku.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/ai-recall-planning-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/gnmvfj.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/warranty-ai-analytics-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/zetnz.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/auto-manufacturing-ai-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/rdyrs.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/in-vehicle-assistant-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/lpxyyr.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/auto-ai-incident-response-plan/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/mmglws.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/dealer-ai-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/mnibhf.png</image:loc></image:image></url>
@@ -6698,10 +6345,7 @@
     <loc>https://ghostcorpnet.com/articles/ai-agent-policy-exception-template.html</loc><lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/type-approval-readiness-scorer/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/igqpbt.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/auto-safety-documentation-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/vsxgzr.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/tara-prompt-library/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/okzvt.png</image:loc></image:image></url>
@@ -6723,10 +6367,7 @@
   <url><loc>https://ghostcorpnet.com/brands/incidentlattice/articles/evidence-preservation-ai-agent-incidents.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/lawwarden/articles/matter-walls-conflicts-controls-legal-ai-agents.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/sourcelattice/articles/provenance-checks-ai-agent-dependencies.html</loc><lastmod>2026-11-05</lastmod></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/auto-ai-incident-deck/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/tgesfg.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/automotive-ai-strategy-deck/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/oclgou.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/tara-record-schema/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/rcfveu.png</image:loc></image:image></url>
@@ -6741,10 +6382,7 @@
     <loc>https://ghostcorpnet.com/articles/ai-agent-ownership-transfer-checklist.html</loc><lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/asil-classification-engine/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/vatkg.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/tara-management-code/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jqjsna.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/vehicle-safety-monitor/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/yeeoso.png</image:loc></image:image></url>
@@ -6755,10 +6393,7 @@
   <url><loc>https://ghostcorpnet.com/products/as6983-compliance-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/tgsvzy.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-sms-ai-integration-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/csjmct.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-predictive-maintenance-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/gtazyu.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/crew-scheduling-ai-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/qsgdoq.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/airline-bot-accuracy-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ciakfq.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/airline-pricing-ai-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/zmdvuw.png</image:loc></image:image></url>
@@ -6775,10 +6410,7 @@
     <loc>https://ghostcorpnet.com/articles/ai-agent-threat-model-template.html</loc><lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/baggage-ai-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/lnczti.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/atm-ai-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/nzngzu.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-training-ai-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ndmzmr.png</image:loc></image:image></url>
@@ -6789,10 +6421,7 @@
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-safety-case-builder/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/cujgw.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-risk-assessor/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/zgxwk.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-compliance-checker/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/mwzjih.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/maintenance-prediction-tool/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/xvzgkn.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-training-tracker/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/uvaay.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-incident-classifier/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/rpjche.png</image:loc></image:image></url>
@@ -6803,10 +6432,7 @@
   <url><loc>https://ghostcorpnet.com/products/aviation-filing-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/wecjdz.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-training-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/yeyazi.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/maintenance-planning-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/ytputr.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/aviation-compliance-self-check-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/thyiys.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/disruption-management-prompts/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/elylp.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-safety-board-deck/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/efors.png</image:loc></image:image></url>
@@ -6817,10 +6443,7 @@
   <url><loc>https://ghostcorpnet.com/products/ai-safety-case-schema/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/irmpgn.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-risk-register/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/yrtxq.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-incident-log/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/qessu.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-training-record/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/kqhjym.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/aviation-ai-compliance-matrix/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/bqcvlg.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/safety-case-management-code/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/jxhtbz.png</image:loc></image:image></url>
@@ -6831,10 +6454,7 @@
   <url><loc>https://ghostcorpnet.com/products/metrc-compliance-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/fptbj.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/track-and-trace-transition-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/gsegl.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/plant-tagging-protocol-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/wbdpfh.png</image:loc></image:image></url>
-  <url>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url><loc>https://ghostcorpnet.com/products/harvest-batch-record-pack/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/omzxqy.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/transfer-manifest-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/yguwga.png</image:loc></image:image></url>
   <url><loc>https://ghostcorpnet.com/products/coa-compliance-guide/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/lgzty.png</image:loc></image:image></url>
@@ -6871,5 +6491,109 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://koalstingkdelaney-gif.github.io/kestrelattice/brands/drivewarden/</loc><lastmod>2026-11-07</lastmod></url>
+  
+
+  <url><loc>https://ghostcorpnet.com/brands/drivewarden/</loc><lastmod>2026-11-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/actlattice/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/adtechwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/agrilattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/analyticswarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/auditlattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/autolattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/aviationlattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/cannabislattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/chemlattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/childcarewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/civicwarden/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/classwarden/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/commswarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/constructlattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/costwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/creatorwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/creditwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/crisiswarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/datalattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/designwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/dronewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/edgelattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/energylattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/envirowarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/ethicswarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/evalwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/eventwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/execwarden/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/exportwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/fdalattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/finetunewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/finlattice/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/fitnesswarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/fleetwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/forensicswarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/franchisewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/fraudwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/gamingwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/grantwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/healthlattice/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/hirewarden/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/hospitalitywarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/identitywarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/immigrationwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/incidentlattice/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/insiderwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/insurewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/isolattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/knowledgewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/laborwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/lawwarden/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/logisticswarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/manulattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/maritimewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/marketplacewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/marketwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/masterdatawarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/medialattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/mediationwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/memorywarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/nonprofitwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/onboardwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/orchestrlattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/patentwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/pcilattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/pharmalattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/phishwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/pmowarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/privacywarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/procurewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/productwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/promptwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/propwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/qalattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/raglattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/researchwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/resiliencewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/retailwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/robotwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/safewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/saleslattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/secwarden/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/semiconductorwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/seniorcarewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/soc2warden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/sourcelattice/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/spacewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/sportswarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/supportwarden/</loc><lastmod>2026-11-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/taxwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/telecomwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/toolwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/tracewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/transitwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/vendorwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/vetwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/visionlattice/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/voicewarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/waterwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/ecosystems/wealthwarden/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/services/ghostcorp-ai.html</loc><lastmod>2026-11-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ghostcorpnet.com/tools/freelance-rate-calculator/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
