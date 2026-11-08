@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-07T13:16:21Z",
+ "generated_at": "2026-11-08T13:16:18Z",
  "stats": {
   "money_made_usd": 0.0,
   "orders": 0,
   "sales_today_usd": 0.0,
   "orders_today": 0,
   "free_downloads": 2,
-  "as_of": "2026-11-07T13:16:21Z",
+  "as_of": "2026-11-08T13:16:18Z",
   "source": "Verified sales ledger + Gumroad sales check"
  },
  "bots": [
@@ -394,6 +394,11 @@
    "name": "Dork Scout 3 — live demand threads via Google dorking",
    "job": "Dork Scout 3 — live demand threads via Google dorking",
    "schedule": "Every 30 min"
+  },
+  {
+   "name": "DriveWarden weekly brand content",
+   "job": "DriveWarden weekly brand content",
+   "schedule": "Weekly · Mon 10:16 AM"
   },
   {
    "name": "Ecosystem Expansion Runner (hive)",
