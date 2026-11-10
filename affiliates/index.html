@@ -137,6 +137,9 @@
   .swipe header h3{font-size:.95rem;font-weight:700}
   .swipe header .tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-bright);
     background:var(--accent-soft);border:1px solid var(--accent-dim);border-radius:6px;padding:3px 10px;white-space:nowrap}
+  .swipe header .copy-btn{margin-left:auto;font-size:.82rem;font-weight:700;color:var(--accent-bright);background:transparent;border:1px solid var(--accent-dim);border-radius:6px;padding:8px 14px;min-height:36px;cursor:pointer;white-space:nowrap}
+  .swipe header .copy-btn:hover{border-color:var(--accent-bright)}
+  .swipe header .copy-btn.copied{color:var(--text);border-color:var(--accent-bright);background:var(--accent-soft)}
   .swipe .copy{padding:18px 20px;color:var(--muted);font-size:.9rem;line-height:1.65;white-space:pre-wrap}
   .swipe .copy b{color:var(--text)}
   .swipe .subject{padding:12px 20px 0;color:var(--faint);font-size:.82rem}
@@ -253,7 +256,7 @@
       <p class="lede">Three email swipes and two social posts, written to match how we actually talk. Replace <b>[YOUR AFFILIATE LINK]</b> with your unique link before sending. Nothing here invents results or testimonials — don't add any.</p>
 
       <div class="swipe">
-        <header><h3>1 · The Studio Edition (the flagship)</h3><span class="tag">email</span></header>
+        <header><h3>1 · The Studio Edition (the flagship)</h3><span class="tag">email</span><button type="button" class="copy-btn" data-track="swipe_copy">Copy</button></header>
         <p class="subject">Subject: <b>the $29 kit I keep recommending</b></p>
         <div class="copy">If you're shipping AI agents to production, this is the most practical $29 I've found in a while.
 
@@ -267,7 +270,7 @@ There's also a free MIT-licensed playbook from the same studio if you want to pr
       </div>
 
       <div class="swipe">
-        <header><h3>2 · A $19 kit (problem-specific)</h3><span class="tag">email</span></header>
+        <header><h3>2 · A $19 kit (problem-specific)</h3><span class="tag">email</span><button type="button" class="copy-btn" data-track="swipe_copy">Copy</button></header>
         <p class="subject">Subject: <b>$19 for an agent risk audit you'll actually finish</b></p>
         <div class="copy">Quick recommendation: the AI Agent Risk Audit Kit is $19 and takes about an hour to work through.
 
@@ -279,7 +282,7 @@ Every product page shows the full contents before you pay, so you can verify it'
       </div>
 
       <div class="swipe">
-        <header><h3>3 · The bundle (value play)</h3><span class="tag">email</span></header>
+        <header><h3>3 · The bundle (value play)</h3><span class="tag">email</span><button type="button" class="copy-btn" data-track="swipe_copy">Copy</button></header>
         <p class="subject">Subject: <b>the whole library for less than three kits</b></p>
         <div class="copy">If you've bought (or plan to buy) more than two of their $19–$29 kits, stop — the bundle is cheaper.
 
@@ -291,12 +294,12 @@ Buying individually stops making sense past the second kit.</div>
       </div>
 
       <div class="swipe">
-        <header><h3>4 · Short social post (Studio Edition)</h3><span class="tag">social</span></header>
+        <header><h3>4 · Short social post (Studio Edition)</h3><span class="tag">social</span><button type="button" class="copy-btn" data-track="swipe_copy">Copy</button></header>
         <div class="copy">Running AI agents in production with no policy templates, no spend limits, and no audit trail? The ghostcorpnet Studio Edition is $29 and fixes the "templates" part in an afternoon: [YOUR AFFILIATE LINK]</div>
       </div>
 
       <div class="swipe">
-        <header><h3>5 · Short social post (free entry)</h3><span class="tag">social</span></header>
+        <header><h3>5 · Short social post (free entry)</h3><span class="tag">social</span><button type="button" class="copy-btn" data-track="swipe_copy">Copy</button></header>
         <div class="copy">There's a genuinely free (MIT, no signup) playbook for governed AI agents at ghostcorpnet — the 8-layer stack, every claim cited. If it helps you, the $29 Studio Edition is the implementation version: [YOUR AFFILIATE LINK]</div>
       </div>
     </div>
@@ -392,6 +395,32 @@ Buying individually stops making sense past the second kit.</div>
     const el = e.target.closest("[data-track]");
     if (el) track(el.getAttribute("data-track"), { link_text: (el.textContent || "").trim().slice(0, 80) });
   }, { passive: true });
+
+  // Swipe copy: copy-to-clipboard per card, with "Copied" feedback.
+  document.querySelectorAll(".swipe").forEach(function(card){
+    var btn = card.querySelector(".copy-btn");
+    var body = card.querySelector(".copy");
+    if (!btn || !body) return;
+    btn.addEventListener("click", function(){
+      var subject = card.querySelector(".subject");
+      var text = (subject ? subject.innerText.trim() + "\n\n" : "") + body.innerText;
+      function done(ok){
+        btn.textContent = ok ? "Copied \u2713" : "Copy failed";
+        btn.classList.toggle("copied", ok);
+        setTimeout(function(){ btn.textContent = "Copy"; btn.classList.remove("copied"); }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(false); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(ta); done(ok);
+      }
+    });
+  });
 </script>
 
 </body>
