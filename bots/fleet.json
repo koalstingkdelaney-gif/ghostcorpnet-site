@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-10T13:16:22Z",
+ "generated_at": "2026-11-11T13:16:24Z",
  "stats": {
   "money_made_usd": 0.0,
   "orders": 0,
   "sales_today_usd": 0.0,
   "orders_today": 0,
   "free_downloads": 2,
-  "as_of": "2026-11-10T13:16:22Z",
+  "as_of": "2026-11-11T13:16:24Z",
   "source": "Verified sales ledger + Gumroad sales check"
  },
  "bots": [
