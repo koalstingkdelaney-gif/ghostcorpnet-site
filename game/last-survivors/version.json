@@ -1,6 +1,6 @@
 {
-  "version": "0.3.0",
-  "channel": "stable",
+  "version": "0.4.0",
+  "channel": "development",
   "releasedAt": "2026-11-12",
-  "notes": "Controller, camera, combat and construction improvements."
+  "notes": "Playable mission loop: recover five caches, eliminate five infected, extract; persist world progress and structures."
 }
