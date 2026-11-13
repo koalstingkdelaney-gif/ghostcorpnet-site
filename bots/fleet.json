@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-12T13:16:24Z",
+ "generated_at": "2026-11-13T13:16:29Z",
  "stats": {
   "money_made_usd": 0.0,
   "orders": 0,
   "sales_today_usd": 0.0,
   "orders_today": 0,
   "free_downloads": 2,
-  "as_of": "2026-11-12T13:16:24Z",
+  "as_of": "2026-11-13T13:16:29Z",
   "source": "Verified sales ledger + Gumroad sales check"
  },
  "bots": [
@@ -24,11 +24,6 @@
    "name": "ActLattice weekly brand content",
    "job": "ActLattice weekly brand content",
    "schedule": "Weekly · Tue 2:16 PM"
-  },
-  {
-   "name": "Admin dashboard refresh",
-   "job": "Rebuilds the owner's admin dashboard so it is always current",
-   "schedule": "Every 15 min"
   },
   {
    "name": "Affiliate Hunter 01 — AI tool reviewers",
@@ -1081,11 +1076,6 @@
    "schedule": "On demand · hive"
   },
   {
-   "name": "Site sync — private repo to public site repo",
-   "job": "Site sync — private repo to public site repo",
-   "schedule": "Every 10 min"
-  },
-  {
    "name": "Site Updater (hive)",
    "job": "Continuously improve the site's look, function, and freshness: the scout finds verifiable issues, the updater ships them through the standard auto-approve…",
    "schedule": "On demand · hive"
@@ -1211,11 +1201,6 @@
    "schedule": "Every 15 min"
   },
   {
-   "name": "Universe treasury refresh",
-   "job": "Tracks the business's catalog of digital assets",
-   "schedule": "Every 1 hr"
-  },
-  {
    "name": "Vendor Questionnaire Builder (hive)",
    "job": "Produce ready-to-send vendor due-diligence questionnaires (third-party AI/vendor risk assessments) per governance domain, so buyers can vet AI vendors against…",
    "schedule": "On demand · hive"
@@ -1224,16 +1209,6 @@
    "name": "Watchdog (hive)",
    "job": "Keep every autopilot loop alive permanently.",
    "schedule": "On demand · hive"
-  },
-  {
-   "name": "Watchdog security monitor",
-   "job": "Watches the site and accounts for security problems",
-   "schedule": "Every 1 hr"
-  },
-  {
-   "name": "Watchdog — permanent autopilot guardian",
-   "job": "Watches the website and fleet for problems around the clock",
-   "schedule": "Every 30 min"
   },
   {
    "name": "Weekly affiliate recruiter",
@@ -1319,16 +1294,6 @@
    "name": "Winback Email Writer (hive)",
    "job": "Win back lapsed attention with a draft-only winback sequence: 3 emails (day 0, day 7, day 21) to past buyers / cold-but-legit contacts reminding them what's…",
    "schedule": "On demand · hive"
-  },
-  {
-   "name": "Worker KV-write recovery watch",
-   "job": "Detects stalled fleet workers and brings them back",
-   "schedule": "Every 30 min"
-  },
-  {
-   "name": "Worker pool 3-way queue reconcile",
-   "job": "Reconciles the fleet's work queues so nothing is lost or doubled",
-   "schedule": "Every 15 min"
   },
   {
    "name": "Worksheet Designer (hive)",
