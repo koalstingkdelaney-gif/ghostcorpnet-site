@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Player — The Last Survivors</title>
+<style>
+  body { background:#101408; color:#e8e4d8; font-family:Verdana, Geneva, sans-serif; margin:0; padding:16px; }
+  h1 { font-size:1.3rem; margin:0 0 4px; color:#c4d36c; letter-spacing:.08em; }
+  .sub { color:#9aa48c; font-size:.85rem; margin-bottom:14px; }
+  .wrap { display:flex; flex-wrap:wrap; gap:18px; }
+  canvas { background:#171c15; border:2px solid #3a452e; border-radius:10px; }
+  .panel { max-width:520px; }
+  .result { font-size:1.1rem; font-weight:bold; padding:10px 14px; border-radius:8px; background:#1d2417; border:1px solid #3a452e; margin-bottom:12px; }
+  .won { color:#c4d36c; } .lost { color:#e07a5f; }
+  .dec { border-left:3px solid #c4d36c; padding:6px 10px; margin:0 0 8px; background:#171c15; border-radius:0 6px 6px 0; }
+  .dec .obj { font-weight:bold; color:#f1ebdd; }
+  .dec .meta { color:#9aa48c; font-size:.78rem; }
+  .dec .why { font-size:.9rem; }
+  a { color:#c4d36c; }
+</style>
+</head>
+<body>
+<h1>🤖 AI PLAYER — THE LAST SURVIVORS</h1>
+<div class="sub">A server-hosted AI plays GhostCorp's own game: a commander picks the objective
+(fleet AI when reachable, built-in policy otherwise) and a reactive pilot flies it.
+<a href="https://ghostcorpnet.com/game/last-survivors/">Play the game yourself →</a></div>
+<div class="wrap">
+  <canvas id="map" width="480" height="480"></canvas>
+  <div class="panel">
+    <div class="result" id="result">loading…</div>
+    <div id="decisions"></div>
+  </div>
+</div>
+<script src="watch-data.js"></script>
+<script>
+(function () {
+  var d = window.WATCH_DATA;
+  var res = document.getElementById('result');
+  if (!d) { res.textContent = 'No episode data yet.'; return; }
+  res.innerHTML = 'Episode ' + d.episode + ': <span class="' +
+    (d.result === 'won' ? 'won' : 'lost') + '">' + d.result.toUpperCase() +
+    '</span> — ' + d.sim_seconds + 's · caches ' + d.caches + '/5 · kills ' +
+    d.kills + '/5 · health left ' + d.health_left +
+    ' · shots ' + d.shots_hit + '/' + d.shots_fired + ' hit';
+  var dec = document.getElementById('decisions');
+  var html = '<h3 style="margin:4px 0 10px">What the commander was thinking</h3>';
+  (d.decisions || []).slice().reverse().forEach(function (r) {
+    html += '<div class="dec"><span class="obj">' + r.objective + '</span> ' +
+      '<span class="meta">t=' + r.sim_time + 's · via ' + r.source + '</span>' +
+      '<div class="why">“' + r.reason + '”</div></div>';
+  });
+  dec.innerHTML = html;
+
+  var cv = document.getElementById('map'), ctx = cv.getContext('2d');
+  var W = 480, B = 78;
+  function px(x) { return (x + B) / (2 * B) * W; }
+  function pz(z) { return (z + B) / (2 * B) * W; }
+  // extraction beacon (0,-68)
+  ctx.fillStyle = '#c4d36c';
+  ctx.beginPath(); ctx.arc(px(0), pz(-68), 8, 0, 7); ctx.fill();
+  ctx.fillStyle = '#101408'; ctx.font = 'bold 9px Verdana';
+  ctx.fillText('EXIT', px(0) - 10, pz(-68) + 3);
+  // caches
+  var caches = [[4,1],[-9,-13],[13,20],[-4,31],[-31,-43]];
+  ctx.fillStyle = '#e0a458';
+  caches.forEach(function (c) { ctx.fillRect(px(c[0]) - 4, pz(c[1]) - 4, 8, 8); });
+  // enemy starts
+  var foes = [[-16,-25],[16,-9],[31,35],[-34,22],[7,-55]];
+  ctx.fillStyle = '#e07a5f';
+  foes.forEach(function (c) { ctx.beginPath(); ctx.arc(px(c[0]), pz(c[1]), 4, 0, 7); ctx.fill(); });
+  // trajectory
+  var tr = d.trajectory || [];
+  ctx.strokeStyle = '#7fb2e0'; ctx.lineWidth = 2; ctx.beginPath();
+  tr.forEach(function (p, i) { if (i === 0) ctx.moveTo(px(p[0]), pz(p[1])); else ctx.lineTo(px(p[0]), pz(p[1])); });
+  ctx.stroke();
+  if (tr.length) {
+    var last = tr[tr.length - 1];
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.arc(px(last[0]), pz(last[1]), 5, 0, 7); ctx.fill();
+  }
+  ctx.fillStyle = '#9aa48c'; ctx.font = '11px Verdana';
+  ctx.fillText('■ caches   ● infected starts   ● extraction   — AI path   ● final position', 8, W - 8);
+})();
+</script>
+</body>
+</html>
