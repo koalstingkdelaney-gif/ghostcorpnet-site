@@ -426,6 +426,16 @@ body.nt4scrim #hudHealth, body.nt4scrim #hudObjective, body.nt4scrim #weaponHud,
 #nt4HoldBar{ height:6px; background:rgba(255,255,255,.08); border-radius:3px; margin:6px 0 2px; overflow:hidden; }
 #nt4HoldFill{ height:100%; width:0%; background:var(--nt4a); transition:width .05s linear; }
 #nt4DemoCard, #nt4ReplayCard{ z-index:60; }
+
+/* ---- SOTA v14: title key art + colourblind UV shape backup ---- */
+#titleCard{ background:
+  radial-gradient(900px 300px at 78% 8%, rgba(139,92,246,.20), transparent 60%),
+  radial-gradient(700px 260px at 12% 0%, rgba(232,106,58,.16), transparent 60%),
+  linear-gradient(180deg, rgba(6,10,16,.66) 0%, rgba(6,10,16,.82) 55%, rgba(4,6,9,.94) 100%); }
+#titleCard h1{ text-shadow:0 2px 0 rgba(0,0,0,.55), 0 14px 44px rgba(0,0,0,.8), 0 0 64px rgba(245,166,35,.22); }
+#titleCard .mission{ text-shadow:0 0 18px rgba(245,166,35,.35); }
+body.cb #safeHint{ border:3px dashed #fff; outline:2px solid #2b1055; }
+#sotaBinds button{ appearance:none; border:1px solid var(--amber); background:rgba(245,166,35,.12); color:#ffd27a; font:inherit; font-size:9.5px; font-weight:900; letter-spacing:.1em; padding:5px 9px; cursor:pointer; text-transform:uppercase; min-width:86px; }
 #nt4DemoCard h2, #nt4ReplayCard h2{ margin:.2em 0 .4em; }
 </style>
 </head>
@@ -1407,7 +1417,7 @@ function tickTier1(dt,now){
   if(typeof nt3Tick==='function') nt3Tick(dt);
   if(typeof nt4Tick==='function') nt4Tick(dt); // NT-13..16: chronology, district payoff, body voice, world memory, replay/demo/gauntlet beats // NT-09..12: body web, world routes, economy, narrative engine
   // recoil recovery: 9 deg/s after 110 ms
-  if(player.recoilAcc>0&&now-(player.lastShotT||-9)>0.11) player.recoilAcc=Math.max(0,player.recoilAcc-dt*9);
+  if(player.recoilAcc>0&&now-(player.lastShotT||-9)>0.11) player.recoilAcc=Math.max(0,player.recoilAcc-dt*12); // SOTA FEEL: faster settle — recoil kicks the same, recovers snappier (CoD cadence)
   // wetness: rain soaks, shelter/fire dries
   var raining=weather.kind==='rain'||weather.kind==='storm';
   if(raining&&!isSheltered()) player.wet=Math.min(100,(player.wet||0)+dt*7);
@@ -5054,9 +5064,12 @@ function animateCharacter(mesh,amount,phase,aiming,infected){
     u.rKnee.rotation.x=-Math.max(0,Math.sin(phase+Math.PI-1.85))*0.52*amount;
   }
   if (u.spine){
-    u.spine.rotation.x=P.hunch+(infected?0.05:0.01)+Math.sin(phase*2)*0.028*amount-(aiming?P.hunch*0.7:0);
-    u.spine.rotation.z=P.tilt*0.6+Math.sin(phase)*0.045*amount;
-    u.spine.position.y=u.spineY+Math.abs(Math.cos(phase))*0.022*amount;
+    /* SOTA LOOK — weight: the torso chases the limbs through a smoothed amount, so
+       starts/stops lean and settle instead of snapping with the raw input amount. */
+    var sm=u._sm===undefined?amount:(u._sm+(amount-u._sm)*0.16); u._sm=sm;
+    u.spine.rotation.x=P.hunch+(infected?0.05:0.01)+Math.sin(phase*2)*0.028*sm-(aiming?P.hunch*0.7:0)+(amount-sm)*0.22;
+    u.spine.rotation.z=P.tilt*0.6+Math.sin(phase)*0.045*sm+(amount-sm)*0.30;
+    u.spine.position.y=u.spineY+Math.abs(Math.cos(phase))*0.022*sm;
   }
   if (u.head){
     u.head.rotation.y=Math.sin(phase*0.23+(u.seed||0))*(infected?0.38:0.13); // head tracking / scanning
@@ -7140,7 +7153,13 @@ function update(dt,now){
     if (player.y<0){ player.y=0; player.vy=0; player.grounded=true; }
   } else if (gh<player.y-0.02){ player.grounded=false; player.vy=0; }
   else player.y=gh;
-  moveCircle(player, wx*speed*dt*len*(player.vaultT>0?1.35:1), wz*speed*dt*len*(player.vaultT>0?1.35:1));
+  /* SOTA FEEL — movement weight: velocity is critically-damped toward the target
+     (fast plant on the ground, drift in the air) instead of teleporting to full
+     speed in one frame. _vx/_vz below still carry the raw target for NT-06/07. */
+  var _tx=wx*speed*len*(player.vaultT>0?1.35:1), _tz=wz*speed*len*(player.vaultT>0?1.35:1);
+  var _acc=player.grounded?(1-Math.exp(-dt*10)):(1-Math.exp(-dt*3));
+  player._ax=(player._ax||0)+(_tx-(player._ax||0))*_acc; player._az=(player._az||0)+(_tz-(player._az||0))*_acc;
+  moveCircle(player, player._ax*dt, player._az*dt);
   player._vx=wx*speed*len; player._vz=wz*speed*len; // NT-06/07: velocity + lateral speed for the Spitter sidestep rule
   player._latSpeed=Math.abs(player._vx*cos+player._vz*(-sin));
 
@@ -8149,6 +8168,103 @@ function bootGame(){
   var sb=$('startBtn'); if(sb) sb.addEventListener('click',function(){ try{ if(SETTINGS.hardcore){ localStorage.removeItem(SAVE_KEY); ntClearAllSaves(); } }catch(e){} });
 })();
 if (threeOK) requestAnimationFrame(bootGame);
+
+/* ================= SOTA REBUILD (v14) — LOOK / FEEL / READY =================
+   LOOK: key-art title treatment (CSS), dusk/night grade deepening on-change only.
+   FEEL: a first-10-minutes hook director that teaches by playing — staged objectives
+   keyed to real first actions (move, scavenge, first kill, reach the UV safehouse,
+   survive to dusk), each paid off with a Milo radio line. No text dumps, no timers
+   that spawn anything; the ecology is untouched.
+   READY: remappable keyboard controls (translation layer over the canonical key
+   map — every existing handler, harness and the save format are untouched),
+   colourblind-safe UV signal gains a shape+text backup, and a __ntSota harness.
+   Cost: one 400 ms interval, DOM writes only when a value changes; zero work in
+   the animate loop, zero new draw calls, zero new allocations per frame. */
+STR.sotaHook0='MILO — RADIO: "Cole. You are standing in my city with a rifle and no plan. Move. WASD, stick, thumb — just move."';
+STR.sotaHook1='MILO — RADIO: "Good. Now find something worth taking — wrecks, pallets, caches. Search pays for the night."';
+STR.sotaHook2='MILO — RADIO: "That is the economy now. Next: something out there will test you. Aim first, shoot second — headshots end arguments."';
+STR.sotaHook3='MILO — RADIO: "You bleed, it learns. My safehouse is north-east — violet UV ring. Inside it, nothing touches you. Get there before dark."';
+STR.sotaHook4='MILO — RADIO: "That violet ring is home. Claim it, build it, keep it quiet. The Bloom owns the night — you just move through it."';
+STR.sotaHook5='MILO — RADIO: "Dark soon. Whatever you are doing at dusk, finish it. Night is a place, not a punishment — move quiet, stay near light you trust."';
+STR.sotaObj0='Get moving — cross the street in front of you.';
+STR.sotaObj1='Scavenge — search a wreck, pallet or cache (hold E near one).';
+STR.sotaObj2='First contact — drop one hostile. Aim for the head.';
+STR.sotaObj3='Reach Milo\u2019s UV safehouse (NE) — follow the violet glow.';
+STR.sotaObj4='Claim the safehouse, then be somewhere deliberate by dusk.';
+var SOTA={ step:-1, startX:0, startZ:0, moved:0, band:'', binds:{ interact:'KeyE', reload:'KeyR', roll:'KeyX', heal:'KeyQ', crouch:'KeyC' }, capture:null };
+try{ var _sb=JSON.parse(localStorage.getItem('pc_sota_binds')||'null'); if(_sb) for(var _bk in SOTA.binds) if(typeof _sb[_bk]==='string') SOTA.binds[_bk]=_sb[_bk]; }catch(e){}
+var SOTA_CANON={ interact:'KeyE', reload:'KeyR', roll:'KeyX', heal:'KeyQ', crouch:'KeyC' };
+function sotaPhysFor(canon){ for(var a in SOTA.binds) if(SOTA_CANON[a]===canon) return SOTA.binds[a]; return canon; }
+window.addEventListener('keydown',function(ev){
+  if(SOTA.capture){ ev.preventDefault(); ev.stopPropagation(); var act=SOTA.capture; SOTA.capture=null;
+    if(ev.code!=='Escape'){ for(var oa in SOTA.binds){ if(oa!==act&&SOTA.binds[oa]===ev.code) SOTA.binds[oa]=SOTA.binds[act]; } SOTA.binds[act]=ev.code; try{ localStorage.setItem('pc_sota_binds',JSON.stringify(SOTA.binds)); }catch(e){} }
+    sotaRenderBinds(); return; }
+  for(var a in SOTA.binds){ var phys=SOTA.binds[a]; if(phys!==SOTA_CANON[a]&&ev.code===phys){
+    keys[SOTA_CANON[a]]=true;
+    if(!ev.repeat&&state==='playing'){
+      if(a==='interact'&&!interactKind) doTakedown();
+      if(a==='reload') startReload();
+      if(a==='roll') queueRoll();
+      if(a==='heal') useMedkit();
+      if(a==='crouch'&&player) player.crouch=!player.crouch;
+    }
+    ev.stopPropagation(); return; } }
+},true);
+window.addEventListener('keyup',function(ev){ for(var a in SOTA.binds){ if(SOTA.binds[a]!==SOTA_CANON[a]&&ev.code===SOTA.binds[a]) keys[SOTA_CANON[a]]=false; } },true);
+function sotaRenderBinds(){
+  var box=$('sotaBinds'); if(!box) return;
+  var names={ interact:'Interact / takedown', reload:'Reload', roll:'Dodge roll', heal:'Smart heal', crouch:'Crouch' }, html='';
+  for(var a in names) html+='<div class="set-row"><span>'+names[a]+'</span><button type="button" data-bind="'+a+'">'+(SOTA.capture===a?'PRESS A KEY…':SOTA.binds[a].replace('Key','').replace('Digit',''))+'</button></div>';
+  html+='<div class="set-row"><span>Reset all bindings</span><button type="button" data-bind="__reset">Defaults</button></div>';
+  box.innerHTML=html;
+  box.querySelectorAll('[data-bind]').forEach(function(b){ b.addEventListener('click',function(){ var k=b.getAttribute('data-bind');
+    if(k==='__reset'){ SOTA.binds={ interact:'KeyE', reload:'KeyR', roll:'KeyX', heal:'KeyQ', crouch:'KeyC' }; try{ localStorage.setItem('pc_sota_binds',JSON.stringify(SOTA.binds)); }catch(e){} sotaRenderBinds(); return; }
+    SOTA.capture=k; sotaRenderBinds(); }); });
+}
+(function sotaInitUI(){
+  var pc=$('pauseCard'); if(!pc) return;
+  var d=document.createElement('div'); d.className='settings-box'; d.innerHTML='<h3>Controls — Remap (keyboard)</h3><div id="sotaBinds"></div>'; pc.appendChild(d); sotaRenderBinds();
+})();
+function sotaProps(){ /* SOTA LOOK — eye-level lived-in detail: one InstancedMesh of
+  tipped barrels, crates and debris blocks scattered at the spawn street and Market
+  Row. +1 draw call total, no shadows, built once when the scene exists. */
+  if(SOTA.propsDone) return; SOTA.propsDone=true;
+  try{
+    var geo=new THREE.BoxGeometry(0.7,0.7,0.7), mat=new THREE.MeshStandardMaterial({ roughness:0.9, metalness:0.05 });
+    var im=new THREE.InstancedMesh(geo,mat,18); im.castShadow=false; im.receiveShadow=true;
+    var m4=new THREE.Matrix4(), q=new THREE.Quaternion(), e=new THREE.Euler(), v=new THREE.Vector3(), sc=new THREE.Vector3(), col=new THREE.Color();
+    var spots=[[-104,74],[-100,68],[-96,76],[-88,64],[4,6],[-6,-4],[10,-10],[18,14],[-14,18],[26,-20],[-24,-16],[40,30],[-40,34],[52,-6],[-52,-30],[64,44],[-64,50],[78,10]];
+    var cols=[0x8A4A2E,0x5A6E7A,0x6A6A66,0x9A6A30,0x4A5D23];
+    for(var i=0;i<18;i++){ e.set(i%3===0?Math.PI/2:0,(i*0.7)%3.1,i%4===0?0.4:0); q.setFromEuler(e); var s=0.7+(i%4)*0.25; sc.set(s,s*(i%3===0?1.4:0.8),s); v.set(spots[i][0],0.3,spots[i][1]); m4.compose(v,q,sc); im.setMatrixAt(i,m4); col.setHex(cols[i%5]); im.setColorAt(i,col); }
+    im.instanceMatrix.needsUpdate=true; if(im.instanceColor) im.instanceColor.needsUpdate=true;
+    scene.add(im);
+  }catch(err){ /* detail is garnish — never break the boot for it */ }
+}
+function sotaHookTick(){
+  sotaProps();
+  if(state!=='playing'||!player) return;
+  if(SOTA.runT!==stats.startT){ SOTA.runT=stats.startT; SOTA.step=-1; SOTA.moved=0; } // every fresh run re-arms the hook
+  if(daysSurvived===1&&SOTA.step<5){
+    if(SOTA.step===-1){ SOTA.step=0; SOTA.startX=player.x; SOTA.startZ=player.z; var wo0=$('worldObj'); if(wo0) wo0.innerHTML=STR.sotaObj0; showRadio('MILO — RADIO',STR.sotaHook0.replace(/^MILO — RADIO: /,'')); }
+    var adv=false;
+    if(SOTA.step===0){ SOTA.moved=Math.hypot(player.x-SOTA.startX,player.z-SOTA.startZ); adv=SOTA.moved>4; }
+    else if(SOTA.step===1) adv=(stats.harvests>0||stats.caches>0);
+    else if(SOTA.step===2) adv=(stats.kills>0);
+    else if(SOTA.step===3) adv=(!!player.inSafe||!!base.claimed);
+    else if(SOTA.step===4) adv=(dayClock>=0.60);
+    if(adv){ SOTA.step++; if(SOTA.step<=5){ var line=STR['sotaHook'+Math.min(SOTA.step,5)]; showRadio('MILO — RADIO',line.replace(/^MILO — RADIO: /,'')); var wo=$('worldObj'); if(wo&&SOTA.step<5) wo.innerHTML=STR['sotaObj'+SOTA.step]; } }
+  }
+  /* LOOK: dusk/night grade deepening — band changes only, no per-frame DOM cost */
+  var band=dayClock<0.52?'day':(dayClock<0.66?'dusk':(dayClock<0.92?'night':'late'));
+  if(band!==SOTA.band){ SOTA.band=band; var gf=$('gradeFx'); if(gf) gf.style.filter=band==='dusk'?'saturate(1.06) brightness(.97)':(band==='night'?'saturate(.92) brightness(.93) contrast(1.05)':(band==='late'?'saturate(.95) brightness(.96)':''));
+    /* SOTA LOOK — practical light: the flashlight throws further as the city darkens
+       (distance only; intensity/flicker stay owned by the existing light code). */
+    if(typeof torchLight!=='undefined'&&torchLight) torchLight.distance=band==='night'?36:(band==='dusk'||band==='late'?31:28); }
+  /* READY: colourblind UV backup — shape + words, never colour alone */
+  var sh=$('safeHint'); if(sh){ var want=SETTINGS.colourblind?'\u25B2 UV SAFE ZONE \u25B2 — YOU\u2019RE SAFE HERE':'UV SAFE ZONE — YOU\u2019RE SAFE HERE'; if(sh.textContent!==want&&!sh.classList.contains('hidden')) sh.textContent=want; }
+}
+setInterval(sotaHookTick,400);
+window.__ntSota=function(){ return { binds:Object.assign({},SOTA.binds), hookStep:SOTA.step, gradeBand:SOTA.band, telemetry:{ sessions:TELEMETRY.sessions, deaths:TELEMETRY.deaths, dayReached:TELEMETRY.dayReached, bossAttempts:TELEMETRY.bossAttempts, bossKills:TELEMETRY.bossKills }, strKeys:Object.keys(STR).length, saveVer:SAVE2.ver }; };
 </script>
 </body>
 </html>
