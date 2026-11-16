@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'none'; connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://ghostcorpnet.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Encrypted Chat — GhostCorp</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app"><p>Loading encrypted chat&hellip;</p></div>
+<noscript><p>This chat needs JavaScript for encryption. The inline ciphertext log below is still readable.</p></noscript>
+<!-- Encrypted chat log (empty log): ciphertext only. No plaintext, no private keys.
+     This log is unreadable without JavaScript: the page decrypts each
+     message in the browser with the reader's own private key. -->
+<script type="application/json" id="chat-log">
+[]
+</script>
+<script defer src="config.js"></script>
+<script defer src="js/canonical-json.js"></script>
+<script defer src="js/crypto-core.js"></script>
+<script defer src="js/crypto-p256.js"></script>
+<script defer src="js/envelope.js"></script>
+<script defer src="js/presence.js"></script>
+<script defer src="keys-store.js"></script>
+<script defer src="fingerprint-check.js"></script>
+<script defer src="errors.js"></script>
+<script defer src="badges.js"></script>
+<script defer src="notify.js"></script>
+<script defer src="pat.js"></script>
+<script defer src="backup.js"></script>
+<script defer src="outbox.js"></script>
+<script defer src="poll.js"></script>
+<script defer src="paste-publish.js"></script>
+<script defer src="view-setup.js"></script>
+<script defer src="view-keys.js"></script>
+<script defer src="view-thread.js"></script>
+<script defer src="view-compose.js"></script>
+<script defer src="view-audit.js"></script>
+<script defer src="app.js"></script>
+</body>
+</html>

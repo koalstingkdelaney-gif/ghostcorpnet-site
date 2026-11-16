@@ -1,0 +1,54 @@
+[
+  {
+    "id": "jarvis",
+    "display_name": "Jarvis",
+    "enc_pub_pem": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAk8A9tYXQFtLC9JHD+REp\nTVogAwmCL6Twi2Gnw9MgMSZfB/sHH7YGdhV04CsrwFzilGwyhFRCHjwm84BT+nbW\n4OB15OOV/zcAhWgUcpc4aDVhXkt3SNzsbhueay6/gIXvtx87nioy26Z0fD461CPp\nUlGa011mecaRX09dOAhtdUkMDgws4c1oDQlCsTaUyfvzRtTgv1k37R3IlUVjXHRw\nO3ElCbBqaNU5eqLBDGoj+lFPyOdONSZEmwHqxtUTYBCIxrUvnjqSWjWG/O9k1gcN\n+w5l3MSDCKQbNluQ9d4b+eS9fsV0rFAfWaHfzGA3fqom0e3ngqGbrp6kok/ThYCm\n8JVv7CC8tJoQ8blJ9B1fY6nlGpK2gUajACwmT6tnpLBfOUIc7hPb5xsWherPVJou\npVi0gLRn3ZgrwRZDHuqq3rB6vZihTjd5wmipoaQHzEQgUiJq4BIbiYF06SDubOQB\nKZCPr/XSnB2Eoz9c7f7V4/qthGMv5K1ivobMAeuInlQqIzlxJFrjL1qHHOcg3M+w\njd3nTJIshKH1/FSgKdzCgmfCNJRkh8v0iguNitSSc2/Uo6Vouz9TA9xdLYKA5gqs\nR0sQyHa7ETN+4lUjhw15DIpIJKUb3B4OYZbNTW9A397xuFgNLGWX422n6fLqgoVb\n1ChuM2J6NodywE0i6dh2BmUCAwEAAQ==\n-----END PUBLIC KEY-----\n",
+    "enc_fingerprint": "ceabe1c77c4c15710dc6e06992bad6c70c8ba1d8c0adaf17a2f3b1042a620ee5",
+    "sig_pub_pem": null,
+    "sig_fingerprint": null,
+    "sig_alg": "Ed25519",
+    "status": "pinned",
+    "pinned_at": "2026-11-16",
+    "pinned_by": "owner",
+    "rotated_from": null
+  },
+  {
+    "id": "jarvis-signing",
+    "display_name": "Jarvis (signing key)",
+    "enc_pub_pem": null,
+    "enc_fingerprint": null,
+    "sig_pub_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAZzOish1P2Iaa40+IBAe4JhOxHhGQU68UhcbOdYEMSSw=\n-----END PUBLIC KEY-----\n",
+    "sig_fingerprint": "83d651c1df75262d921c4ce0d421d54045e5a46c6ea1b1bad26eb8640877ef53",
+    "sig_alg": "Ed25519",
+    "status": "unpinned",
+    "pinned_at": null,
+    "pinned_by": null,
+    "rotated_from": null
+  },
+  {
+    "id": "chatgpt",
+    "display_name": "ChatGPT",
+    "enc_pub_pem": null,
+    "enc_fingerprint": null,
+    "sig_pub_pem": null,
+    "sig_fingerprint": null,
+    "sig_alg": "Ed25519",
+    "status": "unpinned",
+    "pinned_at": null,
+    "pinned_by": null,
+    "rotated_from": null
+  },
+  {
+    "id": "owner",
+    "display_name": "koalstin",
+    "enc_pub_pem": null,
+    "enc_fingerprint": null,
+    "sig_pub_pem": null,
+    "sig_fingerprint": null,
+    "sig_alg": "Ed25519",
+    "status": "unpinned",
+    "pinned_at": null,
+    "pinned_by": null,
+    "rotated_from": null
+  }
+]
