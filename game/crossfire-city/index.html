@@ -10,7 +10,7 @@
   :root{
     --amber:#f5a623; --amber-dim:#b97a1c; --teal:#2ec4b6; --ink:#0b0e12;
     --panel:rgba(10,13,18,.93); --line:#2a3342; --text:#e8e4da; --muted:#9aa3ad;
-    --red:#e33e2b; --green:#3ddc84;
+    --red:#e33e2b; --green:#3ddc84; --neon-pink:#ff2e88; --neon-cyan:#22d3ee; --arena-gold:#ffd23e;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -253,6 +253,16 @@
   footer.note{ margin-top:12px; font-size:11.5px; color:#5c6672; letter-spacing:.14em; text-transform:uppercase; text-align:center; width:min(960px,96vw); }
   .pad-status{ margin-top:12px; font-size:12.5px; letter-spacing:.08em; color:var(--muted); text-align:center; width:min(960px,96vw); line-height:1.45; }
   .pad-status.on{ color:var(--teal); font-weight:700; }
+
+  /* ---------- IGP: installed-games blend — HUD clarity (THE FINALS x ROB RUN) ---------- */
+  .hud-card{ background:linear-gradient(180deg,rgba(10,14,20,.87),rgba(4,6,9,.74)); border-color:rgba(255,255,255,.18); }
+  #hudObjective{ box-shadow:inset 0 3px 0 var(--arena-gold),inset 0 1px 0 rgba(255,255,255,.07),0 10px 26px rgba(0,0,0,.38); }
+  #hudObjective b{ color:var(--arena-gold); font-size:10px; text-shadow:0 1px 6px rgba(0,0,0,.9); }
+  #worldObj{ font-size:11px; color:rgba(255,255,255,.96); text-shadow:0 1px 5px rgba(0,0,0,.95); }
+  #worldObj b{ color:var(--arena-gold); }
+  #interactHint,#safeHint{ outline:2px solid rgba(255,255,255,.92); outline-offset:1px; }
+  #magVal{ text-shadow:0 0 18px rgba(34,211,238,.30),0 2px 10px rgba(0,0,0,.85); }
+  #districtName{ text-shadow:0 0 22px rgba(255,46,136,.35),0 2px 10px rgba(0,0,0,.9); }
 
   /* ---------- touch controls ---------- */
   .touch-ui{ position:absolute; inset:0; z-index:5; pointer-events:none; touch-action:none; }
@@ -634,7 +644,7 @@ body.cb #safeHint{ border:3px dashed #fff; outline:2px solid #2b1055; }
     <p class="story"><strong>THE PROMISE —</strong> Port Calloway is sealed and the Bloom owns the night. In <strong>30 days</strong> a boat leaves at dawn — if Milo’s safehouse still stands, if the four engine parts are found, and if you are alive to board. Every day is a run. The Bloom owns the night — you move through it. <em>Survive Port Calloway.</em></p>
     <p class="story"><strong>The ARK-grade run:</strong> harvest <strong>wood, fiber and metal</strong> from wrecks, pallets and Bloom growths; manage hunger, thirst, stamina, warmth and carry weight through changing weather; earn XP, spend survivor points, unlock tools, armor, rations and ammo; <strong>claim the safehouse, build palisades, spikes, floodlights and a fire pit, then keep it dark and quiet through the nights</strong>. Scavenge 6 caches, swap pistol / rifle / scattergun, chain combos — and when the Brute rises, decide whether the payout is worth dying for.</p>
     <p class="story hardcore"><strong>Now with teeth — SCUM × DayZ × Miscreated:</strong> a living body simulation tracks <strong>blood volume, bleeding, Bloom infection and gut sickness</strong> — infected hits seed the Bloom, raw food can turn, and a bleeding man smells like dinner. Loot is <strong>DayZ-scarce</strong>: thinner caches, longer searches, fewer rounds. The sky has gone Miscreated — <strong>dense fog and lightning Bloom storms</strong> rot you from the outside in.</p>
-    <div class="view-pills"><span>GTA's living city</span><span>CoD gunplay &amp; grit</span><span>Dying Light nights</span><span>TLOU overgrown ruins</span><span>ARK's lush, harsh wild</span><span>SCUM body simulation</span><span>DayZ scarcity</span><span>Miscreated severe weather</span></div>
+    <div class="view-pills"><span>GTA's living city</span><span>CoD gunplay &amp; grit</span><span>Dying Light nights</span><span>TLOU overgrown ruins</span><span>ARK's lush, harsh wild</span><span>SCUM body simulation</span><span>DayZ scarcity</span><span>Miscreated severe weather</span><span>ARC-weathered tech</span><span>Finals-bright Midtown</span><span>Arkham noir rain</span><span>Hood neon nights</span></div>
     <div class="quality-pills" role="group" aria-label="Graphics quality"><span>Graphics</span><button type="button" class="qbtn on" data-q="auto">Auto</button><button type="button" class="qbtn" data-q="3">High</button><button type="button" class="qbtn" data-q="2">Med</button><button type="button" class="qbtn" data-q="1">Low</button><button type="button" class="qbtn" data-q="0">Floor</button></div>
     <div class="controls">
       <b>Phone:</b> left thumb joystick moves — push to edge to sprint · drag right side to look · <b>FIRE</b>, <b>RELOAD</b>, hold <b>AIM</b> for ADS · <b>JUMP</b> vaults · <b>ROLL</b> dodges · <b>WPN</b> swaps weapon · <b>CROUCH</b> sneak · <b>SEARCH</b> loots &amp; harvests · <b>EAT / DRINK</b> · <b>CRAFT</b> opens the fabricator/base bench · <b>KIT</b> heals<br/>
@@ -1757,9 +1767,9 @@ function createBaseMesh(def){
   var cx=SAFEHOUSE.x, cz=SAFEHOUSE.z, i, a, x, z;
   if(def.id==='palisade'){
     for(i=0;i<18;i++){ a=i/18*Math.PI*2; if(a>3.45&&a<4.05) continue; x=cx+Math.cos(a)*def.radius; z=cz+Math.sin(a)*def.radius;
-      var post=box(2.6,2.6,0.35,0x5a4632,x,1.3,z,g); post.rotation.y=-a; box(2.7,0.28,0.42,UV_COL,x,2.15,z,g).rotation.y=-a; }
+      var post=box(2.6,2.6,0.35,i%4===0?0xC9CDC2:(i%4===2?0x8A5A34:0x5a4632),x,1.3,z,g); post.rotation.y=-a; box(2.7,0.28,0.42,UV_COL,x,2.15,z,g).rotation.y=-a; } // IGP ARC Raiders: scavenged pale machine panels + rusted steel patched into the timber ring — the barricade tells the same weathered-tech story as the Yards
   } else if(def.id==='spikes'){
-    for(i=0;i<22;i++){ a=i/22*Math.PI*2; x=cx+Math.cos(a)*def.radius; z=cz+Math.sin(a)*def.radius; var spike=cone(0.28,1.35,0x8a929c,x,0.65,z,g); spike.rotation.z=Math.cos(a)*0.55; spike.rotation.x=-Math.sin(a)*0.55; }
+    for(i=0;i<22;i++){ a=i/22*Math.PI*2; x=cx+Math.cos(a)*def.radius; z=cz+Math.sin(a)*def.radius; var spike=cone(0.28,1.35,i%3===0?0x8A5A34:0x8a929c,x,0.65,z,g); spike.rotation.z=Math.cos(a)*0.55; spike.rotation.x=-Math.sin(a)*0.55; } // IGP ARC: every third spike is rusted wreck steel
   } else if(def.id==='flood'){
     [[-12,-9],[12,-9],[-12,9],[12,9]].forEach(function(p){ box(0.22,6.4,0.22,0x2a323e,cx+p[0],3.2,cz+p[1],g); var bulb=new THREE.Mesh(new THREE.SphereGeometry(0.42,12,10),new THREE.MeshBasicMaterial({color:0xD8CCFF})); bulb.position.set(cx+p[0],6.6,cz+p[1]); g.add(bulb); var pl=new THREE.PointLight(UV_LIGHT,1.25,32); pl.position.set(cx+p[0],6.2,cz+p[1]); pl.userData.base=1.25; g.add(pl); lampLights.push(pl); });
     var ring=new THREE.Mesh(new THREE.RingGeometry(13.4,14,48),new THREE.MeshBasicMaterial({color:UV_COL,transparent:true,opacity:0.4,side:THREE.DoubleSide})); ring.rotation.x=-Math.PI/2; ring.position.set(cx,0.05,cz); g.add(ring);
@@ -3385,6 +3395,7 @@ function ntPerfOverlay(){
     +'       render '+NT02.sub.render.toFixed(2)+' · audio '+NT02.sub.audio.toFixed(2)+' ms\n'
     +'LADDER L'+NT02.level+' · PR x'+NT02.prMul.toFixed(2)+' · warm '+(NT02.warm?'YES':'NO')+'\n'
     +'DRAW CALLS '+calls+' / 180 · INFECTED '+countInfected()+' / 18\n'
+    +'IGP design delta -2 draws (estimate: neon +1 · haze sprites -3) · tris '+(renderer&&renderer.info?renderer.info.render.triangles:0)+'\n'
     +'CUTS placeables '+(NT02.cuts[0]?'32':'40')+' · rain '+(NT02.cuts[1]?'200':'350')+' · farAI '+(NT02.cuts[2]?'1Hz':'2Hz')+'\n'
     +'SAVE v'+SAVE2.ver+' · deaths '+SAVE2.deathId+' · risk '+(SAVE2.risk?'YES':'no')+' · idb '+(SAVE2.idb?'mirror':'local')+'\n'
     +'POWER lit '+Math.round(NT05.powerFrac*100)+'% · dark district '+(NT05.darkDistrict?'YES (+10% director)':'no');
@@ -4487,6 +4498,7 @@ window.__ntVerify=function(){
   var ptsTot=0; scene.traverse(function(o){ if(o.isPoints&&o.geometry&&o.geometry.attributes&&o.geometry.attributes.position) ptsTot+=o.geometry.attributes.position.count; });
   chk('NT-16', typeof window.__ntReplay==='function'&&typeof window.__ntCapture==='function'&&typeof window.__ntThumb==='function'&&ptsTot<=800, 'replay route armed (report: window.__ntReplayReport) · demo '+(NT4.demo?'ON':'off')+' · gauntlet best '+NT4META.gBest+' · capture honesty: camera+time only · scene Points '+ptsTot+'/800 · thumb law via __ntThumb()');
   chk('NT-17', typeof NT5!=='undefined'&&NT5.pop.length===15&&!('pulse' in NT06)&&!('breachDone' in NT06)&&typeof window.__ntEcoTests==='function', 'Ecology Director live · standing population '+NT5.pop.reduce(function(a,p){ return a+p.n; },0)+' bodies across 15 nests · activity '+NT5.actLabel+' · pulse/forced-breach symbols deleted · AFK + provocation harness: __ntEcoTests()');
+  chk('IGP', typeof IGP!=='undefined'&&IGP.ready&&(typeof hazeSprites==='undefined'||hazeSprites.length===15), 'installed-games blend live: ARC weathered tech · FINALS Midtown/HUD clarity · Arkham Brigid noir · Hood neon nights · ROB RUN readability · Fortnite accents · MC/Roblox colour clarity only (no blocky forms) · draws '+rep.caps.drawCalls+'/180 · tris '+(renderer?renderer.info.render.triangles:0)+' · art-direction only, zero external assets');
   console.log('NT VERIFY', rep);
   return rep;
 };
@@ -4548,6 +4560,21 @@ function computePalette(){
   if (player){ palFogF/=districtAt(player.x,player.z).fog; } if(surgeNight&&dayT>0.66) palFogF/=1.8;
   palFog.copy(palHor); // fog IS the horizon color — the dome seam can never show
   if (player){ palFog.lerp(DISTRICT_TINTS[districtIdx(player.x,player.z)],0.16); palHor.lerp(DISTRICT_TINTS[districtIdx(player.x,player.z)],0.07); }
+  /* IGP (installed-games pass) — one-city blend, palette-rate, zero allocation:
+     THE FINALS / Fortnite vivid clean day sky; Batman Arkham cold noir at
+     night/rain (strongest in St. Brigid old town); ARC Raiders fog closes
+     in around the Yards' corrupted tech. Recomputed from the stops every
+     call, so nothing accumulates. */
+  if (player){
+    var _igpId=districtAt(player.x,player.z).id, _igpDay=1-palNight;
+    palZen.lerp(_palA.setHex(0x2E9BE6),_igpDay*0.16);
+    palHor.lerp(_palA.setHex(0xFFE9B0),_igpDay*0.05);
+    if (_igpId==='market') palExp=Math.min(1.22,palExp+0.03*_igpDay); // Midtown arena lift — bright, glossy, never muddy
+    var _noir=clamp(palNight*0.7+wk*0.5,0,1)*(_igpId==='brigid'?1:0.5);
+    if (_noir>0.01){ palZen.lerp(_palA.setHex(0x1B2A3D),_noir*0.32); palHor.lerp(_palA.setHex(0x33465C),_noir*0.28); palFog.lerp(_palA.setHex(0x2C3E52),_noir*0.26); }
+    if (_igpId==='brigid'&&(palNight>0.4||wk>0.3)) palFogF*=0.86; // old-town atmosphere hangs heavier
+    if (_igpId==='yards') palFogF*=0.93;
+  }
   var wetT = weather.kind==='storm'?1 : (weather.kind==='rain'?0.8 : (weather.kind==='fog'?0.35:0.12));
   wetness += (wetT-wetness)*0.05;
 }
@@ -4580,7 +4607,7 @@ function buildSharedTextures(){
     for (var l2=0;l2<20;l2++){ var lx=10+Math.random()*108, ly=114-Math.random()*70, la=Math.random()*6.28, ll=7+Math.random()*8;
       ctx.fillStyle=['#5a6b32','#6d8140','#44542a'][(Math.random()*3)|0];
       ctx.beginPath(); ctx.ellipse(lx,ly,ll,ll*0.36,la,0,6.3); ctx.fill(); }
-    for (var f2=0;f2<7;f2++){ ctx.fillStyle='#e8e3d5'; ctx.beginPath(); ctx.arc(12+Math.random()*104,88-Math.random()*70,2.2,0,6.3); ctx.fill(); }
+    for (var f2=0;f2<9;f2++){ ctx.fillStyle=['#e8e3d5','#FFD23E','#FF5C8A','#53E0E8'][f2%4]; ctx.beginPath(); ctx.arc(12+Math.random()*104,88-Math.random()*70,2.2,0,6.3); ctx.fill(); } // IGP Fortnite: saturated flora flecks — accents only, the world's shading is never cartooned
     var t=new THREE.CanvasTexture(cvx); t.encoding=THREE.sRGBEncoding; return t; })();
   TEX.crust=(function(){ var cvx=document.createElement('canvas'); cvx.width=cvx.height=128; var ctx=cvx.getContext('2d');
     ctx.clearRect(0,0,128,128);
@@ -4897,6 +4924,10 @@ function buildGFX2(){
     ctx.strokeStyle='rgba(90,90,90,0.5)';
     for (var s4=0;s4<14;s4++){ ctx.beginPath(); var sx2=Math.random()*w, sy2=Math.random()*h; ctx.moveTo(sx2,sy2); ctx.lineTo(sx2+8+Math.random()*30, sy2+(Math.random()-0.5)*6); ctx.stroke(); }
     for (var d=0;d<8;d++){ var dx=Math.random()*w; var dg2=ctx.createLinearGradient(0,0,0,50+Math.random()*60); dg2.addColorStop(0,'rgba(110,58,30,0.4)'); dg2.addColorStop(1,'rgba(110,58,30,0)'); ctx.fillStyle=dg2; ctx.save(); ctx.translate(dx,Math.random()*h*0.5); ctx.fillRect(0,0,3,50+Math.random()*60); ctx.restore(); }
+    ctx.strokeStyle='rgba(228,232,236,0.5)'; ctx.lineWidth=1; // IGP ARC Raiders: bright scratch scores cut through the rust — scavenged, repaired, scored again
+    for (var s7=0;s7<26;s7++){ ctx.beginPath(); var sx7=Math.random()*w, sy7=Math.random()*h; ctx.moveTo(sx7,sy7); ctx.lineTo(sx7+10+Math.random()*44, sy7+(Math.random()-0.5)*7); ctx.stroke(); }
+    for (var o7=0;o7<7;o7++){ var ox7=Math.random()*w, oy7=Math.random()*h, or7=10+Math.random()*26; var og7=ctx.createRadialGradient(ox7,oy7,0,ox7,oy7,or7); og7.addColorStop(0,'rgba(12,14,16,0.55)'); og7.addColorStop(1,'rgba(12,14,16,0)'); ctx.fillStyle=og7; ctx.fillRect(ox7-or7,oy7-or7,or7*2,or7*2); } // oil staining
+    ctx.fillStyle='rgba(232,106,58,0.28)'; ctx.fillRect(0,8,w,4); ctx.fillStyle='rgba(46,196,182,0.20)'; ctx.fillRect(0,h-14,w,5); // faded service stripes — the ARC orange/teal accent family
   },1,1);
   GFX2.gunMetal=stdMat({map:GFX2.gunTex},0.46,0.72); if (GFX2.gunMetal.envMapIntensity!==undefined) GFX2.gunMetal.envMapIntensity=0.8;
   GFX2.gunDark=stdMat({color:0x14161a},0.36,0.82); if (GFX2.gunDark.envMapIntensity!==undefined) GFX2.gunDark.envMapIntensity=0.9;
@@ -4904,7 +4935,7 @@ function buildGFX2(){
   GFX2.tapeMat=stdMat({color:0x8a7a56},0.92,0);
   GFX2.gunWood=stdMat({map:GFX2.woodTex},0.78,0.02);
   GFX2.barkMat=stdMat({map:GFX2.barkTex},0.98,0);
-  GFX2.leafMats=[stdMat({color:0x44542a},1,0),stdMat({color:0x5a6b32},1,0),stdMat({color:0x35482a},1,0)];
+  GFX2.leafMats=[stdMat({color:0x4A6B2A},1,0),stdMat({color:0x6B8A34},1,0),stdMat({color:0x3A5A2E},1,0)]; // IGP Fortnite: canopy saturation lifted a step — accents in the flora, grounded by the existing grime
   // GFX3: shared character-detail materials — one infected skin (wet-look rides it in
   // applyDayNight), glove leather for human hands, textured boot leather.
   GFX2.infSkinM=stdMat({map:GFX2.skinTex,color:0xCFC8B8,bumpMap:GFX2.clothBump,bumpScale:0.12},0.58,0.02); if (GFX2.infSkinM.envMapIntensity!==undefined) GFX2.infSkinM.envMapIntensity=0.45;
@@ -5285,7 +5316,7 @@ function buildCityDressing(){
       {t:signTexture(['FERRY TERMINAL','ALL SAILINGS CANCELLED'],'#1d2b33','#bfe3ea','#d9483b'), x:-84,y:5.5,z:66.15,ry:0,w:9}
     ];
     defs.forEach(function(d){
-      var m=new THREE.Mesh(new THREE.PlaneGeometry(d.w,d.w*0.25),new THREE.MeshStandardMaterial({map:d.t,roughness:0.6,metalness:0.1,emissive:0xffffff,emissiveMap:d.t,emissiveIntensity:0.14}));
+      var m=new THREE.Mesh(new THREE.PlaneGeometry(d.w,d.w*0.25),new THREE.MeshStandardMaterial({map:d.t,roughness:0.6,metalness:0.1,emissive:0xffffff,emissiveMap:d.t,emissiveIntensity:0.20})); // IGP Hood: hero signs push a little more neon into the night street
       m.position.set(d.x,d.y,d.z); m.rotation.y=d.ry; scene.add(m);
     });
   })();
@@ -5347,6 +5378,7 @@ function buildCityDressing(){
    merged: ~25 added draws, paid for by the sprite-cloud swap (~70 saved). No
    gameplay system, number, save field or text framing is touched. */
 var GFX3={ ready:false, _tlState:-1 };
+var IGP={ ready:true, neonMat:null, fasciaGlow:null }; /* IGP: installed-games art-direction blend — Crossfire City's own original procedural art only; no texture, model or audio is taken from any other game */
 function mergeGeosUV(list){
   var pos=[], nor=[], col=[], uv=[];
   list.forEach(function(it){
@@ -5616,7 +5648,7 @@ function buildRealismPass(){
     var open=hash2(i*3.7)<0.3;
     dummy.position.set(s.maxX+1.6,(open?1.48:1.31),s.cz+((i%3)-1)*2+(open?-0.42:0));
     dummy.rotation.set(open?-0.62:0,(i%4)*0.12,0); dummy.scale.set(1,1,1); dummy.updateMatrix();
-    lidInst.setMatrixAt(lidN,dummy.matrix); lidInst.setColorAt(lidN,_jCol.setHex([0x2E3B33,0x39424e,0x4a4238][i%3])); lidN++;
+    lidInst.setMatrixAt(lidN,dummy.matrix); lidInst.setColorAt(lidN,_jCol.setHex([0xB06A3A,0xD8DCD2,0x4A5A5E][i%3])); lidN++; // IGP ARC: rust / pale-clean / teal-steel lids
   });
   lidInst.count=lidN; lidInst.instanceMatrix.needsUpdate=true; if (lidInst.instanceColor) lidInst.instanceColor.needsUpdate=true; lidInst.frustumCulled=false; lidInst.receiveShadow=true; scene.add(lidInst);
 
@@ -5637,7 +5669,7 @@ function buildRealismPass(){
   },1,1));
   var nameAtlas=clampTex(canvasTexture(1024,512,function(ctx,w,h){
     var names=['PORT MARKET','CALLOWAY PHARMACY','NOODLE BAR','PAWN & LOAN','CAFE LUMEN','HARBOR HARDWARE','TIDE LAUNDRY','MOTO PARTS'];
-    var bgs=['#27331f','#1d2733','#33231d','#2b2118','#1f2b33','#26313a','#243028','#31262b'];
+    var bgs=['#27331f','#1d2733','#2A0F22','#2b2118','#1f2b33','#0E2A33','#243028','#31262b']; // IGP Hood: two fascia grounds go neon-dark (magenta noodle bar, cyan hardware)
     names.forEach(function(nm,i){
       var cx=(i%2)*512, cy=((i/2)|0)*128;
       ctx.fillStyle=bgs[i]; ctx.fillRect(cx+4,cy+4,504,120);
@@ -5671,9 +5703,9 @@ function buildRealismPass(){
     if (!faces.length) faces.push(1);
     faces.forEach(function(f){ shops.push({s:s,f:f,seed:si*3+(f>0?0:1)}); });
   });
-  var glassT=[], intT=[], trimP=[], signP=[], shutP=[], postP=[], awnT=[];
+  var glassT=[], intT=[], trimP=[], signP=[], shutP=[], postP=[], awnT=[], neonP=[];
   var bandCols={port:0x2e4a4a, market:0x6b3a26, yards:0x5a4a22, brigid:0x3a4450, lowline:0x2c463e};
-  var awnCols=[0x2ec4b6,0xd9483b,0xf5a623,0x5a6b32,0x8a4a5a];
+  var awnCols=[0x2ec4b6,0xd9483b,0xf5a623,0x5a6b32,0xFF2E88,0x2E9BE6];
   shops.forEach(function(sh,shi){
     var s=sh.s, f=sh.f, faceZ=f>0?s.maxZ:s.minZ, ry=f>0?0:Math.PI;
     var W=clamp(s.w*0.82,4.2,10), cx=s.cx, doorX=cx+W/2-0.85;
@@ -5687,6 +5719,7 @@ function buildRealismPass(){
     trimP.push({geo:boxGeo(1.05,2.42,0.10),color:0x10131a,x:doorX,y:1.21,z:faceZ+f*0.03});
     signP.push({geo:new THREE.PlaneGeometry(W*0.92,0.60),color:0xffffff,x:cx,y:2.98,z:faceZ+f*0.185,ry:ry,u0:nUv.u0,v0:nUv.v0,us:nUv.us,vs:nUv.vs});
     signP.push({geo:new THREE.PlaneGeometry(1.5,0.38),color:0xffffff,x:cx-W/2+0.3,y:2.62,z:faceZ+f*0.85,ry:Math.PI/2,u0:nUv.u0,v0:nUv.v0,us:nUv.us,vs:nUv.vs});
+    if (districtAt(s.cx,s.cz).id==='market') neonP.push({geo:boxGeo(W*0.92,0.07,0.05),color:[0xFF2E88,0x22D3EE,0xFFD23E][shi%3],x:cx,y:3.34,z:faceZ+f*0.20}); // IGP Hood Warfare: a neon tube over every Midtown fascia — all tubes merge into ONE mesh, lit by palNight in applyDayNight
     if (hash2(sh.seed*7.1)<0.28){ // shuttered shop — closed, or ripped open by the Bloom years
       var torn=hash2(sh.seed*9.3)<0.45;
       shutP.push({geo:new THREE.PlaneGeometry(W*0.8,2.35),color:0xffffff,x:cx,y:1.30,z:faceZ+f*0.045,ry:ry,u0:torn?0.5:0,v0:0,us:0.5,vs:1});
@@ -5720,7 +5753,8 @@ function buildRealismPass(){
       intInst.setColorAt(i,_jCol.setHex(p[3]<0.5?0xffd9a8:(p[3]<0.8?0xbfe0d8:0x9aa0a8))); });
     intInst.instanceMatrix.needsUpdate=true; if (intInst.instanceColor) intInst.instanceColor.needsUpdate=true; intInst.frustumCulled=false; scene.add(intInst);
   }
-  if (signP.length){ var fasciaMesh=new THREE.Mesh(mergeGeosUV(signP),new THREE.MeshStandardMaterial({map:nameAtlas,roughness:0.55,metalness:0.08,emissive:0xffffff,emissiveMap:nameAtlas,emissiveIntensity:0.13,side:THREE.DoubleSide})); scene.add(fasciaMesh); }
+  if (signP.length){ var fasciaMesh=new THREE.Mesh(mergeGeosUV(signP),new THREE.MeshStandardMaterial({map:nameAtlas,roughness:0.55,metalness:0.08,emissive:0xffffff,emissiveMap:nameAtlas,emissiveIntensity:0.13,side:THREE.DoubleSide})); scene.add(fasciaMesh); IGP.fasciaGlow=fasciaMesh.material; }
+  if (neonP.length){ IGP.neonMat=new THREE.MeshBasicMaterial({vertexColors:true,transparent:true,opacity:0,depthWrite:false}); var neonMesh=new THREE.Mesh(mergeGeos(neonP),IGP.neonMat); neonMesh.frustumCulled=false; scene.add(neonMesh); } // +1 draw — paid for by the haze-sprite cut in buildRainAndHaze (-3), net -2
   if (shutP.length){ var shutMesh=new THREE.Mesh(mergeGeosUV(shutP),stdMat({map:shutterTex,transparent:true,alphaTest:0.45,side:THREE.DoubleSide},0.62,0.35)); scene.add(shutMesh); }
   if (postP.length){ var postMesh=new THREE.Mesh(mergeGeosUV(postP),new THREE.MeshBasicMaterial({map:TEX.poster,side:THREE.DoubleSide})); scene.add(postMesh); }
   if (awnT.length){
@@ -5739,7 +5773,7 @@ function buildRealismPass(){
   if (GFX3._newsSpots&&GFX3._newsSpots.length){
     var newsInst=new THREE.InstancedMesh(boxGeo(0.52,0.82,0.46),stdMat({color:0xffffff},0.6,0.2),GFX3._newsSpots.length);
     GFX3._newsSpots.forEach(function(p,i){ dummy.position.set(p[0],0.41,p[1]); dummy.rotation.set(0,p[2],0); dummy.scale.set(1,1,1); dummy.updateMatrix(); newsInst.setMatrixAt(i,dummy.matrix);
-      newsInst.setColorAt(i,_jCol.setHex([0xd9483b,0x2ec4b6,0xf5a623,0x707880][i%4])); });
+      newsInst.setColorAt(i,_jCol.setHex([0xd9483b,0x2ec4b6,0xf5a623,0x2E9BE6][i%4])); }); // IGP clarity primaries: red / teal / amber / sky — read at a glance (Minecraft/Roblox colour clarity, no blocky forms)
     newsInst.instanceMatrix.needsUpdate=true; if (newsInst.instanceColor) newsInst.instanceColor.needsUpdate=true; newsInst.frustumCulled=false; newsInst.receiveShadow=true; scene.add(newsInst);
   }
 
@@ -5848,6 +5882,8 @@ function buildWorld(){
     // oil stains and patch repairs — the road has a history
     for (var s=0;s<10;s++){ var gx=Math.random()*w, gy=Math.random()*h, gr=26+Math.random()*58; var gg=ctx.createRadialGradient(gx,gy,0,gx,gy,gr); gg.addColorStop(0,'rgba(0,0,0,.36)'); gg.addColorStop(1,'rgba(0,0,0,0)'); ctx.fillStyle=gg; ctx.fillRect(gx-gr,gy-gr,gr*2,gr*2); }
     for (var s6=0;s6<4;s6++){ var ox=Math.random()*w, oy=Math.random()*h, orad=16+Math.random()*30; var og=ctx.createRadialGradient(ox,oy,0,ox,oy,orad); og.addColorStop(0,'rgba(38,34,44,0.30)'); og.addColorStop(0.7,'rgba(30,38,40,0.16)'); og.addColorStop(1,'rgba(0,0,0,0)'); ctx.fillStyle=og; ctx.fillRect(ox-orad,oy-orad,orad*2,orad*2); } // rainbow-slick oil sheen spots
+    var hoodCols=['232,46,136','34,211,238','255,210,62','58,220,132']; // IGP Hood Warfare: streetwear colour pops trodden into the asphalt — paint flecks, sticker scraps, overspray ghosts (kept faint: ground detail, not confetti)
+    for (var hp2=0;hp2<26;hp2++){ ctx.fillStyle='rgba('+hoodCols[hp2%4]+','+(0.05+Math.random()*0.08)+')'; ctx.fillRect(Math.random()*w,Math.random()*h,3+Math.random()*9,2+Math.random()*5); }
     ctx.fillStyle='rgba(255,255,255,.03)'; ctx.fillRect(0,0,w,26); ctx.fillRect(0,h-20,w,20);
   },28,20);
   var asphaltBump=bumpFrom(asphaltBumpDraw,1024,1024); asphaltBump.repeat.set(28,20);
@@ -5985,6 +6021,13 @@ function buildWorld(){
         trimParts.push({geo:cylGeo(0.27,0.33,0.95),color:0x4a545f,x:vx,y:s.h+0.6,z:vz});
         trimParts.push({geo:sphereGeo(0.31),color:0x39424e,x:vx,y:s.h+1.1,z:vz,sy:0.45});
         trimParts.push({geo:cylGeo(0.07,0.07,s.h),color:0x39424e,x:s.maxX+0.13,y:s.h/2,z:s.maxZ-0.5});
+        if (districtAt(s.cx,s.cz).id==='brigid'){ // IGP Batman Arkham: gothic-noir crown for old town — corner finials (caps rotated 45 deg, spires not blocks) + a steep lintel band, merged into this same trim mesh (zero new draws)
+          [[s.minX+0.3,s.minZ+0.3],[s.maxX-0.3,s.minZ+0.3],[s.minX+0.3,s.maxZ-0.3],[s.maxX-0.3,s.maxZ-0.3]].forEach(function(cn2){
+            trimParts.push({geo:boxGeo(0.20,1.05,0.20),color:0x1B222C,x:cn2[0],y:s.h+0.72,z:cn2[1]});
+            trimParts.push({geo:boxGeo(0.30,0.30,0.30),color:0x232B36,x:cn2[0],y:s.h+1.38,z:cn2[1],ry:Math.PI/4});
+          });
+          trimParts.push({geo:boxGeo(s.w*0.7,0.5,0.14),color:0x1B222C,x:s.cx,y:Math.max(2.2,s.h*0.62),z:s.maxZ+0.05});
+        }
         if (sIdx%3===0){
           trimParts.push({geo:boxGeo(3.2,0.09,0.95),color:0x1c2129,x:s.cx,y:2.6,z:s.maxZ+0.55});
           trimParts.push({geo:boxGeo(3.2,0.05,0.05),color:0x39424e,x:s.cx,y:3.15,z:s.maxZ+0.98});
@@ -6018,7 +6061,7 @@ function buildWorld(){
       for (var ai2=0;ai2<ap.count;ai2++){ var ay=ap.getY(ai2); ap.setZ(ai2,Math.pow((0.575-ay)/1.15,2)*0.22); }
       ag.computeVertexNormals();
       var ainst=new THREE.InstancedMesh(ag,stdMat({map:GFX2.clothTex,side:THREE.DoubleSide},0.9,0),awningList.length), ad=new THREE.Object3D();
-      var acol=[0x2ec4b6,0xd9483b,0xf5a623,0x5a6b32,0x8a4a5a];
+      var acol=[0x2ec4b6,0xd9483b,0xf5a623,0x5a6b32,0xFF2E88,0x2E9BE6]; // IGP Fortnite/Hood: two saturated signage-family pops join the awning rotation
       for (var ai3=0;ai3<awningList.length;ai3++){ var aw=awningList[ai3]; ad.position.set(aw[0],aw[1],aw[2]); ad.rotation.set(-0.5,0,0); ad.scale.set(1,1,1); ad.updateMatrix(); ainst.setMatrixAt(ai3,ad.matrix); ainst.setColorAt(ai3,_jCol.setHex(acol[aw[3]%acol.length])); }
       ainst.instanceMatrix.needsUpdate=true; if (ainst.instanceColor) ainst.instanceColor.needsUpdate=true; ainst.frustumCulled=false; scene.add(ainst);
     }
@@ -6216,14 +6259,14 @@ function buildWorld(){
   /* (16) greeble silhouettes — dumpsters and pipe runs, instanced or not at all */
   (function greebles(){
     var dummy=new THREE.Object3D();
-    var dump=new THREE.InstancedMesh(boxGeo(2.2,1.25,1.2),stdMat({color:0x2E3B33},0.9,0.05),26), di=0;
-    var pipe=new THREE.InstancedMesh(cylGeo(0.14,0.14,3.4),stdMat({color:0x59636E},0.55,0.5),30), pi=0;
+    var dump=new THREE.InstancedMesh(boxGeo(2.2,1.25,1.2),stdMat({map:GFX2.rustTex,color:0x9AA39B},0.88,0.12),26), di=0; // IGP ARC Raiders: the shared rust/scratch/oil skin now actually skins the scavenged tech
+    var pipe=new THREE.InstancedMesh(cylGeo(0.14,0.14,3.4),stdMat({map:GFX2.rustTex,color:0xA8ADB2},0.6,0.45),30), pi=0;
     BUILD_SOLIDS.forEach(function(s,i){
-      if (di<26&&i%2===0){ dummy.position.set(s.maxX+1.6,0.62,s.cz+((i%3)-1)*2); dummy.rotation.set(0,(i%4)*0.12,0); dummy.scale.set(1,1,1); dummy.updateMatrix(); dump.setMatrixAt(di++,dummy.matrix); }
+      if (di<26&&i%2===0){ dummy.position.set(s.maxX+1.6,0.62,s.cz+((i%3)-1)*2); dummy.rotation.set(0,(i%4)*0.12,0); dummy.scale.set(1,1,1); dummy.updateMatrix(); dump.setMatrixAt(di,dummy.matrix); dump.setColorAt(di,_jCol.setHex([0xD8DCD2,0xC97A4A,0x7FB5AC,0x8A4A2E][di%4])); di++; } // IGP ARC: clean pale machine panels against rusted scavenged shells, orange/teal family
       if (pi<30){ dummy.position.set(s.minX-0.35,1.2+((i*7)%Math.max(2,(s.h*10|0)-20))/10,s.minZ+1+((i*11)%Math.max(2,(s.d*10|0)-20))/10); dummy.rotation.set(0,0,0); dummy.scale.set(1,1,1); dummy.updateMatrix(); pipe.setMatrixAt(pi++,dummy.matrix); }
     });
     dump.count=di; pipe.count=pi;
-    [dump,pipe].forEach(function(m){ m.instanceMatrix.needsUpdate=true; m.frustumCulled=false; m.castShadow=false; m.receiveShadow=true; m.userData.full=m.count; scene.add(m); }); window._placeables=[dump,pipe]; // NT-02 cut 1 trims these counts 40 -> 32
+    [dump,pipe].forEach(function(m){ m.instanceMatrix.needsUpdate=true; m.frustumCulled=false; m.castShadow=false; m.receiveShadow=true; m.userData.full=m.count; scene.add(m); }); if (dump.instanceColor) dump.instanceColor.needsUpdate=true; window._placeables=[dump,pipe]; // NT-02 cut 1 trims these counts 40 -> 32
   })();
   // distant Port Calloway skyline beyond the playable district — bigger horizon for the bigger map
   [[-160,-110,26,44],[-110,-120,20,34],[-60,-125,28,50],[0,-128,22,38],[60,-122,24,46],[120,-115,28,40],[170,-90,22,34],
@@ -6236,12 +6279,12 @@ function buildWorld(){
   // halos, light pools and rain cones are one instanced draw each.
   var LAMP_SPOTS=[[-30,-18],[30,-18],[-30,18],[30,18],[0,-24],[-72,-36],[72,-36],[-72,36],[72,36],[-48,0],[48,0],[0,72],[0,-72],[-96,0],[96,0]];
   var lampPos=[];
-  LAMP_SPOTS.forEach(function(p){
+  LAMP_SPOTS.forEach(function(p,li){
     box(0.14,4.6,0.14,0x2a323e,p[0],2.3,p[1]);
-    var lampCol = p[1]>26?0x7BE8B0 : ((Math.abs(p[0])<50&&Math.abs(p[1])<40)?0xFFF0D0:0xFFD88A);
+    var lampCol = p[1]>26?0x7BE8B0 : ((Math.abs(p[0])<50&&Math.abs(p[1])<40)?(li%4===1?0xFF5C8A:(li%4===3?0x53E0E8:0xFFF0D0)):0xFFD88A); // IGP Hood Warfare: Midtown lamps carry streetwear neon pops (pink / cyan) among the warm white
     var lamp=new THREE.Mesh(new THREE.SphereGeometry(0.24,10,8), new THREE.MeshBasicMaterial({color:lampCol}));
     lamp.position.set(p[0],4.7,p[1]); scene.add(lamp);
-    var pl=new THREE.PointLight(0xffc46a,0.55,17); pl.position.set(p[0],4.5,p[1]); pl.userData.base=0.55; scene.add(pl); lampLights.push(pl);
+    var pl=new THREE.PointLight(lampCol===0xFF5C8A?0xFF7AA8:(lampCol===0x53E0E8?0x7AE8F0:0xffc46a),0.55,17); pl.position.set(p[0],4.5,p[1]); pl.userData.base=0.55; scene.add(pl); lampLights.push(pl);
     lampPos.push(p);
   });
   (function lampFx(){
@@ -6291,7 +6334,7 @@ function buildWorld(){
     var g=new THREE.Group(); g.position.set(site.x,0,site.z); scene.add(g);
     box(1.4,0.9,0.9,0x2a3a2e,0,0.45,0,g);
     box(1.5,0.18,1.0,0xf5a623,0,0.95,0,g);
-    var beacon=new THREE.Mesh(new THREE.CylinderGeometry(0.12,0.12,7,8), new THREE.MeshBasicMaterial({color:0xffc45c,transparent:true,opacity:0.28}));
+    var beacon=new THREE.Mesh(new THREE.CylinderGeometry(0.15,0.15,7,8), new THREE.MeshBasicMaterial({color:0xffc45c,transparent:true,opacity:0.40})); // IGP ROB RUN: objective beacons read instantly at speed — wider, brighter, same single mesh
     beacon.position.set(0,3.5,0); g.add(beacon);
     site.mesh=g; site.looted=false; site.id='loot'+idx;
     lootMeshes[site.id]=g;
@@ -6319,8 +6362,8 @@ function buildRainAndHaze(){
   var g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.BufferAttribute(rainPos,3));
   rainLines=new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:0xAFC6D8,transparent:true,opacity:0}));
   rainLines.frustumCulled=false; rainLines.visible=false; scene.add(rainLines);
-  hazeSprites=[];
-  for (var h=0;h<18;h++){ var sm=new THREE.SpriteMaterial({map:TEX.haze,color:0xA8BDBA,transparent:true,opacity:0,depthWrite:false});
+  hazeSprites=[]; // IGP: 15 sprites (was 18) — the 3 saved draws pay for the merged Hood neon mesh (+1) with 2 to spare
+  for (var h=0;h<15;h++){ var sm=new THREE.SpriteMaterial({map:TEX.haze,color:0xA8BDBA,transparent:true,opacity:0,depthWrite:false});
     var sp=new THREE.Sprite(sm); var hx=-120+Math.random()*240, hz=-84+Math.random()*168;
     sp.position.set(hx,1.1+Math.random()*1.6,hz); sp.scale.set(26+Math.random()*22,5+Math.random()*3,1); sp.userData.seed=Math.random()*10; sp.frustumCulled=false;
     scene.add(sp); hazeSprites.push(sp); }
@@ -6337,7 +6380,7 @@ function updateRainAndHaze(dt,now){
         else if (rainPos[j+1]<0){ var y=14+Math.random()*3; rainPos[j]=(Math.random()-0.5)*36; rainPos[j+1]=y; rainPos[j+2]=(Math.random()-0.5)*36; rainPos[j+3]=rainPos[j]; rainPos[j+4]=y-0.7; rainPos[j+5]=rainPos[j+2]; } }
       rainLines.geometry.attributes.position.needsUpdate=true;
     } }
-  var hazeO = state!=='playing'?0 : (weather.kind==='fog'?0.5 : (weather.kind==='storm'?0.3 : (palNight*0.16)));
+  var hazeO = state!=='playing'?0 : (weather.kind==='fog'?0.58 : (weather.kind==='storm'?0.3 : (palNight*0.16)));
   for (var h=0;h<hazeSprites.length;h++){ var sp=hazeSprites[h]; sp.material.opacity=hazeO*(0.7+0.3*Math.sin(now*0.24+sp.userData.seed));
     sp.material.color.copy(palFog); sp.position.x+=Math.sin(now*0.05+sp.userData.seed)*dt*0.35; }
 }
@@ -6466,9 +6509,9 @@ function buildResourceNodes(){
     } else if(def.type==='fiber'){
       cone(0.75,1.7,0x4A5D23,-0.5,0.85,0,g); cone(0.58,1.35,0x7A8A3A,0.55,0.68,0.25,g); var glow=sph(0.34,0xD8CFC0,0,1.25,-0.25,g); glow.material=new THREE.MeshBasicMaterial({color:0xD8CFC0});
     } else {
-      box(1.8,0.65,1.1,0x59636e,0,0.36,0,g).rotation.y=0.35; box(1.1,0.5,0.8,0x37424e,0.55,0.95,0.1,g); cyl(0.42,0.42,0.22,0x111318,-0.8,0.42,0.55,g,'x'); box(0.14,0.55,0.8,0xf5a623,0.95,0.62,0,g);
+      box(1.8,0.65,1.1,0x6E4A30,0,0.36,0,g).rotation.y=0.35; box(1.1,0.5,0.8,0xC9CDC2,0.55,0.95,0.1,g); cyl(0.42,0.42,0.22,0x111318,-0.8,0.42,0.55,g,'x'); box(0.14,0.55,0.8,0xf5a623,0.95,0.62,0,g); // IGP ARC Raiders: rusted scavenged base, one clean pale panel — fabricator-feedstock reads at a glance
     }
-    var beacon=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.09,5.4,8),new THREE.MeshBasicMaterial({color:def.type==='wood'?0xffc45c:(def.type==='fiber'?0xD8CFC0:0xc8ccd2),transparent:true,opacity:0.22}));
+    var beacon=new THREE.Mesh(new THREE.CylinderGeometry(0.11,0.11,5.4,8),new THREE.MeshBasicMaterial({color:def.type==='wood'?0xffc45c:(def.type==='fiber'?0xD8CFC0:0xc8ccd2),transparent:true,opacity:0.34})); // IGP ROB RUN: node beacons join the same instant-read discipline
     beacon.position.set(0,2.7,0); g.add(beacon);
     var node={type:def.type,name:def.name,x:x,z:z,charges:3,respawnT:0,mesh:g,id:'node'+idx};
     resourceNodes.push(node);
@@ -6534,7 +6577,7 @@ function applyDayNight(){
   if (NT05.puddleInstMat){ NT05.puddleInstMat.color.copy(_palB.copy(palHor).lerp(palSun,0.25)); NT05.puddleInstMat.opacity=0.42+wetness*0.42; } // NT-05: the 48 instanced puddles drink from the same wetness
   if (floodMat){ floodMat.color.copy(_palB.copy(palHor).multiplyScalar(0.32)); floodMat.specular.copy(palSun); }
   if (causticMat) causticMat.opacity=0.2+wetness*0.4;
-  if (GFX2.shaftMats.length){ var shO=clamp(1-Math.abs(Math.sin(sunA))*1.7,0,1)*(weather.kind==='storm'?0.35:1); GFX2.shaftMats[0].opacity=0.05+shO*0.16; GFX2.shaftMats[0].color.copy(palSun); }
+  if (GFX2.shaftMats.length){ var shO=clamp(1-Math.abs(Math.sin(sunA))*1.7,0,1)*(weather.kind==='storm'?0.35:1); GFX2.shaftMats[0].opacity=Math.min(0.30,0.05+shO*0.19*(weather.kind==='fog'?1.3:1)); GFX2.shaftMats[0].color.copy(palSun); } // IGP ARC Raiders: god-ray shafts thicken in fog
   /* GFX3 live states: traffic heads by phase (green day / amber dusk / dark night,
      one Yards head blinking amber), skyline windows after dark, Yards heat haze at
      noon, wet-look infected skin, cloud drift with wrap. Palette-rate, no new lights. */
@@ -6546,6 +6589,13 @@ function applyDayNight(){
     if (GFX3.hazeMat){ var _hf3=(dayClock+0.29)%1, _noon3=clamp(1-Math.abs(_hf3-0.5)*5,0,1); GFX3.hazeMat.opacity=_noon3*(weather.kind==='clear'?0.13:(weather.kind==='cold'?0.07:0.02)); }
     if (GFX2.infSkinM){ GFX2.infSkinM.roughness=0.58-wetness*0.30-nightF*0.05; if (GFX2.infSkinM.envMapIntensity!==undefined) GFX2.infSkinM.envMapIntensity=0.45+wetness*0.65; }
     if (cloudGroup){ for (var cci=0;cci<cloudGroup.children.length;cci++){ var cc2=cloudGroup.children[cci]; cc2.position.x+=0.006+gustV*0.002; if (cc2.position.x>225) cc2.position.x=-225; } }
+  }
+  /* IGP live states — palette-rate, no new lights, no allocation: Hood
+     Warfare neon wakes with the dark (and blooms in rain); Midtown shop
+     fascia gain night spill. UV violet stays the only safe colour. */
+  if (typeof IGP!=='undefined'){
+    if (IGP.neonMat) IGP.neonMat.opacity=palNight*((weather.kind==='rain'||weather.kind==='storm')?0.95:0.78);
+    if (IGP.fasciaGlow) IGP.fasciaGlow.emissiveIntensity=0.13+palNight*0.30;
   }
   // (2) DOM grade: vignette depth + grain strength follow the dark — compositor only, zero GPU
   var gKey=Math.round(nightF*10)+'/'+weather.kind;
@@ -8230,11 +8280,11 @@ function sotaProps(){ /* SOTA LOOK — eye-level lived-in detail: one InstancedM
   Row. +1 draw call total, no shadows, built once when the scene exists. */
   if(SOTA.propsDone) return; SOTA.propsDone=true;
   try{
-    var geo=new THREE.BoxGeometry(0.7,0.7,0.7), mat=new THREE.MeshStandardMaterial({ roughness:0.9, metalness:0.05 });
+    var geo=new THREE.BoxGeometry(0.7,0.7,0.7), mat=new THREE.MeshStandardMaterial({ map:(typeof GFX2!=='undefined'&&GFX2.rustTex)?GFX2.rustTex:null, roughness:0.82, metalness:0.25 }); // IGP ARC Raiders: scratched, oil-stained scavenged surfaces on the eye-level debris
     var im=new THREE.InstancedMesh(geo,mat,18); im.castShadow=false; im.receiveShadow=true;
     var m4=new THREE.Matrix4(), q=new THREE.Quaternion(), e=new THREE.Euler(), v=new THREE.Vector3(), sc=new THREE.Vector3(), col=new THREE.Color();
     var spots=[[-104,74],[-100,68],[-96,76],[-88,64],[4,6],[-6,-4],[10,-10],[18,14],[-14,18],[26,-20],[-24,-16],[40,30],[-40,34],[52,-6],[-52,-30],[64,44],[-64,50],[78,10]];
-    var cols=[0x8A4A2E,0x5A6E7A,0x6A6A66,0x9A6A30,0x4A5D23];
+    var cols=[0xB06A3A,0xD8DCD2,0x3E7A72,0x8A4A2E,0x9A6A30]; // IGP ARC: rust / clean pale / teal / rust-brown / ochre — scavenged vs machine-clean
     for(var i=0;i<18;i++){ e.set(i%3===0?Math.PI/2:0,(i*0.7)%3.1,i%4===0?0.4:0); q.setFromEuler(e); var s=0.7+(i%4)*0.25; sc.set(s,s*(i%3===0?1.4:0.8),s); v.set(spots[i][0],0.3,spots[i][1]); m4.compose(v,q,sc); im.setMatrixAt(i,m4); col.setHex(cols[i%5]); im.setColorAt(i,col); }
     im.instanceMatrix.needsUpdate=true; if(im.instanceColor) im.instanceColor.needsUpdate=true;
     scene.add(im);
@@ -8264,6 +8314,7 @@ function sotaHookTick(){
   var sh=$('safeHint'); if(sh){ var want=SETTINGS.colourblind?'\u25B2 UV SAFE ZONE \u25B2 — YOU\u2019RE SAFE HERE':'UV SAFE ZONE — YOU\u2019RE SAFE HERE'; if(sh.textContent!==want&&!sh.classList.contains('hidden')) sh.textContent=want; }
 }
 setInterval(sotaHookTick,400);
+window.__igp=function(){ return { blend:'ARC Raiders weathered tech (Yards tech, Bloom-corrupted props, barricades, fabricator feedstock) · THE FINALS bright glossy Midtown + HUD clarity · Batman Arkham City gothic noir (St. Brigid crown, night/rain grade) · Hood Warfare 2 neon street nights + urban ground detail · ROB RUN readability discipline only (beacons, objective, silhouettes) · Fortnite saturated accents only (flora, signage, sky) · Minecraft/Roblox colour clarity only — blocky/voxel geometry deliberately excluded', draws:renderer?renderer.info.render.calls:0, tris:renderer?renderer.info.render.triangles:0, neonLive:!!(typeof IGP!=='undefined'&&IGP.neonMat), hazeSprites:(typeof hazeSprites!=='undefined'?hazeSprites.length:0), designDrawDelta:-2 }; };
 window.__ntSota=function(){ return { binds:Object.assign({},SOTA.binds), hookStep:SOTA.step, gradeBand:SOTA.band, telemetry:{ sessions:TELEMETRY.sessions, deaths:TELEMETRY.deaths, dayReached:TELEMETRY.dayReached, bossAttempts:TELEMETRY.bossAttempts, bossKills:TELEMETRY.bossKills }, strKeys:Object.keys(STR).length, saveVer:SAVE2.ver }; };
 </script>
 </body>
