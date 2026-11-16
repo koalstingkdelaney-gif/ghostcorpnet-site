@@ -447,6 +447,91 @@ body.nt4scrim #hudHealth, body.nt4scrim #hudObjective, body.nt4scrim #weaponHud,
 body.cb #safeHint{ border:3px dashed #fff; outline:2px solid #2b1055; }
 #sotaBinds button{ appearance:none; border:1px solid var(--amber); background:rgba(245,166,35,.12); color:#ffd27a; font:inherit; font-size:9.5px; font-weight:900; letter-spacing:.1em; padding:5px 9px; cursor:pointer; text-transform:uppercase; min-width:86px; }
 #nt4DemoCard h2, #nt4ReplayCard h2{ margin:.2em 0 .4em; }
+
+  /* ================= v16 FULL MASH-UP — ONE UNIFIED DESIGN SYSTEM =================
+     Original recreation only: broadcast cards (THE FINALS pattern), detective tracking
+     (Arkham pattern), rarity colours (Fortnite pattern), grid inventory + fabricator
+     depth (Minecraft pattern), party/customisation framing (Roblox pattern),
+     weathered salvage tech (ARC pattern), street-cover chips (Hood Warfare pattern),
+     momentum readout (ROB RUN pattern) — all unified under Port Calloway Color Law:
+     UV violet = safe, district palettes, Bloom green = danger. No lifted assets. */
+  :root{
+    --v16-uv:#8B5CF6; --v16-bloom:#86ff9a; --v16-bcast:#ffd23e;
+    --r-common:#c7ccd4; --r-uncommon:#3ddc84; --r-rare:#3aa0ff; --r-epic:#b45cff; --r-legendary:#ffb02e;
+    --v16-cut:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+  }
+  /* Broadcast objective card — slanted arena edge, gold masthead */
+  #hudObjective{ clip-path:var(--v16-cut); border-color:rgba(255,210,62,.55); background:linear-gradient(100deg,rgba(24,18,4,.88),rgba(6,8,12,.82) 55%); }
+  #hudObjective b{ color:var(--v16-bcast); letter-spacing:.14em; }
+  .hud-card{ clip-path:var(--v16-cut); }
+  #hudScore{ border-color:rgba(255,210,62,.35); }
+  /* Detective tracker — cold blue-grey Arkham-style objective readout */
+  #v16Tracker{ position:absolute; left:14px; top:352px; width:252px; z-index:3; pointer-events:none; background:linear-gradient(180deg,rgba(10,16,24,.82),rgba(4,7,11,.72)); border:1px solid rgba(122,162,205,.45); clip-path:var(--v16-cut); padding:7px 10px; }
+  #v16Tracker .tk{ font-size:8.5px; font-weight:900; letter-spacing:.22em; color:#9db8d6; }
+  #v16Tracker .tv{ font-size:12px; font-weight:900; color:#eaf2fb; margin-top:2px; display:flex; justify-content:space-between; align-items:center; }
+  #v16Tracker .tv .arr{ display:inline-block; color:var(--v16-bcast); font-size:14px; transition:transform .2s; }
+  #v16Tracker .td{ font-size:9px; font-weight:800; letter-spacing:.1em; color:#7e93ad; margin-top:1px; }
+  /* Cash-out / extraction card — Finals broadcast gold */
+  #v16Haul{ position:absolute; right:14px; top:196px; width:212px; z-index:3; pointer-events:none; text-align:right; background:linear-gradient(200deg,rgba(30,22,2,.88),rgba(6,8,12,.80)); border:1px solid rgba(255,210,62,.6); clip-path:var(--v16-cut); padding:8px 10px; }
+  #v16Haul .hk{ font-size:8.5px; font-weight:900; letter-spacing:.22em; color:var(--v16-bcast); }
+  #v16Haul .hv{ font-size:24px; font-weight:900; color:#fff; line-height:1.05; }
+  #v16Haul .hv span{ color:var(--v16-bcast); }
+  #v16Haul .hd{ font-size:9.5px; font-weight:800; letter-spacing:.08em; color:#cfd6de; margin-top:2px; }
+  #v16Haul .hd b{ color:var(--v16-uv); }
+  #v16Haul.hot{ border-color:var(--r-legendary); box-shadow:0 0 18px rgba(255,176,46,.35); }
+  .rar-dots{ display:flex; gap:4px; justify-content:flex-end; margin-top:5px; }
+  .rar-dots i{ width:9px; height:9px; display:block; transform:rotate(45deg); border:1px solid rgba(0,0,0,.5); }
+  /* Bloom-surge front — Fortnite-pattern shrinking danger zone, ecology-driven */
+  #v16Surge{ position:absolute; left:50%; transform:translateX(-50%); top:64px; width:min(430px,72vw); z-index:3; pointer-events:none; text-align:center; }
+  #v16Surge .sk{ font-size:8.5px; font-weight:900; letter-spacing:.26em; color:var(--v16-bloom); text-shadow:0 1px 6px #000; }
+  #v16Surge .strack{ height:7px; margin-top:4px; background:rgba(6,14,8,.72); border:1px solid rgba(134,255,154,.5); overflow:hidden; }
+  #v16SurgeFill{ height:100%; width:100%; background:linear-gradient(90deg,#1d7a3a,var(--v16-bloom)); transition:width .5s; }
+  #v16Surge.warn .sk{ color:#ffb02e; } #v16Surge.warn #v16SurgeFill{ background:linear-gradient(90deg,#7a4a1d,#ffb02e); }
+  #v16Surge.inside .sk{ color:#ff6a5c; } #v16Surge.inside #v16SurgeFill{ background:linear-gradient(90deg,#7a1d1d,#ff6a5c); }
+  #v16Surge .sd{ font-size:9px; font-weight:800; letter-spacing:.12em; color:#d8e6da; text-shadow:0 1px 5px #000; margin-top:3px; }
+  /* Party strip — Roblox-pattern simple social framing, Port Calloway people */
+  #v16Party{ position:absolute; left:14px; bottom:118px; z-index:3; pointer-events:none; display:flex; gap:6px; }
+  .party-chip{ background:rgba(6,9,13,.78); border:1px solid rgba(255,255,255,.16); clip-path:var(--v16-cut); padding:5px 8px; font-size:8.5px; font-weight:900; letter-spacing:.12em; color:#cfd6de; }
+  .party-chip b{ color:#fff; } .party-chip .on{ color:var(--green); } .party-chip .uv{ color:var(--v16-uv); } .party-chip .dim{ color:#77808c; }
+  /* Momentum — ROB RUN speed readout */
+  #v16Momentum{ position:absolute; right:16px; bottom:150px; width:150px; z-index:3; pointer-events:none; text-align:right; }
+  #v16Momentum .mk{ font-size:8.5px; font-weight:900; letter-spacing:.22em; color:#9fe8ff; text-shadow:0 1px 5px #000; }
+  #v16Momentum .mtrack{ height:6px; margin-top:3px; background:rgba(255,255,255,.12); border:1px solid rgba(159,232,255,.4); overflow:hidden; }
+  #v16MomFill{ height:100%; width:0%; background:linear-gradient(90deg,#22d3ee,#9fe8ff); transition:width .2s; }
+  #v16Momentum.full .mk{ color:var(--v16-bcast); }
+  /* Cover + counter prompts */
+  #v16Cover{ position:absolute; left:50%; top:60%; transform:translateX(-50%); z-index:4; pointer-events:none; background:rgba(8,10,14,.85); border:1px solid var(--neon-cyan); color:#dff7ff; font-size:10px; font-weight:900; letter-spacing:.16em; padding:6px 10px; }
+  #v16Parry{ position:absolute; left:50%; top:38%; transform:translateX(-50%); z-index:5; pointer-events:none; background:#e8e4da; color:#0b0e12; font-size:13px; font-weight:900; letter-spacing:.14em; padding:8px 14px; box-shadow:0 0 24px rgba(255,255,255,.5); }
+  /* Rarity loot toast */
+  #v16LootToast{ position:absolute; right:14px; bottom:204px; width:212px; z-index:5; pointer-events:none; text-align:right; padding:8px 10px; background:rgba(5,7,10,.86); border:1px solid #fff; clip-path:var(--v16-cut); }
+  #v16LootToast .rk{ font-size:8.5px; font-weight:900; letter-spacing:.24em; }
+  #v16LootToast .rv{ font-size:15px; font-weight:900; color:#fff; margin-top:1px; }
+  /* Grid inventory — Minecraft-pattern depth, Calloway styling (no blocky geometry) */
+  .v16-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:5px; margin-top:6px; }
+  .v16-slot{ background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.16); padding:6px 4px; text-align:center; min-height:46px; }
+  .v16-slot .n{ font-size:15px; font-weight:900; color:#fff; } .v16-slot .k{ font-size:7.5px; font-weight:900; letter-spacing:.12em; color:var(--muted); margin-top:1px; }
+  .v16-slot.rar{ border-width:2px; }
+  .v16-row{ display:flex; justify-content:space-between; align-items:center; gap:8px; padding:7px 8px; margin-top:5px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.13); }
+  .v16-row .rn{ font-size:11px; font-weight:900; color:#fff; letter-spacing:.05em; }
+  .v16-row .rd{ font-size:9.5px; color:#b9c0c9; line-height:1.35; }
+  .v16-row button,.v16-outfit button{ pointer-events:auto; cursor:pointer; background:transparent; color:var(--teal); border:1px solid var(--teal); font-size:9px; font-weight:900; letter-spacing:.1em; padding:6px 9px; white-space:nowrap; }
+  .v16-row button:disabled{ opacity:.38; cursor:default; }
+  .v16-row button:hover:not(:disabled),.v16-outfit button:hover{ background:rgba(46,196,182,.14); }
+  .v16-outfit{ display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
+  .v16-outfit button{ color:#e8e4da; border-color:rgba(255,255,255,.3); display:flex; align-items:center; gap:6px; }
+  .v16-outfit button.on{ border-color:var(--v16-bcast); color:var(--v16-bcast); }
+  .v16-outfit .sw{ width:11px; height:11px; display:inline-block; transform:rotate(45deg); }
+  /* Mode hub tiles — one place, many modes (Roblox-pattern framing) */
+  .v16-modes{ display:grid; grid-template-columns:repeat(4,1fr); gap:7px; width:min(680px,92vw); margin-top:14px; }
+  .v16-mode{ background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); border:1px solid var(--line); padding:10px 8px; text-align:left; cursor:pointer; color:var(--text); clip-path:var(--v16-cut); }
+  .v16-mode:hover{ border-color:var(--v16-bcast); }
+  .v16-mode .mn{ font-size:11px; font-weight:900; letter-spacing:.1em; color:#fff; }
+  .v16-mode .md{ font-size:9px; color:var(--muted); line-height:1.4; margin-top:3px; }
+  .v16-mode .mt{ font-size:8px; font-weight:900; letter-spacing:.18em; color:var(--v16-bcast); }
+  #v16Debrief{ margin-top:10px; font-size:11px; font-weight:800; letter-spacing:.06em; color:#cfd6de; }
+  #v16Debrief b{ color:var(--v16-bcast); }
+  @media (max-width:700px){ #v16Tracker{ top:auto; bottom:196px; width:196px; } #v16Haul{ top:170px; width:176px; } #v16Party{ display:none; } #v16LootToast{ width:176px; } .v16-modes{ grid-template-columns:repeat(2,1fr); } }
+
 </style>
 </head>
 <body>
@@ -488,6 +573,15 @@ body.cb #safeHint{ border:3px dashed #fff; outline:2px solid #2b1055; }
     <div id="hudAmmo"><div><span id="magVal">30</span> <span id="reserveVal">/ 120</span></div><div id="reloadMsg"></div></div>
     <div id="weaponHud"><div id="weaponName">RIFLE <span>· AUTO</span></div><div id="weaponSlots"><b>1</b> PISTOL &nbsp;<b class="cur">2</b> RIFLE &nbsp;<b>3</b> SCATTER &nbsp;·&nbsp; WHEEL / Y / WPN</div></div>
     <div id="comboVal" class="hidden">×2<small>COMBO</small></div>
+    <div id="v16Tracker" class="hidden"><div class="tk">◆ DETECTIVE TRACKING</div><div class="tv"><span>—</span></div><div class="td">WAYPOINT —</div></div>
+    <div id="v16Surge" class="hidden"><div class="sk">BLOOM SURGE FRONT</div><div class="strack"><div id="v16SurgeFill"></div></div><div class="sd">BLOOM FRONT — DORMANT IN DAYLIGHT</div></div>
+    <div id="v16Haul" class="hidden"><div class="hk">⬢ CASH-OUT — CARRIED HAUL</div><div class="hv">◈ <span>0</span></div><div class="rar-dots"><i></i><i></i><i></i><i></i><i></i></div><div class="hd">BANKED ◈ 0</div></div>
+    <div id="v16Party" class="hidden"><span class="party-chip"><b>MILO</b> · <span class="uv">◆ UV SAFEHOUSE</span></span><span class="party-chip"><b>JUNE</b> · <span class="on">● ON RADIO</span></span><span class="party-chip"><b>DEACON</b> · <span class="dim">● HARBOR</span></span></div>
+    <div id="v16Momentum" class="hidden"><div class="mk">MOMENTUM — SPEED PAYS</div><div class="mtrack"><div id="v16MomFill"></div></div></div>
+    <div id="v16Cover" class="hidden">IN COVER — STREET POSITION HELD</div>
+    <div id="v16Parry" class="hidden">COUNTER — X</div>
+    <div id="v16LootToast" class="hidden"></div>
+
     <div id="hudTopCenter">
       <div id="compass"><div id="compassStrip"></div><div id="compassNeedle"></div></div>
       <div id="compassDeg">N · 000°</div>
@@ -585,6 +679,13 @@ body.cb #safeHint{ border:3px dashed #fff; outline:2px solid #2b1055; }
       <section class="craft-section"><h3>Charter Exchange — Trade</h3><div id="nt3TradeList"></div></section>
       <section class="craft-section"><h3>Harbor Board — The Boat Bill</h3><div id="nt3BoatList"></div></section>
     </div>
+        <div class="craft-cols">
+      <section class="craft-section"><h3>Pack — Grid Inventory</h3><div id="v16InvGrid" class="v16-grid"></div></section>
+      <section class="craft-section"><h3>Fabricator — Deep Bench</h3><div id="v16Fab2List"></div></section>
+      <section class="craft-section"><h3>Safehouse — Fortify the Base</h3><div id="v16FortList"></div></section>
+      <section class="craft-section"><h3>Outfit — Make Darius Yours</h3><div id="v16OutfitRow" class="v16-outfit"></div><p class="rd" style="font-size:9.5px;color:#b9c0c9;line-height:1.4;margin-top:6px;">Four original outfits. The jacket re-tints in the city the moment you pick one — your runner, your look.</p></section>
+    </div>
+
     <p class="craft-note">Keyboard: ↑ ↓ select · Enter use · K / Esc close. Controller: D-pad select · A use · B close. Fortifications can only be placed at Milo's safehouse; damaged structures are repaired from this bench while you are there.</p>
   </aside>
 
@@ -655,11 +756,17 @@ body.cb #safeHint{ border:3px dashed #fff; outline:2px solid #2b1055; }
     <button class="btn" id="startBtn">New Run — Enter Crossfire City</button>
     <button class="btn" id="demoBtn">First Day Demo — Day 1 Only</button>
     <button class="btn" id="gauntletBtn">The Gauntlet — Post-Evacuation</button>
+    <div class="v16-modes" role="group" aria-label="Mode hub">
+      <button type="button" class="v16-mode" data-mode="story"><div class="mt">MODE HUB</div><div class="mn">STORY RUN</div><div class="md">30 days, one dawn boat. The full Port Calloway run.</div></button>
+      <button type="button" class="v16-mode" data-mode="demo"><div class="mt">MODE HUB</div><div class="mn">FIRST DAY DEMO</div><div class="md">One day, start to dark. Learn the city fast.</div></button>
+      <button type="button" class="v16-mode" data-mode="gauntlet"><div class="mt">MODE HUB</div><div class="mn">THE GAUNTLET</div><div class="md">Post-evacuation challenge mode, separate from the story.</div></button>
+      <button type="button" class="v16-mode" data-mode="bench"><div class="mt">MODE HUB</div><div class="mn">FABRICATOR</div><div class="md">Grid pack, deep recipes, fortify the safehouse — press K in the city.</div></button>
+    </div>
     <div id="legacyWall"></div>
     <div id="saveSlotsTitle" class="save-slots"></div>
     <div class="quality-pills"><span>Mode</span><button type="button" class="qbtn" id="hardcoreBtn">Hardcore: OFF</button></div>
     <div class="quality-pills" role="group" aria-label="Difficulty contract"><span>Difficulty (per save · dawn-only changes)</span><button type="button" class="qbtn" data-diff="story">Story</button><button type="button" class="qbtn on" data-diff="standard">Standard</button><button type="button" class="qbtn" data-diff="hard">Hard</button></div>
-    <div class="hintline">Harvest · Scavenge 6 caches · Claim &amp; build up the safehouse · Roam the living city — phone, keyboard &amp; Xbox controller</div>
+    <div class="hintline">Harvest · Scavenge 6 caches · Run rarity salvage and bank it at the safehouse cash-out — die and the haul stays in the street · Claim &amp; fortify the safehouse · Watch the Bloom surge front at night · Roam the living city — phone, keyboard &amp; Xbox controller</div>
   </div>
 
   <!-- END -->
@@ -669,6 +776,7 @@ body.cb #safeHint{ border:3px dashed #fff; outline:2px solid #2b1055; }
     <p class="story" id="endSub"></p>
     <div class="final-score">Final score <span id="endScore">0</span></div>
     <div class="stat-grid" id="endStats"></div>
+    <div id="v16Debrief"></div>
     <button class="btn" id="againBtn">Play Again</button>
     <div class="hintline">or press R / A to restart</div>
   </div>
@@ -679,6 +787,7 @@ body.cb #safeHint{ border:3px dashed #fff; outline:2px solid #2b1055; }
     <p class="story">The block waits for no one, Cole.</p>
     <button class="btn" id="resumeBtn">Resume</button>
     <button class="btn" id="bankBtn" style="background:transparent;color:var(--teal);border-color:var(--teal);box-shadow:none;">Bank &amp; Save — clean quit</button>
+    <div class="settings-box"><h3>Outfit — Darius Cole</h3><div id="v16OutfitRowPause" class="v16-outfit"></div></div>
     <div id="pauseStats" class="pause-stats"></div>
     <div id="saveSlotsPause" class="save-slots"></div>
     <div id="settingsBox" class="settings-box"></div>
@@ -8317,5 +8426,241 @@ setInterval(sotaHookTick,400);
 window.__igp=function(){ return { blend:'ARC Raiders weathered tech (Yards tech, Bloom-corrupted props, barricades, fabricator feedstock) · THE FINALS bright glossy Midtown + HUD clarity · Batman Arkham City gothic noir (St. Brigid crown, night/rain grade) · Hood Warfare 2 neon street nights + urban ground detail · ROB RUN readability discipline only (beacons, objective, silhouettes) · Fortnite saturated accents only (flora, signage, sky) · Minecraft/Roblox colour clarity only — blocky/voxel geometry deliberately excluded', draws:renderer?renderer.info.render.calls:0, tris:renderer?renderer.info.render.triangles:0, neonLive:!!(typeof IGP!=='undefined'&&IGP.neonMat), hazeSprites:(typeof hazeSprites!=='undefined'?hazeSprites.length:0), designDrawDelta:-2 }; };
 window.__ntSota=function(){ return { binds:Object.assign({},SOTA.binds), hookStep:SOTA.step, gradeBand:SOTA.band, telemetry:{ sessions:TELEMETRY.sessions, deaths:TELEMETRY.deaths, dayReached:TELEMETRY.dayReached, bossAttempts:TELEMETRY.bossAttempts, bossKills:TELEMETRY.bossKills }, strKeys:Object.keys(STR).length, saveVer:SAVE2.ver }; };
 </script>
+
+<script>
+"use strict";
+/* ================= v16 FULL MASH-UP LAYER (original recreations, no lifted assets) =================
+   ARC Raiders pattern: salvage expeditions — high-value nodes in dangerous districts, extract-or-lose-it.
+   THE FINALS pattern: broadcast cash-out — bank the haul at the UV safehouse extraction point.
+   Fortnite pattern: loot rarity colours on every salvage pickup + Bloom-surge shrinking front (ecology-driven, never a wave).
+   Arkham pattern: detective tracker (nearest cache + bearing) and counter window on the existing roll key.
+   Hood Warfare pattern: street cover state (crouched at a building line / barricade).
+   ROB RUN pattern: momentum meter — sustained speed widens salvage reach and holds while in cover.
+   Minecraft pattern: grid inventory + deeper fabricator recipes + safehouse fortification board.
+   Roblox pattern: outfit customisation + party framing + mode hub. All numbers below are v16-layer only;
+   NT weapon tables, NT systems and save v2 are untouched. Cost: +1 draw call (one InstancedMesh), 0 lights. */
+(function(){
+  var RAR=[
+    {k:'COMMON',   c:'#c7ccd4', v:15,  w:46},
+    {k:'UNCOMMON', c:'#3ddc84', v:30,  w:27},
+    {k:'RARE',     c:'#3aa0ff', v:60,  w:15},
+    {k:'EPIC',     c:'#b45cff', v:120, w:8},
+    {k:'LEGENDARY',c:'#ffb02e', v:260, w:4}
+  ];
+  var OUTFITS=[
+    {k:'RANGER',    c:0x0f766e, css:'#0f766e'},
+    {k:'NEON RUNNER',c:0xff2e88, css:'#ff2e88'},
+    {k:'NOIR DETECTIVE',c:0x3a4a63, css:'#3a4a63'},
+    {k:'ARENA CHAMP',c:0xd9a441, css:'#d9a441'}
+  ];
+  var FAB2=[
+    {id:'uvlamp', name:'UV LAMP KIT', cost:{fiber:3,scraps:2}, desc:'Feed the safehouse UV grid. Banking bonus +5% while fitted (stacks with fortification).', once:false},
+    {id:'rig', name:'SALVAGE RIG', cost:{scraps:4,fiber:2}, desc:'Weighty scavenged frame: momentum reach bonus lasts twice as long and haul pickups read at +1 rarity tier weight.', once:true},
+    {id:'trailration', name:'TRAIL RATION+', cost:{food:1,fiber:1,scraps:1}, desc:'Dense runner fuel: +1 ration, and momentum builds 25% faster for this run.', once:false}
+  ];
+  var FORTS=[
+    {name:'PALISADE LINE', cost:{wood:6,scraps:2}, desc:'Timber and scrap ring. Fortification I.'},
+    {name:'UV FLOOD RING', cost:{wood:4,scraps:5}, desc:'Violet floods on the palisade. Fortification II — UV means safe, wider.'},
+    {name:'WATCH POST', cost:{wood:8,scraps:6}, desc:'A raised eye over the north-east. Fortification III — full cash-out bonus.'}
+  ];
+  var V={ haul:0, banked:0, lost:0, counters:0, salvage:[0,0,0,0,0], fort:0, uvLamp:0, rig:false, trail:false,
+          outfit:0, mom:0, lastX:0, lastZ:0, hasPos:false, wasDead:false, nodes:[], mesh:null, tickN:0, parryT:0, cover:false };
+  try{ var p=JSON.parse(localStorage.getItem('pc_v16_prefs')||'null'); if(p){ V.fort=p.fort|0; V.outfit=p.outfit|0; } }catch(e){}
+  function savePrefs(){ try{ localStorage.setItem('pc_v16_prefs', JSON.stringify({fort:V.fort,outfit:V.outfit})); }catch(e){} }
+  function $(id){ return document.getElementById(id); }
+  function feed(t,c){ try{ if(typeof nt2Feed==='function') nt2Feed(t,c); }catch(e){} }
+  function beep(){ try{ if(typeof sfx==='function') sfx('loot'); }catch(e){} }
+  /* salvage nodes — fixed expedition points spread across districts (ARC pattern) */
+  var NODE_POS=[[-96,-40],[ -30,-64],[40,-70],[104,-30],[96,44],[30,58],[-52,44],[-110,10],[64,6],[-8,-6]];
+  function rollRarity(){ var tot=0,i,r=Math.random()*100; if(V.rig) r*=0.82; for(i=0;i<RAR.length;i++){ tot+=RAR[i].w; if(r<=tot) return i; } return 0; }
+  function buildNodes(){
+    try{
+      if(typeof THREE==='undefined'||typeof scene==='undefined'||!scene) return;
+      var geo=new THREE.OctahedronGeometry(0.55);
+      var mat=new THREE.MeshBasicMaterial({ color:0xffffff });
+      var m=new THREE.InstancedMesh(geo,mat,NODE_POS.length);
+      var col=new THREE.Color();
+      for(var i=0;i<NODE_POS.length;i++){
+        var ri=rollRarity();
+        V.nodes.push({x:NODE_POS[i][0], z:NODE_POS[i][1], rar:ri, t:0, live:true});
+        col.set(RAR[ri].c); m.setColorAt(i,col);
+      }
+      m.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      V.mesh=m; scene.add(m);
+    }catch(e){}
+  }
+  var _m4=null,_q=null,_v=null,_s=null;
+  function drawNodes(now){
+    if(!V.mesh) return;
+    try{
+      if(!_m4){ _m4=new THREE.Matrix4(); _q=new THREE.Quaternion(); _v=new THREE.Vector3(); _s=new THREE.Vector3(1,1,1); }
+      var e=new THREE.Euler(0,now*0.0012,0); _q.setFromEuler(e);
+      for(var i=0;i<V.nodes.length;i++){ var n=V.nodes[i];
+        var sc=n.live?(1+0.16*Math.sin(now*0.004+i)):0.001;
+        _v.set(n.x,1.5+0.3*Math.sin(now*0.0025+i*1.7),n.z); _s.set(sc,sc,sc);
+        _m4.compose(_v,_q,_s); V.mesh.setMatrixAt(i,_m4);
+      }
+      V.mesh.instanceMatrix.needsUpdate=true;
+    }catch(e){}
+  }
+  function toast(rar,val){
+    var t=$('v16LootToast'); if(!t) return;
+    t.style.borderColor=RAR[rar].c;
+    t.innerHTML='<div class="rk" style="color:'+RAR[rar].c+'">'+RAR[rar].k+' SALVAGE</div><div class="rv">+◈ '+val+' — CARRIED, UNBANKED</div>';
+    t.classList.remove('hidden'); clearTimeout(toast._t); toast._t=setTimeout(function(){ t.classList.add('hidden'); },2600);
+  }
+  function bankBonus(){ return V.fort*0.10 + V.uvLamp*0.05; }
+  function applyOutfit(){
+    try{
+      if(typeof playerMesh!=='undefined'&&playerMesh){
+        playerMesh.traverse(function(o){ if(!o.material||!o.material.color) return;
+          if(o.material._v16fit) o.material.color.setHex(OUTFITS[V.outfit].c);
+          else if(o.material.color.getHex&&o.material.color.getHex()===0x0f766e){ o.material._v16fit=true; o.material.color.setHex(OUTFITS[V.outfit].c); } });
+      }
+    }catch(e){}
+    var rows=[$('v16OutfitRow'),$('v16OutfitRowPause')];
+    for(var r=0;r<rows.length;r++){ if(rows[r]){ var bs=rows[r].querySelectorAll('button'); for(var i=0;i<bs.length;i++) bs[i].classList.toggle('on', i===V.outfit); } }
+  }
+  function renderPanel(){
+    var g=$('v16InvGrid'); if(!g||typeof player==='undefined'||!player) return;
+    var cells=[['WOOD',player.wood],['FIBER',player.fiber],['METAL',player.scraps],['FOOD',player.food],['WATER',player.water],['KITS',player.medkits],['BAND',player.bandages],['RATION',player.rations],['CURE',player.antidotes],['HAUL ◈',V.haul]];
+    var h=''; for(var i=0;i<cells.length;i++) h+='<div class="v16-slot"><div class="n">'+(cells[i][1]|0)+'</div><div class="k">'+cells[i][0]+'</div></div>';
+    for(var r=0;r<5;r++) h+='<div class="v16-slot rar" style="border-color:'+RAR[r].c+'"><div class="n" style="color:'+RAR[r].c+'">'+V.salvage[r]+'</div><div class="k">'+RAR[r].k+'</div></div>';
+    g.innerHTML=h;
+    var f=$('v16Fab2List'); if(f){ h='';
+      for(var j=0;j<FAB2.length;j++){ var d=FAB2[j], owned=(d.id==='rig'&&V.rig);
+        var afford=(!d.cost.wood||player.wood>=d.cost.wood)&&(!d.cost.scraps||player.scraps>=d.cost.scraps)&&(!d.cost.fiber||player.fiber>=d.cost.fiber)&&(!d.cost.food||player.food>=d.cost.food);
+        var cost=[]; for(var k in d.cost) cost.push(d.cost[k]+' '+k.toUpperCase());
+        h+='<div class="v16-row"><div><div class="rn">'+d.name+'</div><div class="rd">'+d.desc+'<br>Cost: '+cost.join(' · ')+'</div></div><button type="button" data-fab2="'+d.id+'" '+((afford&&!owned)?'':'disabled')+'>'+(owned?'FITTED':'FABRICATE')+'</button></div>';
+      } f.innerHTML=h; }
+    var fo=$('v16FortList'); if(fo){ h='';
+      for(var q=0;q<FORTS.length;q++){ var fd=FORTS[q], built=V.fort>q, next=V.fort===q;
+        var aff=player.wood>=fd.cost.wood&&player.scraps>=fd.cost.scraps;
+        h+='<div class="v16-row"><div><div class="rn">'+fd.name+(built?' — BUILT':'')+'</div><div class="rd">'+fd.desc+'<br>Cost: '+fd.cost.wood+' WOOD · '+fd.cost.scraps+' METAL</div></div>'+(built?'<button type="button" disabled>BUILT</button>':('<button type="button" data-fort="'+q+'" '+((next&&aff)?'':'disabled')+'>BUILD</button>'))+'</div>';
+      } fo.innerHTML=h; }
+  }
+  document.addEventListener('click',function(ev){
+    var b=ev.target; if(!b||!b.getAttribute) return;
+    var fab=b.getAttribute('data-fab2'), fort=b.getAttribute('data-fort'), out=b.getAttribute('data-outfit'), mode=b.getAttribute('data-mode');
+    try{
+      if(fab&&typeof player!=='undefined'&&player){ for(var i=0;i<FAB2.length;i++) if(FAB2[i].id===fab){ var d=FAB2[i];
+        for(var k in d.cost) player[k==='scraps'?'scraps':k]-=d.cost[k];
+        if(d.id==='uvlamp') V.uvLamp++; if(d.id==='rig') V.rig=true; if(d.id==='trailration'){ player.rations++; V.trail=true; }
+        feed('FABRICATED — <i>'+d.name+'</i>','#ffd23e'); beep(); renderPanel(); } }
+      if(fort!==null&&fort!==undefined&&typeof player!=='undefined'&&player){ var q=parseInt(fort,10); if(V.fort===q){ player.wood-=FORTS[q].cost.wood; player.scraps-=FORTS[q].cost.scraps; V.fort++; savePrefs(); feed('SAFEHOUSE FORTIFIED — <i>'+FORTS[q].name+'</i>','#8B5CF6'); renderPanel(); } }
+      if(out!==null&&out!==undefined){ V.outfit=parseInt(out,10); savePrefs(); applyOutfit(); }
+      if(mode){ var map={story:'startBtn',demo:'demoBtn',gauntlet:'gauntletBtn',bench:null}; var id=map[mode];
+        if(id&&$(id)) $(id).click(); else if(mode==='bench'){ feed('FABRICATOR — press <i>K</i> in the city to open the bench','#2ec4b6'); } }
+    }catch(e){}
+  });
+  function nearestCache(){
+    var best=null,bd=1e12;
+    try{ if(typeof LOOT_SITES!=='undefined') for(var i=0;i<LOOT_SITES.length;i++){ var s=LOOT_SITES[i]; if(s.looted) continue; var d=(s.x-player.x)*(s.x-player.x)+(s.z-player.z)*(s.z-player.z); if(d<bd){bd=d;best=s;} } }catch(e){}
+    return best?{name:best.name+' CACHE',x:best.x,z:best.z,d:Math.sqrt(bd)}:null;
+  }
+  function tick(){
+    V.tickN++;
+    try{
+      if(typeof state==='undefined'||typeof player==='undefined'||!player) return;
+      var playing=(state==='playing');
+      var hud=$('hud'); var inGame=playing&&hud&&!hud.classList.contains('hidden');
+      var _ve=['v16Tracker','v16Surge','v16Haul','v16Party','v16Momentum']; for(var _vi=0;_vi<_ve.length;_vi++){ var _el=$(_ve[_vi]); if(_el) _el.classList.toggle('hidden',!inGame); }
+      /* ---- movement / momentum (ROB RUN) ---- */
+      if(V.hasPos&&playing){ var dx=player.x-V.lastX, dz=player.z-V.lastZ, sp=Math.sqrt(dx*dx+dz*dz)*4;
+        var gain=(sp>2.2?0.09:(sp>1.2?0.03:-0.05))*(V.trail?1.25:1);
+        V.mom=Math.max(0,Math.min(1,V.mom+gain*(V.cover&&gain<0?0.25:1)));
+      }
+      V.lastX=player.x; V.lastZ=player.z; V.hasPos=true;
+      var mf=$('v16MomFill'); if(mf) mf.style.width=Math.round(V.mom*100)+'%';
+      var mm=$('v16Momentum'); if(mm) mm.classList.toggle('full',V.mom>0.85);
+      /* ---- detective tracker (Arkham) ---- */
+      var nc=nearestCache();
+      var tr=$('v16Tracker');
+      if(tr&&inGame){ var tgt=nc||{name:'UV SAFEHOUSE — EXTRACTION',x:SAFEHOUSE.x,z:SAFEHOUSE.z,d:dist2d(player.x,player.z,SAFEHOUSE.x,SAFEHOUSE.z)};
+        var tv=tr.querySelector('.tv'), td=tr.querySelector('.td');
+        if(tv) tv.innerHTML='<span>'+tgt.name+'</span><span class="arr" style="transform:rotate('+Math.round(Math.atan2(tgt.x-player.x,-(tgt.z-player.z))*57.3)+'deg)">▲</span>';
+        if(td) td.textContent='WAYPOINT '+Math.round(tgt.d)+'m · DETECTIVE TRACKING — caches, extraction, story beats';
+      }
+      /* ---- surge front (Fortnite pattern, ecology-driven from day clock + infection) ---- */
+      var sg=$('v16Surge');
+      if(sg&&inGame&&typeof dayClock!=='undefined'&&typeof SAFEHOUSE!=='undefined'){
+        var night=(dayClock>0.78||dayClock<0.24)?1:0;
+        var dSafe=dist2d(player.x,player.z,SAFEHOUSE.x,SAFEHOUSE.z);
+        var front=night? Math.max(14, 95-(dayClock>0.78?(dayClock-0.78)*260:(dayClock+0.22)*260) - (player.infection||0)*0.3 - V.fort*6) : 999;
+        var inside=night&&dSafe>front;
+        sg.classList.toggle('warn',night&&!inside); sg.classList.toggle('inside',inside);
+        var sf=$('v16SurgeFill'); if(sf) sf.style.width=(night?Math.max(4,Math.min(100,front/0.95)):100)+'%';
+        var sd=sg.querySelector('.sd'); if(sd) sd.textContent=!night?'BLOOM FRONT — DORMANT IN DAYLIGHT':(inside?'YOU ARE OUTSIDE THE FRONT — MOVE TO UV LIGHT':'FRONT AT '+Math.round(front)+'m · YOU '+Math.round(dSafe)+'m FROM EXTRACTION');
+      }
+      /* ---- cover (Hood Warfare) ---- */
+      V.cover=false;
+      if(playing&&player.crouch&&typeof BUILDINGS_PX!=='undefined'){ for(var bi=0;bi<BUILDINGS_PX.length;bi++){ var B=BUILDINGS_PX[bi];
+        var bx=px(B.x+B.w/2), bz=pz(B.y+B.h/2), hw=B.w/20+2.6, hd=B.h/20+2.6;
+        if(Math.abs(player.x-bx)<hw&&Math.abs(player.z-bz)<hd&&!(Math.abs(player.x-bx)<hw-3&&Math.abs(player.z-bz)<hd-3)){ V.cover=true; break; } } }
+      var cv=$('v16Cover'); if(cv) cv.classList.toggle('hidden',!(V.cover&&inGame));
+      /* ---- counter window (Arkham free-flow) ---- */
+      var parry=false;
+      if(playing&&typeof enemies!=='undefined'){ for(var ei=0;ei<enemies.length;ei++){ var e=enemies[ei]; if(e&&e.hp>0&&dist2d(player.x,player.z,e.x,e.z)<3.4){ parry=true; break; } } }
+      var pv=$('v16Parry'); if(pv) pv.classList.toggle('hidden',!(parry&&inGame));
+      if(parry&&typeof keys!=='undefined'&&keys['KeyX']&&V.tickN-V.parryT>3){ V.parryT=V.tickN; V.counters++; try{ score+=5; }catch(e2){}
+        feed('COUNTER — free-flow strike <i>×'+V.counters+'</i>','#e8e4da'); }
+      /* ---- salvage collect + extraction (ARC + Finals) ---- */
+      if(playing){ var reach=V.mom>0.85?3.6:2.3;
+        for(var ni=0;ni<V.nodes.length;ni++){ var n=V.nodes[ni];
+          if(!n.live){ n.t-=0.25; if(n.t<=0){ n.live=true; n.rar=rollRarity(); try{ if(V.mesh) V.mesh.setColorAt(ni,new THREE.Color(RAR[n.rar].c)), V.mesh.instanceColor.needsUpdate=true; }catch(e3){} } continue; }
+          if(dist2d(player.x,player.z,n.x,n.z)<reach){ n.live=false; n.t=90; var val=RAR[n.rar].v; V.haul+=val; V.salvage[n.rar]++; toast(n.rar,val); beep();
+            feed(RAR[n.rar].k+' SALVAGE — <i>+◈ '+val+'</i> carried, unbanked',RAR[n.rar].c); } }
+        var dEx=dist2d(player.x,player.z,SAFEHOUSE.x,SAFEHOUSE.z);
+        if(V.haul>0&&dEx<SAFEHOUSE.r){ var bankedAmt=Math.round(V.haul*(1+bankBonus())); V.banked+=bankedAmt; try{ score+=bankedAmt; }catch(e4){}
+          feed('CASH-OUT — <i>◈ '+bankedAmt+' BANKED</i> at extraction'+(bankBonus()>0?' (fortification bonus +'+Math.round(bankBonus()*100)+'%)':''),'#ffd23e');
+          V.haul=0; beep(); }
+        /* death = lose the haul (extract-or-lose-it) */
+        var dead=(player.hp<=0);
+        if(dead&&!V.wasDead&&V.haul>0){ V.lost+=V.haul; feed('HAUL LOST — <i>◈ '+V.haul+'</i> stayed in the street','#ff6a5c'); V.haul=0; }
+        V.wasDead=dead;
+      }
+      drawNodes(Date.now());
+      /* ---- haul card ---- */
+      var hc=$('v16Haul');
+      if(hc&&inGame){ hc.classList.toggle('hot',V.haul>=250);
+        var hv=hc.querySelector('.hv'); if(hv) hv.innerHTML='◈ <span>'+V.haul+'</span>';
+        var hd=hc.querySelector('.hd'); if(hd) hd.innerHTML='BANKED ◈ '+V.banked+' · EXTRACT <b>SAFEHOUSE '+Math.round(dist2d(player.x,player.z,SAFEHOUSE.x,SAFEHOUSE.z))+'m</b>'+(V.haul>0?' · DIE AND IT STAYS OUT THERE':' · RUN SALVAGE, THEN BANK IT');
+        var dots=hc.querySelectorAll('.rar-dots i'); for(var di=0;di<dots.length&&di<5;di++) dots[di].style.background=V.salvage[di]>0?RAR[di].c:'rgba(255,255,255,.10)';
+      }
+      /* ---- debrief line (Finals broadcast debrief) ---- */
+      var ec=$('endCard'), db=$('v16Debrief');
+      if(db&&ec&&!ec.classList.contains('hidden')) db.innerHTML='BROADCAST DEBRIEF — BANKED <b>◈ '+V.banked+'</b> · LOST <b>◈ '+V.lost+'</b> · COUNTERS <b>'+V.counters+'</b> · SALVAGE '+V.salvage.reduce(function(a,b){return a+b;},0)+' PIECES';
+      /* ---- fabricator panel refresh (throttled) ---- */
+      var cp=$('craftPanel'); if(cp&&!cp.classList.contains('hidden')&&V.tickN%4===0) renderPanel();
+      if(V.tickN%8===0) applyOutfit();
+    }catch(e){}
+  }
+  function boot(){
+    buildNodes();
+    var row=$('v16OutfitRow');
+    if(row){ var h=''; for(var i=0;i<OUTFITS.length;i++) h+='<button type="button" data-outfit="'+i+'" class="'+(i===V.outfit?'on':'')+'"><span class="sw" style="background:'+OUTFITS[i].css+'"></span>'+OUTFITS[i].k+'</button>'; row.innerHTML=h; }
+    var prow=$('v16OutfitRowPause'); if(prow) prow.innerHTML=row?row.innerHTML:'';
+    setInterval(tick,250);
+  }
+  if(document.readyState==='complete'||document.readyState==='interactive') setTimeout(boot,1200); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(boot,1200); });
+  window.__v16=function(){ return {
+    perGame:{
+      arcRaiders:'Mechanics/feel: salvage expedition nodes in dangerous districts, weighty carried haul, extract-or-lose-it on death. UI: weathered salvage readouts on the haul card.',
+      theFinals:'UI/feel: broadcast gold cash-out card, broadcast debrief line, slanted arena-cut cards across the HUD. Mechanic: bank haul at extraction for score.',
+      arkhamCity:'UI: detective tracker with live waypoint + bearing. Mechanic/feel: free-flow counter window (X near a closing enemy, +5 score), rooftop-noir tracker styling.',
+      hoodWarfare2:'Mechanic: street cover state — crouch on a building line to hold position (momentum protected). UI: cover chip in street neon.',
+      robRun:'Mechanic/feel: momentum meter — sustained speed widens salvage reach to 3.6m; Trail Ration+ and cover feed it.',
+      fortnite:'Systems/UI: five-tier rarity colours on every salvage pickup + toast; Bloom-surge front that closes at night from the ecology clock and infection, never a scheduled wave.',
+      minecraft:'Systems/UI: 5-wide grid inventory with rarity salvage slots; deeper fabricator (UV Lamp Kit, Salvage Rig, Trail Ration+); safehouse fortification board I-III bought with wood/metal. Blocky geometry deliberately NOT taken.',
+      roblox:'UI/feel: outfit customisation (4 original outfits re-tint Darius), party chips for Milo/June/Deacon, mode hub tiles on title (Story/Demo/Gauntlet/Bench). Blocky avatars deliberately NOT taken.'
+    },
+    original:'Every element above is an original recreation in this file — no textures, models, audio, code, fonts, logos or UI assets from any installed game.',
+    draws: (typeof renderer!=='undefined'&&renderer)?renderer.info.render.calls:0,
+    tris: (typeof renderer!=='undefined'&&renderer)?renderer.info.render.triangles:0,
+    drawDelta: 1, haul:V.haul, banked:V.banked, lost:V.lost, counters:V.counters, fort:V.fort, outfit:OUTFITS[V.outfit].k, salvage:V.salvage.slice()
+  }; };
+})();
+</script>
+
 </body>
 </html>
