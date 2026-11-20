@@ -368,12 +368,17 @@
   <url><loc>https://ghostcorpnet.com/glossary/actlattice/human-oversight.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/glossary/actlattice/risk-tiering.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/glossary/actlattice/transparency-notice.html</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://ghostcorpnet.com/glossary/finlattice/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://ghostcorpnet.com/glossary/finlattice/approval-gate.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/glossary/finlattice/hard-stop.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/glossary/finlattice/reconciliation.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/glossary/finlattice/segregation-of-duties.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://ghostcorpnet.com/glossary/finlattice/spend-limit.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/audit-trail.html</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/budget-cap.html</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/dual-control.html</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/ledger.html</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://ghostcorpnet.com/glossary/finlattice/velocity-check.html</loc><lastmod>2026-11-20</lastmod></url>
 
   
   <url><loc>https://ghostcorpnet.com/products/incident-runbook-automator-cli-python/</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><image:image><image:loc>https://ghostcorpnet.com/assets/covers/incident-runbook-automator-cli.png</image:loc></image:image></url>
