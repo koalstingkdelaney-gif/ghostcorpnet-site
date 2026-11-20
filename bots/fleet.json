@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-19T13:16:23Z",
+ "generated_at": "2026-11-20T13:16:19Z",
  "stats": {
   "money_made_usd": 0.0,
   "orders": 0,
   "sales_today_usd": 0.0,
   "orders_today": 0,
   "free_downloads": 2,
-  "as_of": "2026-11-19T13:16:23Z",
+  "as_of": "2026-11-20T13:16:19Z",
   "source": "Verified sales ledger + Gumroad sales check"
  },
  "bots": [
@@ -516,6 +516,11 @@
    "schedule": "Weekly · Sat 8:16 AM"
   },
   {
+   "name": "GhostCorp Jarvis rebuild — fresh free assistant (daily)",
+   "job": "GhostCorp Jarvis rebuild — fresh free assistant",
+   "schedule": "Daily · 8:05 AM"
+  },
+  {
    "name": "GitHub new-repository watch — daily list for ghostcorpnet",
    "job": "GitHub new-repository watch — daily list for ghostcorpnet",
    "schedule": "Daily · 9:16 AM"
@@ -804,6 +809,36 @@
    "name": "Online Hunter 06 — Solo consultants and bookkeepers",
    "job": "Hunts solo consultants and bookkeepers with no real website; files deduped agency leads with the angle noted",
    "schedule": "24/7 rotation"
+  },
+  {
+   "name": "OS core features — Privacy Center + Flyswatter (every 6h)",
+   "job": "OS core features — Privacy Center + Flyswatter",
+   "schedule": "Every 6 hr"
+  },
+  {
+   "name": "OS device layer — per-device compatibility (daily)",
+   "job": "OS device layer — per-device compatibility",
+   "schedule": "Daily · 8:11 AM"
+  },
+  {
+   "name": "OS docs + decisions queue (daily)",
+   "job": "OS docs + decisions queue",
+   "schedule": "Daily · 8:36 PM"
+  },
+  {
+   "name": "OS node mesh — device-as-node + server role (daily)",
+   "job": "OS node mesh — device-as-node + server role",
+   "schedule": "Daily · 12:16 PM"
+  },
+  {
+   "name": "OS security hardening — GhostCorp OS (every 6h)",
+   "job": "OS security hardening — GhostCorp OS",
+   "schedule": "Every 6 hr"
+  },
+  {
+   "name": "OS verification — tests + gate checks (daily)",
+   "job": "OS verification — tests + gate checks",
+   "schedule": "Daily · 6:14 PM"
   },
   {
    "name": "Outreach Analyst (hive)",
