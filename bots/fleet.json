@@ -1,15 +1,20 @@
 {
- "generated_at": "2026-11-20T13:16:19Z",
+ "generated_at": "2026-11-21T13:16:21Z",
  "stats": {
   "money_made_usd": 0.0,
   "orders": 0,
   "sales_today_usd": 0.0,
   "orders_today": 0,
   "free_downloads": 2,
-  "as_of": "2026-11-20T13:16:19Z",
+  "as_of": "2026-11-21T13:16:21Z",
   "source": "Verified sales ledger + Gumroad sales check"
  },
  "bots": [
+  {
+   "name": "24/7 open-invitation server scout (worldwide)",
+   "job": "24/7 open-invitation server scout",
+   "schedule": "Every 6 hr"
+  },
   {
    "name": "Accessibility Auditor (hive)",
    "job": "Run a concrete, verifiable accessibility checklist over the site on a rotating schedule so every page gets audited weekly, and seed precise fix items the…",
@@ -904,6 +909,11 @@
    "name": "Performance Auditor (hive)",
    "job": "Keep the site fast on a static-hosting budget: audit page weight, asset sizes, and Core Web Vitals hygiene on a rotating schedule; ship the trivial wins…",
    "schedule": "On demand · hive"
+  },
+  {
+   "name": "Pi Zero 2 W cheap-board restock watch",
+   "job": "Pi Zero 2 W cheap-board restock watch",
+   "schedule": "Every 4 hr"
   },
   {
    "name": "Pinterest Publisher (hive)",
