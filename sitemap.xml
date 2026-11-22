@@ -6501,8 +6501,10 @@
   <url><loc>https://ghostcorpnet.com/services/ghostcorp-ai.html</loc><lastmod>2026-11-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ghostcorpnet.com/tools/freelance-rate-calculator/</loc><lastmod>2026-11-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ghostcorpnet.com/brands/actlattice/articles/post-market-monitoring-plans-high-risk-ai-agents.html</loc><lastmod>2026-11-11</lastmod></url>
+<url><loc>https://ghostcorpnet.com/brands/actlattice/articles/gpai-model-provider-duties-documentation.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/civicwarden/articles/ai-chatbot-escalation-human-staff-city-services.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/classwarden/articles/vetting-classroom-ai-vendors-schools-checklist.html</loc><lastmod>2026-11-11</lastmod></url>
+<url><loc>https://ghostcorpnet.com/brands/classwarden/articles/ai-detection-false-positives-student-appeals.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/finlattice/articles/transaction-monitoring-alerts-money-moving-agents.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/frontierlattice/articles/staged-rollout-cohorts-frontier-models.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/healthlattice/articles/reviewing-ai-clinical-documentation-before-record.html</loc><lastmod>2026-11-11</lastmod></url>
@@ -6534,7 +6536,9 @@
     <changefreq>monthly</changefreq>
   </url>
   <url><loc>https://ghostcorpnet.com/brands/civicwarden/articles/city-ai-service-outages-resident-notices-fallback.html</loc><lastmod>2026-11-16</lastmod></url>
+<url><loc>https://ghostcorpnet.com/brands/civicwarden/articles/ai-vendor-procurement-scoring-rubric-city-contracts.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://ghostcorpnet.com/brands/finlattice/articles/agent-payments-supplier-spoofing-fraud-controls.html</loc><lastmod>2026-11-16</lastmod></url>
+<url><loc>https://ghostcorpnet.com/brands/finlattice/articles/invoice-change-scams-agent-run-accounts-payable.html</loc><lastmod>2026-11-22</lastmod></url>
   <url>
     <loc>https://ghostcorpnet.com/articles/multi-tenant-ai-agent-governance-checklist.html</loc><lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
