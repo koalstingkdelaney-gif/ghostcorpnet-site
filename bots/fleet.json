@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-22T13:19:10Z",
+ "generated_at": "2026-11-23T13:16:16Z",
  "stats": {
   "money_made_usd": 0.0,
   "orders": 0,
   "sales_today_usd": 0.0,
   "orders_today": 0,
   "free_downloads": 2,
-  "as_of": "2026-11-22T13:19:10Z",
+  "as_of": "2026-11-23T13:16:16Z",
   "source": "Verified sales ledger + Gumroad sales check"
  },
  "bots": [
@@ -524,6 +524,11 @@
    "name": "GhostCorp Jarvis rebuild — fresh free assistant (daily)",
    "job": "GhostCorp Jarvis rebuild — fresh free assistant",
    "schedule": "Daily · 8:05 AM"
+  },
+  {
+   "name": "GitHub ideas listener — build next pending idea (free dispatcher only)",
+   "job": "GitHub ideas listener — build next pending idea",
+   "schedule": "Every 30 min"
   },
   {
    "name": "GitHub new-repository watch — daily list for ghostcorpnet",
