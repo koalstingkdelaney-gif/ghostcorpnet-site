@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "updated_at": "2026-11-24",
+  "note": "Research backlog, not implementation evidence. Each mission must progress through hypothesis, prototype, benchmark, review, and documented result.",
+  "missions": [
+    {
+      "id": "LAB-001",
+      "title": "Build unified model orchestration layer",
+      "priority": 1,
+      "status": "PLANNED",
+      "goal": "One API for local models, authorized free providers, deterministic tools, quotas, handoff, and provenance.",
+      "acceptance": [
+        "One mission API across backends",
+        "Provider failover and quota-aware queueing",
+        "Local continuation after provider exhaustion",
+        "No paid call possible under $0 policy",
+        "Integration tests across fake backends"
+      ]
+    },
+    {
+      "id": "LAB-002",
+      "title": "Persistent memory and knowledge graph benchmark",
+      "priority": 2,
+      "status": "PLANNED",
+      "goal": "Evaluate memory retrieval and continuity across long tasks and restarts.",
+      "acceptance": [
+        "Facts, hypotheses, decisions, and plans typed separately",
+        "Source provenance on stored claims",
+        "Recall benchmark with precision/recall",
+        "Retention and deletion controls",
+        "Restore drill succeeds"
+      ]
+    },
+    {
+      "id": "LAB-003",
+      "title": "Agentic software engineering sandbox",
+      "priority": 3,
+      "status": "PLANNED",
+      "goal": "Agents propose, test, benchmark, review, and roll back changes safely.",
+      "acceptance": [
+        "Isolated branch/worktree per task",
+        "Automated tests and security checks",
+        "Human approval for protected production actions",
+        "Rollback demonstrated",
+        "No self-granted permissions"
+      ]
+    },
+    {
+      "id": "LAB-004",
+      "title": "Multi-agent collaboration experiment",
+      "priority": 4,
+      "status": "PLANNED",
+      "goal": "Measure when independent specialist agents improve outcomes over one model.",
+      "acceptance": [
+        "Single-model baseline",
+        "Independent specialist roles",
+        "Disagreement and evidence reconciliation",
+        "Cost/quota/latency comparison",
+        "Replicated results"
+      ]
+    },
+    {
+      "id": "LAB-005",
+      "title": "Research-to-publication pipeline",
+      "priority": 5,
+      "status": "PLANNED",
+      "goal": "Turn approved experiments into explainers, reproducible demos, and benchmark cards.",
+      "acceptance": [
+        "Experiment records with prior-art review",
+        "Public/private classification",
+        "Automated artifact and citation checks",
+        "No private data leakage",
+        "Reproducible learner instructions"
+      ]
+    },
+    {
+      "id": "LAB-006",
+      "title": "GhostCorp AI Academy first course",
+      "priority": 6,
+      "status": "PLANNED",
+      "goal": "Publish a safe course on durable AI task continuity and local model handoff.",
+      "acceptance": [
+        "Six lessons",
+        "Synthetic-data demo",
+        "Reproduction guide",
+        "Quiz/exercises",
+        "Results and limitations published"
+      ]
+    },
+    {
+      "id": "LAB-007",
+      "title": "World-model and VR research sandbox",
+      "priority": 7,
+      "status": "PLANNED",
+      "goal": "Use isolated simulations to study spatial planning and agent coordination.",
+      "acceptance": [
+        "Simulation state is versioned",
+        "Agent actions are logged",
+        "Baseline and metrics defined",
+        "No physical-world control",
+        "VR demo separated from private business systems"
+      ]
+    },
+    {
+      "id": "LAB-008",
+      "title": "Original contribution and prior-art program",
+      "priority": 8,
+      "status": "PLANNED",
+      "goal": "Identify one concrete unsolved problem, survey prior art, and run a falsifiable experiment.",
+      "acceptance": [
+        "Research question approved",
+        "Prior-art map",
+        "Falsifiable hypothesis",
+        "Benchmark and baseline",
+        "Independent replication attempt",
+        "Careful public claim"
+      ]
+    },
+    {
+      "id": "LAB-009",
+      "title": "Seamless offline continuity drill",
+      "priority": 9,
+      "status": "PLANNED",
+      "goal": "Prove a mission survives internet loss, provider quota exhaustion, process restart, and model switch.",
+      "acceptance": [
+        "Checkpoint before outage",
+        "No network inference during outage",
+        "Local model resumes next action",
+        "Artifacts and hashes verify",
+        "Mission reaches same acceptance criteria"
+      ]
+    },
+    {
+      "id": "LAB-010",
+      "title": "Research quality and claim ledger",
+      "priority": 10,
+      "status": "PLANNED",
+      "goal": "Track every public technical claim to evidence and current limitations.",
+      "acceptance": [
+        "Claims have evidence links",
+        "Prototype vs verified labels",
+        "Expiry/revalidation dates",
+        "Negative results retained",
+        "Public claims reviewable"
+      ]
+    }
+  ]
+}
