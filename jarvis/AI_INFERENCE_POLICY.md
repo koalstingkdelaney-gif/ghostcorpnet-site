@@ -74,3 +74,8 @@ Explicit exclusions:
 9. When all free quotas are exhausted, continue local inference, deterministic operations, cached knowledge, and checkpointed queues; wait for provider resets rather than spending.
 
 The registry describes public offers only. It does not prove the owner's accounts are enrolled, API keys exist, or any provider is connected.
+
+
+### Owner-directed quota consumption order
+
+For non-sensitive tasks, use available authorized free hosted inference quotas before spending local compute. Immediately persist each provider's useful output, source/model attribution, quota usage, and exact next action through `jarvis/handoff.py`. Local models then verify and continue the work. Local inference remains first for sensitive/private data, offline operation, provider outages, and after quotas are exhausted. When all hosted free quotas are depleted, continue locally or queue until reset. Never pay.
