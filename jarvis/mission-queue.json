@@ -3,146 +3,112 @@
   "updated_at": "2026-11-23",
   "missions": [
     {
-      "id": "JARVIS-001",
-      "title": "Inventory existing GhostCorp infrastructure and repository architecture",
+      "id": "VR-001",
+      "title": "Inspect and preserve all existing GhostCorp VR prototypes and assets",
       "priority": "P0",
       "status": "DISCOVERED",
       "risk": "low",
       "acceptance": [
-        "Enumerate relevant repos and entrypoints",
-        "Inspect existing backend, deployment, auth, and VR routes",
-        "Record what is verified versus assumed"
+        "Locate actual repositories and prototype files",
+        "Inventory reusable models, scenes, interactions, and visual assets",
+        "Record prototype limitations and preserve source"
       ],
       "owner_action_required": false
     },
     {
-      "id": "JARVIS-002",
-      "title": "Build persistent mission orchestrator with policy enforcement",
-      "priority": "P0",
-      "status": "PREPARED",
-      "risk": "high",
-      "acceptance": [
-        "Durable queue survives restart",
-        "Every action checked against policy",
-        "Audit events include actor, scope, outcome, and timestamp",
-        "Approval and third-party consent gates enforced",
-        "Unit and integration tests pass"
-      ],
-      "owner_action_required": false
-    },
-    {
-      "id": "JARVIS-003",
-      "title": "Establish CI, tests, backups, and rollback for authorized repositories",
+      "id": "VR-002",
+      "title": "Validate native Godot 4 and OpenXR compatibility on target headset",
       "priority": "P0",
       "status": "DISCOVERED",
       "risk": "medium",
       "acceptance": [
-        "Automated tests on changes",
-        "Dependency and secret scanning",
-        "Versioned backups",
-        "Documented tested rollback"
-      ],
-      "owner_action_required": false
-    },
-    {
-      "id": "JARVIS-004",
-      "title": "Deploy secure server-side capability gateway",
-      "priority": "P0",
-      "status": "DISCOVERED",
-      "risk": "high",
-      "acceptance": [
-        "No secrets in browser or public repository",
-        "Per-tool least-privilege grants",
-        "Authenticated service-to-service calls",
-        "Rate limits and audit logging"
-      ],
-      "owner_action_required": false
-    },
-    {
-      "id": "JARVIS-005",
-      "title": "Add watchdog, uptime telemetry, and safe self-recovery",
-      "priority": "P1",
-      "status": "DISCOVERED",
-      "risk": "high",
-      "acceptance": [
-        "Real uptime probes",
-        "Restart only preauthorized services",
-        "Alert on repeated failure",
-        "Recovery tested and logged"
-      ],
-      "owner_action_required": false
-    },
-    {
-      "id": "JARVIS-006",
-      "title": "Implement model routing and specialist agent contracts",
-      "priority": "P1",
-      "status": "DISCOVERED",
-      "risk": "medium",
-      "acceptance": [
-        "Multiple optional model adapters",
-        "Provider-independent task contracts",
-        "Evaluation suite",
-        "No provider key exposed to clients"
-      ],
-      "owner_action_required": false
-    },
-    {
-      "id": "JARVIS-007",
-      "title": "Connect private VR command center to verified operational status",
-      "priority": "P1",
-      "status": "DISCOVERED",
-      "risk": "high",
-      "acceptance": [
-        "Owner authentication",
-        "Role-based server-side authorization",
-        "Real status from orchestrator",
-        "No public visitor access to business plane"
-      ],
-      "owner_action_required": false
-    },
-    {
-      "id": "JARVIS-008",
-      "title": "Verify payment, fulfillment, payout, and treasury ledger workflows",
-      "priority": "P1",
-      "status": "DISCOVERED",
-      "risk": "high",
-      "acceptance": [
-        "Provider-confirmed payment events",
-        "Fulfillment reconciliation",
-        "Fees/refunds/payout reconciliation",
-        "Owner-controlled payout changes",
-        "Separate operating and withdrawable balances"
+        "Confirm headset model and supported OpenXR runtime from available project/device evidence",
+        "Build a minimal native Android VR test app",
+        "Verify headset/controller tracking and frame performance"
       ],
       "owner_action_required": true
     },
     {
-      "id": "JARVIS-009",
-      "title": "Research and enroll consenting compute hosts for isolated workloads",
-      "priority": "P2",
+      "id": "VR-003",
+      "title": "Build native GhostCorp VR application foundation",
+      "priority": "P0",
       "status": "DISCOVERED",
       "risk": "high",
       "acceptance": [
-        "Written host consent and terms",
-        "Signed deployment package",
-        "Network isolation and resource caps",
-        "Only synthetic/non-sensitive jobs",
-        "Node health and revocation test"
+        "Installed native app, not browser/WebXR",
+        "OpenXR runtime integration",
+        "Scene loading and persistence",
+        "Comfort and safety controls"
       ],
       "owner_action_required": false
     },
     {
-      "id": "JARVIS-010",
-      "title": "Prove 24/7 operation and publish an evidence-based operations report",
+      "id": "VR-004",
+      "title": "Implement authenticated Jarvis World Control API",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Typed scene/entity/environment operations",
+        "Authentication and scoped authorization",
+        "Audit events and rollback snapshots",
+        "No arbitrary shell execution through world API"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "VR-005",
+      "title": "Give Jarvis autonomous world-building and world-operations authority",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Jarvis creates and edits sandbox scenes",
+        "Controls lighting, objects, NPCs, physics, navigation, portals",
+        "Can save, inspect, test, and rollback changes",
+        "Routine reversible tasks need no owner action"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "VR-006",
+      "title": "Create isolated public worlds and private owner-only GhostCorp campus",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Separate public and private security domains",
+        "Server-side auth on every private operation",
+        "Public visitors cannot access business data or controls"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "VR-007",
+      "title": "Build in-world development studio and game test pipeline",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Jarvis can create sandbox game worlds",
+        "Build, test, profile, and compare versions",
+        "Owner can observe results in VR",
+        "Failed builds rollback safely"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "VR-008",
+      "title": "Prove native VR performance and deployment on headset",
       "priority": "P1",
       "status": "DISCOVERED",
       "risk": "medium",
       "acceptance": [
-        "Continuous health checks",
-        "Measured uptime window",
-        "Incident and recovery logs",
-        "Known limits and cost report"
+        "Installed and launched on actual headset",
+        "Frame-time/memory/thermal test evidence",
+        "Signed update and recovery path"
       ],
-      "owner_action_required": false
+      "owner_action_required": true
     }
   ]
 }
