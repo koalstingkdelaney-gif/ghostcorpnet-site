@@ -118,3 +118,29 @@ Next engineering sequence:
 6. Build the hub, private operations campus, and separate world scenes.
 7. Add sandboxed in-world development and automated playtesting.
 8. Test on the physical headset and publish evidence for every acceptance gate.
+
+
+## 9. Persistent operation independent of the headset
+
+**Non-negotiable architecture rule: the headset is a client, never the host or source of truth.** GhostCorp's world, Jarvis runtime, mission queue, agents, storage, and business services must continue independently when no headset is connected.
+
+Required design:
+
+1. **Server-authoritative world state.** The authoritative world state, scene versions, entity records, simulation checkpoints, and event history live in durable server-side storage. The headset receives a synchronized view and sends authenticated input/commands.
+2. **Independent Jarvis runtime.** Jarvis's orchestrator, scheduler, agent workers, monitoring, and recovery services run separately from the VR app. Closing or crashing the VR client must not stop missions or background work.
+3. **Persistent mission execution.** Jobs are durably queued with status, checkpoints, retries, idempotency keys, deadlines, and audit events. On process restart, workers resume safe work from the last checkpoint rather than silently losing tasks or duplicating side effects.
+4. **World simulation policy.** Non-interactive world state and scheduled simulations continue server-side where useful. Expensive real-time rendering, headset pose tracking, and local physics presentation run on the client. The system must clearly distinguish a continuously simulated world from a persisted world that advances by scheduled ticks while nobody is present.
+5. **Multiple clients.** Native VR is the immersive client. Authorized desktop/mobile interfaces may inspect health, missions, logs, and permitted controls. The public website remains a separate public portal and must never expose private operations.
+6. **Offline synchronization.** The VR client caches only safe, non-sensitive assets and read-only snapshots. It queues only explicitly safe, idempotent user actions while offline; it must reconcile conflicts against server authority after reconnecting. No secrets or private financial/customer records are stored in the headset cache.
+7. **Availability and recovery.** Run the server runtime under a process supervisor with health checks, restart policy, durable storage, backups, and tested restore procedures. If a host fails, report the outage and recover on an authorized alternate host when one exists. Do not imply failover exists until tested.
+8. **No headset dependency for ownership or control.** Owner authentication and approvals must also work through an authorized non-VR channel. A headset battery failure must never lock the owner out of GhostCorp.
+
+Acceptance tests:
+- Shut down/disconnect the headset while a background mission is running; verify the mission continues and completes or reaches a recorded safe checkpoint.
+- Reopen the VR client and verify it synchronizes the latest server-authoritative world state.
+- Restart the Jarvis worker and verify queued work resumes without duplicate side effects.
+- Stop the VR client and verify server health, mission processing, and audit logging remain available.
+- Restore a world snapshot and verify the rollback is reflected in every connected client.
+- Demonstrate a non-VR owner access path for status and approvals.
+
+Availability truth: architecture and code alone do not create 24/7 hosting. The selected host must be authorized, provisioned, monitored, and tested. The $0 pre-revenue spending policy remains in force; if no suitable always-on free host is available, Jarvis must disclose the limitation and preserve durable state until an authorized runtime is available.
