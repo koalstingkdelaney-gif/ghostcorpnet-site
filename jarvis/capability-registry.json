@@ -79,6 +79,18 @@
       "blockers": [
         "No deployed watchdog, uptime telemetry, or recovery test inspected"
       ]
+    },
+    {
+      "id": "server_authoritative_world_runtime",
+      "name": "Server-authoritative persistent world independent of VR headset",
+      "status": "PREPARED",
+      "evidence": [
+        "Architecture requirement added to jarvis/VR_ENVIRONMENT_CONTROL.md"
+      ],
+      "limitations": [
+        "No server runtime, durable world store, supervisor, or headset synchronization implemented or tested"
+      ],
+      "last_reviewed": "2026-11-23"
     }
   ]
 }
