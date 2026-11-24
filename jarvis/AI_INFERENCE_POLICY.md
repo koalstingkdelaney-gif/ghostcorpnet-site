@@ -42,3 +42,35 @@ Jarvis must not require the owner to buy AI credits, maintain a prepaid API bala
 ## Current truth
 
 This policy is a committed requirement, not proof of implementation. A local inference runtime, selected model weights, model router, hardware benchmark, and zero-billing network test still need to be built and verified. Do not claim Jarvis is already running locally or has unlimited free inference.
+
+
+## Free provider quota pool
+
+Use every legitimate no-cost inference allocation the owner is already authorized to access, while obeying each provider's rate limits, terms, privacy rules, and account eligibility. The provider inventory is maintained in `jarvis/model-fleet/free-provider-registry.json`.
+
+Initial documented candidates (not yet connected to Jarvis):
+- Google AI Studio / Gemini Developer API free tier — per-model/project quotas; free-tier prompts may be used to improve Google's products, so sensitive GhostCorp/customer data is excluded.
+- GroqCloud free tier — published per-model request/token limits; read live account limits and response headers.
+- Cloudflare Workers AI — 10,000 Neurons/day free allocation; exceeding it requires paid plan, so stop at quota.
+- Cohere trial key — documented 1,000 API calls/month; treat as a limited trial allocation, not a permanent guarantee.
+- OpenRouter explicitly free model variants — free variants have low daily/minute caps; use only variants confirmed as genuinely no-balance-required and never purchase credits.
+- Local Ollama — no API credits, limited by authorized hardware and model licenses.
+
+Explicit exclusions:
+- Hugging Face Inference Providers: current official free-account pricing page says Free users have no included inference credits; older pages may be stale.
+- Mistral API: Free mode does not include API access; API requires billing activation.
+- GitHub Models: don't rely on it unless current official availability is re-established.
+
+## Quota-aware routing requirements
+
+1. Store provider/model eligibility, quota type, remaining quota estimate, reset time, rate-limit headers, last verification time, and privacy classification.
+2. Prefer local models for offline work and sensitive tasks.
+3. Route eligible low-sensitivity requests to a provider with available free quota; choose by task capability, measured quality, latency, and remaining quota—not by provider count alone.
+4. On 429/quota exhaustion, record reset time and queue or switch to another authorized free provider. Never retry in a tight loop.
+5. Hard-disable paid model IDs, billing upgrades, auto-recharge, credit purchases, trial conversion, and paid fallback.
+6. Do not create multiple accounts to evade quotas or identity/rate limits.
+7. Revalidate provider offers at least every 30 days and before any new provider is activated.
+8. Provider free tiers may inspect or retain prompts. Sensitive business, payment, credential, customer, and owner data must stay local unless the provider's terms and explicit owner authorization permit otherwise.
+9. When all free quotas are exhausted, continue local inference, deterministic operations, cached knowledge, and checkpointed queues; wait for provider resets rather than spending.
+
+The registry describes public offers only. It does not prove the owner's accounts are enrolled, API keys exist, or any provider is connected.
