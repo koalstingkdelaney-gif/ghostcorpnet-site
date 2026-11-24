@@ -3,15 +3,173 @@
   "updated_at": "2026-11-24",
   "source_spec": "jarvis/VR_PLATFORM_BUILD_SPEC.md",
   "missions": [
-    {"id":"VRP-001","title":"Inventory existing VR source and headset target","priority":"P0","status":"DISCOVERED","owner":"Jarvis","acceptance":["Search all authorized existing repositories for VR source, assets, app IDs, and prior build workflows","Identify exact headset model/OS only from authorized device inventory or owner confirmation","Record reuse decision; do not duplicate existing project"]},
-    {"id":"VRP-002","title":"Define persistent world service and typed control API","priority":"P1","status":"PREPARED","depends_on":["VRP-001"],"acceptance":["Versioned scene/entity schema","Authenticated typed operations","Durable snapshots, event log, idempotent jobs","Authorization and audit tests"]},
-    {"id":"VRP-003","title":"Build owner-only website VR Builder","priority":"P1","status":"PREPARED","depends_on":["VRP-002"],"acceptance":["Server-side owner authentication","Scene/project editor and prompt-to-plan","Preview, diff, versions, rollback","No privileged browser secrets or public access"]},
-    {"id":"VRP-004","title":"Create native Android/OpenXR client spike","priority":"P1","status":"DISCOVERED","depends_on":["VRP-001"],"acceptance":["Godot 4/OpenXR compatibility tested on actual target","Native Android package builds","Controller/hand input and comfort checks"]},
-    {"id":"VRP-005","title":"Implement asset/content update channel","priority":"P2","status":"PREPARED","depends_on":["VRP-002","VRP-004"],"acceptance":["Signed version manifest","Immutable asset bundles and hash verification","Offline cache and safe reconnect reconciliation"]},
-    {"id":"VRP-006","title":"Implement CI build, artifact, and release gates","priority":"P2","status":"PREPARED","depends_on":["VRP-004"],"acceptance":["Free CI build/test","APK artifact and provenance","Signing verification","Compatibility/performance/security gates"]},
-    {"id":"VRP-007","title":"Implement authorized device relay and auto-install","priority":"P3","status":"BLOCKED_OWNER","depends_on":["VRP-006"],"acceptance":["Owner-enrolled local relay","No public ADB/debug ports","Queued update installs when device is reachable","Launch and health result verified"],"owner_gate":"Owner must complete developer-mode/device-debug authorization and enroll a trusted relay; do not bypass."},
-    {"id":"VRP-008","title":"Connect website publish workflow to device rollout","priority":"P3","status":"PREPARED","depends_on":["VRP-003","VRP-005","VRP-006","VRP-007"],"acceptance":["Owner can edit and preview from existing site","Publish creates immutable release","Relay installs and verifies","Rollback remains available"]},
-    {"id":"VRP-009","title":"Prove offline operation and restart recovery","priority":"P3","status":"PREPARED","depends_on":["VRP-002","VRP-004","VRP-005"],"acceptance":["Headset offline retains cached world","Server restart resumes jobs","Conflicts reconciled safely","Restore test passes"]},
-    {"id":"VRP-010","title":"Create frontier research and education pipeline","priority":"P4","status":"PREPARED","depends_on":["VRP-002","VRP-003"],"acceptance":["Experiments have hypotheses, baselines, metrics, and reproducible artifacts","Failed hypotheses recorded","Publish tutorials and research notes only with evidence and clear limitations"]}
+    {
+      "id": "VRP-001",
+      "title": "Inventory existing VR source and headset target",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "owner": "Jarvis",
+      "acceptance": [
+        "Search all authorized existing repositories for VR source, assets, app IDs, and prior build workflows",
+        "Identify exact headset model/OS only from authorized device inventory or owner confirmation",
+        "Record reuse decision; do not duplicate existing project"
+      ]
+    },
+    {
+      "id": "VRP-002",
+      "title": "Define persistent world service and typed control API",
+      "priority": "P1",
+      "status": "PREPARED",
+      "depends_on": [
+        "VRP-001"
+      ],
+      "acceptance": [
+        "Versioned scene/entity schema",
+        "Authenticated typed operations",
+        "Durable snapshots, event log, idempotent jobs",
+        "Authorization and audit tests"
+      ]
+    },
+    {
+      "id": "VRP-003",
+      "title": "Build owner-only website VR Builder",
+      "priority": "P1",
+      "status": "PREPARED",
+      "depends_on": [
+        "VRP-002"
+      ],
+      "acceptance": [
+        "Server-side owner authentication",
+        "Scene/project editor and prompt-to-plan",
+        "Preview, diff, versions, rollback",
+        "No privileged browser secrets or public access"
+      ]
+    },
+    {
+      "id": "VRP-004",
+      "title": "Create native Android/OpenXR client spike",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "depends_on": [
+        "VRP-001"
+      ],
+      "acceptance": [
+        "Godot 4/OpenXR compatibility tested on actual target",
+        "Native Android package builds",
+        "Controller/hand input and comfort checks"
+      ]
+    },
+    {
+      "id": "VRP-005",
+      "title": "Implement asset/content update channel",
+      "priority": "P2",
+      "status": "PREPARED",
+      "depends_on": [
+        "VRP-002",
+        "VRP-004"
+      ],
+      "acceptance": [
+        "Signed version manifest",
+        "Immutable asset bundles and hash verification",
+        "Offline cache and safe reconnect reconciliation"
+      ]
+    },
+    {
+      "id": "VRP-006",
+      "title": "Implement CI build, artifact, and release gates",
+      "priority": "P2",
+      "status": "PREPARED",
+      "depends_on": [
+        "VRP-004"
+      ],
+      "acceptance": [
+        "Free CI build/test",
+        "APK artifact and provenance",
+        "Signing verification",
+        "Compatibility/performance/security gates"
+      ]
+    },
+    {
+      "id": "VRP-007",
+      "title": "Implement authorized device relay and auto-install",
+      "priority": "P3",
+      "status": "BLOCKED_OWNER",
+      "depends_on": [
+        "VRP-006"
+      ],
+      "acceptance": [
+        "Owner-enrolled local relay",
+        "No public ADB/debug ports",
+        "Queued update installs when device is reachable",
+        "Launch and health result verified"
+      ],
+      "owner_gate": "Owner must complete developer-mode/device-debug authorization and enroll a trusted relay; do not bypass."
+    },
+    {
+      "id": "VRP-008",
+      "title": "Connect website publish workflow to device rollout",
+      "priority": "P3",
+      "status": "PREPARED",
+      "depends_on": [
+        "VRP-003",
+        "VRP-005",
+        "VRP-006",
+        "VRP-007"
+      ],
+      "acceptance": [
+        "Owner can edit and preview from existing site",
+        "Publish creates immutable release",
+        "Relay installs and verifies",
+        "Rollback remains available"
+      ]
+    },
+    {
+      "id": "VRP-009",
+      "title": "Prove offline operation and restart recovery",
+      "priority": "P3",
+      "status": "PREPARED",
+      "depends_on": [
+        "VRP-002",
+        "VRP-004",
+        "VRP-005"
+      ],
+      "acceptance": [
+        "Headset offline retains cached world",
+        "Server restart resumes jobs",
+        "Conflicts reconciled safely",
+        "Restore test passes"
+      ]
+    },
+    {
+      "id": "VRP-010",
+      "title": "Create frontier research and education pipeline",
+      "priority": "P4",
+      "status": "PREPARED",
+      "depends_on": [
+        "VRP-002",
+        "VRP-003"
+      ],
+      "acceptance": [
+        "Experiments have hypotheses, baselines, metrics, and reproducible artifacts",
+        "Failed hypotheses recorded",
+        "Publish tutorials and research notes only with evidence and clear limitations"
+      ]
+    },
+    {
+      "id": "VRP-011",
+      "title": "Publish browser-based WebXR world preview",
+      "priority": "P0",
+      "status": "ACTIVE_UNVERIFIED",
+      "owner": "Jarvis",
+      "acceptance": [
+        "GhostCorp WebXR scene is committed at /vr/",
+        "Desktop fallback renders a navigable 3D hub",
+        "Immersive WebXR entry is offered when supported",
+        "Controller ray can select demo zones",
+        "Local editor can add and save custom scene nodes",
+        "Verify live deployment and test on the owner's actual headset browser"
+      ],
+      "notes": "Prototype files committed; browser/device execution and deployment verification still pending. This does not satisfy the native APK or server-backed owner-builder missions."
+    }
   ]
 }
