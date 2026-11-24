@@ -70,3 +70,15 @@ Jarvis should choose based on task class, then measure output quality and latenc
 - [ ] Models downloaded on that host.
 - [ ] Jarvis orchestrator connected to the adapter.
 - [ ] Restart, fallback, privacy, and no-billing tests passed.
+
+
+## Provider-output handoff into local models
+
+All provider-produced work must be treated as portable project artifacts, not as the only copy of Jarvis's progress. Use `jarvis/handoff.py` to persist a mission, checkpoint, next action, provider/model attribution, quota usage, and generated artifacts in a local SQLite state database. Export a mission handoff JSON bundle for the local model to continue from. The bundle includes a verification instruction and explicitly tells the receiving model not to repeat completed work.
+
+Example:
+- `python -m jarvis.handoff add M-001 "Build feature" "Implement the feature and tests"`
+- `python -m jarvis.handoff checkpoint M-001 "Design complete" "Local model: implement tests" --provider groq --model model-id --artifact design.md --artifact-file /path/to/design.md`
+- `python -m jarvis.handoff export M-001 --output state/handoffs/M-001.json`
+
+Runtime SQLite databases and handoff bundles belong in local/private state, never in public Git. Do not put secrets, customer PII, payment records, or confidential business data into provider prompts or handoff artifacts unless approved and protected. Provider output is untrusted until checked by tests, source verification, or another model.
