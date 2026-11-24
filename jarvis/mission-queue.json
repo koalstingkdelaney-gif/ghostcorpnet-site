@@ -1,7 +1,137 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "updated_at": "2026-11-23",
   "missions": [
+    {
+      "id": "JARVIS-001",
+      "title": "Inventory existing GhostCorp infrastructure and repositories",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "low",
+      "acceptance": [
+        "List accessible repositories, branches, deployments, services, and existing assets",
+        "Identify actual runtime and hosting evidence",
+        "Record gaps without assuming undocumented systems exist"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-002",
+      "title": "Build persistent mission orchestrator with policy enforcement",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Durable task queue and checkpointed workers",
+        "Policy checks before tool execution",
+        "Idempotent retries, audit events, and restart recovery"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-003",
+      "title": "Add CI, automated tests, backups, and rollback",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "medium",
+      "acceptance": [
+        "Automated tests on changes",
+        "Versioned backups and restore test",
+        "Rollback procedure for failed releases"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-004",
+      "title": "Build secure server-side capability gateway",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Scoped tool permissions and server-side secrets",
+        "Authentication and authorization for every private action",
+        "No secrets in client bundles or public repositories"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-005",
+      "title": "Implement watchdog, uptime monitoring, and self-recovery",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "medium",
+      "acceptance": [
+        "Health checks and process supervision",
+        "Safe restart and alerting",
+        "Measured uptime and recovery evidence"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-006",
+      "title": "Implement model routing and specialist agent contracts",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "medium",
+      "acceptance": [
+        "Provider/model adapter interface",
+        "Task-based routing and fallback policy",
+        "Benchmark quality, latency, cost, and failures"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-007",
+      "title": "Build private owner command center",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Authenticated owner-only status and approval surface",
+        "Public visitors isolated from private operations",
+        "Audit trail for owner actions"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-008",
+      "title": "Verify payments, fulfillment, payouts, and treasury reconciliation",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Provider-authorized payment event verification",
+        "Order-to-fulfillment traceability",
+        "Fees, refunds, payouts, and treasury reconciliation"
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "JARVIS-009",
+      "title": "Research and enroll consenting compute hosts",
+      "priority": "P2",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Compare free/low-cost authorized hosting options",
+        "Prepare isolated deployment package",
+        "Enroll only with explicit host consent"
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "JARVIS-010",
+      "title": "Prove independent 24/7 operation",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Runtime continues without VR client or owner session",
+        "Process restart and host recovery tested",
+        "Publish measured uptime, outages, and limitations"
+      ],
+      "owner_action_required": false
+    },
     {
       "id": "VR-001",
       "title": "Inspect and preserve all existing GhostCorp VR prototypes and assets",
