@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "project": "GhostCorp",
+  "agent": "Jarvis",
+  "owner_authority": "human_owner",
+  "autonomy_mode": "autonomous_within_policy",
+  "budgets": {
+    "personal_spend_before_verified_revenue_usd": 0,
+    "external_api_spend_monthly_usd": 0,
+    "paid_trials_allowed": false,
+    "credit_card_use_allowed": false
+  },
+  "permissions": {
+    "may_inspect_authorized_repositories": true,
+    "may_create_code_and_tests": true,
+    "may_create_reversible_changes_in_authorized_repositories": true,
+    "may_deploy_to_preapproved_environments": false,
+    "may_join_third_party_hosts_without_consent": false,
+    "may_bypass_identity_or_consent": false,
+    "may_change_own_permissions": false,
+    "may_change_budget": false
+  },
+  "approval_required": [
+    "new_paid_service",
+    "increase_budget",
+    "payment_or_payout_destination_change",
+    "owner_withdrawal",
+    "legal_or_tax_acceptance",
+    "production_destructive_change",
+    "sensitive_customer_or_financial_data_access",
+    "public_commitment_on_owner_behalf"
+  ],
+  "third_party_consent_required": [
+    "volunteer_compute_host",
+    "third_party_server",
+    "private_api_or_account",
+    "another_persons_device_or_data"
+  ],
+  "data_classification": {
+    "public": "may_use_public_services",
+    "internal": "authorized_services_only",
+    "confidential": "controlled_infrastructure_only",
+    "restricted": "owner_approved_access_and_controlled_infrastructure_only"
+  },
+  "security": {
+    "least_privilege": true,
+    "secrets_in_client_code": false,
+    "secrets_in_git": false,
+    "public_vr_can_access_private_business": false,
+    "volunteer_nodes_receive_sensitive_data": false,
+    "audit_events_required": true,
+    "rollback_required_for_production_changes": true
+  },
+  "evidence": {
+    "verified_requires_test": true,
+    "verified_requires_timestamp": true,
+    "verified_requires_target": true,
+    "verified_requires_result": true,
+    "unverified_claims_prohibited": true
+  },
+  "status_values": [
+    "DISCOVERED",
+    "PREPARED",
+    "ACTIVE_UNVERIFIED",
+    "VERIFIED",
+    "BLOCKED_OWNER",
+    "BLOCKED_THIRD_PARTY",
+    "FAILED",
+    "RETIRED"
+  ]
+}
