@@ -1,0 +1,35 @@
+name: Jarvis free-first CI
+
+on:
+  push:
+    paths:
+      - "jarvis/**"
+      - "tests/**"
+      - ".github/workflows/jarvis-ci.yml"
+  pull_request:
+    paths:
+      - "jarvis/**"
+      - "tests/**"
+      - ".github/workflows/jarvis-ci.yml"
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test runner
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Compile Jarvis code
+        run: python -m compileall -q jarvis
+      - name: Run offline-safe tests
+        run: python -m pytest -q tests/test_jarvis_backup.py tests/test_model_router.py
