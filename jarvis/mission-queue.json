@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-11-23",
+  "missions": [
+    {
+      "id": "JARVIS-001",
+      "title": "Inventory existing GhostCorp infrastructure and repository architecture",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "low",
+      "acceptance": [
+        "Enumerate relevant repos and entrypoints",
+        "Inspect existing backend, deployment, auth, and VR routes",
+        "Record what is verified versus assumed"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-002",
+      "title": "Build persistent mission orchestrator with policy enforcement",
+      "priority": "P0",
+      "status": "PREPARED",
+      "risk": "high",
+      "acceptance": [
+        "Durable queue survives restart",
+        "Every action checked against policy",
+        "Audit events include actor, scope, outcome, and timestamp",
+        "Approval and third-party consent gates enforced",
+        "Unit and integration tests pass"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-003",
+      "title": "Establish CI, tests, backups, and rollback for authorized repositories",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "medium",
+      "acceptance": [
+        "Automated tests on changes",
+        "Dependency and secret scanning",
+        "Versioned backups",
+        "Documented tested rollback"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-004",
+      "title": "Deploy secure server-side capability gateway",
+      "priority": "P0",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "No secrets in browser or public repository",
+        "Per-tool least-privilege grants",
+        "Authenticated service-to-service calls",
+        "Rate limits and audit logging"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-005",
+      "title": "Add watchdog, uptime telemetry, and safe self-recovery",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Real uptime probes",
+        "Restart only preauthorized services",
+        "Alert on repeated failure",
+        "Recovery tested and logged"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-006",
+      "title": "Implement model routing and specialist agent contracts",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "medium",
+      "acceptance": [
+        "Multiple optional model adapters",
+        "Provider-independent task contracts",
+        "Evaluation suite",
+        "No provider key exposed to clients"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-007",
+      "title": "Connect private VR command center to verified operational status",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Owner authentication",
+        "Role-based server-side authorization",
+        "Real status from orchestrator",
+        "No public visitor access to business plane"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-008",
+      "title": "Verify payment, fulfillment, payout, and treasury ledger workflows",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Provider-confirmed payment events",
+        "Fulfillment reconciliation",
+        "Fees/refunds/payout reconciliation",
+        "Owner-controlled payout changes",
+        "Separate operating and withdrawable balances"
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "JARVIS-009",
+      "title": "Research and enroll consenting compute hosts for isolated workloads",
+      "priority": "P2",
+      "status": "DISCOVERED",
+      "risk": "high",
+      "acceptance": [
+        "Written host consent and terms",
+        "Signed deployment package",
+        "Network isolation and resource caps",
+        "Only synthetic/non-sensitive jobs",
+        "Node health and revocation test"
+      ],
+      "owner_action_required": false
+    },
+    {
+      "id": "JARVIS-010",
+      "title": "Prove 24/7 operation and publish an evidence-based operations report",
+      "priority": "P1",
+      "status": "DISCOVERED",
+      "risk": "medium",
+      "acceptance": [
+        "Continuous health checks",
+        "Measured uptime window",
+        "Incident and recovery logs",
+        "Known limits and cost report"
+      ],
+      "owner_action_required": false
+    }
+  ]
+}
