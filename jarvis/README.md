@@ -29,3 +29,7 @@ Jarvis independently discovers, prepares, builds, tests, operates, repairs, and 
 ## Current verified state
 
 Only this repository's source files have been inspected/changed in this commit. No server, mesh node, AI provider, volunteer host, payment account, or 24/7 runtime was connected or tested by this change.
+
+## Native VR environment
+
+The immersive product is a native OpenXR application, not a browser/WebXR page. See [VR_ENVIRONMENT_CONTROL.md](./VR_ENVIRONMENT_CONTROL.md) for Jarvis's world-authority contract, runtime architecture, security boundaries, and acceptance tests. Native VR implementation is tracked separately from the public website.
