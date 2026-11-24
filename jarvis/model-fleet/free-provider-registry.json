@@ -115,6 +115,14 @@
     "use_local_models_when_offline": true,
     "provider_specific_privacy_filtering": true,
     "no_sensitive_business_data_to_free_tiers_without_owner_authorization": true,
-    "revalidate_offers_at_least_every_30_days": true
+    "revalidate_offers_at_least_every_30_days": true,
+    "routing_order": [
+      "For non-sensitive tasks, use an eligible authorized free hosted provider while its verified free quota remains.",
+      "Persist provider outputs, artifacts, model attribution, quota usage, and the exact next action in the handoff store.",
+      "Local models verify and continue from checkpoints instead of repeating completed work.",
+      "Use local models immediately for sensitive/private data, offline operation, provider outages, or exhausted quotas.",
+      "When all free hosted quotas are exhausted, queue work until reset and continue locally; never pay."
+    ],
+    "local_first_scope": "Local inference is first for sensitive/private data and when offline or all hosted free quotas are exhausted; otherwise consume eligible free hosted quota first as the owner requested."
   }
 }
