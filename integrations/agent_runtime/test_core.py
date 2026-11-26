@@ -50,6 +50,18 @@ class RuntimeStoreTests(unittest.TestCase):
         ))
         self.assertFalse(result.allowed)
 
+
+    def test_spend_above_configured_cap_is_blocked_even_after_revenue(self):
+        self.store.paid_api_spend_cap_minor = 500
+        self.store.create_agent("agent-1", "worker", ["workspace.write"])
+        result = self.store.evaluate(ActionRequest(
+            actor_id="agent-1", action="create_artifact",
+            requested_permissions=("workspace.write",),
+            estimated_spend_minor=501, revenue_recorded=True,
+        ))
+        self.assertFalse(result.allowed)
+        self.assertIn("cap", result.reason)
+
     def test_kill_switch_blocks_even_low_risk_action(self):
         self.store.create_agent("agent-1", "worker", ["workspace.write"])
         self.store.kill_switch_enabled = True
