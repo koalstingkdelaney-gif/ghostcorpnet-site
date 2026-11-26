@@ -62,14 +62,15 @@ The executable runtime foundation lives under `integrations/agent_runtime/`:
 - Balanced, idempotent double-entry journal entries using integer minor currency units.
 - Persistent memory with provenance, confidence, versioning, expiry, size limits, and credential-pattern rejection.
 - Persistent goals with priority, blockers, lifecycle status, and explicit completion/abandonment reasons.
-- Dedicated GitHub Actions tests cover the runtime and memory modules on Python 3.11, 3.12, and 3.13.
+- Versioned world-manifest validation and deterministic dry-run simulation; simulation cannot execute external side effects.
+- Dedicated GitHub Actions tests cover the runtime, memory, approval, and world-manifest modules on Python 3.11, 3.12, and 3.13.
 
 These tests validate the isolated runtime slice only. They do not validate or replace the existing website build, production hosting, payment providers, or VR application.
 
 ## Next build increments
 
 1. Connect the runtime's scoped approval records to the repository's existing Action Center through a trusted host adapter. The host must authenticate the owner before granting approvals; the local core is not an identity provider.
-2. Add a versioned world-manifest registry, event envelope, schema validation, and deterministic simulation runner.
+2. Extend manifest validation into a versioned registry and add a typed event envelope with schema version, actor, world, correlation ID, and sensitivity labels.
 3. Add an event-driven scheduler, retry/backoff, idle/sleep consolidation, and multi-agent coordination through scoped workspaces.
 4. Add provider sandbox adapters and verified webhook ingestion; map provider events into the internal ledger without treating the ledger as proof of external settlement.
 5. Add owner-only API endpoints and authorization for the private VR adapter; keep public worlds isolated from business systems.
