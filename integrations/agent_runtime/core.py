@@ -152,6 +152,8 @@ class RuntimeStore:
             decision = PolicyDecision(False, False, "requested permission is not granted")
         elif request.estimated_spend_minor < 0:
             decision = PolicyDecision(False, False, "spend estimate cannot be negative")
+        elif request.estimated_spend_minor > self.paid_api_spend_cap_minor:
+            decision = PolicyDecision(False, False, "estimated spend exceeds the configured per-action cap")
         elif request.estimated_spend_minor > 0 and not request.revenue_recorded:
             decision = PolicyDecision(False, False, "pre-revenue spend is disabled")
         elif request.action not in self.AUTONOMOUS_ACTIONS:
