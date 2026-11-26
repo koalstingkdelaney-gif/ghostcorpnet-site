@@ -7,6 +7,7 @@ A dependency-free Python foundation for GhostCorp's agent system. It provides a 
 ```python
 from integrations.agent_runtime import (
     ActionRequest, JournalLine, Memory, MemoryStore, RuntimeStore,
+    SimulationRunner, validate_manifest,
 )
 
 store = RuntimeStore("ghostcorp-runtime.sqlite3", paid_api_spend_cap_minor=0)
@@ -32,6 +33,12 @@ goal_id = memory.create_goal("Connect the Action Center", priority=90)
 ```
 
 Run tests with `python -m unittest discover -s integrations/agent_runtime -v`.
+
+## World manifests and simulation
+
+- `validate_manifest` checks protocol version, unique identifiers, normalized state ranges, observation sensitivity, action permissions, risk/approval consistency, event names, and the non-negotiable $0 pre-revenue paid-API limit.
+- `SimulationRunner` runs deterministic dry-runs using only actions declared by the manifest. It never calls external tools, providers, networks, or payment rails.
+- High-risk actions remain in an approval-required state; caller-supplied approval booleans do not change simulation results.
 
 ## Memory and goals
 
