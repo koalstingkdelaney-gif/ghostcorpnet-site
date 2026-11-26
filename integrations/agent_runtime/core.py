@@ -23,7 +23,8 @@ class ActionRequest:
     risk: str = "low"
     estimated_spend_minor: int = 0
     revenue_recorded: bool = False
-    approval_granted: bool = False
+    approval_granted: bool = False  # Deprecated; never trusted by the policy engine.
+    approval_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -87,6 +88,18 @@ class RuntimeStore:
                     debit_minor INTEGER NOT NULL CHECK(debit_minor >= 0),
                     credit_minor INTEGER NOT NULL CHECK(credit_minor >= 0)
                 );
+                CREATE TABLE IF NOT EXISTS approvals (
+                    approval_id TEXT PRIMARY KEY,
+                    actor_id TEXT NOT NULL,
+                    action TEXT NOT NULL,
+                    permissions_json TEXT NOT NULL,
+                    status TEXT NOT NULL,
+                    requested_by TEXT NOT NULL,
+                    granted_by TEXT,
+                    created_at REAL NOT NULL,
+                    expires_at REAL NOT NULL,
+                    consumed_at REAL
+                );
             """)
 
     def close(self) -> None:
@@ -140,6 +153,97 @@ class RuntimeStore:
             for row in rows
         ]
 
+    def request_approval(
+        self, actor_id: str, action: str, requested_permissions: Iterable[str],
+        requested_by: str = "owner", expires_in_seconds: int = 900,
+    ) -> str:
+        """Create a scoped, expiring approval request for the trusted host UI."""
+        if self.agent(actor_id) is None:
+            raise KeyError(actor_id)
+        if not action.strip() or not requested_by.strip():
+            raise ValueError("Action and requester are required")
+        if not 30 <= expires_in_seconds <= 3600:
+            raise ValueError("Approval request expiry must be 30..3600 seconds")
+        approval_id = str(uuid.uuid4())
+        permissions = sorted(set(requested_permissions))
+        now = time.time()
+        with self._lock, self._db:
+            self._db.execute(
+                """INSERT INTO approvals(
+                    approval_id, actor_id, action, permissions_json, status,
+                    requested_by, created_at, expires_at
+                ) VALUES(?,?,?,?,?,?,?,?)""",
+                (approval_id, actor_id, action, json.dumps(permissions), "pending",
+                 requested_by, now, now + expires_in_seconds),
+            )
+        self.record_event(requested_by, "approval_requested", {
+            "approval_id": approval_id, "actor_id": actor_id,
+            "action": action, "permissions": permissions,
+        })
+        return approval_id
+
+    def grant_approval(
+        self, approval_id: str, approved_by: str, expires_in_seconds: int = 300,
+    ) -> None:
+        """Grant an approval from an authenticated, trusted owner-facing host."""
+        if not approved_by.strip():
+            raise ValueError("Approver identity is required")
+        if not 30 <= expires_in_seconds <= 900:
+            raise ValueError("Granted approval expiry must be 30..900 seconds")
+        now = time.time()
+        with self._lock, self._db:
+            row = self._db.execute(
+                "SELECT status, expires_at FROM approvals WHERE approval_id=?",
+                (approval_id,),
+            ).fetchone()
+            if row is None:
+                raise KeyError(approval_id)
+            if row["status"] != "pending" or row["expires_at"] <= now:
+                raise ValueError("Approval request is no longer pending")
+            self._db.execute(
+                """UPDATE approvals SET status='approved', granted_by=?, expires_at=?
+                   WHERE approval_id=?""",
+                (approved_by, min(row["expires_at"], now + expires_in_seconds), approval_id),
+            )
+        self.record_event(approved_by, "approval_granted", {"approval_id": approval_id})
+
+    def _consume_approval(self, request: ActionRequest) -> bool:
+        """Consume one exact, unexpired approval; approvals cannot be replayed."""
+        if not request.approval_id:
+            return False
+        now = time.time()
+        with self._lock:
+            try:
+                self._db.execute("BEGIN IMMEDIATE")
+                row = self._db.execute(
+                    "SELECT * FROM approvals WHERE approval_id=?",
+                    (request.approval_id,),
+                ).fetchone()
+                expected_permissions = sorted(set(request.requested_permissions))
+                if (
+                    row is None
+                    or row["status"] != "approved"
+                    or row["expires_at"] <= now
+                    or row["actor_id"] != request.actor_id
+                    or row["action"] != request.action
+                    or json.loads(row["permissions_json"]) != expected_permissions
+                ):
+                    self._db.rollback()
+                    return False
+                self._db.execute(
+                    "UPDATE approvals SET status='consumed', consumed_at=? WHERE approval_id=?",
+                    (now, request.approval_id),
+                )
+                self._db.commit()
+                self.record_event(row["granted_by"] or "approval_system", "approval_consumed", {
+                    "approval_id": request.approval_id, "actor_id": request.actor_id,
+                    "action": request.action,
+                })
+                return True
+            except Exception:
+                self._db.rollback()
+                raise
+
     def evaluate(self, request: ActionRequest) -> PolicyDecision:
         agent = self.agent(request.actor_id)
         if self.kill_switch_enabled:
@@ -156,17 +260,15 @@ class RuntimeStore:
             decision = PolicyDecision(False, False, "estimated spend exceeds the configured per-action cap")
         elif request.estimated_spend_minor > 0 and not request.revenue_recorded:
             decision = PolicyDecision(False, False, "pre-revenue spend is disabled")
-        elif request.action not in self.AUTONOMOUS_ACTIONS:
+        elif (
+            request.action not in self.AUTONOMOUS_ACTIONS
+            or self.RISK_ORDER.get(request.risk, 99) > self.RISK_ORDER["low"]
+        ):
+            approved = self._consume_approval(request)
             decision = PolicyDecision(
-                bool(request.approval_granted), True,
-                "approved by policy" if request.approval_granted
-                else "action is outside the autonomous low-risk allowlist",
-            )
-        elif self.RISK_ORDER.get(request.risk, 99) > self.RISK_ORDER["low"]:
-            decision = PolicyDecision(
-                bool(request.approval_granted), True,
-                "approved by policy" if request.approval_granted
-                else "risk exceeds autonomous threshold",
+                approved, True,
+                "scoped owner approval consumed" if approved
+                else "a valid, unexpired, action-scoped owner approval is required",
             )
         else:
             decision = PolicyDecision(True, False, "permitted")
