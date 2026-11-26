@@ -45,8 +45,9 @@ Run tests with `python -m unittest discover -s integrations/agent_runtime -v`.
 
 - This is a local core, not a hosted multi-user service.
 - The ledger is an internal accounting journal, not a bank balance or payment processor.
+- Approval records are an enforcement primitive, not proof of owner identity. Only an authenticated host may expose approval-grant operations.
 - It does not custody keys, create financial accounts, contact customers, execute payouts, or connect to live providers.
-- Approval is supplied by a trusted host caller; a production Action Center must authenticate the owner and persist approval records before passing `approval_granted=True`.
+- Elevated actions now require a scoped, expiring, one-time approval record bound to the exact agent, action, and permission set. The legacy `approval_granted` boolean is ignored. The Action Center must authenticate the owner before calling `grant_approval`; this local core does not authenticate users or expose a network API.
 - Positive estimated spend is blocked until revenue is explicitly recorded by a trusted integration.
 - SQLite events are operational audit records, not tamper-proof compliance storage. Production deployment needs access controls, backups, integrity protection, and external log retention.
 
