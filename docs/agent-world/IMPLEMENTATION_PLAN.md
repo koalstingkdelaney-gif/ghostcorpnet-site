@@ -49,3 +49,26 @@
 - Spend remains $0 for paid APIs until revenue and an owner-approved budget change.
 - Private VR/business data is inaccessible from public worlds.
 - A simulated multi-agent task can be run end-to-end and inspected from the Action Center.
+
+
+## Current implementation status
+
+The first executable runtime slice now exists under `integrations/agent_runtime/`:
+
+- SQLite-backed agent registry with explicit capability grants and active/paused/disabled states.
+- Fail-closed policy decisions for unknown agents, missing capabilities, paused agents, high-risk actions, and the global kill switch.
+- Autonomous execution is limited to the low-risk `research`, `create_artifact`, and `run_tests` action set.
+- A default-zero per-action paid API spend cap; spending is denied before revenue and remains denied above the configured cap.
+- Balanced, idempotent double-entry journal entries using integer minor currency units.
+- Eight unit tests and a dedicated GitHub Actions matrix for Python 3.11, 3.12, and 3.13.
+
+The runtime tests passed on all three Python versions in GitHub Actions. This validates the isolated runtime slice only; it does not validate or replace the existing website build, production hosting, payment providers, or VR application.
+
+## Next build increments
+
+1. Connect the runtime to the repository's existing Action Center and approval queue through a trusted host adapter. Approval identity and records must be verified by the host, not supplied by an agent.
+2. Add durable task, goal, memory, and world-manifest registries with schema validation, versioning, retention, and recovery tests.
+3. Add an event-driven scheduler and deterministic simulation runner, then connect multiple agents through scoped workspaces.
+4. Add provider sandbox adapters and verified webhook ingestion; map provider events into the internal ledger without treating the ledger as proof of external settlement.
+5. Add owner-only API endpoints and authorization for the private VR adapter; keep public worlds isolated from business systems.
+6. Add deployment, backup, observability, dependency scanning, and security checks before any live external actions are enabled.
