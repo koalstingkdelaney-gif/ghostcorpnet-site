@@ -1,0 +1,92 @@
+{
+  "protocol": "ghostcorp-world/1",
+  "name": "GhostCorp Research Studio",
+  "visibility": "private",
+  "purpose": "A sandboxed environment for agents to research, build, test, and collaborate.",
+  "clock": {
+    "timezone": "UTC",
+    "tick_seconds": 15,
+    "sleep_consolidation": {
+      "enabled": true,
+      "schedule": "daily"
+    }
+  },
+  "state": {
+    "signals": [
+      {"id": "energy", "range": [0, 1], "meaning": "Available work capacity"},
+      {"id": "focus", "range": [0, 1], "meaning": "Ability to stay on the current task"},
+      {"id": "curiosity", "range": [0, 1], "meaning": "Priority for exploration and learning"},
+      {"id": "social", "range": [0, 1], "meaning": "Priority for collaboration"},
+      {"id": "expression", "range": [0, 1], "meaning": "Priority for producing or sharing an artifact"}
+    ]
+  },
+  "observations": [
+    {"id": "assigned_tasks", "source": "task_queue", "sensitivity": "internal"},
+    {"id": "workspace_files", "source": "sandbox", "sensitivity": "internal"},
+    {"id": "team_presence", "source": "agent_registry", "sensitivity": "internal"},
+    {"id": "budget_remaining", "source": "governance", "sensitivity": "restricted"}
+  ],
+  "actions": [
+    {
+      "name": "research",
+      "description": "Read allowlisted sources and save cited notes.",
+      "risk": "low",
+      "requires_approval": false,
+      "permissions": ["web.read", "workspace.write"]
+    },
+    {
+      "name": "create_artifact",
+      "description": "Create or update files in the agent's isolated workspace.",
+      "risk": "low",
+      "requires_approval": false,
+      "permissions": ["workspace.write"]
+    },
+    {
+      "name": "run_tests",
+      "description": "Run tests and static checks in a bounded sandbox.",
+      "risk": "low",
+      "requires_approval": false,
+      "permissions": ["sandbox.execute"]
+    },
+    {
+      "name": "publish_or_contact",
+      "description": "Publish content, send outreach, or contact an external party.",
+      "risk": "high",
+      "requires_approval": true,
+      "permissions": ["external.publish"]
+    },
+    {
+      "name": "spend_or_transfer",
+      "description": "Purchase, pay, convert, withdraw, or transfer funds.",
+      "risk": "critical",
+      "requires_approval": true,
+      "permissions": ["treasury.transact"]
+    },
+    {
+      "name": "change_governance",
+      "description": "Change permissions, budgets, policies, secrets, or the kill switch.",
+      "risk": "critical",
+      "requires_approval": true,
+      "permissions": ["governance.change"]
+    }
+  ],
+  "limits": {
+    "paid_api_spend_before_revenue_usd": 0,
+    "agent_can_expand_own_permissions": false,
+    "agent_can_raise_own_budget": false,
+    "agent_can_disable_audit": false,
+    "agent_can_disable_kill_switch": false
+  },
+  "events": [
+    "task_assigned",
+    "task_completed",
+    "tool_result",
+    "approval_requested",
+    "approval_granted",
+    "approval_denied",
+    "budget_changed",
+    "agent_created",
+    "agent_paused",
+    "world_changed"
+  ]
+}
