@@ -46,7 +46,7 @@ class RuntimeStore:
     RISK_ORDER = {"low": 0, "medium": 1, "high": 2, "critical": 3}
     AUTONOMOUS_ACTIONS = {"research", "create_artifact", "run_tests"}
 
-    def __init__(self, database: str = ":memory__", paid_api_spend_cap_minor: int = 0):
+    def __init__(self, database: str = ":memory:", paid_api_spend_cap_minor: int = 0):
         if paid_api_spend_cap_minor < 0:
             raise ValueError("Spend cap cannot be negative")
         self._db = sqlite3.connect(database, check_same_thread=False)
