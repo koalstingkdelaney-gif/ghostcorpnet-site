@@ -10,9 +10,9 @@
 ## Phase 2 — Persistent agent runtime
 - Agent registry: stable ID, role, owner, team, status, skills, goals, permitted worlds, and capability grants.
 - Cognitive cycle: sense, update bounded state, retrieve memories, select a typed action, validate against the manifest and policy, execute, observe outcome, record evidence.
-- Memory: episodic events, working set, durable facts with provenance/confidence, and daily consolidation. Support correction, expiry, retention limits, and deletion workflows.
+- Memory: episodic events, working set, durable facts with provenance/confidence, and a daily consolidation cycle. Support correction, expiry, retention limits, and deletion workflows.
 - Goals: multiple concurrent threads with priority, due dates, blockers, commitments, and explicit completion/abandonment reasons.
-- Repetition control: detect unchanged context and avoid looping; backoff after failures.
+- Repetition control: detect unchanged context and avoid looping; back off after failures.
 - Sleep/idle: pause model calls when no meaningful event exists; run consolidation on schedule.
 
 ## Phase 3 — Teams and workspaces
@@ -50,25 +50,26 @@
 - Private VR/business data is inaccessible from public worlds.
 - A simulated multi-agent task can be run end-to-end and inspected from the Action Center.
 
-
 ## Current implementation status
 
-The first executable runtime slice now exists under `integrations/agent_runtime/`:
+The executable runtime foundation lives under `integrations/agent_runtime/`:
 
 - SQLite-backed agent registry with explicit capability grants and active/paused/disabled states.
 - Fail-closed policy decisions for unknown agents, missing capabilities, paused agents, high-risk actions, and the global kill switch.
 - Autonomous execution is limited to the low-risk `research`, `create_artifact`, and `run_tests` action set.
 - A default-zero per-action paid API spend cap; spending is denied before revenue and remains denied above the configured cap.
 - Balanced, idempotent double-entry journal entries using integer minor currency units.
-- Eight unit tests and a dedicated GitHub Actions matrix for Python 3.11, 3.12, and 3.13.
+- Persistent memory with provenance, confidence, versioning, expiry, size limits, and credential-pattern rejection.
+- Persistent goals with priority, blockers, lifecycle status, and explicit completion/abandonment reasons.
+- Dedicated GitHub Actions tests cover the runtime and memory modules on Python 3.11, 3.12, and 3.13.
 
-The runtime tests passed on all three Python versions in GitHub Actions. This validates the isolated runtime slice only; it does not validate or replace the existing website build, production hosting, payment providers, or VR application.
+These tests validate the isolated runtime slice only. They do not validate or replace the existing website build, production hosting, payment providers, or VR application.
 
 ## Next build increments
 
 1. Connect the runtime to the repository's existing Action Center and approval queue through a trusted host adapter. Approval identity and records must be verified by the host, not supplied by an agent.
-2. Add durable task, goal, memory, and world-manifest registries with schema validation, versioning, retention, and recovery tests.
-3. Add an event-driven scheduler and deterministic simulation runner, then connect multiple agents through scoped workspaces.
+2. Add a versioned world-manifest registry, event envelope, schema validation, and deterministic simulation runner.
+3. Add an event-driven scheduler, retry/backoff, idle/sleep consolidation, and multi-agent coordination through scoped workspaces.
 4. Add provider sandbox adapters and verified webhook ingestion; map provider events into the internal ledger without treating the ledger as proof of external settlement.
 5. Add owner-only API endpoints and authorization for the private VR adapter; keep public worlds isolated from business systems.
 6. Add deployment, backup, observability, dependency scanning, and security checks before any live external actions are enabled.
