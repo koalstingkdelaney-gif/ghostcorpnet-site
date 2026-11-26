@@ -56,6 +56,7 @@ The executable runtime foundation lives under `integrations/agent_runtime/`:
 
 - SQLite-backed agent registry with explicit capability grants and active/paused/disabled states.
 - Fail-closed policy decisions for unknown agents, missing capabilities, paused agents, high-risk actions, and the global kill switch.
+- Scoped, expiring, one-time approval records bound to the exact agent, action, and permission set; the legacy caller-supplied approval boolean is ignored.
 - Autonomous execution is limited to the low-risk `research`, `create_artifact`, and `run_tests` action set.
 - A default-zero per-action paid API spend cap; spending is denied before revenue and remains denied above the configured cap.
 - Balanced, idempotent double-entry journal entries using integer minor currency units.
@@ -67,7 +68,7 @@ These tests validate the isolated runtime slice only. They do not validate or re
 
 ## Next build increments
 
-1. Connect the runtime to the repository's existing Action Center and approval queue through a trusted host adapter. Approval identity and records must be verified by the host, not supplied by an agent.
+1. Connect the runtime's scoped approval records to the repository's existing Action Center through a trusted host adapter. The host must authenticate the owner before granting approvals; the local core is not an identity provider.
 2. Add a versioned world-manifest registry, event envelope, schema validation, and deterministic simulation runner.
 3. Add an event-driven scheduler, retry/backoff, idle/sleep consolidation, and multi-agent coordination through scoped workspaces.
 4. Add provider sandbox adapters and verified webhook ingestion; map provider events into the internal ledger without treating the ledger as proof of external settlement.
