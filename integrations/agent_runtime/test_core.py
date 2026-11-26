@@ -27,19 +27,56 @@ class RuntimeStoreTests(unittest.TestCase):
         ))
         self.assertFalse(result.allowed)
 
-    def test_external_action_requires_approval(self):
+    def test_external_action_requires_scoped_one_time_approval(self):
         self.store.create_agent("agent-1", "worker", ["external.publish"])
-        denied = self.store.evaluate(ActionRequest(
+        request = ActionRequest(
             actor_id="agent-1", action="publish_or_contact",
             requested_permissions=("external.publish",),
-        ))
+        )
+        denied = self.store.evaluate(request)
         self.assertFalse(denied.allowed)
         self.assertTrue(denied.requires_approval)
+
+        approval_id = self.store.request_approval(
+            "agent-1", "publish_or_contact", ["external.publish"]
+        )
+        self.store.grant_approval(approval_id, approved_by="authenticated-owner")
         approved = self.store.evaluate(ActionRequest(
+            actor_id="agent-1", action="publish_or_contact",
+            requested_permissions=("external.publish",), approval_id=approval_id,
+        ))
+        self.assertTrue(approved.allowed)
+        replay = self.store.evaluate(ActionRequest(
+            actor_id="agent-1", action="publish_or_contact",
+            requested_permissions=("external.publish",), approval_id=approval_id,
+        ))
+        self.assertFalse(replay.allowed)
+
+    def test_legacy_approval_boolean_is_not_trusted(self):
+        self.store.create_agent("agent-1", "worker", ["external.publish"])
+        result = self.store.evaluate(ActionRequest(
             actor_id="agent-1", action="publish_or_contact",
             requested_permissions=("external.publish",), approval_granted=True,
         ))
-        self.assertTrue(approved.allowed)
+        self.assertFalse(result.allowed)
+
+    def test_approval_is_bound_to_actor_action_and_permissions(self):
+        self.store.create_agent("agent-1", "worker", ["external.publish"])
+        self.store.create_agent("agent-2", "worker", ["external.publish"])
+        approval_id = self.store.request_approval(
+            "agent-1", "publish_or_contact", ["external.publish"]
+        )
+        self.store.grant_approval(approval_id, approved_by="authenticated-owner")
+        wrong_actor = self.store.evaluate(ActionRequest(
+            actor_id="agent-2", action="publish_or_contact",
+            requested_permissions=("external.publish",), approval_id=approval_id,
+        ))
+        self.assertFalse(wrong_actor.allowed)
+        right_actor = self.store.evaluate(ActionRequest(
+            actor_id="agent-1", action="publish_or_contact",
+            requested_permissions=("external.publish",), approval_id=approval_id,
+        ))
+        self.assertTrue(right_actor.allowed)
 
     def test_pre_revenue_spend_is_blocked(self):
         self.store.create_agent("agent-1", "worker", ["workspace.write"])
