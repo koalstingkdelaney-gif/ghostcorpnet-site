@@ -1,11 +1,13 @@
 # Governed Agent Runtime Core
 
-A dependency-free Python foundation for GhostCorp's persistent agent system. It provides a SQLite-backed agent registry, explicit capability checks, a fail-closed policy decision, event records, a global kill switch, and a balanced idempotent double-entry journal using integer minor currency units.
+A dependency-free Python foundation for GhostCorp's agent system. It provides a SQLite-backed agent registry, explicit capability checks, fail-closed policy decisions, audit events, a global kill switch, a balanced idempotent double-entry journal, bounded persistent memory with provenance, and durable goal tracking.
 
 ## Quick start
 
 ```python
-from integrations.agent_runtime import ActionRequest, JournalLine, RuntimeStore
+from integrations.agent_runtime import (
+    ActionRequest, JournalLine, Memory, MemoryStore, RuntimeStore,
+)
 
 store = RuntimeStore("ghostcorp-runtime.sqlite3", paid_api_spend_cap_minor=0)
 store.create_agent("researcher-1", "researcher", ["web.read", "workspace.write"])
@@ -19,9 +21,25 @@ store.post_journal("payment-123", "Example simulated payment", [
     JournalLine("cash_clearing", debit_minor=1250),
     JournalLine("sales_revenue", credit_minor=1250),
 ])
+
+memory = MemoryStore("ghostcorp-memory.sqlite3")
+memory.remember(Memory(
+    key="project_direction", value="Build on the existing GhostCorp site",
+    source="owner instruction", confidence=1.0,
+))
+assert memory.recall("project_direction")["value"].startswith("Build on")
+goal_id = memory.create_goal("Connect the Action Center", priority=90)
 ```
 
 Run tests with `python -m unittest discover -s integrations/agent_runtime -v`.
+
+## Memory and goals
+
+- Facts retain their source, confidence, sensitivity label, version, and optional expiry.
+- Corrections increment the fact version; expired facts are excluded from recall and can be pruned.
+- Memory has a fixed record and value-size limit. Credential-like keys and common secret formats are rejected.
+- Goals persist with priority, due-date metadata, blockers, lifecycle status, and a required reason when completed or abandoned.
+- This is a bounded project memory store, not a secrets manager, vector database, or substitute for user-controlled retention and deletion policies.
 
 ## Current limits
 
