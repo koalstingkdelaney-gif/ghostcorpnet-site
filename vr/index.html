@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090d18">
+<title>GhostCorp VR · Immersive Headquarters</title>
+<meta name="description" content="Enter the GhostCorp immersive headquarters in Meta Quest Browser using WebXR.">
+<style>
+:root{color-scheme:dark;--bg:#080c16;--panel:#101a2b;--line:#29415c;--cyan:#55e6ff;--amber:#ffb66e;--text:#eaf6ff;--muted:#9bb2c9}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}canvas{display:block}
+#hud{position:fixed;inset:0;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top)) 16px calc(14px + env(safe-area-inset-bottom));z-index:2}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.brand,.panel{background:#091322d9;border:1px solid #34516c;border-radius:14px;backdrop-filter:blur(14px);box-shadow:0 10px 40px #0006}.brand{padding:10px 14px}.brand b{letter-spacing:.16em;color:var(--cyan);font-size:12px}.brand div{font-size:12px;color:var(--muted);margin-top:3px}
+#status{font-size:11px;color:#a9c6d9;text-align:right;padding:9px 12px;background:#091322c9;border:1px solid #34516c;border-radius:12px}
+.bottom{display:flex;align-items:end;justify-content:space-between;gap:12px}.panel{pointer-events:auto;padding:12px 14px;max-width:min(440px,76vw)}.panel h1{font-size:16px;margin:0 0 4px;letter-spacing:.04em}.panel p{font-size:12px;color:var(--muted);margin:0;line-height:1.45}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;pointer-events:auto}
+button,a.action{border:1px solid #4b718d;background:#10243a;color:#effaff;border-radius:12px;padding:11px 14px;font:600 12px system-ui;text-decoration:none;cursor:pointer;box-shadow:0 8px 24px #0006}
+button.primary{background:linear-gradient(135deg,#0c9eb8,#17658d);border-color:#75edff;color:#fff}
+button:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+#info{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(390px,88vw);z-index:4;display:none;pointer-events:auto}
+#info.show{display:block}#info .panel{max-width:none;padding:20px}#info h2{margin:0 0 8px;color:var(--cyan)}#info p{color:var(--muted);line-height:1.5;font-size:13px}#info button{margin-top:12px}
+#hint{font-size:11px;color:#a9c6d9;text-align:center}
+@media(max-width:650px){.bottom{align-items:stretch;flex-direction:column}.actions{justify-content:flex-start}.panel{max-width:100%}.top{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div id="hud">
+ <div class="top">
+  <div class="brand"><b>GHOSTCORP // IMMERSIVE SYSTEMS</b><div>HEADQUARTERS · QUEST 3 EDITION</div></div>
+  <div id="status">INITIALIZING WORLD…</div>
+ </div>
+ <div class="bottom">
+  <div class="panel"><h1 id="location">WELCOME TO GHOSTCORP</h1><p id="description">A walkable 3D headquarters. Select a department terminal to explore. Business systems are not connected in this preview.</p></div>
+  <div class="actions">
+   <button id="enter" class="primary">ENTER VR</button>
+   <button id="reset">RESET VIEW</button>
+   <a class="action" href="/">MAIN WEBSITE</a>
+  </div>
+ </div>
+ <div id="hint">Quest 3: use ENTER VR, then your controller thumbstick to move and trigger to select. Desktop: WASD / arrow keys and click terminals.</div>
+</div>
+<div id="info"><div class="panel"><h2 id="infoTitle"></h2><p id="infoText"></p><button id="closeInfo">CLOSE</button></div></div>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+const status=document.querySelector('#status'), enter=document.querySelector('#enter');
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x080d1a);scene.fog=new THREE.FogExp2(0x080d1a,.014);
+const camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,500);camera.position.set(0,1.65,9);
+const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.setSize(innerWidth,innerHeight);renderer.xr.enabled=true;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;document.body.appendChild(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0x9bcfff,0x101323,2));
+const key=new THREE.DirectionalLight(0x9edfff,2.4);key.position.set(4,10,6);scene.add(key);
+const cyan=new THREE.MeshStandardMaterial({color:0x133d56,metalness:.72,roughness:.3,emissive:0x063044,emissiveIntensity:.6});
+const dark=new THREE.MeshStandardMaterial({color:0x101827,metalness:.45,roughness:.55});
+const floorMat=new THREE.MeshStandardMaterial({color:0x101827,metalness:.55,roughness:.42});
+const glow=new THREE.MeshStandardMaterial({color:0x34dfff,emissive:0x13bce9,emissiveIntensity:2.2,metalness:.25,roughness:.25});
+const gold=new THREE.MeshStandardMaterial({color:0xffad63,emissive:0x8a3c10,emissiveIntensity:1.3});
+function box(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);scene.add(m);return m}
+function line(points,mat=glow,r=.025){const g=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p))),32,r,8,false);const m=new THREE.Mesh(g,mat);scene.add(m);return m}
+box(42,.3,42,floorMat,0,-.18,0);
+const grid=new THREE.GridHelper(42,42,0x17617b,0x18364c);grid.position.y=-.015;scene.add(grid);
+for(let i=-18;i<=18;i+=6){box(.035,.025,36,glow,i,.02,0);box(36,.025,.035,glow,0,.02,i)}
+// Main atrium
+box(18,.35,12,dark,0,4,-1);box(18,.35,.35,cyan,0,2.2,-7);box(.35,4.2,12,cyan,-9,2,-1);box(.35,4.2,12,cyan,9,2,-1);
+for(const x of [-8,8])for(const z of [-6,4]){const p=box(.38,4,.38,cyan,x,2,z);box(.62,.12,.62,glow,x,3.7,z)}
+// ceiling ribs
+for(let z=-6;z<=4;z+=2){line([[-8.5,4.1,z],[0,5.2,z],[8.5,4.1,z]],cyan,.045)}
+// Core holographic reactor
+const core=new THREE.Group();core.position.set(0,1.5,-1);scene.add(core);
+const orb=new THREE.Mesh(new THREE.IcosahedronGeometry(1.05,2),new THREE.MeshPhysicalMaterial({color:0x1bd8ff,emissive:0x087fa9,emissiveIntensity:1.5,metalness:.5,roughness:.12,transparent:true,opacity:.88}));core.add(orb);
+for(let i=0;i<3;i++){const ring=new THREE.Mesh(new THREE.TorusGeometry(1.55+i*.22,.025,8,96),i===1?gold:glow);ring.rotation.set(.5+i*.55,.3+i*.7,.2);core.add(ring)}
+for(let i=0;i<12;i++){const a=i*Math.PI/6;const p=box(.12,.12,.12,glow,Math.cos(a)*2.1,1.5+Math.sin(a)*1.5,-1);p.position.set(Math.cos(a)*2.1,Math.sin(a)*1.5,0);core.add(p)}
+// department wings and interactive kiosks
+const targets=[];
+function kiosk(name,sub,x,z,color,desc){const group=new THREE.Group();group.position.set(x,0,z);scene.add(group);
+ const base=new THREE.Mesh(new THREE.CylinderGeometry(.9,1.1,.28,8),dark);base.position.y=.15;group.add(base);
+ const stem=new THREE.Mesh(new THREE.CylinderGeometry(.09,.14,1.05,12),cyan);stem.position.y=.8;group.add(stem);
+ const screen=new THREE.Mesh(new THREE.BoxGeometry(1.8,1.15,.12),new THREE.MeshStandardMaterial({color:0x092238,emissive:color,emissiveIntensity:.65,metalness:.45,roughness:.25}));screen.position.set(0,1.55,0);group.add(screen);
+ const frame=new THREE.Mesh(new THREE.BoxGeometry(1.95,1.3,.09),glow);frame.position.set(0,1.55,-.08);group.add(frame);
+ const canvas=document.createElement('canvas');canvas.width=512;canvas.height=256;const c=canvas.getContext('2d');c.fillStyle='#071624';c.fillRect(0,0,512,256);c.strokeStyle='#55e6ff';c.lineWidth=4;c.strokeRect(10,10,492,236);c.fillStyle='#e9faff';c.font='bold 36px system-ui';c.textAlign='center';c.fillText(name.toUpperCase(),256,100);c.fillStyle='#91c9db';c.font='24px system-ui';c.fillText(sub,256,155);c.fillStyle='#55e6ff';c.fillRect(90,190,332,5);
+ const tex=new THREE.CanvasTexture(canvas);const label=new THREE.Mesh(new THREE.PlaneGeometry(1.76,1.1),new THREE.MeshBasicMaterial({map:tex}));label.position.set(0,1.55,.071);group.add(label);
+ const hit=new THREE.Mesh(new THREE.BoxGeometry(2.2,2.1,.5),new THREE.MeshBasicMaterial({transparent:true,opacity:0}));hit.position.y=1.15;group.add(hit);hit.userData={name,desc};targets.push(hit);
+ return group}
+kiosk('Command Center','AGENT OPERATIONS',-5,-2,0x0b789a,'The future command center will host agent status, approved tasks, audit trails, budgets and the owner approval queue. This preview is visual only; no agents or financial controls are connected.');
+kiosk('Research Lab','IDEAS & INVENTIONS',5,-2,0x236c9a,'A space for research, prototypes, product design and experiments. Interactive workbenches and persistent project files are planned for the next build stage.');
+kiosk('Game Deck','ARCADE & WORLDS',-5,5,0x92552b,'A dedicated portal for GhostCorp games. Public games will remain separate from the private business headquarters.');
+kiosk('Hangar','FLEET & SIMULATION',5,5,0x6a4a9b,'A spaceship hangar and fleet operations space. Vehicle systems, missions and live fleet telemetry are not connected in this preview.');
+// Back wall portals / architecture
+for(let x=-7;x<=7;x+=2){const p=box(.08,2.7,.08,gold,x,1.35,-6.7);p.material=cyan}
+for(const [x,z] of [[-5,-2],[5,-2],[-5,5],[5,5]]){const ring=new THREE.Mesh(new THREE.TorusGeometry(1.25,.035,8,48),glow);ring.position.set(x,2,z);scene.add(ring);ring.rotation.x=Math.PI/2}
+const starGeo=new THREE.BufferGeometry(),starPos=[];for(let i=0;i<900;i++)starPos.push((Math.random()-.5)*180,Math.random()*65+5,(Math.random()-.5)*180);starGeo.setAttribute('position',new THREE.Float32BufferAttribute(starPos,3));scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0x8acfff,size:.11})));
+const raycaster=new THREE.Raycaster();const tempMatrix=new THREE.Matrix4();const controllers=[];
+for(let i=0;i<2;i++){const ctl=renderer.xr.getController(i);scene.add(ctl);const beam=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0,-5)]),new THREE.LineBasicMaterial({color:0x65eaff}));ctl.add(beam);ctl.addEventListener('select',()=>{tempMatrix.identity().extractRotation(ctl.matrixWorld);raycaster.ray.origin.setFromMatrixPosition(ctl.matrixWorld);raycaster.ray.direction.set(0,0,-1).applyMatrix4(tempMatrix);const hit=raycaster.intersectObjects(targets,false)[0];if(hit)showInfo(hit.object.userData)});controllers.push(ctl)}
+const info=document.querySelector('#info');function showInfo(data){document.querySelector('#infoTitle').textContent=data.name;document.querySelector('#infoText').textContent=data.desc;info.classList.add('show');document.querySelector('#location').textContent=data.name.toUpperCase();document.querySelector('#description').textContent=data.desc}
+document.querySelector('#closeInfo').onclick=()=>info.classList.remove('show');
+renderer.domElement.addEventListener('pointerdown',e=>{if(renderer.xr.isPresenting)return;const mouse=new THREE.Vector2(e.clientX/innerWidth*2-1,-e.clientY/innerHeight*2+1);raycaster.setFromCamera(mouse,camera);const hit=raycaster.intersectObjects(targets,false)[0];if(hit)showInfo(hit.object.userData)});
+const keys={};addEventListener('keydown',e=>keys[e.key.toLowerCase()]=true);addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
+document.querySelector('#reset').onclick=()=>{camera.position.set(0,1.65,9);camera.rotation.set(0,0,0)};
+let last=performance.now();
+function move(dt){const speed=3.1*dt;let f=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0),s=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0);if(renderer.xr.isPresenting){const session=renderer.xr.getSession();for(const source of session?.inputSources||[]){const gp=source.gamepad;if(gp&&gp.axes.length>=4){s+=gp.axes[2]||0;f-=gp.axes[3]||0}}}
+const dir=new THREE.Vector3();camera.getWorldDirection(dir);dir.y=0;dir.normalize();const side=new THREE.Vector3().crossVectors(dir,new THREE.Vector3(0,1,0)).normalize();const rig=renderer.xr.getCamera().parent;const obj=renderer.xr.isPresenting?rig:camera;if(obj){obj.position.addScaledVector(dir,f*speed);obj.position.addScaledVector(side,s*speed);obj.position.x=THREE.MathUtils.clamp(obj.position.x,-18,18);obj.position.z=THREE.MathUtils.clamp(obj.position.z,-18,18)}}
+renderer.setAnimationLoop(()=>{const now=performance.now(),dt=Math.min((now-last)/1000,.04);last=now;move(dt);core.rotation.y+=dt*.22;orb.rotation.x+=dt*.12;renderer.render(scene,camera)});
+enter.onclick=async()=>{try{if(!navigator.xr){status.textContent='WEBXR NOT AVAILABLE — OPEN IN QUEST BROWSER';return}const ok=await navigator.xr.isSessionSupported('immersive-vr');if(!ok){status.textContent='IMMERSIVE VR NOT SUPPORTED IN THIS BROWSER';return}const session=await navigator.xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});await renderer.xr.setSession(session);status.textContent='QUEST VR SESSION ACTIVE';enter.textContent='VR ACTIVE';session.addEventListener('end',()=>{status.textContent='3D DESKTOP MODE';enter.textContent='ENTER VR'})}catch(e){status.textContent='VR START FAILED: '+(e.message||'CHECK BROWSER PERMISSIONS');console.error(e)}};
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+status.textContent='WORLD READY · WEBXR CHECKING…';
+if(navigator.xr){navigator.xr.isSessionSupported('immersive-vr').then(ok=>status.textContent=ok?'QUEST WEBXR READY':'3D MODE · OPEN ON QUEST BROWSER').catch(()=>status.textContent='3D MODE · WEBXR CHECK UNAVAILABLE')}else status.textContent='3D MODE · OPEN ON QUEST BROWSER';
+</script>
+</body>
+</html>
