@@ -24,7 +24,7 @@ button:hover,a.btn:hover{transform:translateY(-2px);border-color:var(--cyan);bac
 #hint{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);font-size:10px;color:#9bb8cb;text-align:center;white-space:nowrap}
 @media(max-width:680px){.bottom{align-items:stretch;flex-direction:column}.welcome{max-width:100%}.controls{justify-content:flex-start}.status{max-width:44vw;font-size:9px}.brand strong{font-size:10px}}
 @media(hover:none){button:hover{transform:none}}
-</style>
+#devPanel{position:fixed;z-index:20;inset:4% 3%;display:none;pointer-events:auto;background:rgba(5,12,23,.98);border:1px solid #6cecff;border-radius:16px;padding:12px;color:#eaf5ff;overflow:auto}#devPanel.open{display:flex;flex-direction:column;gap:9px}#devPanel header,.devActions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:space-between}#devPanel h2{font:800 13px system-ui;color:#6cecff;margin:0}#devPanel button,#devPanel a{font:700 11px system-ui;color:#eaf5ff;background:#102b42;border:1px solid #39718b;border-radius:8px;padding:10px;text-decoration:none;min-height:38px}#devPanel textarea{width:100%;min-height:40vh;flex:1;background:#050a12;color:#d8f4ff;border:1px solid #31546a;border-radius:10px;padding:12px;font:13px/1.5 monospace;tab-size:2}#devPanel .devNote{font:11px/1.4 system-ui;color:#9eb5c9}#devPanel iframe{width:100%;height:20vh;border:1px solid #31546a;background:white}#devPanel input{background:#050a12;color:white;border:1px solid #31546a;padding:8px;min-width:0}@media(max-width:680px){#devPanel{inset:2%}#devPanel textarea{min-height:34vh}}</style>
 </head>
 <body>
 <div id="stage"></div>
@@ -36,7 +36,7 @@ button:hover,a.btn:hover{transform:translateY(-2px);border-color:var(--cyan);bac
  <div class="bottom">
   <section class="glass welcome"><div class="eyebrow" id="eyebrow">WELCOME · OWNER EXPERIENCE</div><h1 id="heading">A headquarters beyond the screen.</h1><p id="copy">Explore the central atrium, visit department portals and discover the GhostCorp world. This is the visual foundation; live business systems are not connected yet.</p></section>
   <div class="controls">
-   <button id="map">DEPARTMENTS</button><button id="reset">RECENTER</button><button id="enter" class="primary">ENTER QUEST VR</button><a class="btn" href="/">WEBSITE</a>
+   <button id="map">DEPARTMENTS</button><button id="devOpen">DEV WORKBENCH</button><button id="reset">RECENTER</button><button id="enter" class="primary">ENTER QUEST VR</button><a class="btn" href="/">WEBSITE</a>
   </div>
  </div>
  <div id="hint">QUEST 3 · Left stick: move · Right stick: turn · Trigger: interact · Desktop: WASD + mouse</div>
@@ -50,10 +50,20 @@ button:hover,a.btn:hover{transform:translateY(-2px);border-color:var(--cyan);bac
  <button data-room="city">Skybridge<small>City panorama</small></button>
  </div></section>
 <section id="detail" class="glass" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="eyebrow">GHOSTCORP DIRECTORY</div><h2 id="detailTitle"></h2><p id="detailCopy"></p><div class="row"><button id="visit" class="primary">VISIT LOCATION</button><button id="close">CLOSE</button></div></section>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}</script>
+<section id="devPanel" aria-label="GhostCorp VR developer workbench"><header><h2>GHOSTCORP / VR DEVELOPER WORKBENCH</h2><div class="devActions"><button id="devSave">SAVE DRAFT</button><button id="devDownload">DOWNLOAD FILE</button><button id="devPreview">PREVIEW</button><a href="https://github.dev/koalstingkdelaney-gif/ghostcorpnet-site" target="_blank" rel="noopener">OPEN GITHUB EDITOR</a><button id="devClose">CLOSE</button></div></header><div class="devActions"><label class="devNote" for="devFilename">File</label><input id="devFilename" value="index.html" maxlength="80"><span id="devState" class="devNote">Local draft · not published</span></div><textarea id="devCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Code editor"></textarea><div class="devNote">Edit with the Quest virtual keyboard. Save stores this draft on this headset. Download exports it. Open GitHub Editor to edit and commit the real website (GitHub sign-in and write access required). Local drafts do not change the live site.</div><iframe id="devPreviewFrame" title="Sandboxed project preview" sandbox="allow-scripts"></iframe></section><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
 const $=s=>document.querySelector(s),status=$('#status'),stage=$('#stage'),nav=$('#nav'),detail=$('#detail');
+const devPanel=$('#devPanel'),devCode=$('#devCode'),devFilename=$('#devFilename'),devState=$('#devState');
+const starterCode='<!doctype html>\\n<html lang="en">\\n<head>\\n<meta charset="utf-8">\\n<meta name="viewport" content="width=device-width,initial-scale=1">\\n<title>My GhostCorp Project</title>\\n<style>body{font:16px system-ui;background:#101827;color:#eef;padding:2rem}</style>\\n</head>\\n<body>\\n<h1>My GhostCorp project</h1>\\n<p>Built from the GhostCorp VR workbench.</p>\\n</body>\\n</html>';
+function draftKey(){return 'ghostcorp-vr-draft:'+devFilename.value.trim()}
+function openDev(){devPanel.classList.add('open');nav.classList.remove('open');const saved=localStorage.getItem(draftKey());devCode.value=saved??starterCode;devState.textContent=saved?'Draft restored from this headset':'New local starter project'}
+$('#devOpen').onclick=openDev;$('#devClose').onclick=()=>devPanel.classList.remove('open');
+$('#devSave').onclick=()=>{const n=devFilename.value.trim();if(!/^[a-zA-Z0-9._-]{1,80}$/.test(n)){devState.textContent='Invalid filename';return}localStorage.setItem(draftKey(),devCode.value);devState.textContent='Saved on this headset'};
+$('#devDownload').onclick=()=>{const n=devFilename.value.trim();if(!/^[a-zA-Z0-9._-]{1,80}$/.test(n)){devState.textContent='Invalid filename';return}const u=URL.createObjectURL(new Blob([devCode.value],{type:n.endsWith('.html')?'text/html':'text/plain'}));const a=document.createElement('a');a.href=u;a.download=n;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);devState.textContent='Download requested · check Quest Downloads'};
+$('#devPreview').onclick=()=>{$('#devPreviewFrame').srcdoc=devCode.value;devState.textContent='Preview running in sandboxed frame'};
+devFilename.addEventListener('change',()=>{const v=localStorage.getItem(draftKey());if(v!==null)devCode.value=v});
+
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x070c18);scene.fog=new THREE.FogExp2(0x070c18,.009);
 const camera=new THREE.PerspectiveCamera(72,innerWidth/innerHeight,.08,420);camera.position.set(0,1.68,13);
 const rig=new THREE.Group();rig.add(camera);scene.add(rig);
@@ -136,7 +146,7 @@ function locomotion(dt){let forward=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arr
  turnCooldown-=dt;const dir=new THREE.Vector3(0,0,-1).applyQuaternion(rig.quaternion);const side=new THREE.Vector3(1,0,0).applyQuaternion(rig.quaternion);const speed=renderer.xr.isPresenting?3.0:5.2;rig.position.addScaledVector(dir,THREE.MathUtils.clamp(forward,-1,1)*speed*dt);rig.position.addScaledVector(side,THREE.MathUtils.clamp(strafe,-1,1)*speed*dt);rig.position.x=THREE.MathUtils.clamp(rig.position.x,-32,32);rig.position.z=THREE.MathUtils.clamp(rig.position.z,-34,25)}
 function animate(){const now=performance.now(),dt=Math.min((now-last)/1000,.04);last=now;locomotion(dt);reactor.rotation.y+=dt*.16;reactor.rotation.x=Math.sin(now*.00025)*.08;ceiling.rotation.z+=dt*.025;ceiling2.rotation.z-=dt*.018;fill.intensity=62+Math.sin(now*.001)*8;renderer.render(scene,camera)}
 renderer.setAnimationLoop(animate);
-$('#enter').onclick=async()=>{try{if(!navigator.xr){status.textContent='WEBXR UNAVAILABLE · USE QUEST BROWSER';return}if(!await navigator.xr.isSessionSupported('immersive-vr')){status.textContent='IMMERSIVE VR NOT SUPPORTED';return}const session=await navigator.xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});await renderer.xr.setSession(session);status.textContent='QUEST VR SESSION ACTIVE';$('#enter').textContent='VR ACTIVE';nav.classList.remove('open');session.addEventListener('end',()=>{$('#enter').textContent='ENTER QUEST VR';status.textContent='3D WORLD READY'})}catch(e){status.textContent='VR START BLOCKED · '+(e.message||'CHECK QUEST BROWSER');console.error(e)}};
+$('#enter').onclick=async()=>{try{if(!navigator.xr){status.textContent='WEBXR UNAVAILABLE · USE QUEST BROWSER';return}if(!await navigator.xr.isSessionSupported('immersive-vr')){status.textContent='IMMERSIVE VR NOT SUPPORTED';return}const session=await navigator.xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking','dom-overlay'],domOverlay:{root:document.body}});await renderer.xr.setSession(session);status.textContent='QUEST VR SESSION ACTIVE';$('#enter').textContent='VR ACTIVE';nav.classList.remove('open');session.addEventListener('end',()=>{$('#enter').textContent='ENTER QUEST VR';status.textContent='3D WORLD READY'})}catch(e){status.textContent='VR START BLOCKED · '+(e.message||'CHECK QUEST BROWSER');console.error(e)}};
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 status.textContent='3D WORLD READY · WEBXR CHECKING';
 if(navigator.xr)navigator.xr.isSessionSupported('immersive-vr').then(ok=>status.textContent=ok?'QUEST WEBXR READY':'3D READY · OPEN ON QUEST 3').catch(()=>status.textContent='3D WORLD READY');else status.textContent='3D WORLD READY · OPEN ON QUEST 3';
