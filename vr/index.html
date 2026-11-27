@@ -47,7 +47,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offs
 import * as THREE from 'three';
 const status=document.querySelector('#status'), enter=document.querySelector('#enter');
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x080d1a);scene.fog=new THREE.FogExp2(0x080d1a,.014);
-const camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,500);camera.position.set(0,1.65,9);
+const camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,500);camera.position.set(0,1.65,9);const rig=new THREE.Group();rig.add(camera);scene.add(rig);
 const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.setSize(innerWidth,innerHeight);renderer.xr.enabled=true;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;document.body.appendChild(renderer.domElement);
 scene.add(new THREE.HemisphereLight(0x9bcfff,0x101323,2));
@@ -97,10 +97,10 @@ const info=document.querySelector('#info');function showInfo(data){document.quer
 document.querySelector('#closeInfo').onclick=()=>info.classList.remove('show');
 renderer.domElement.addEventListener('pointerdown',e=>{if(renderer.xr.isPresenting)return;const mouse=new THREE.Vector2(e.clientX/innerWidth*2-1,-e.clientY/innerHeight*2+1);raycaster.setFromCamera(mouse,camera);const hit=raycaster.intersectObjects(targets,false)[0];if(hit)showInfo(hit.object.userData)});
 const keys={};addEventListener('keydown',e=>keys[e.key.toLowerCase()]=true);addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
-document.querySelector('#reset').onclick=()=>{camera.position.set(0,1.65,9);camera.rotation.set(0,0,0)};
+document.querySelector('#reset').onclick=()=>{rig.position.set(0,0,0);camera.position.set(0,1.65,9);camera.rotation.set(0,0,0)};
 let last=performance.now();
 function move(dt){const speed=3.1*dt;let f=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0),s=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0);if(renderer.xr.isPresenting){const session=renderer.xr.getSession();for(const source of session?.inputSources||[]){const gp=source.gamepad;if(gp&&gp.axes.length>=4){s+=gp.axes[2]||0;f-=gp.axes[3]||0}}}
-const dir=new THREE.Vector3();camera.getWorldDirection(dir);dir.y=0;dir.normalize();const side=new THREE.Vector3().crossVectors(dir,new THREE.Vector3(0,1,0)).normalize();const rig=renderer.xr.getCamera().parent;const obj=renderer.xr.isPresenting?rig:camera;if(obj){obj.position.addScaledVector(dir,f*speed);obj.position.addScaledVector(side,s*speed);obj.position.x=THREE.MathUtils.clamp(obj.position.x,-18,18);obj.position.z=THREE.MathUtils.clamp(obj.position.z,-18,18)}}
+const dir=new THREE.Vector3();camera.getWorldDirection(dir);dir.y=0;dir.normalize();const side=new THREE.Vector3().crossVectors(dir,new THREE.Vector3(0,1,0)).normalize();const obj=rig;obj.position.addScaledVector(dir,f*speed);obj.position.addScaledVector(side,s*speed);obj.position.x=THREE.MathUtils.clamp(obj.position.x,-18,18);obj.position.z=THREE.MathUtils.clamp(obj.position.z,-18,18);}
 renderer.setAnimationLoop(()=>{const now=performance.now(),dt=Math.min((now-last)/1000,.04);last=now;move(dt);core.rotation.y+=dt*.22;orb.rotation.x+=dt*.12;renderer.render(scene,camera)});
 enter.onclick=async()=>{try{if(!navigator.xr){status.textContent='WEBXR NOT AVAILABLE — OPEN IN QUEST BROWSER';return}const ok=await navigator.xr.isSessionSupported('immersive-vr');if(!ok){status.textContent='IMMERSIVE VR NOT SUPPORTED IN THIS BROWSER';return}const session=await navigator.xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});await renderer.xr.setSession(session);status.textContent='QUEST VR SESSION ACTIVE';enter.textContent='VR ACTIVE';session.addEventListener('end',()=>{status.textContent='3D DESKTOP MODE';enter.textContent='ENTER VR'})}catch(e){status.textContent='VR START FAILED: '+(e.message||'CHECK BROWSER PERMISSIONS');console.error(e)}};
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
