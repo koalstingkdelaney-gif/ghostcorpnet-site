@@ -55,7 +55,7 @@ button:hover,a.btn:hover{transform:translateY(-2px);border-color:var(--cyan);bac
 import * as THREE from 'three';
 const $=s=>document.querySelector(s),status=$('#status'),stage=$('#stage'),nav=$('#nav'),detail=$('#detail');
 const devPanel=$('#devPanel'),devCode=$('#devCode'),devFilename=$('#devFilename'),devState=$('#devState');
-const starterCode='<!doctype html>\\n<html lang="en">\\n<head>\\n<meta charset="utf-8">\\n<meta name="viewport" content="width=device-width,initial-scale=1">\\n<title>My GhostCorp Project</title>\\n<style>body{font:16px system-ui;background:#101827;color:#eef;padding:2rem}</style>\\n</head>\\n<body>\\n<h1>My GhostCorp project</h1>\\n<p>Built from the GhostCorp VR workbench.</p>\\n</body>\\n</html>';
+const starterCode='<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>My GhostCorp Project</title>\n<style>body{font:16px system-ui;background:#101827;color:#eef;padding:2rem}</style>\n</head>\n<body>\n<h1>My GhostCorp project</h1>\n<p>Built from the GhostCorp VR workbench.</p>\n</body>\n</html>';
 function draftKey(){return 'ghostcorp-vr-draft:'+devFilename.value.trim()}
 function openDev(){devPanel.classList.add('open');nav.classList.remove('open');const saved=localStorage.getItem(draftKey());devCode.value=saved??starterCode;devState.textContent=saved?'Draft restored from this headset':'New local starter project'}
 $('#devOpen').onclick=openDev;$('#devClose').onclick=()=>devPanel.classList.remove('open');
