@@ -3,109 +3,143 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090d18">
-<title>GhostCorp VR · Immersive Headquarters</title>
-<meta name="description" content="Enter the GhostCorp immersive headquarters in Meta Quest Browser using WebXR.">
+<meta name="theme-color" content="#070b14">
+<title>GhostCorp VR — Immersive Headquarters</title>
+<meta name="description" content="Explore the GhostCorp immersive headquarters, designed for Meta Quest 3 and WebXR.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 <style>
-:root{color-scheme:dark;--bg:#080c16;--panel:#101a2b;--line:#29415c;--cyan:#55e6ff;--amber:#ffb66e;--text:#eaf6ff;--muted:#9bb2c9}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}canvas{display:block}
-#hud{position:fixed;inset:0;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top)) 16px calc(14px + env(safe-area-inset-bottom));z-index:2}
-.top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.brand,.panel{background:#091322d9;border:1px solid #34516c;border-radius:14px;backdrop-filter:blur(14px);box-shadow:0 10px 40px #0006}.brand{padding:10px 14px}.brand b{letter-spacing:.16em;color:var(--cyan);font-size:12px}.brand div{font-size:12px;color:var(--muted);margin-top:3px}
-#status{font-size:11px;color:#a9c6d9;text-align:right;padding:9px 12px;background:#091322c9;border:1px solid #34516c;border-radius:12px}
-.bottom{display:flex;align-items:end;justify-content:space-between;gap:12px}.panel{pointer-events:auto;padding:12px 14px;max-width:min(440px,76vw)}.panel h1{font-size:16px;margin:0 0 4px;letter-spacing:.04em}.panel p{font-size:12px;color:var(--muted);margin:0;line-height:1.45}
-.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;pointer-events:auto}
-button,a.action{border:1px solid #4b718d;background:#10243a;color:#effaff;border-radius:12px;padding:11px 14px;font:600 12px system-ui;text-decoration:none;cursor:pointer;box-shadow:0 8px 24px #0006}
-button.primary{background:linear-gradient(135deg,#0c9eb8,#17658d);border-color:#75edff;color:#fff}
-button:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
-#info{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(390px,88vw);z-index:4;display:none;pointer-events:auto}
-#info.show{display:block}#info .panel{max-width:none;padding:20px}#info h2{margin:0 0 8px;color:var(--cyan)}#info p{color:var(--muted);line-height:1.5;font-size:13px}#info button{margin-top:12px}
-#hint{font-size:11px;color:#a9c6d9;text-align:center}
-@media(max-width:650px){.bottom{align-items:stretch;flex-direction:column}.actions{justify-content:flex-start}.panel{max-width:100%}.top{align-items:flex-start}}
+:root{color-scheme:dark;--ink:#eaf5ff;--muted:#9eb5c9;--cyan:#6cecff;--gold:#ffbd79;--glass:rgba(7,16,29,.78);--edge:rgba(120,210,245,.28)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#070b14;color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}canvas{display:block;outline:0}
+#stage{position:fixed;inset:0}
+#hud{position:fixed;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:space-between;padding:calc(16px + env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));pointer-events:none}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand,.status,.glass{background:var(--glass);border:1px solid var(--edge);box-shadow:0 14px 48px #0006;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.brand{padding:10px 15px;border-radius:14px}.brand strong{display:block;font-size:11px;letter-spacing:.2em;color:var(--cyan)}.brand span{display:block;color:var(--muted);font-size:10px;letter-spacing:.14em;margin-top:3px}
+.status{padding:9px 12px;border-radius:12px;color:#c4e7f5;font-size:10px;letter-spacing:.12em;text-align:right}
+.bottom{display:flex;align-items:end;justify-content:space-between;gap:14px}.glass{border-radius:16px}.welcome{padding:15px 17px;max-width:min(470px,70vw)}.eyebrow{font-size:9px;letter-spacing:.2em;color:var(--cyan);font-weight:800}.welcome h1{font-size:clamp(16px,2vw,23px);line-height:1.15;margin:5px 0}.welcome p{font-size:12px;color:var(--muted);margin:0;max-width:58ch}
+.controls{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap;pointer-events:auto}
+button,a.btn{font:700 11px/1 system-ui;text-decoration:none;color:var(--ink);background:rgba(13,30,49,.9);border:1px solid rgba(117,195,226,.4);border-radius:11px;padding:13px 15px;min-height:42px;cursor:pointer;transition:transform .18s,border-color .18s,background .18s;box-shadow:0 8px 24px #0005}
+button:hover,a.btn:hover{transform:translateY(-2px);border-color:var(--cyan);background:#15334b}button.primary{background:linear-gradient(135deg,#087f9b,#145b82);border-color:#6cecff;color:white}button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+#nav{position:fixed;z-index:4;right:16px;top:82px;width:min(290px,calc(100vw - 32px));padding:14px;display:none;pointer-events:auto}#nav.open{display:block}#nav h2{margin:2px 4px 10px;font-size:12px;letter-spacing:.15em;color:var(--cyan)}.navgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.navgrid button{min-height:54px;text-align:left;line-height:1.35}.navgrid small{display:block;color:var(--muted);font-weight:500;font-size:9px}
+#detail{position:fixed;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);width:min(420px,calc(100vw - 32px));padding:20px;display:none;pointer-events:auto}#detail.open{display:block}#detail h2{font-size:20px;margin:5px 0 8px}#detail p{color:var(--muted);font-size:13px;margin:0 0 14px}#detail .row{display:flex;gap:8px;flex-wrap:wrap}
+#hint{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);font-size:10px;color:#9bb8cb;text-align:center;white-space:nowrap}
+@media(max-width:680px){.bottom{align-items:stretch;flex-direction:column}.welcome{max-width:100%}.controls{justify-content:flex-start}.status{max-width:44vw;font-size:9px}.brand strong{font-size:10px}}
+@media(hover:none){button:hover{transform:none}}
 </style>
 </head>
 <body>
+<div id="stage"></div>
 <div id="hud">
- <div class="top">
-  <div class="brand"><b>GHOSTCORP // IMMERSIVE SYSTEMS</b><div>HEADQUARTERS · QUEST 3 EDITION</div></div>
-  <div id="status">INITIALIZING WORLD…</div>
+ <div class="topbar">
+  <div class="brand"><strong>GHOSTCORP <span style="display:inline;color:#fff">/</span> IMMERSIVE SYSTEMS</strong><span>PRIVATE HQ CONCEPT · QUEST 3 OPTIMIZED</span></div>
+  <div class="status" id="status">WORLD INITIALIZING</div>
  </div>
  <div class="bottom">
-  <div class="panel"><h1 id="location">WELCOME TO GHOSTCORP</h1><p id="description">A walkable 3D headquarters. Select a department terminal to explore. Business systems are not connected in this preview.</p></div>
-  <div class="actions">
-   <button id="enter" class="primary">ENTER VR</button>
-   <button id="reset">RESET VIEW</button>
-   <a class="action" href="/">MAIN WEBSITE</a>
+  <section class="glass welcome"><div class="eyebrow" id="eyebrow">WELCOME · OWNER EXPERIENCE</div><h1 id="heading">A headquarters beyond the screen.</h1><p id="copy">Explore the central atrium, visit department portals and discover the GhostCorp world. This is the visual foundation; live business systems are not connected yet.</p></section>
+  <div class="controls">
+   <button id="map">DEPARTMENTS</button><button id="reset">RECENTER</button><button id="enter" class="primary">ENTER QUEST VR</button><a class="btn" href="/">WEBSITE</a>
   </div>
  </div>
- <div id="hint">Quest 3: use ENTER VR, then your controller thumbstick to move and trigger to select. Desktop: WASD / arrow keys and click terminals.</div>
+ <div id="hint">QUEST 3 · Left stick: move · Right stick: turn · Trigger: interact · Desktop: WASD + mouse</div>
 </div>
-<div id="info"><div class="panel"><h2 id="infoTitle"></h2><p id="infoText"></p><button id="closeInfo">CLOSE</button></div></div>
-<script type="importmap">
-{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}
-</script>
+<section id="nav" class="glass" aria-label="Department navigation"><h2>EXPLORE THE CAMPUS</h2><div class="navgrid">
+ <button data-room="atrium">Central Atrium<small>Headquarters core</small></button>
+ <button data-room="command">Command Center<small>Agent operations · locked</small></button>
+ <button data-room="research">Innovation Lab<small>Research & creation</small></button>
+ <button data-room="games">Game District<small>Games & experiences</small></button>
+ <button data-room="hangar">Flight Hangar<small>Fleet & simulation</small></button>
+ <button data-room="city">Skybridge<small>City panorama</small></button>
+ </div></section>
+<section id="detail" class="glass" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="eyebrow">GHOSTCORP DIRECTORY</div><h2 id="detailTitle"></h2><p id="detailCopy"></p><div class="row"><button id="visit" class="primary">VISIT LOCATION</button><button id="close">CLOSE</button></div></section>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
-const status=document.querySelector('#status'), enter=document.querySelector('#enter');
-const scene=new THREE.Scene();scene.background=new THREE.Color(0x080d1a);scene.fog=new THREE.FogExp2(0x080d1a,.014);
-const camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,500);camera.position.set(0,1.65,9);const rig=new THREE.Group();rig.add(camera);scene.add(rig);
-const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.setSize(innerWidth,innerHeight);renderer.xr.enabled=true;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;document.body.appendChild(renderer.domElement);
-scene.add(new THREE.HemisphereLight(0x9bcfff,0x101323,2));
-const key=new THREE.DirectionalLight(0x9edfff,2.4);key.position.set(4,10,6);scene.add(key);
-const cyan=new THREE.MeshStandardMaterial({color:0x133d56,metalness:.72,roughness:.3,emissive:0x063044,emissiveIntensity:.6});
-const dark=new THREE.MeshStandardMaterial({color:0x101827,metalness:.45,roughness:.55});
-const floorMat=new THREE.MeshStandardMaterial({color:0x101827,metalness:.55,roughness:.42});
-const glow=new THREE.MeshStandardMaterial({color:0x34dfff,emissive:0x13bce9,emissiveIntensity:2.2,metalness:.25,roughness:.25});
-const gold=new THREE.MeshStandardMaterial({color:0xffad63,emissive:0x8a3c10,emissiveIntensity:1.3});
-function box(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);scene.add(m);return m}
-function line(points,mat=glow,r=.025){const g=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p))),32,r,8,false);const m=new THREE.Mesh(g,mat);scene.add(m);return m}
-box(42,.3,42,floorMat,0,-.18,0);
-const grid=new THREE.GridHelper(42,42,0x17617b,0x18364c);grid.position.y=-.015;scene.add(grid);
-for(let i=-18;i<=18;i+=6){box(.035,.025,36,glow,i,.02,0);box(36,.025,.035,glow,0,.02,i)}
-// Main atrium
-box(18,.35,12,dark,0,4,-1);box(18,.35,.35,cyan,0,2.2,-7);box(.35,4.2,12,cyan,-9,2,-1);box(.35,4.2,12,cyan,9,2,-1);
-for(const x of [-8,8])for(const z of [-6,4]){const p=box(.38,4,.38,cyan,x,2,z);box(.62,.12,.62,glow,x,3.7,z)}
-// ceiling ribs
-for(let z=-6;z<=4;z+=2){line([[-8.5,4.1,z],[0,5.2,z],[8.5,4.1,z]],cyan,.045)}
-// Core holographic reactor
-const core=new THREE.Group();core.position.set(0,1.5,-1);scene.add(core);
-const orb=new THREE.Mesh(new THREE.IcosahedronGeometry(1.05,2),new THREE.MeshPhysicalMaterial({color:0x1bd8ff,emissive:0x087fa9,emissiveIntensity:1.5,metalness:.5,roughness:.12,transparent:true,opacity:.88}));core.add(orb);
-for(let i=0;i<3;i++){const ring=new THREE.Mesh(new THREE.TorusGeometry(1.55+i*.22,.025,8,96),i===1?gold:glow);ring.rotation.set(.5+i*.55,.3+i*.7,.2);core.add(ring)}
-for(let i=0;i<12;i++){const a=i*Math.PI/6;const p=box(.12,.12,.12,glow,Math.cos(a)*2.1,1.5+Math.sin(a)*1.5,-1);p.position.set(Math.cos(a)*2.1,Math.sin(a)*1.5,0);core.add(p)}
-// department wings and interactive kiosks
-const targets=[];
-function kiosk(name,sub,x,z,color,desc){const group=new THREE.Group();group.position.set(x,0,z);scene.add(group);
- const base=new THREE.Mesh(new THREE.CylinderGeometry(.9,1.1,.28,8),dark);base.position.y=.15;group.add(base);
- const stem=new THREE.Mesh(new THREE.CylinderGeometry(.09,.14,1.05,12),cyan);stem.position.y=.8;group.add(stem);
- const screen=new THREE.Mesh(new THREE.BoxGeometry(1.8,1.15,.12),new THREE.MeshStandardMaterial({color:0x092238,emissive:color,emissiveIntensity:.65,metalness:.45,roughness:.25}));screen.position.set(0,1.55,0);group.add(screen);
- const frame=new THREE.Mesh(new THREE.BoxGeometry(1.95,1.3,.09),glow);frame.position.set(0,1.55,-.08);group.add(frame);
- const canvas=document.createElement('canvas');canvas.width=512;canvas.height=256;const c=canvas.getContext('2d');c.fillStyle='#071624';c.fillRect(0,0,512,256);c.strokeStyle='#55e6ff';c.lineWidth=4;c.strokeRect(10,10,492,236);c.fillStyle='#e9faff';c.font='bold 36px system-ui';c.textAlign='center';c.fillText(name.toUpperCase(),256,100);c.fillStyle='#91c9db';c.font='24px system-ui';c.fillText(sub,256,155);c.fillStyle='#55e6ff';c.fillRect(90,190,332,5);
- const tex=new THREE.CanvasTexture(canvas);const label=new THREE.Mesh(new THREE.PlaneGeometry(1.76,1.1),new THREE.MeshBasicMaterial({map:tex}));label.position.set(0,1.55,.071);group.add(label);
- const hit=new THREE.Mesh(new THREE.BoxGeometry(2.2,2.1,.5),new THREE.MeshBasicMaterial({transparent:true,opacity:0}));hit.position.y=1.15;group.add(hit);hit.userData={name,desc};targets.push(hit);
+const $=s=>document.querySelector(s),status=$('#status'),stage=$('#stage'),nav=$('#nav'),detail=$('#detail');
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x070c18);scene.fog=new THREE.FogExp2(0x070c18,.009);
+const camera=new THREE.PerspectiveCamera(72,innerWidth/innerHeight,.08,420);camera.position.set(0,1.68,13);
+const rig=new THREE.Group();rig.add(camera);scene.add(rig);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local-floor');renderer.domElement.tabIndex=0;stage.appendChild(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0x9edbff,0x101321,1.65));
+const key=new THREE.DirectionalLight(0xc4e8ff,2.1);key.position.set(-8,14,7);scene.add(key);
+const fill=new THREE.PointLight(0x13cfff,65,34,2);fill.position.set(0,5,-3);scene.add(fill);
+const warm=new THREE.PointLight(0xff9f5e,28,22,2);warm.position.set(8,4,1);scene.add(warm);
+const mat=(color,metalness=.35,roughness=.45,emissive=0,ei=0)=>new THREE.MeshStandardMaterial({color,metalness,roughness,emissive,emissiveIntensity:ei});
+const M={floor:mat(0x111d2b,.68,.3),wall:mat(0x101b2a,.72,.34),dark:mat(0x080f1b,.5,.42),metal:mat(0x304b61,.82,.23),cyan:mat(0x1c6178,.65,.25,0x073e55,.7),light:mat(0x51e8ff,.25,.22,0x12bfe9,2.4),gold:mat(0xffb36c,.45,.25,0x87400e,1.4),glass:new THREE.MeshPhysicalMaterial({color:0x163a50,metalness:.45,roughness:.12,transparent:true,opacity:.38,transmission:.12}),white:mat(0xb8d9e8,.25,.4,0x18364a,.25)};
+const world=new THREE.Group();scene.add(world);
+function mesh(geo,material,parent=world,pos=[0,0,0]){const o=new THREE.Mesh(geo,material);o.position.set(...pos);parent.add(o);return o}
+function cube(w,h,d,material,pos,parent=world){return mesh(new THREE.BoxGeometry(w,h,d),material,parent,pos)}
+function tube(points,material,r=.025,parent=world){const curve=new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p)));return mesh(new THREE.TubeGeometry(curve,48,r,8,false),material,parent)}
+function glowStrip(w,h,d,pos){cube(w,h,d,M.light,pos)}
+// Atrium floor: concentric inlays and radial geometry
+cube(72,.55,72,M.floor,[0,-.32,0]);
+for(let r=3;r<=30;r+=3){const ring=mesh(new THREE.TorusGeometry(r,.018,6,160),r%6===0?M.cyan:M.metal,world,[0,-.025,0]);ring.rotation.x=Math.PI/2}
+for(let a=0;a<Math.PI*2;a+=Math.PI/12){tube([[Math.cos(a)*2,-.025,Math.sin(a)*2],[Math.cos(a)*13,-.025,Math.sin(a)*13],[Math.cos(a)*30,-.025,Math.sin(a)*30]],M.metal,.012)}
+// Vast architectural walls and raised mezzanine
+cube(38,.5,1,M.wall,[0,7,-18]);cube(1,.5,36,M.wall,[-19,7,0]);cube(1,.5,36,M.wall,[19,7,0]);
+cube(38,.32,1,M.metal,[0,4.8,-17.5]);cube(1,.32,36,M.metal,[-18.5,4.8,0]);cube(1,.32,36,M.metal,[18.5,4.8,0]);
+for(let x=-17;x<=17;x+=4){cube(.16,7,.16,M.metal,[x,3.3,-17.3]);cube(.28,.08,.28,M.light,[x,6.7,-17.3]);}
+for(let z=-14;z<=14;z+=4){cube(.16,7,.16,M.metal,[-18.3,3.3,z]);cube(.16,7,.16,M.metal,[18.3,3.3,z]);}
+for(let z=-16;z<=16;z+=4){tube([[-18,7,z],[0,9.5,z],[18,7,z]],M.cyan,.055)}
+// suspended ceiling halo and central reactor
+const ceiling=mesh(new THREE.TorusGeometry(8,.09,10,128),M.light,world,[0,8.5,-2]);ceiling.rotation.x=Math.PI/2;
+const ceiling2=mesh(new THREE.TorusGeometry(11,.035,8,128),M.gold,world,[0,8.15,-2]);ceiling2.rotation.x=Math.PI/2;
+const reactor=new THREE.Group();reactor.position.set(0,3.2,-2);world.add(reactor);
+mesh(new THREE.IcosahedronGeometry(1.35,2),new THREE.MeshPhysicalMaterial({color:0x36dfff,emissive:0x087caa,emissiveIntensity:1.8,metalness:.5,roughness:.12,transmission:.25,transparent:true,opacity:.94}),reactor);
+for(let i=0;i<4;i++){const ring=mesh(new THREE.TorusGeometry(2+i*.28,.035,8,128),i===2?M.gold:M.light,reactor);ring.rotation.set(.45+i*.34,.35+i*.57,.25+i*.2)}
+for(let i=0;i<16;i++){const a=i*Math.PI/8;mesh(new THREE.SphereGeometry(.075,12,8),M.light,reactor,[Math.cos(a)*2.7,Math.sin(a)*2.7,Math.sin(a*2)*.3])}
+// Floating light columns and decorative vertical fins
+for(let x=-15;x<=15;x+=5)for(let z=-14;z<=10;z+=6){cube(.12,3.5,.12,M.metal,[x,1.75,z]);cube(.22,.08,.22,M.light,[x,3.45,z]);}
+for(let i=0;i<22;i++){const a=i*Math.PI*2/22;const x=Math.cos(a)*25,z=Math.sin(a)*25;const p=cube(.18,2.6,.18,M.cyan,[x,1.3,z]);p.rotation.y=-a;}
+// Panoramic skyline outside the skybridge
+const skyline=new THREE.Group();world.add(skyline);
+for(let i=0;i<44;i++){const x=-34+i*1.55,h=4+((i*37)%13)+Math.sin(i*2)*2;const b=cube(1.05,h,.9, i%5===0?M.cyan:M.dark,[x,h/2-1,-38],skyline);b.material=i%7===0?M.metal:M.dark;for(let y=0;y<h-1;y+=1.15){cube(.55,.045,.035,i%5===0?M.light:M.gold,[x,y,-37.5],skyline)}}
+const starsGeo=new THREE.BufferGeometry(),stars=[];for(let i=0;i<1100;i++)stars.push((Math.random()-.5)*220,Math.random()*90+8,(Math.random()-.5)*220);starsGeo.setAttribute('position',new THREE.Float32BufferAttribute(stars,3));world.add(new THREE.Points(starsGeo,new THREE.PointsMaterial({color:0x9bdfff,size:.12,transparent:true,opacity:.75})));
+const rooms={
+ atrium:{title:'Central Atrium',eyebrow:'HEADQUARTERS CORE',copy:'The heart of GhostCorp. A living central hub connecting every division, with a suspended energy core, panoramic architecture and clear paths to each department.',pos:[0,1.68,13]},
+ command:{title:'Command Center',eyebrow:'PRIVATE · OWNER ACCESS',copy:'Reserved for the owner: agent orchestration, approval queue, spend governor, system health and audit trails. This entrance is intentionally locked until real authentication and backend authorization are connected.',pos:[-11,1.68,-8],locked:true},
+ research:{title:'Innovation Lab',eyebrow:'RESEARCH & DEVELOPMENT',copy:'A creative studio for research teams, product design, prototyping, simulations and experiments. Future workbenches will connect to versioned project workspaces.',pos:[11,1.68,-8]},
+ games:{title:'Game District',eyebrow:'EXPERIENCES & WORLDS',copy:'A dedicated entertainment wing for GhostCorp games and immersive experiences. Public play spaces remain separated from private company operations.',pos:[-11,1.68,10]},
+ hangar:{title:'Flight Hangar',eyebrow:'FLEET & SIMULATION',copy:'A high-bay spacecraft hangar concept for fleet coordination, logistics simulations, vehicle design and mission planning.',pos:[11,1.68,10]},
+ city:{title:'Skybridge',eyebrow:'THE GHOSTCORP CONSTELLATION',copy:'A panoramic observation deck overlooking the future GhostCorp city. Each tower represents a business line connected to the wider company ecosystem.',pos:[0,1.68,-13]}
+};
+const interactables=[];
+function makeLabel(title,sub){const c=document.createElement('canvas');c.width=1024;c.height=384;const g=c.getContext('2d');g.fillStyle='#061322';g.fillRect(0,0,1024,384);g.strokeStyle='#58e5ff';g.lineWidth=5;g.strokeRect(14,14,996,356);g.fillStyle='#65eaff';g.font='700 30px system-ui';g.fillText('GHOSTCORP  /  DEPARTMENT',48,74);g.fillStyle='#f0f8ff';g.font='700 72px system-ui';g.fillText(title.toUpperCase(),48,180);g.fillStyle='#9fc4d8';g.font='34px system-ui';g.fillText(sub.toUpperCase(),50,245);g.fillStyle='#55e6ff';g.fillRect(50,290,920,5);const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;return new THREE.MeshBasicMaterial({map:tex,side:THREE.DoubleSide})}
+function portal(key,title,sub,x,z,desc){const group=new THREE.Group();group.position.set(x,0,z);world.add(group);
+ const platform=mesh(new THREE.CylinderGeometry(2.1,2.35,.35,12),M.dark,group,[0,.18,0]);platform.material=M.dark;
+ const outer=mesh(new THREE.TorusGeometry(1.7,.11,12,80),M.light,group,[0,2.35,0]);outer.rotation.x=Math.PI/2;
+ const inner=mesh(new THREE.TorusGeometry(1.48,.035,8,80),M.gold,group,[0,2.35,-.08]);inner.rotation.x=Math.PI/2;
+ cube(2.9,.12,.5,M.metal,[0,3.9,0],group);cube(2.6,.055,.16,M.light,[0,3.98,.02],group);
+ const board=mesh(new THREE.PlaneGeometry(3.5,1.3),makeLabel(title,sub),group,[0,5.1,-.1]);
+ const beacon=mesh(new THREE.CylinderGeometry(.07,.07,1.1,12),M.light,group,[0,4.45,0]);
+ const hit=mesh(new THREE.CylinderGeometry(1.9,1.9,4.7,16),new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false}),group,[0,2.3,0]);hit.userData={key,title,desc};interactables.push(hit);
  return group}
-kiosk('Command Center','AGENT OPERATIONS',-5,-2,0x0b789a,'The future command center will host agent status, approved tasks, audit trails, budgets and the owner approval queue. This preview is visual only; no agents or financial controls are connected.');
-kiosk('Research Lab','IDEAS & INVENTIONS',5,-2,0x236c9a,'A space for research, prototypes, product design and experiments. Interactive workbenches and persistent project files are planned for the next build stage.');
-kiosk('Game Deck','ARCADE & WORLDS',-5,5,0x92552b,'A dedicated portal for GhostCorp games. Public games will remain separate from the private business headquarters.');
-kiosk('Hangar','FLEET & SIMULATION',5,5,0x6a4a9b,'A spaceship hangar and fleet operations space. Vehicle systems, missions and live fleet telemetry are not connected in this preview.');
-// Back wall portals / architecture
-for(let x=-7;x<=7;x+=2){const p=box(.08,2.7,.08,gold,x,1.35,-6.7);p.material=cyan}
-for(const [x,z] of [[-5,-2],[5,-2],[-5,5],[5,5]]){const ring=new THREE.Mesh(new THREE.TorusGeometry(1.25,.035,8,48),glow);ring.position.set(x,2,z);scene.add(ring);ring.rotation.x=Math.PI/2}
-const starGeo=new THREE.BufferGeometry(),starPos=[];for(let i=0;i<900;i++)starPos.push((Math.random()-.5)*180,Math.random()*65+5,(Math.random()-.5)*180);starGeo.setAttribute('position',new THREE.Float32BufferAttribute(starPos,3));scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0x8acfff,size:.11})));
-const raycaster=new THREE.Raycaster();const tempMatrix=new THREE.Matrix4();const controllers=[];
-for(let i=0;i<2;i++){const ctl=renderer.xr.getController(i);scene.add(ctl);const beam=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0,-5)]),new THREE.LineBasicMaterial({color:0x65eaff}));ctl.add(beam);ctl.addEventListener('select',()=>{tempMatrix.identity().extractRotation(ctl.matrixWorld);raycaster.ray.origin.setFromMatrixPosition(ctl.matrixWorld);raycaster.ray.direction.set(0,0,-1).applyMatrix4(tempMatrix);const hit=raycaster.intersectObjects(targets,false)[0];if(hit)showInfo(hit.object.userData)});controllers.push(ctl)}
-const info=document.querySelector('#info');function showInfo(data){document.querySelector('#infoTitle').textContent=data.name;document.querySelector('#infoText').textContent=data.desc;info.classList.add('show');document.querySelector('#location').textContent=data.name.toUpperCase();document.querySelector('#description').textContent=data.desc}
-document.querySelector('#closeInfo').onclick=()=>info.classList.remove('show');
-renderer.domElement.addEventListener('pointerdown',e=>{if(renderer.xr.isPresenting)return;const mouse=new THREE.Vector2(e.clientX/innerWidth*2-1,-e.clientY/innerHeight*2+1);raycaster.setFromCamera(mouse,camera);const hit=raycaster.intersectObjects(targets,false)[0];if(hit)showInfo(hit.object.userData)});
-const keys={};addEventListener('keydown',e=>keys[e.key.toLowerCase()]=true);addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
-document.querySelector('#reset').onclick=()=>{rig.position.set(0,0,0);camera.position.set(0,1.65,9);camera.rotation.set(0,0,0)};
-let last=performance.now();
-function move(dt){const speed=3.1*dt;let f=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0),s=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0);if(renderer.xr.isPresenting){const session=renderer.xr.getSession();for(const source of session?.inputSources||[]){const gp=source.gamepad;if(gp&&gp.axes.length>=4){s+=gp.axes[2]||0;f-=gp.axes[3]||0}}}
-const dir=new THREE.Vector3();camera.getWorldDirection(dir);dir.y=0;dir.normalize();const side=new THREE.Vector3().crossVectors(dir,new THREE.Vector3(0,1,0)).normalize();const obj=rig;obj.position.addScaledVector(dir,f*speed);obj.position.addScaledVector(side,s*speed);obj.position.x=THREE.MathUtils.clamp(obj.position.x,-18,18);obj.position.z=THREE.MathUtils.clamp(obj.position.z,-18,18);}
-renderer.setAnimationLoop(()=>{const now=performance.now(),dt=Math.min((now-last)/1000,.04);last=now;move(dt);core.rotation.y+=dt*.22;orb.rotation.x+=dt*.12;renderer.render(scene,camera)});
-enter.onclick=async()=>{try{if(!navigator.xr){status.textContent='WEBXR NOT AVAILABLE — OPEN IN QUEST BROWSER';return}const ok=await navigator.xr.isSessionSupported('immersive-vr');if(!ok){status.textContent='IMMERSIVE VR NOT SUPPORTED IN THIS BROWSER';return}const session=await navigator.xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});await renderer.xr.setSession(session);status.textContent='QUEST VR SESSION ACTIVE';enter.textContent='VR ACTIVE';session.addEventListener('end',()=>{status.textContent='3D DESKTOP MODE';enter.textContent='ENTER VR'})}catch(e){status.textContent='VR START FAILED: '+(e.message||'CHECK BROWSER PERMISSIONS');console.error(e)}};
+portal('command','Command Center','Private Agent Operations',-12,-8,rooms.command.copy);
+portal('research','Innovation Lab','Research · Build · Invent',12,-8,rooms.research.copy);
+portal('games','Game District','Play · Create · Explore',-12,10,rooms.games.copy);
+portal('hangar','Flight Hangar','Fleet · Simulation · Design',12,10,rooms.hangar.copy);
+portal('city','Skybridge','The GhostCorp Constellation',0,-25,rooms.city.copy);
+// glass partitions and floor direction indicators
+for(const x of [-7,7]){cube(.08,3.5,20,M.glass,[x,1.8,-3]);cube(4,.08,.08,M.light,[x,3.55,-3]);}
+for(let z=5;z>=-14;z-=3){const a=mesh(new THREE.ConeGeometry(.16,.48,4),M.light,world,[0,.04,z]);a.rotation.x=Math.PI/2}
+const raycaster=new THREE.Raycaster();raycaster.far=22;const tmp=new THREE.Matrix4(),controllers=[];
+function openDetail(data){const room=rooms[data.key];$('#detailTitle').textContent=room.title;$('#detailCopy').textContent=room.copy;$('#eyebrow').textContent=room.eyebrow;$('#heading').textContent=room.title;$('#copy').textContent=room.copy;detail.classList.add('open');$('#visit').dataset.room=data.key;nav.classList.remove('open')}
+function interact(origin,direction){raycaster.set(origin,direction);const hit=raycaster.intersectObjects(interactables,false)[0];if(hit)openDetail(hit.object.userData)}
+for(let i=0;i<2;i++){const ctl=renderer.xr.getController(i);rig.add(ctl);const beam=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0,-12)]),new THREE.LineBasicMaterial({color:0x6cecff,transparent:true,opacity:.65}));ctl.add(beam);ctl.addEventListener('select',()=>{tmp.identity().extractRotation(ctl.matrixWorld);const origin=new THREE.Vector3().setFromMatrixPosition(ctl.matrixWorld);const dir=new THREE.Vector3(0,0,-1).applyMatrix4(tmp);interact(origin,dir)});controllers.push(ctl)}
+$('#map').onclick=()=>nav.classList.toggle('open');$('#close').onclick=()=>detail.classList.remove('open');
+$('#visit').onclick=()=>{const k=$('#visit').dataset.room;const r=rooms[k];if(r.locked){$('#detailCopy').textContent='Owner-only systems remain locked until secure sign-in, server-side authorization and audited session controls are deployed. No business data is exposed in this preview.';return}rig.position.set(-r.pos[0],0,-r.pos[2]);camera.position.set(0,1.68,0);camera.rotation.set(0,0,0);detail.classList.remove('open');$('#eyebrow').textContent=r.eyebrow;$('#heading').textContent=r.title;$('#copy').textContent=r.copy};
+nav.querySelectorAll('[data-room]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.room;openDetail({key:k});}));
+$('#reset').onclick=()=>{rig.position.set(0,0,0);camera.position.set(0,1.68,13);camera.rotation.set(0,0,0);detail.classList.remove('open');nav.classList.remove('open');};
+renderer.domElement.addEventListener('pointerdown',e=>{if(renderer.xr.isPresenting)return;const p=new THREE.Vector2(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);raycaster.setFromCamera(p,camera);const hit=raycaster.intersectObjects(interactables,false)[0];if(hit)openDetail(hit.object.userData)});
+const keys={};addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if(e.key==='Escape'){detail.classList.remove('open');nav.classList.remove('open')}});addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
+let last=performance.now(),turnCooldown=0;
+function locomotion(dt){let forward=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0),strafe=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),turn=(keys.q?1:0)-(keys.e?1:0);
+ if(renderer.xr.isPresenting){for(const source of renderer.xr.getSession()?.inputSources||[]){const gp=source.gamepad;if(!gp)continue;const axes=gp.axes;if(axes.length>=4){if(source.handedness==='left'){strafe+=Math.abs(axes[2]||0)>.12?axes[2]:axes[0]||0;forward-=Math.abs(axes[3]||0)>.12?axes[3]:axes[1]||0}else{const t=axes[2]||axes[0]||0;if(Math.abs(t)>.72&&turnCooldown<=0){rig.rotation.y-=Math.sign(t)*Math.PI/6;turnCooldown=.28}}}}}
+ turnCooldown-=dt;const dir=new THREE.Vector3(0,0,-1).applyQuaternion(rig.quaternion);const side=new THREE.Vector3(1,0,0).applyQuaternion(rig.quaternion);const speed=renderer.xr.isPresenting?3.0:5.2;rig.position.addScaledVector(dir,THREE.MathUtils.clamp(forward,-1,1)*speed*dt);rig.position.addScaledVector(side,THREE.MathUtils.clamp(strafe,-1,1)*speed*dt);rig.position.x=THREE.MathUtils.clamp(rig.position.x,-32,32);rig.position.z=THREE.MathUtils.clamp(rig.position.z,-34,25)}
+function animate(){const now=performance.now(),dt=Math.min((now-last)/1000,.04);last=now;locomotion(dt);reactor.rotation.y+=dt*.16;reactor.rotation.x=Math.sin(now*.00025)*.08;ceiling.rotation.z+=dt*.025;ceiling2.rotation.z-=dt*.018;fill.intensity=62+Math.sin(now*.001)*8;renderer.render(scene,camera)}
+renderer.setAnimationLoop(animate);
+$('#enter').onclick=async()=>{try{if(!navigator.xr){status.textContent='WEBXR UNAVAILABLE · USE QUEST BROWSER';return}if(!await navigator.xr.isSessionSupported('immersive-vr')){status.textContent='IMMERSIVE VR NOT SUPPORTED';return}const session=await navigator.xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking']});await renderer.xr.setSession(session);status.textContent='QUEST VR SESSION ACTIVE';$('#enter').textContent='VR ACTIVE';nav.classList.remove('open');session.addEventListener('end',()=>{$('#enter').textContent='ENTER QUEST VR';status.textContent='3D WORLD READY'})}catch(e){status.textContent='VR START BLOCKED · '+(e.message||'CHECK QUEST BROWSER');console.error(e)}};
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
-status.textContent='WORLD READY · WEBXR CHECKING…';
-if(navigator.xr){navigator.xr.isSessionSupported('immersive-vr').then(ok=>status.textContent=ok?'QUEST WEBXR READY':'3D MODE · OPEN ON QUEST BROWSER').catch(()=>status.textContent='3D MODE · WEBXR CHECK UNAVAILABLE')}else status.textContent='3D MODE · OPEN ON QUEST BROWSER';
+status.textContent='3D WORLD READY · WEBXR CHECKING';
+if(navigator.xr)navigator.xr.isSessionSupported('immersive-vr').then(ok=>status.textContent=ok?'QUEST WEBXR READY':'3D READY · OPEN ON QUEST 3').catch(()=>status.textContent='3D WORLD READY');else status.textContent='3D WORLD READY · OPEN ON QUEST 3';
 </script>
 </body>
 </html>
