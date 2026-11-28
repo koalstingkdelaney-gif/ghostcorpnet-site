@@ -1,10 +1,13 @@
 import importlib
 import os
+import time
 
 
 def load_app(monkeypatch, tmp_path):
     monkeypatch.setenv("GHOSTCORP_API_TOKEN", "test-secret-token")
     monkeypatch.setenv("GHOSTCORP_DB_PATH", str(tmp_path / "test.db"))
+    import app.vr_auth as vr_auth
+    importlib.reload(vr_auth)
     import app.main as main
     importlib.reload(main)
     main.init_db()
@@ -100,3 +103,28 @@ def test_quest_gateway_does_not_claim_oauth_is_configured_without_secrets(monkey
     client, _ = load_app(monkeypatch, tmp_path)
     assert client.get("/auth/status").json()["configured"] is False
     assert client.get("/auth/github/start").status_code == 503
+
+
+def test_owner_vr_snapshot_excludes_non_world_records(monkeypatch, tmp_path):
+    monkeypatch.setenv("GITHUB_OAUTH_CLIENT_ID", "test-client")
+    monkeypatch.setenv("GITHUB_OAUTH_CLIENT_SECRET", "test-oauth-secret")
+    monkeypatch.setenv("GHOSTCORP_OWNER_GITHUB_LOGIN", "founder-test")
+    monkeypatch.setenv("GHOSTCORP_SESSION_SECRET", "test-session-secret-long-enough-for-ci")
+    monkeypatch.setenv("GHOSTCORP_PUBLIC_ORIGIN", "https://ghostcorp.example")
+    client, _ = load_app(monkeypatch, tmp_path)
+
+    scene = client.post("/api/v1/world/scenes", headers=headers(),
+                        json={"name": "Research Lab"}).json()
+    client.put("/api/v1/world/entities/customer:private",
+               headers=headers(),
+               json={"entity_type": "customer", "data": {"email": "private@example.invalid"}})
+
+    import app.vr_auth as vr_auth
+    signed = vr_auth.sign_session("founder-test", int(time.time()) + 3600)
+    cookie = {"__Host-ghostcorp_owner": signed}
+    snapshot = client.get("/api/vr/world/snapshot", cookies=cookie)
+    assert snapshot.status_code == 200
+    entities = snapshot.json()["entities"]
+    assert any(item["entity_id"] == "scene:" + scene["scene_id"] for item in entities)
+    assert all(item["entity_type"] in ("world", "scene") for item in entities)
+    assert all("customer" not in item["entity_id"] for item in entities)
