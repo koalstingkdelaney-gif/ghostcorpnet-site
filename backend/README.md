@@ -27,8 +27,8 @@ All /api/v1 routes require Authorization: Bearer <GHOSTCORP_API_TOKEN>. The toke
 - POST /api/v1/tasks — create a durable queued task.
 - GET /api/v1/tasks — list tasks; optional status and limit.
 - PUT /api/v1/tasks/{id}/checkpoint — persist checkpoint and task status.
-- GET /api/v1/world/{entity_id} — retrieve a world entity.
-- PUT /api/v1/world/{entity_id} — upsert entity and increment revision.
+- GET /api/v1/world/entities/{entity_id} — retrieve a generic world entity.
+- PUT /api/v1/world/entities/{entity_id} — upsert a generic entity and increment revision.
 - PUT /api/v1/agents/{agent_id} — persist agent status and metadata.
 - GET /api/v1/events?after=<sequence> — read append-only event history.
 
