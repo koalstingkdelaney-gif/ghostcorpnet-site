@@ -67,13 +67,13 @@ devFilename.addEventListener('change',()=>{const v=localStorage.getItem(draftKey
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x070c18);scene.fog=new THREE.FogExp2(0x070c18,.009);
 const camera=new THREE.PerspectiveCamera(72,innerWidth/innerHeight,.08,420);camera.position.set(0,1.68,13);
 const rig=new THREE.Group();rig.add(camera);scene.add(rig);
-const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local-floor');renderer.domElement.tabIndex=0;stage.appendChild(renderer.domElement);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.35));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;renderer.xr.enabled=true;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.xr.setReferenceSpaceType('local-floor');renderer.domElement.tabIndex=0;stage.appendChild(renderer.domElement);
 scene.add(new THREE.HemisphereLight(0x9edbff,0x101321,1.65));
-const key=new THREE.DirectionalLight(0xc4e8ff,2.1);key.position.set(-8,14,7);scene.add(key);
+const key=new THREE.DirectionalLight(0xc4e8ff,2.1);key.position.set(-8,14,7);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.near=1;key.shadow.camera.far=70;key.shadow.camera.left=-34;key.shadow.camera.right=34;key.shadow.camera.top=28;key.shadow.camera.bottom=-28;scene.add(key);
 const fill=new THREE.PointLight(0x13cfff,42,44,2);fill.position.set(0,5,-3);scene.add(fill);
 const warm=new THREE.PointLight(0xff9f5e,20,30,2);warm.position.set(8,4,1);scene.add(warm);
 const mat=(color,metalness=.35,roughness=.45,emissive=0,ei=0)=>new THREE.MeshStandardMaterial({color,metalness,roughness,emissive,emissiveIntensity:ei});
-const M={floor:mat(0x111d2b,.68,.3),wall:mat(0x101b2a,.72,.34),dark:mat(0x080f1b,.5,.42),metal:mat(0x304b61,.82,.23),cyan:mat(0x1c6178,.65,.25,0x073e55,.7),light:mat(0x51e8ff,.25,.22,0x12bfe9,2.4),gold:mat(0xffb36c,.45,.25,0x87400e,1.4),glass:new THREE.MeshPhysicalMaterial({color:0x163a50,metalness:.45,roughness:.12,transparent:true,opacity:.38,transmission:.12}),white:mat(0xb8d9e8,.25,.4,0x18364a,.25)};
+const M={floor:mat(0x111d2b,.78,.19),wall:mat(0x101b2a,.72,.3),dark:mat(0x080f1b,.5,.38),metal:mat(0x526b7e,.86,.2),cyan:mat(0x1c6178,.65,.22,0x073e55,.85),light:mat(0x51e8ff,.25,.18,0x12bfe9,2.8),gold:mat(0xffb36c,.55,.2,0x87400e,1.6),glass:new THREE.MeshPhysicalMaterial({color:0x163a50,metalness:.52,roughness:.08,transparent:true,opacity:.32,transmission:.2,thickness:.35,clearcoat:1}),white:mat(0xb8d9e8,.25,.32,0x18364a,.35)};
 const world=new THREE.Group();scene.add(world);
 function mesh(geo,material,parent=world,pos=[0,0,0]){const o=new THREE.Mesh(geo,material);o.position.set(...pos);parent.add(o);return o}
 function cube(w,h,d,material,pos,parent=world){return mesh(new THREE.BoxGeometry(w,h,d),material,parent,pos)}
@@ -217,6 +217,56 @@ portal('city','Skybridge','The GhostCorp Constellation',0,-25,rooms.city.copy);
 // glass partitions and floor direction indicators
 for(const x of [-7,7]){cube(.08,3.5,20,M.glass,[x,1.8,-3]);cube(4,.08,.08,M.light,[x,3.55,-3]);}
 for(let z=5;z>=-14;z-=3){const a=mesh(new THREE.ConeGeometry(.16,.48,4),M.light,world,[0,.04,z]);a.rotation.x=Math.PI/2}
+
+// Architectural detail pass: layered walkways, illuminated inlays, furnished collaboration bays.
+const trimMat=new THREE.MeshStandardMaterial({color:0x91b9ca,metalness:.88,roughness:.2});
+const darkGlass=new THREE.MeshPhysicalMaterial({color:0x0b2639,metalness:.55,roughness:.12,transparent:true,opacity:.58,transmission:.18,clearcoat:1});
+function addBench(x,z,rot=0){
+ const g=new THREE.Group();g.position.set(x,0,z);g.rotation.y=rot;world.add(g);
+ const seat=mesh(new THREE.BoxGeometry(2.1,.18,.72),mat(0x243b4d,.5,.28),g,[0,.58,0]);
+ seat.castShadow=true;seat.receiveShadow=true;
+ for(const sx of [-.82,.82]){const leg=mesh(new THREE.CylinderGeometry(.055,.09,.56,12),trimMat,g,[sx,.28,0]);leg.castShadow=true}
+ const back=mesh(new THREE.BoxGeometry(2.1,.72,.12),mat(0x172c3d,.58,.24),g,[0,.98,-.3]);back.castShadow=true;
+ const seam=mesh(new THREE.BoxGeometry(1.85,.025,.018),M.light,g,[0,.68,.37]);
+ return g;
+}
+for(const [x,z,a] of [[-6,2,.25],[6,2,-.25],[-18,-3,.8],[18,-3,-.8]])addBench(x,z,a);
+// Suspended acoustic fins and precision light rails add scale above the atrium.
+for(let i=0;i<14;i++){
+ const a=i*Math.PI*2/14,rad=13.8,x=Math.cos(a)*rad,z=Math.sin(a)*rad-2;
+ const fin=mesh(new THREE.BoxGeometry(.16,3.8,5.6),i%3===0?M.cyan:M.dark,world,[x,11.8,z]);
+ fin.rotation.y=-a;fin.rotation.z=Math.cos(a)*.08;fin.castShadow=true;
+ const edge=mesh(new THREE.BoxGeometry(.035,3.4,5.1),M.light,world,[x+.1,11.8,z]);
+ edge.rotation.y=-a;edge.rotation.z=Math.cos(a)*.08;
+}
+for(let i=0;i<8;i++){
+ const a=i*Math.PI/4,r=17,x=Math.cos(a)*r,z=Math.sin(a)*r-2;
+ const ring=mesh(new THREE.TorusGeometry(1.25,.028,8,64),trimMat,world,[x,.08,z]);ring.rotation.x=Math.PI/2;
+ const inset=mesh(new THREE.TorusGeometry(1.08,.012,6,64),M.light,world,[x,.09,z]);inset.rotation.x=Math.PI/2;
+}
+// Holographic collaboration tables with layered glass surfaces and underlighting.
+for(const [x,z] of [[-5,-11],[5,-11],[-19,7],[19,7]]){
+ const pod=new THREE.Group();pod.position.set(x,0,z);world.add(pod);
+ const base=mesh(new THREE.CylinderGeometry(.68,.82,.42,48),M.dark,pod,[0,.22,0]);base.castShadow=true;
+ const top=mesh(new THREE.CylinderGeometry(1.05,.95,.12,48),darkGlass,pod,[0,.52,0]);top.castShadow=true;
+ const ring=mesh(new THREE.TorusGeometry(.92,.025,8,72),M.light,pod,[0,.61,0]);ring.rotation.x=Math.PI/2;
+ for(let j=0;j<3;j++){
+  const screen=mesh(new THREE.BoxGeometry(.42,.025,.28),M.cyan,pod,[(j-1)*.48,.68,0]);
+  screen.rotation.x=-.16;
+ }
+}
+// Floating dust gives depth; bounded particle count keeps the headset workload predictable.
+const dustCount=520,dustPositions=new Float32Array(dustCount*3),dustDrift=new Float32Array(dustCount);
+for(let i=0;i<dustCount;i++){
+ dustPositions[i*3]=(Math.random()-.5)*62;
+ dustPositions[i*3+1]=.3+Math.random()*15;
+ dustPositions[i*3+2]=(Math.random()-.5)*62;
+ dustDrift[i]=.12+Math.random()*.28;
+}
+const dustGeo=new THREE.BufferGeometry();dustGeo.setAttribute('position',new THREE.BufferAttribute(dustPositions,3));
+const dust=new THREE.Points(dustGeo,new THREE.PointsMaterial({color:0x9bdfff,size:.025,transparent:true,opacity:.42,depthWrite:false,sizeAttenuation:true}));
+world.add(dust);
+
 const raycaster=new THREE.Raycaster();raycaster.far=22;const tmp=new THREE.Matrix4(),controllers=[];
 function openDetail(data){const room=rooms[data.key];$('#detailTitle').textContent=room.title;$('#detailCopy').textContent=room.copy;$('#eyebrow').textContent=room.eyebrow;$('#heading').textContent=room.title;$('#copy').textContent=room.copy;detail.classList.add('open');$('#visit').dataset.room=data.key;nav.classList.remove('open')}
 function interact(origin,direction){raycaster.set(origin,direction);const hit=raycaster.intersectObjects(interactables,false)[0];if(hit)openDetail(hit.object.userData)}
@@ -231,8 +281,11 @@ let last=performance.now(),turnCooldown=0;
 function locomotion(dt){let forward=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0),strafe=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),turn=(keys.q?1:0)-(keys.e?1:0);
  if(renderer.xr.isPresenting){for(const source of renderer.xr.getSession()?.inputSources||[]){const gp=source.gamepad;if(!gp)continue;const axes=gp.axes;if(axes.length>=4){if(source.handedness==='left'){strafe+=Math.abs(axes[2]||0)>.12?axes[2]:axes[0]||0;forward-=Math.abs(axes[3]||0)>.12?axes[3]:axes[1]||0}else{const t=axes[2]||axes[0]||0;if(Math.abs(t)>.72&&turnCooldown<=0){rig.rotation.y-=Math.sign(t)*Math.PI/6;turnCooldown=.28}}}}}
  turnCooldown-=dt;const dir=new THREE.Vector3(0,0,-1).applyQuaternion(rig.quaternion);const side=new THREE.Vector3(1,0,0).applyQuaternion(rig.quaternion);const speed=renderer.xr.isPresenting?3.0:5.2;rig.position.addScaledVector(dir,THREE.MathUtils.clamp(forward,-1,1)*speed*dt);rig.position.addScaledVector(side,THREE.MathUtils.clamp(strafe,-1,1)*speed*dt);rig.position.x=THREE.MathUtils.clamp(rig.position.x,-32,32);rig.position.z=THREE.MathUtils.clamp(rig.position.z,-34,25)}
-function animate(){const now=performance.now(),dt=Math.min((now-last)/1000,.04);last=now;locomotion(dt);reactor.rotation.y+=dt*.16;reactor.rotation.x=Math.sin(now*.00025)*.08;neuralCore.rotation.y=Math.sin(now*.00012)*.025;neuralParticles.material.opacity=.78+Math.sin(now*.0014)*.12;coreHalo.rotation.z+=dt*.035;for(const n of rootNodes){const pulse=.8+Math.sin(now*.0018+n.node.position.x)*.2;n.node.scale.setScalar(pulse);n.halo.rotation.z+=dt*.12;}ceiling.rotation.z+=dt*.025;ceiling2.rotation.z-=dt*.018;fill.intensity=40+Math.sin(now*.001)*5;renderer.render(scene,camera)}
+function animate(){const now=performance.now(),dt=Math.min((now-last)/1000,.04);last=now;locomotion(dt);reactor.rotation.y+=dt*.16;reactor.rotation.x=Math.sin(now*.00025)*.08;neuralCore.rotation.y=Math.sin(now*.00012)*.025;neuralParticles.material.opacity=.78+Math.sin(now*.0014)*.12;coreHalo.rotation.z+=dt*.035;for(const n of rootNodes){const pulse=.8+Math.sin(now*.0018+n.node.position.x)*.2;n.node.scale.setScalar(pulse);n.halo.rotation.z+=dt*.12;}ceilingGlow.rotation.y+=dt*.012;fill.intensity=38+Math.sin(now*.001)*4;const dp=dustGeo.attributes.position;for(let i=0;i<dustCount;i++){const k=i*3;dustPositions[k+1]+=(dustDrift[i]-.2)*dt;if(dustPositions[k+1]>16)dustPositions[k+1]=.3;if(dustPositions[k+1]<.3)dustPositions[k+1]=15.8;}dp.needsUpdate=true;renderer.render(scene,camera)}
 renderer.setAnimationLoop(animate);
+// Desktop mouse-look is enabled only after an explicit click; Quest uses controller sticks.
+renderer.domElement.addEventListener('click',()=>{if(!renderer.xr.isPresenting&&document.pointerLockElement!==renderer.domElement)renderer.domElement.requestPointerLock?.()});
+let mouseYaw=0,mousePitch=0;document.addEventListener('mousemove',e=>{if(document.pointerLockElement!==renderer.domElement||renderer.xr.isPresenting)return;mouseYaw-=e.movementX*.0022;mousePitch-=e.movementY*.0018;mousePitch=THREE.MathUtils.clamp(mousePitch,-1.05,1.05);rig.rotation.y=mouseYaw;camera.rotation.x=mousePitch;});
 $('#enter').onclick=async()=>{try{if(!navigator.xr){status.textContent='WEBXR UNAVAILABLE · USE QUEST BROWSER';return}if(!await navigator.xr.isSessionSupported('immersive-vr')){status.textContent='IMMERSIVE VR NOT SUPPORTED';return}const session=await navigator.xr.requestSession('immersive-vr',{optionalFeatures:['local-floor','bounded-floor','hand-tracking','dom-overlay'],domOverlay:{root:document.body}});await renderer.xr.setSession(session);status.textContent='QUEST VR SESSION ACTIVE';$('#enter').textContent='VR ACTIVE';nav.classList.remove('open');session.addEventListener('end',()=>{$('#enter').textContent='ENTER QUEST VR';status.textContent='3D WORLD READY'})}catch(e){status.textContent='VR START BLOCKED · '+(e.message||'CHECK QUEST BROWSER');console.error(e)}};
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 status.textContent='3D WORLD READY · WEBXR CHECKING';
