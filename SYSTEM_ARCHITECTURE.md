@@ -72,6 +72,7 @@ A feature is not working because a file exists. It must have:
 - The existing repository contains vr/index.html.
 - A FastAPI shared backend now exists under backend/app/main.py.
 - The backend persists task queue/checkpoints, versioned world entities, agent status, and append-only events in SQLite.
+- The world API supports scene creation/listing, object transforms (position/rotation/scale), object upsert/delete, world snapshots, and optimistic revision checks that reject stale writes with HTTP 409.
 - Bearer-token protection is required for every /api/v1 route; missing server configuration fails closed with HTTP 503.
 - Automated API tests and a GitHub Actions backend CI workflow have been added.
 - Docker packaging and operational setup documentation are present.
