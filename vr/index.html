@@ -125,6 +125,30 @@ const fill=new THREE.PointLight(0x13cfff,42,44,2);fill.position.set(0,5,-3);scen
 const warm=new THREE.PointLight(0xff9f5e,20,30,2);warm.position.set(8,4,1);scene.add(warm);
 const mat=(color,metalness=.35,roughness=.45,emissive=0,ei=0)=>new THREE.MeshStandardMaterial({color,metalness,roughness,emissive,emissiveIntensity:ei});
 const M={floor:mat(0x111d2b,.78,.19),wall:mat(0x101b2a,.72,.3),dark:mat(0x080f1b,.5,.38),metal:mat(0x526b7e,.86,.2),cyan:mat(0x1c6178,.65,.22,0x073e55,.85),light:mat(0x51e8ff,.25,.18,0x12bfe9,2.8),gold:mat(0xffb36c,.55,.2,0x87400e,1.6),glass:new THREE.MeshPhysicalMaterial({color:0x163a50,metalness:.52,roughness:.08,transparent:true,opacity:.32,transmission:.2,thickness:.35,clearcoat:1}),white:mat(0xb8d9e8,.25,.32,0x18364a,.35)};
+const remoteWorldRoot=new THREE.Group();world.add(remoteWorldRoot);
+const remotePalette=[0x51e8ff,0xffb36c,0x8c9bff,0x7ee0b0,0xb8d9e8];
+function boundedVector(value,fallback,min=-100,max=100){if(!Array.isArray(value)||value.length!==3)return fallback;return value.map((v,i)=>Number.isFinite(Number(v))?THREE.MathUtils.clamp(Number(v),min,max):fallback[i]);}
+function remoteGeometry(asset){switch(String(asset||'box').toLowerCase()){case 'sphere':return new THREE.SphereGeometry(.5,20,14);case 'cylinder':return new THREE.CylinderGeometry(.5,.5,1,20);case 'cone':return new THREE.ConeGeometry(.5,1,20);case 'torus':return new THREE.TorusGeometry(.42,.08,8,32);case 'octahedron':return new THREE.OctahedronGeometry(.55,1);default:return new THREE.BoxGeometry(1,1,1);}}
+function renderRemoteWorld(snapshot){
+ if(!snapshot||!Array.isArray(snapshot.entities))return;
+ while(remoteWorldRoot.children.length){const child=remoteWorldRoot.children.pop();child.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material.dispose();}});}
+ let rendered=0;
+ for(const entity of snapshot.entities){if(entity.entity_type!=='scene'||!entity.data||typeof entity.data!=='object')continue;
+  const data=entity.data,sceneGroup=new THREE.Group();sceneGroup.name='GhostCorp scene '+String(entity.entity_id||'').slice(0,80);
+  const scenePosition=boundedVector(data.metadata?.position,[0,0,0],-80,80);sceneGroup.position.set(...scenePosition);remoteWorldRoot.add(sceneGroup);
+  for(const item of Array.isArray(data.objects)?data.objects.slice(0,250):[]){
+   if(!item||typeof item!=='object')continue;
+   const geometry=remoteGeometry(item.asset),colorIndex=Math.abs(String(item.object_id||'').split('').reduce((a,ch)=>a+ch.charCodeAt(0),0))%remotePalette.length;
+   const color=Number.isInteger(item.properties?.palette_index)?remotePalette[THREE.MathUtils.clamp(item.properties.palette_index,0,remotePalette.length-1)]:remotePalette[colorIndex];
+   const material=new THREE.MeshStandardMaterial({color,metalness:.38,roughness:.32,emissive:color,emissiveIntensity:.08});
+   const object=new THREE.Mesh(geometry,material);object.name=String(item.object_id||'world-object').slice(0,120);
+   object.position.set(...boundedVector(item.position,[0,0,0]));object.rotation.set(...boundedVector(item.rotation,[0,0,0],-Math.PI*8,Math.PI*8));object.scale.set(...boundedVector(item.scale,[1,1,1],.02,20));
+   sceneGroup.add(object);rendered++;
+  }
+ }
+ if(snapshot.entities.length){const count=rendered;document.getElementById('agentStatus').textContent+=(count?' · WORLD OBJECTS '+count:' · WORLD SYNCED');}
+}
+window.addEventListener('ghostcorp:world-snapshot',event=>renderRemoteWorld(event.detail));
 const world=new THREE.Group();scene.add(world);
 function mesh(geo,material,parent=world,pos=[0,0,0]){const o=new THREE.Mesh(geo,material);o.position.set(...pos);parent.add(o);return o}
 function cube(w,h,d,material,pos,parent=world){return mesh(new THREE.BoxGeometry(w,h,d),material,parent,pos)}
