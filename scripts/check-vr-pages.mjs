@@ -18,7 +18,11 @@ const expected = {
     "function interact(",
     "intersectObject(floor",
     "./project-board.html",
-    "BACKEND NOT DEPLOYED"
+    "BACKEND NOT DEPLOYED",
+    "manifest.webmanifest",
+    "serviceWorker.register",
+    "OPEN GITHUB EDITOR",
+    "INSTALL / UPDATE"
   ],
   "vr/project-board.html": [
     "ghostcorp-project-board-v1",
@@ -79,6 +83,32 @@ try {
       if (check.status !== 0) fail(page + " inline JavaScript syntax error:\n" + (check.stderr || check.stdout));
     }
     console.log("PASS:", page, "parsed", scripts.length, "script block(s)");
+  }
+
+
+  const manifestPath = path.join(root, "vr/manifest.webmanifest");
+  const iconPath = path.join(root, "vr/icon.svg");
+  const serviceWorkerPath = path.join(root, "vr/sw.js");
+  if (!fs.existsSync(manifestPath)) fail("Missing PWA manifest: vr/manifest.webmanifest");
+  if (!fs.existsSync(iconPath)) fail("Missing PWA icon: vr/icon.svg");
+  if (!fs.existsSync(serviceWorkerPath)) fail("Missing service worker: vr/sw.js");
+  if (fs.existsSync(manifestPath)) {
+    try {
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+      if (manifest.start_url !== "/vr/" || manifest.scope !== "/vr/") fail("PWA manifest must be scoped to /vr/");
+      if (!Array.isArray(manifest.icons) || !manifest.icons.some(icon => icon.src === "./icon.svg")) fail("PWA manifest icon is missing");
+    } catch (error) { fail("Invalid PWA manifest JSON: " + error.message); }
+  }
+  if (fs.existsSync(serviceWorkerPath)) {
+    const serviceWorker = fs.readFileSync(serviceWorkerPath, "utf8");
+    const serviceWorkerFile = path.join(temp, "sw.js");
+    fs.writeFileSync(serviceWorkerFile, serviceWorker);
+    const swCheck = spawnSync(process.execPath, ["--check", serviceWorkerFile], { encoding: "utf8" });
+    if (swCheck.status !== 0) fail("vr/sw.js syntax error:\\n" + (swCheck.stderr || swCheck.stdout));
+    else console.log("PASS: vr/sw.js");
+    for (const token of ['"/api/"', '"/auth/"', "skipWaiting", "clients.claim"]) {
+      if (!serviceWorker.includes(token)) fail("vr/sw.js missing safety/update marker: " + token);
+    }
   }
 
   const worker = fs.readFileSync(path.join(root, "vr/ai/worker.js"), "utf8");
