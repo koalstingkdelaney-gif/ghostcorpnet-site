@@ -32,6 +32,7 @@ button{background:#123b50;color:var(--text);border:1px solid #3b8198;border-radi
     <section class="panel"><h2>Product pipeline</h2><p class="small">Owner-reviewed drafts and validation evidence. Approval prepares a listing; it does not publish or sell it.</p><div id="products"></div></section>
     <section class="panel"><h2>Dream Realm review queue</h2><p class="small">Dream proposals cannot deploy, publish, contact customers or spend money on their own.</p><div id="dreams"></div></section>
     <section class="panel"><h2>Agent lifecycle and task queue</h2><div id="runtime"></div></section>
+    <section class="panel"><h2>Research task results</h2><div id="researchResults"></div></section>
     <section class="panel"><h2>Current limitations</h2><div id="capabilities"></div></section>
   </div>
   <p id="message" role="status" aria-live="polite"></p>
@@ -68,6 +69,11 @@ async function loadDashboard(){
  if(!artifacts.length)dreams.append(node('p','muted','No dream proposals pending review.'));
  for(const a of artifacts){const item=sectionItem(dreams,a.title,a.summary,a.artifact_type+' · Agent '+a.machine_id);actionButton(item,'Approve proposal',()=>api('/api/lifecycle/dream-artifacts/'+a.id+'/review',{method:'POST',body:JSON.stringify({decision:'APPROVED'})}));actionButton(item,'Reject proposal',()=>api('/api/lifecycle/dream-artifacts/'+a.id+'/review',{method:'POST',body:JSON.stringify({decision:'REJECTED'})}));}
  $('#runtime').replaceChildren(node('p','', 'Queue mode: '+d.queue.mode),node('p','', 'Lifecycle mode: '+d.lifecycle.mode),node('p','muted','Agent presence: '+(d.world.mode||'not reported')));
+ for(const agent of (d.agents?.agents||[])){const line=node('p','small',agent.machine_id+' · '+agent.division_slug+' · '+agent.role+' · '+(agent.lifecycle?.mode||'INITIALIZING'));$('#runtime').append(line);}
+ const research=$('#researchResults');research.replaceChildren();
+ const tasks=(d.research_tasks||[]).filter(t=>t.task_type==='research_summary');
+ if(!tasks.length)research.append(node('p','muted','No research tasks have been processed yet.'));
+ for(const task of tasks){const result=task.result||{};const item=sectionItem(research,task.task_key+' · '+task.status,result.content||result.reason||'No model result recorded.',task.division_slug+' · attempts '+task.attempt_count);}
  $('#capabilities').replaceChildren();
  for(const [k,v] of Object.entries(d.capability_status||{}))$('#capabilities').append(node('p','small',k.replaceAll('_',' ')+': '+v));
  $('#message').textContent='Private data refreshed. No production actions were triggered.';
