@@ -10,11 +10,13 @@ from typing import Any
 
 from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
+from .vr_auth import router as vr_auth_router
 
 DB_PATH = Path(os.getenv("GHOSTCORP_DB_PATH", "data/ghostcorp.db"))
 API_TOKEN = os.getenv("GHOSTCORP_API_TOKEN", "")
 
 app = FastAPI(title="GhostCorp Shared Core", version="0.1.0", docs_url="/api/docs", openapi_url="/api/openapi.json")
+app.include_router(vr_auth_router)
 
 
 @contextmanager
