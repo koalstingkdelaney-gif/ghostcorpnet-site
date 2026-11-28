@@ -160,7 +160,7 @@ def checkpoint_task(task_id: str, body: Checkpoint):
     return {"id":task_id,"status":body.status,"updated_at":now}
 
 
-@app.get("/api/v1/world/{entity_id}", dependencies=[Depends(require_token)])
+@app.get("/api/v1/world/entities/{entity_id}", dependencies=[Depends(require_token)])
 def get_world_entity(entity_id: str):
     with db() as conn:
         row = conn.execute("SELECT * FROM world_state WHERE entity_id=?", (entity_id,)).fetchone()
@@ -170,7 +170,7 @@ def get_world_entity(entity_id: str):
             "revision":row["revision"],"updated_at":row["updated_at"]}
 
 
-@app.put("/api/v1/world/{entity_id}", dependencies=[Depends(require_token)])
+@app.put("/api/v1/world/entities/{entity_id}", dependencies=[Depends(require_token)])
 def put_world_entity(entity_id: str, body: WorldUpsert):
     now = time.time()
     with db() as conn:
