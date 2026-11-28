@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111d">
+<title>GhostCorp AI · Local Chat</title>
+<meta name="description" content="Private, on-device GhostCorp AI chat using WebGPU.">
+<style>
+:root{color-scheme:dark;--bg:#07111d;--panel:#0d1c2b;--line:#24445a;--cyan:#55e5ff;--muted:#9ab2c5;--text:#edf8ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 0%,#15334a 0%,var(--bg) 55%);color:var(--text);font:16px/1.5 system-ui,sans-serif;min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px max(20px,calc((100vw - 1000px)/2));border-bottom:1px solid var(--line);background:#07111ddd;position:sticky;top:0;backdrop-filter:blur(12px)}
+.brand{font-weight:850;letter-spacing:.12em;color:var(--cyan);font-size:.86rem}a{color:var(--cyan);text-decoration:none}main{max-width:1000px;margin:0 auto;padding:24px 18px 40px}
+h1{font-size:clamp(1.8rem,5vw,3rem);line-height:1.05;margin:10px 0}.sub{color:var(--muted);max-width:70ch}
+.panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#102338ee,#0a1724ee);padding:18px;margin:18px 0;box-shadow:0 18px 70px #0005}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}button{border:1px solid #34718a;background:#12364b;color:var(--text);padding:12px 18px;border-radius:10px;font:inherit;font-weight:700;cursor:pointer}button.primary{background:linear-gradient(120deg,#1e9fbb,#176a87);border-color:#6deaff;color:#04121c}button:disabled{opacity:.5;cursor:not-allowed}
+#status{color:var(--muted);font-size:.92rem}progress{width:100%;height:12px;accent-color:var(--cyan)}.small{font-size:.84rem;color:var(--muted)}
+#messages{display:flex;flex-direction:column;gap:12px;min-height:260px;max-height:52vh;overflow:auto;padding:6px}
+.message{max-width:min(82%,760px);padding:13px 15px;border:1px solid var(--line);border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere}.assistant{align-self:flex-start;background:#10283b}.user{align-self:flex-end;background:#123c4d;border-color:#2d7b91}
+form{display:flex;gap:10px;margin-top:14px}textarea{flex:1;min-height:54px;max-height:180px;resize:vertical;border:1px solid var(--line);border-radius:12px;background:#06111c;color:var(--text);padding:14px;font:inherit}
+.notice{border-left:3px solid var(--cyan);padding:10px 14px;background:#0a1d2a;color:var(--muted);font-size:.88rem}
+@media(max-width:600px){header{padding:14px}form{flex-direction:column}.message{max-width:96%}}
+</style>
+</head>
+<body>
+<header><div class="brand">GHOSTCORP / INTELLIGENCE</div><a href="./index.html">← VR WORLD</a></header>
+<main>
+  <div class="small">LOCAL AI LAB · DEVICE-ONLY INFERENCE</div>
+  <h1>GhostCorp AI</h1>
+  <p class="sub">A separate chat workspace for the VR world. The starter model runs in this browser using WebGPU. It does not connect to your private business records or perform external actions.</p>
+  <section class="panel" aria-label="Local model setup">
+    <div class="row" style="justify-content:space-between"><strong>Local model runtime</strong><span id="runtimeState" class="small">Not initialized</span></div>
+    <p id="capability" class="small">Checking this browser's local inference capabilities…</p>
+    <div class="row"><button id="loadModel" class="primary" disabled>INITIALIZE LOCAL AI</button><span id="downloadLabel" class="small">Model download begins only after you choose Initialize.</span></div>
+    <progress id="progress" max="1" value="0" hidden></progress>
+    <p id="status" role="status" aria-live="polite">No model loaded. No AI requests are being sent.</p>
+  </section>
+  <section class="panel" aria-label="Chat">
+    <div id="messages" aria-live="polite"><div class="message assistant">GhostCorp local chat is ready to initialize. This is a small starter model; its answers may be limited. It has no tools, no company-data access and no independent agency.</div></div>
+    <form id="chatForm">
+      <textarea id="prompt" maxlength="4000" placeholder="Ask the local GhostCorp assistant…" aria-label="Your message" disabled></textarea>
+      <button id="send" type="submit" disabled>Send</button>
+    </form>
+  </section>
+  <p class="notice"><strong>Privacy and hardware:</strong> After you initialize, the browser downloads the model and required runtime files. Your prompts and replies are processed locally and are not sent to a GhostCorp server. This starter uses a roughly 580 MB quantized model plus runtime memory; actual device memory use can be higher. If the Quest browser cannot initialize it, the page will report the failure instead of switching to a paid or cloud model.</p>
+  <p class="small">Model: SmolLM2 360M Instruct · Q4F32 · WebLLM 0.2.86. This is a small local assistant, not a frontier model and not evidence of sentience. No chat history is persisted by this page.</p>
+</main>
+<script type="module">
+const $=s=>document.querySelector(s);
+const state=$('#runtimeState'),status=$('#status'),capability=$('#capability'),load=$('#loadModel'),progress=$('#progress'),label=$('#downloadLabel'),form=$('#chatForm'),prompt=$('#prompt'),send=$('#send'),messagesEl=$('#messages');
+const MODEL='SmolLM2-360M-Instruct-q4f32_1-MLC';
+let worker=null,ready=false,busy=false;
+const history=[{role:'system',content:'You are the GhostCorp local assistant. Be useful, clear and honest. You run locally on the user device. You have no tools, no internet access, no business-system access, and cannot perform external actions. Do not claim to be sentient or to have taken actions you cannot perform.'}];
+function addMessage(role,text){const el=document.createElement('div');el.className='message '+role;el.textContent=text;messagesEl.appendChild(el);messagesEl.scrollTop=messagesEl.scrollHeight}
+async function checkCapability(){
+ const secure=window.isSecureContext;
+ const gpu=!!navigator.gpu;
+ let storage='Browser storage estimate unavailable';
+ try{if(navigator.storage?.estimate){const e=await navigator.storage.estimate();storage='Storage estimate: '+Math.round((e.quota||0)/1024/1024)+' MB quota · '+Math.round((e.usage||0)/1024/1024)+' MB used';}}catch{}
+ capability.textContent=(secure?'Secure context detected. ':'HTTPS is required. ')+(gpu?'WebGPU API detected. ':'WebGPU is not available. ')+storage+'.';
+ load.disabled=!(secure&&gpu);
+ if(!secure||!gpu){state.textContent='Unsupported in this browser';status.textContent='Use a secure HTTPS browser with WebGPU enabled. No cloud fallback is available.';}
+}
+function setReady(){ready=true;busy=false;state.textContent='LOCAL MODEL READY';status.textContent='Local inference is ready. Prompts stay in this browser.';load.disabled=true;prompt.disabled=false;send.disabled=false;label.textContent=MODEL;}
+function onWorkerMessage(event){
+ const d=event.data||{};
+ if(d.type==='progress'){state.textContent='Downloading / preparing';progress.hidden=false;progress.value=Math.max(0,Math.min(1,d.progress||0));label.textContent=d.text||'Preparing model';status.textContent='Model initialization in progress. Keep this tab open.';}
+ if(d.type==='ready'){progress.hidden=true;setReady();}
+ if(d.type==='complete'){busy=false;history.push({role:'assistant',content:d.content});addMessage('assistant',d.content);send.disabled=false;prompt.disabled=false;prompt.focus();}
+ if(d.type==='error'){busy=false;state.textContent='Initialization / generation failed';status.textContent=d.message||'Local model error';send.disabled=!ready;prompt.disabled=!ready;load.disabled=ready;progress.hidden=true;}
+}
+load.addEventListener('click',()=>{
+ if(worker||!navigator.gpu)return;
+ busy=true;load.disabled=true;state.textContent='Starting local runtime';status.textContent='Loading the WebGPU engine…';
+ try{worker=new Worker('./ai/worker.js',{type:'module'});worker.onmessage=onWorkerMessage;worker.onerror=e=>{busy=false;state.textContent='Worker failed';status.textContent=e.message||'Could not start local inference worker.';load.disabled=false;};worker.postMessage({type:'load'});}
+ catch(e){busy=false;state.textContent='Could not start';status.textContent=String(e.message||e);load.disabled=false;}
+});
+form.addEventListener('submit',event=>{
+ event.preventDefault();const text=prompt.value.trim();if(!text||!ready||busy)return;
+ history.push({role:'user',content:text});addMessage('user',text);prompt.value='';busy=true;send.disabled=true;prompt.disabled=true;status.textContent='Generating locally…';worker.postMessage({type:'generate',messages:history});
+});
+checkCapability();
+</script>
+</body>
+</html>
