@@ -145,7 +145,6 @@ const corePalette=[new THREE.Color(0x65f4ff),new THREE.Color(0xa38bff),new THREE
 const neuralPositions=[],neuralColors=[],neuralSizes=[];
 const white=new THREE.Color(0xeaffff);
 function addNeuralPoint(p,color,size=.045){neuralPositions.push(p.x,p.y,p.z);const c=color.clone().lerp(white,Math.random()*.58);neuralColors.push(c.r,c.g,c.b);neuralSizes.push(size)}
-function addFiber(points,color,radius=.009,opacity=.34){const curve=new THREE.CatmullRomCurve3(points);const material=new THREE.MeshBasicMaterial({color,transparent:true,opacity,blending:THREE.AdditiveBlending,depthWrite:false});return mesh(new THREE.TubeGeometry(curve,Math.max(18,points.length*5),radius,5,false),material,neuralCore)}
 // Brain-like neural anatomy: two hemispheres, a horizontal bridge, and cross-linked clusters.
 // No central trunk or upward-growing branch silhouette: the network is a connected volume.
 const rootNodes=[];
