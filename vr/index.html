@@ -68,7 +68,7 @@ devFilename.addEventListener('change',()=>{const v=localStorage.getItem(draftKey
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x070c18);scene.fog=new THREE.FogExp2(0x070c18,.009);
 const camera=new THREE.PerspectiveCamera(72,innerWidth/innerHeight,.08,420);camera.position.set(0,1.68,13);
 const rig=new THREE.Group();rig.add(camera);scene.add(rig);
-const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.35));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;renderer.xr.enabled=true;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.xr.setReferenceSpaceType('local-floor');renderer.domElement.tabIndex=0;stage.appendChild(renderer.domElement);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.15));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;renderer.xr.enabled=true;renderer.shadowMap.enabled=false;renderer.xr.setReferenceSpaceType('local-floor');renderer.domElement.tabIndex=0;stage.appendChild(renderer.domElement);
 scene.add(new THREE.HemisphereLight(0x9edbff,0x101321,1.65));
 const key=new THREE.DirectionalLight(0xc4e8ff,2.1);key.position.set(-8,14,7);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.near=1;key.shadow.camera.far=70;key.shadow.camera.left=-34;key.shadow.camera.right=34;key.shadow.camera.top=28;key.shadow.camera.bottom=-28;scene.add(key);
 const fill=new THREE.PointLight(0x13cfff,42,44,2);fill.position.set(0,5,-3);scene.add(fill);
@@ -126,7 +126,7 @@ for(let i=0;i<34;i++){
  tower.rotation.y=i*.17;
  for(let k=0;k<3;k++){const a=k*Math.PI*2/3;const pts=[[x+Math.cos(a)*w*.82,0,-38.8+Math.sin(a)*w*.82],[x+Math.cos(a)*w*.82,h*.45,-38.8+Math.sin(a)*w*.82],[x+Math.cos(a)*w*.45,h*.88,-38.8+Math.sin(a)*w*.45]];tube(pts,i%6===0?M.light:M.metal,.018,skyline)}
 }
-const starsGeo=new THREE.BufferGeometry(),stars=[];for(let i=0;i<1600;i++)stars.push((Math.random()-.5)*240,Math.random()*95+8,(Math.random()-.5)*240);starsGeo.setAttribute('position',new THREE.Float32BufferAttribute(stars,3));world.add(new THREE.Points(starsGeo,new THREE.PointsMaterial({color:0xa9eaff,size:.09,transparent:true,opacity:.68})));
+const starsGeo=new THREE.BufferGeometry(),stars=[];for(let i=0;i<900;i++)stars.push((Math.random()-.5)*240,Math.random()*95+8,(Math.random()-.5)*240);starsGeo.setAttribute('position',new THREE.Float32BufferAttribute(stars,3));world.add(new THREE.Points(starsGeo,new THREE.PointsMaterial({color:0xa9eaff,size:.09,transparent:true,opacity:.68})));
 const rooms={
  atrium:{title:'Central Atrium',eyebrow:'HEADQUARTERS CORE',copy:'The heart of GhostCorp. A living central hub connecting every division, with a suspended energy core, panoramic architecture and clear paths to each department.',pos:[0,1.68,13]},
  command:{title:'Command Center',eyebrow:'PRIVATE · OWNER ACCESS',copy:'Reserved for the owner: agent orchestration, approval queue, spend governor, system health and audit trails. This entrance is intentionally locked until real authentication and backend authorization are connected.',pos:[-12,1.68,-2],yaw:0,locked:true},
@@ -208,7 +208,7 @@ for(let i=0;i<64;i++){
  addFiber([p1,mid,p2],i%6===0?0xffc27c:0x73eaff,.005,.2);
 }
 // Large airy neural canopy: two asymmetric lobes of fine points, with open space between them.
-for(let i=0;i<15000;i++){
+for(let i=0;i<9000;i++){
  const side=Math.random()<.5?-1:1;
  const u=Math.random()*Math.PI*2,v=Math.acos(2*Math.random()-1);
  const lobeX=side*2.65,lobeY=9.2,lobeZ=0;
@@ -255,6 +255,53 @@ portal('city','Skybridge','The GhostCorp Constellation',0,-25,rooms.city.copy);
 // Dream Realm preview: a distinct, visually separated sandbox district.
 // This is scenery only until the lifecycle API, owner session and sandbox runner are connected.
 portal('dream','Dream Realm','Restricted Agent Sandbox · Preview',0,22,rooms.dream.copy);
+
+/* Owner's in-world operations console: these controls remain inside the headset view. */
+const workspaceTargets=[];
+const workspaceConsole=new THREE.Group();
+workspaceConsole.position.set(0,0,7.25);
+world.add(workspaceConsole);
+mesh(new THREE.BoxGeometry(7.45,3.55,.24),M.dark,workspaceConsole,[0,2.32,0]);
+mesh(new THREE.PlaneGeometry(7.22,3.32),new THREE.MeshBasicMaterial({color:0x071726}),workspaceConsole,[0,2.32,.135]);
+mesh(new THREE.PlaneGeometry(5.8,.62),makeLabel('GHOSTCORP WORKSPACE','SELECT A TOOL WITH YOUR CONTROLLER TRIGGER'),workspaceConsole,[0,3.55,.16]);
+function makeToolCard(title,sub,color){
+ const c=document.createElement('canvas');c.width=512;c.height=190;const g=c.getContext('2d');
+ g.fillStyle='#0d263a';g.strokeStyle=color;g.lineWidth=8;g.beginPath();g.roundRect(8,8,496,174,24);g.fill();g.stroke();
+ g.fillStyle=color;g.font='800 34px system-ui';g.textAlign='center';g.fillText(title,256,78);
+ g.fillStyle='#d8eaf5';g.font='24px system-ui';g.fillText(sub,256,124);
+ g.fillStyle='#87aabe';g.font='18px system-ui';g.fillText('POINT + PRESS TRIGGER',256,157);
+ const texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;
+ return new THREE.MeshBasicMaterial({map:texture,transparent:true});
+}
+function addToolCard(x,y,title,sub,color,action){
+ const button=mesh(new THREE.PlaneGeometry(2.13,.82),makeToolCard(title,sub,color),workspaceConsole,[x,y,.17]);
+ button.userData={action,title};workspaceTargets.push(button);return button;
+}
+addToolCard(-2.27,2.55,'LOCAL AI','ON-HEADSET CHAT','#62e8ff','chat');
+addToolCard(0,2.55,'ACTION CENTER','OWNER REVIEW QUEUE','#ffbd79','actions');
+addToolCard(2.27,2.55,'DEV WORKBENCH','EDIT + PREVIEW','#8c9bff','dev');
+addToolCard(-2.27,1.45,'PROJECT REPO','GITHUB SOURCE','#7ee0b0','github');
+addToolCard(0,1.45,'LIVE WEBSITE','PUBLIC GHOSTCORP','#62e8ff','website');
+addToolCard(2.27,1.45,'SYSTEM STATUS','API + AGENTS','#ffbd79','status');
+const consoleGlow=new THREE.PointLight(0x1cbfe8,8,9,2);consoleGlow.position.set(0,3.2,8.5);scene.add(consoleGlow);
+function navigateFromWorld(url){
+ const session=renderer.xr.getSession();
+ if(session&&renderer.xr.isPresenting){session.end().catch(()=>{}).finally(()=>{location.href=url});}
+ else location.href=url;
+}
+function runToolAction(action){
+ if(action==='chat')return navigateFromWorld('./chat.html');
+ if(action==='actions')return navigateFromWorld('./action-center.html');
+ if(action==='dev'){openDev();status.textContent='DEVELOPER WORKBENCH OPEN';return}
+ if(action==='github')return navigateFromWorld('https://github.dev/koalstingkdelaney-gif/ghostcorpnet-site');
+ if(action==='website')return navigateFromWorld('/');
+ if(action==='status'){
+  status.textContent='STATIC WORLD ACTIVE · PRIVATE BACKEND NOT DEPLOYED';
+  $('#agentStatus').textContent='NO LIVE AGENT CONNECTION · backend routing and owner session are not configured';
+  return;
+ }
+}
+
 const dreamRealm=new THREE.Group();dreamRealm.position.set(0,0,42);world.add(dreamRealm);
 const dreamFloor=mesh(new THREE.CylinderGeometry(15.5,16.2,.5,96),new THREE.MeshPhysicalMaterial({color:0x17152f,metalness:.48,roughness:.22,clearcoat:1}),dreamRealm,[0,-.34,0]);
 const dreamRim=mesh(new THREE.TorusGeometry(15.1,.11,12,144),new THREE.MeshBasicMaterial({color:0xb68cff,transparent:true,opacity:.9}),dreamRealm,[0,-.05,0]);dreamRim.rotation.x=Math.PI/2;
@@ -269,7 +316,7 @@ for(let i=0;i<12;i++){
  const tether=mesh(new THREE.CylinderGeometry(.012,.012,3.2,8),new THREE.MeshBasicMaterial({color:dreamPalette[i%4],transparent:true,opacity:.3}),dreamRealm,[x,2.1,z]);
  tether.rotation.z=Math.sin(a)*.2;
 }
-const dreamDustCount=900,dreamDustPos=new Float32Array(dreamDustCount*3);
+const dreamDustCount=500,dreamDustPos=new Float32Array(dreamDustCount*3);
 for(let i=0;i<dreamDustCount;i++){
  const a=Math.random()*Math.PI*2,r=3+Math.random()*13;
  dreamDustPos[i*3]=Math.cos(a)*r;dreamDustPos[i*3+1]=.3+Math.random()*10;dreamDustPos[i*3+2]=Math.sin(a)*r;
@@ -320,7 +367,7 @@ for(const [x,z] of [[-5,-11],[5,-11],[-19,7],[19,7]]){
  }
 }
 // Floating dust gives depth; bounded particle count keeps the headset workload predictable.
-const dustCount=520,dustPositions=new Float32Array(dustCount*3),dustDrift=new Float32Array(dustCount);
+const dustCount=300,dustPositions=new Float32Array(dustCount*3),dustDrift=new Float32Array(dustCount);
 for(let i=0;i<dustCount;i++){
  dustPositions[i*3]=(Math.random()-.5)*62;
  dustPositions[i*3+1]=.3+Math.random()*15;
@@ -333,18 +380,38 @@ world.add(dust);
 
 const raycaster=new THREE.Raycaster();raycaster.far=22;const tmp=new THREE.Matrix4(),controllers=[];
 function openDetail(data){const room=rooms[data.key];$('#detailTitle').textContent=room.title;$('#detailCopy').textContent=room.copy;$('#eyebrow').textContent=room.eyebrow;$('#heading').textContent=room.title;$('#copy').textContent=room.copy;detail.classList.add('open');$('#visit').dataset.room=data.key;nav.classList.remove('open')}
-function interact(origin,direction){raycaster.set(origin,direction);const hit=raycaster.intersectObjects(interactables,false)[0];if(hit)openDetail(hit.object.userData)}
+function visitRoom(key){
+ const room=rooms[key];if(!room)return;
+ if(room.locked){openDetail({key});status.textContent='OWNER ACCESS REQUIRED';return;}
+ rig.position.set(room.pos[0],0,room.pos[2]);rig.rotation.y=room.yaw||0;
+ camera.position.set(0,1.68,0);camera.rotation.set(0,0,0);
+ detail.classList.remove('open');nav.classList.remove('open');
+ $('#eyebrow').textContent=room.eyebrow;$('#heading').textContent=room.title;$('#copy').textContent=room.copy;
+ status.textContent='LOCATION · '+room.title.toUpperCase();
+}
+function interact(origin,direction){
+ raycaster.set(origin,direction);
+ const toolHit=raycaster.intersectObjects(workspaceTargets,false)[0];
+ if(toolHit){runToolAction(toolHit.object.userData.action);return;}
+ const hit=raycaster.intersectObjects(interactables,false)[0];
+ if(hit){const key=hit.object.userData.key;if(rooms[key]?.locked)openDetail(hit.object.userData);else visitRoom(key);return;}
+ const groundHit=raycaster.intersectObject(floor,false)[0];
+ if(groundHit){
+  rig.position.set(THREE.MathUtils.clamp(groundHit.point.x,-32,32),0,THREE.MathUtils.clamp(groundHit.point.z,-34,48));
+  status.textContent='TELEPORTED · '+Math.round(groundHit.point.x)+', '+Math.round(groundHit.point.z);
+ }
+}
 for(let i=0;i<2;i++){const ctl=renderer.xr.getController(i);rig.add(ctl);const beam=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0,-12)]),new THREE.LineBasicMaterial({color:0x6cecff,transparent:true,opacity:.65}));ctl.add(beam);ctl.addEventListener('select',()=>{tmp.identity().extractRotation(ctl.matrixWorld);const origin=new THREE.Vector3().setFromMatrixPosition(ctl.matrixWorld);const dir=new THREE.Vector3(0,0,-1).applyMatrix4(tmp);interact(origin,dir)});controllers.push(ctl)}
 $('#map').onclick=()=>nav.classList.toggle('open');$('#close').onclick=()=>detail.classList.remove('open');
-$('#visit').onclick=()=>{const k=$('#visit').dataset.room;const r=rooms[k];if(r.locked){$('#detailCopy').textContent='Owner-only systems remain locked until secure sign-in, server-side authorization and audited session controls are deployed. No business data is exposed in this preview.';return}rig.position.set(r.pos[0],0,r.pos[2]);rig.rotation.y=r.yaw||0;camera.position.set(0,1.68,0);camera.rotation.set(0,0,0);detail.classList.remove('open');$('#eyebrow').textContent=r.eyebrow;$('#heading').textContent=r.title;$('#copy').textContent=r.copy};
+$('#visit').onclick=()=>{const k=$('#visit').dataset.room;const r=rooms[k];if(r.locked){$('#detailCopy').textContent='Owner-only systems remain locked until secure sign-in, server-side authorization and audited session controls are deployed. No business data is exposed in this preview.';return}visitRoom(k)};
 nav.querySelectorAll('[data-room]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.room;openDetail({key:k});}));
 $('#reset').onclick=()=>{rig.position.set(0,0,0);rig.rotation.set(0,0,0);camera.position.set(0,1.68,13);camera.rotation.set(0,0,0);detail.classList.remove('open');nav.classList.remove('open');};
-renderer.domElement.addEventListener('pointerdown',e=>{if(renderer.xr.isPresenting)return;const p=new THREE.Vector2(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);raycaster.setFromCamera(p,camera);const hit=raycaster.intersectObjects(interactables,false)[0];if(hit)openDetail(hit.object.userData)});
+renderer.domElement.addEventListener('pointerdown',e=>{if(renderer.xr.isPresenting)return;const p=new THREE.Vector2(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);raycaster.setFromCamera(p,camera);interact(raycaster.ray.origin,raycaster.ray.direction)});
 const keys={};addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if(e.key==='Escape'){detail.classList.remove('open');nav.classList.remove('open')}});addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
 let last=performance.now(),turnCooldown=0;
 function locomotion(dt){let forward=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0),strafe=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),turn=(keys.q?1:0)-(keys.e?1:0);
  if(renderer.xr.isPresenting){for(const source of renderer.xr.getSession()?.inputSources||[]){const gp=source.gamepad;if(!gp)continue;const axes=gp.axes;if(axes.length>=4){if(source.handedness==='left'){strafe+=Math.abs(axes[2]||0)>.12?axes[2]:axes[0]||0;forward-=Math.abs(axes[3]||0)>.12?axes[3]:axes[1]||0}else{const t=axes[2]||axes[0]||0;if(Math.abs(t)>.72&&turnCooldown<=0){rig.rotation.y-=Math.sign(t)*Math.PI/6;turnCooldown=.28}}}}}
- turnCooldown-=dt;const dir=new THREE.Vector3(0,0,-1).applyQuaternion(rig.quaternion);const side=new THREE.Vector3(1,0,0).applyQuaternion(rig.quaternion);const speed=renderer.xr.isPresenting?3.0:5.2;rig.position.addScaledVector(dir,THREE.MathUtils.clamp(forward,-1,1)*speed*dt);rig.position.addScaledVector(side,THREE.MathUtils.clamp(strafe,-1,1)*speed*dt);rig.position.x=THREE.MathUtils.clamp(rig.position.x,-32,32);rig.position.z=THREE.MathUtils.clamp(rig.position.z,-34,48)}
+ if(!renderer.xr.isPresenting&&Math.abs(turn)>.1&&turnCooldown<=0){rig.rotation.y+=Math.sign(turn)*Math.PI/6;mouseYaw=rig.rotation.y;turnCooldown=.28;}turnCooldown-=dt;const dir=new THREE.Vector3(0,0,-1).applyQuaternion(rig.quaternion);const side=new THREE.Vector3(1,0,0).applyQuaternion(rig.quaternion);const speed=renderer.xr.isPresenting?3.0:5.2;rig.position.addScaledVector(dir,THREE.MathUtils.clamp(forward,-1,1)*speed*dt);rig.position.addScaledVector(side,THREE.MathUtils.clamp(strafe,-1,1)*speed*dt);rig.position.x=THREE.MathUtils.clamp(rig.position.x,-32,32);rig.position.z=THREE.MathUtils.clamp(rig.position.z,-34,48)}
 function animate(){const now=performance.now(),dt=Math.min((now-last)/1000,.04);last=now;locomotion(dt);reactor.rotation.y+=dt*.16;reactor.rotation.x=Math.sin(now*.00025)*.08;neuralCore.rotation.y=Math.sin(now*.00012)*.025;neuralParticles.material.opacity=.78+Math.sin(now*.0014)*.12;coreHalo.rotation.z+=dt*.035;dreamCore.rotation.y+=dt*.12;dreamCore.rotation.x+=dt*.07;dreamHalo.rotation.z+=dt*.1;dreamDust.rotation.y+=dt*.025;for(const n of rootNodes){const pulse=.8+Math.sin(now*.0018+n.node.position.x)*.2;n.node.scale.setScalar(pulse);n.halo.rotation.z+=dt*.12;}ceilingGlow.rotation.y+=dt*.012;fill.intensity=38+Math.sin(now*.001)*4;const dp=dustGeo.attributes.position;for(let i=0;i<dustCount;i++){const k=i*3;dustPositions[k+1]+=(dustDrift[i]-.2)*dt;if(dustPositions[k+1]>16)dustPositions[k+1]=.3;if(dustPositions[k+1]<.3)dustPositions[k+1]=15.8;}dp.needsUpdate=true;renderer.render(scene,camera)}
 renderer.setAnimationLoop(animate);
 // Desktop mouse-look is enabled only after an explicit click; Quest uses controller sticks.
@@ -358,22 +425,26 @@ if(navigator.xr)navigator.xr.isSessionSupported('immersive-vr').then(ok=>status.
 async function connectPrivateAgentPresence(){
  const statusEl=document.getElementById("agentStatus");
  const signIn=document.getElementById("ownerSignIn");
- const update=async()=>{
-  const response=await fetch("/api/world/snapshot",{credentials:"same-origin"});
-  if(!response.ok)throw new Error("Private world API is not reachable");
-  const data=await response.json();
+ signIn.hidden=true;
+ try{
+  const response=await fetch("/auth/status",{credentials:"same-origin",cache:"no-store"});
+  const type=response.headers.get("content-type")||"";
+  if(!response.ok||!type.includes("application/json"))throw new Error("No same-origin API route");
+  const config=await response.json();
+  if(!config.configured){statusEl.textContent="BACKEND ROUTE FOUND · OWNER SIGN-IN NOT CONFIGURED";return;}
+  const authResponse=await fetch("/auth/me",{credentials:"same-origin",cache:"no-store"});
+  if(!authResponse.ok)throw new Error("Owner session endpoint unavailable");
+  const auth=await authResponse.json();
+  if(!auth.authenticated){statusEl.textContent="PRIVATE AGENT DATA LOCKED";signIn.hidden=false;return;}
+  const snapshotResponse=await fetch("/api/world/snapshot",{credentials:"same-origin",cache:"no-store"});
+  if(!snapshotResponse.ok)throw new Error("Private world API is unavailable");
+  const data=await snapshotResponse.json();
   const counts=data.counts||{total:0,live:0,simulated:0};
   statusEl.textContent="AGENTS "+counts.total+" · LIVE "+counts.live+" · SIMULATED "+counts.simulated;
- };
- try{
-  const response=await fetch("/auth/me",{credentials:"same-origin"});
-  if(!response.ok)throw new Error("Owner sign-in service unavailable");
-  const auth=await response.json();
-  if(!auth.authenticated){statusEl.textContent="PRIVATE AGENT DATA LOCKED";signIn.hidden=false;return;}
+ }catch(error){
+  statusEl.textContent="BACKEND NOT DEPLOYED · PRIVATE DATA UNAVAILABLE";
   signIn.hidden=true;
-  await update();
-  window.setInterval(()=>update().catch(()=>{statusEl.textContent="AGENT API DISCONNECTED";}),15000);
- }catch(error){statusEl.textContent="BACKEND NOT CONNECTED";signIn.hidden=false;}
+ }
 }
 connectPrivateAgentPresence();
 </script>
