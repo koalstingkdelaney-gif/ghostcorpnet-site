@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111d">
+<title>GhostCorp · Project Board</title>
+<style>
+:root{color-scheme:dark;--bg:#07111d;--panel:#102338;--line:#25445a;--cyan:#62e8ff;--gold:#ffbd79;--muted:#a0b7c9;--text:#eff8ff;--green:#79e6b2;--red:#ff9d9d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 0%,#17364d,var(--bg) 58%);color:var(--text);font:15px/1.5 system-ui,sans-serif}
+header{position:sticky;top:0;z-index:3;background:#07111ded;border-bottom:1px solid var(--line);padding:14px max(16px,calc((100vw - 1120px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}
+a{color:var(--cyan);text-decoration:none}.brand{font-weight:900;letter-spacing:.12em;color:var(--cyan);font-size:.85rem}
+main{max-width:1120px;margin:auto;padding:22px 16px 50px}h1{font-size:clamp(1.8rem,4vw,2.5rem);margin:5px 0}h2{font-size:1rem;margin:0 0 10px}.muted,.small{color:var(--muted)}.small{font-size:.82rem}
+.banner{border:1px solid #745a37;background:#352719;border-radius:12px;padding:12px 14px;color:#ffe1b6;margin:14px 0}
+.panel{background:linear-gradient(145deg,#102338f2,#0b1a29f2);border:1px solid var(--line);border-radius:16px;padding:17px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.stat{background:#081725;border:1px solid var(--line);border-radius:12px;padding:13px}.stat strong{display:block;font-size:1.5rem;color:var(--cyan)}
+form{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:9px;align-items:end}
+label{display:grid;gap:5px;color:var(--muted);font-size:.82rem}
+input,select{width:100%;padding:11px;background:#071725;color:var(--text);border:1px solid var(--line);border-radius:9px;font:inherit}
+button{border:1px solid #3b8198;border-radius:9px;padding:10px 13px;background:#123b50;color:var(--text);font:700 12px system-ui;cursor:pointer}
+button.primary{background:linear-gradient(120deg,#1e9fbb,#176a87);border-color:#6deaff}button:disabled{opacity:.55;cursor:not-allowed}
+.task{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;border-top:1px solid var(--line);padding:14px 0}.task:first-child{border-top:0}
+.task input[type=checkbox]{width:22px;height:22px;margin-top:4px;accent-color:var(--green)}
+.task-title{font-weight:750;overflow-wrap:anywhere}.task.done .task-title{text-decoration:line-through;color:#91a4b3}
+.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}.pill{font-size:10px;letter-spacing:.08em;border:1px solid var(--line);border-radius:99px;padding:3px 8px;color:var(--muted)}
+.task-actions{display:flex;gap:6px;flex-wrap:wrap}.task-actions select{min-width:110px;width:auto;padding:7px;font-size:11px}
+.empty{color:var(--muted);padding:18px 0}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+@media(max-width:700px){form{grid-template-columns:1fr 1fr}form label:first-child{grid-column:1/-1}.task{grid-template-columns:auto 1fr}.task-actions{grid-column:2}}
+</style>
+</head>
+<body>
+<header><div class="brand">GHOSTCORP / PROJECT BOARD</div><nav><a href="./index.html">← VR WORLD</a> · <a href="/">WEBSITE</a></nav></header>
+<main>
+<div class="small">PERSONAL WORKSPACE · QUEST 3 FRIENDLY</div>
+<h1>Project Board</h1>
+<p class="muted">Capture work, track blockers and keep the next step visible. Your tasks are saved in this browser on this device.</p>
+<div class="banner"><strong>Local-only mode:</strong> this board does not sync to GhostCorp's backend yet. It is not shared with other devices. Use Export Backup to keep a copy before clearing browser data.</div>
+<section class="grid" id="stats" aria-label="Task summary"></section>
+<section class="panel">
+<h2>Add a task</h2>
+<form id="addForm">
+<label>Task<input id="title" required maxlength="180" placeholder="What needs to happen next?"></label>
+<label>Department<select id="area"><option>VR / Quest 3</option><option>Jarvis / AI</option><option>Backend / Hosting</option><option>Research Lab</option><option>Products / Revenue</option><option>Security</option><option>Website</option><option>Other</option></select></label>
+<label>Priority<select id="priority"><option value="P0">P0 · Critical</option><option value="P1" selected>P1 · High</option><option value="P2">P2 · Normal</option><option value="P3">P3 · Later</option></select></label>
+<button class="primary" type="submit">Add task</button>
+</form>
+</section>
+<section class="panel">
+<div class="toolbar"><h2>Work queue</h2><div><label style="display:inline-flex;align-items:center">Show <select id="filter" style="width:auto"><option value="open">Open tasks</option><option value="all">All tasks</option><option value="done">Completed</option></select></label></div></div>
+<div id="tasks"></div>
+</section>
+<section class="panel">
+<div class="toolbar"><div><h2>Backup & portability</h2><p class="small">Export a JSON backup or import one previously exported from this board.</p></div><div class="task-actions"><button id="export">Export backup</button><button id="import">Import backup</button><input id="file" type="file" accept="application/json,.json" hidden></div></div>
+<p id="message" class="small" role="status" aria-live="polite"></p>
+</section>
+</main>
+<script>
+(function(){
+'use strict';
+const KEY='ghostcorp-project-board-v1';
+const $=id=>document.getElementById(id);
+const starter=[
+{id:'GC-001',title:'Make the Quest 3 world genuinely usable: controller tools, teleport and in-world workstations',area:'VR / Quest 3',priority:'P0',status:'IN_PROGRESS',createdAt:Date.now(),updatedAt:Date.now()},
+{id:'GC-002',title:'Deploy the FastAPI backend with durable storage and HTTPS',area:'Backend / Hosting',priority:'P0',status:'BLOCKED',createdAt:Date.now(),updatedAt:Date.now()},
+{id:'GC-003',title:'Route /auth and /api through ghostcorpnet.com and verify secure owner sign-in',area:'Security',priority:'P0',status:'BLOCKED',createdAt:Date.now(),updatedAt:Date.now()},
+{id:'GC-004',title:'Test WebXR controls, WebGPU local chat and performance on the actual Quest 3',area:'VR / Quest 3',priority:'P1',status:'NEXT',createdAt:Date.now(),updatedAt:Date.now()},
+{id:'GC-005',title:'Connect the VR scene to authenticated agent presence and world events',area:'Jarvis / AI',priority:'P1',status:'BLOCKED',createdAt:Date.now(),updatedAt:Date.now()},
+{id:'GC-006',title:'Build and test the native OpenXR package after the WebXR workflow is stable',area:'VR / Quest 3',priority:'P2',status:'NEXT',createdAt:Date.now(),updatedAt:Date.now()}
+];
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||'null');return Array.isArray(d)?d:starter.slice()}catch{return starter.slice()}}
+let tasks=load();
+function save(){localStorage.setItem(KEY,JSON.stringify(tasks));render()}
+function stat(label,value){const e=document.createElement('div');e.className='stat';const s=document.createElement('span');s.className='small';s.textContent=label;const b=document.createElement('strong');b.textContent=value;e.append(s,b);return e}
+function render(){
+ const done=tasks.filter(t=>t.status==='DONE').length,blocked=tasks.filter(t=>t.status==='BLOCKED').length,open=tasks.length-done;
+ $('stats').replaceChildren(stat('Open',String(open)),stat('Blocked',String(blocked)),stat('Completed',String(done)),stat('Total',String(tasks.length)));
+ const list=$('tasks');list.replaceChildren();
+ const filter=$('filter').value;const visible=tasks.filter(t=>filter==='all'||(filter==='done'?t.status==='DONE':t.status!=='DONE')).sort((a,b)=>a.priority.localeCompare(b.priority)||a.createdAt-b.createdAt);
+ if(!visible.length){const p=document.createElement('p');p.className='empty';p.textContent='No tasks in this view.';list.append(p);return;}
+ for(const task of visible){
+  const row=document.createElement('article');row.className='task'+(task.status==='DONE'?' done':'');
+  const check=document.createElement('input');check.type='checkbox';check.checked=task.status==='DONE';check.setAttribute('aria-label','Complete '+task.title);
+  check.addEventListener('change',()=>{task.status=check.checked?'DONE':'NEXT';task.updatedAt=Date.now();save()});
+  const body=document.createElement('div'),title=document.createElement('div');title.className='task-title';title.textContent=task.title;body.append(title);
+  const meta=document.createElement('div');meta.className='meta';for(const txt of [task.id,task.area,task.priority,task.status]){const p=document.createElement('span');p.className='pill';p.textContent=txt;meta.append(p)}body.append(meta);
+  const actions=document.createElement('div');actions.className='task-actions';
+  const status=document.createElement('select');status.setAttribute('aria-label','Task status');for(const v of ['NEXT','IN_PROGRESS','BLOCKED','DONE']){const o=document.createElement('option');o.value=v;o.textContent=v.replaceAll('_',' ');status.append(o)}status.value=task.status;status.addEventListener('change',()=>{task.status=status.value;task.updatedAt=Date.now();save()});
+  const remove=document.createElement('button');remove.textContent='Remove';remove.addEventListener('click',()=>{if(confirm('Remove this task from this device?')){tasks=tasks.filter(t=>t.id!==task.id);save()}});
+  actions.append(status,remove);row.append(check,body,actions);list.append(row);
+ }
+}
+$('addForm').addEventListener('submit',e=>{e.preventDefault();const title=$('title').value.trim();if(!title)return;const id='GC-'+Date.now().toString(36).toUpperCase();tasks.unshift({id,title,area:$('area').value,priority:$('priority').value,status:'NEXT',createdAt:Date.now(),updatedAt:Date.now()});$('title').value='';save();$('message').textContent='Task saved on this device.'});
+$('filter').addEventListener('change',render);
+$('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({schema:1,exportedAt:new Date().toISOString(),tasks},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='ghostcorp-project-board.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('message').textContent='Backup download requested.'});
+$('import').addEventListener('click',()=>$('file').click());
+$('file').addEventListener('change',async()=>{const file=$('file').files[0];if(!file)return;try{if(file.size>500000)throw new Error('Backup file is too large.');const data=JSON.parse(await file.text());if(data.schema!==1||!Array.isArray(data.tasks)||data.tasks.length>1000)throw new Error('Invalid GhostCorp board backup.');for(const t of data.tasks){if(!t||typeof t.title!=='string'||t.title.length>180||!['NEXT','IN_PROGRESS','BLOCKED','DONE'].includes(t.status)||!['P0','P1','P2','P3'].includes(t.priority))throw new Error('Backup contains an invalid task.');}if(!confirm('Replace this device\'s current board with '+data.tasks.length+' imported task(s)?'))return;tasks=data.tasks;save();$('message').textContent='Backup imported.';}catch(e){$('message').textContent='Import failed: '+e.message;}finally{$('file').value='';}});
+if(!localStorage.getItem(KEY)){localStorage.setItem(KEY,JSON.stringify(tasks));}
+render();
+})();
+</script>
+</body>
+</html>
