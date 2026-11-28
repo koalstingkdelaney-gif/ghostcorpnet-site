@@ -152,12 +152,12 @@ function onWorkerMessage(event){
  if(d.type==='ready'){progress.hidden=true;setReady();}
  if(d.type==='complete'){
   if(activeTask){completeTask(activeTask,d.content);return;}
-  busy=false;history.push({role:'assistant',content:d.content});addMessage('assistant',d.content);send.disabled=false;prompt.disabled=false;prompt.focus();
+  busy=false;history.push({role:'assistant',content:d.content});addMessage('assistant',d.content);send.disabled=false;prompt.disabled=false;startButton.disabled=!ownerAuthenticated||!agentSelect.value;prompt.focus();
  }
  if(d.type==='error'){
   busy=false;state.textContent='Initialization / generation failed';status.textContent=d.message||'Local model error';progress.hidden=true;
-  if(activeTask){agentStatus.textContent='Local generation failed; task lease will expire for retry.';activeTask=null;if(pendingTaskResolve){pendingTaskResolve();pendingTaskResolve=null;}}
-  send.disabled=workerActive;prompt.disabled=workerActive;load.disabled=ready;
+  if(activeTask){agentStatus.textContent='Local generation failed; task lease will expire for retry.';activeTask=null;workerActive=false;if(pendingTaskResolve){pendingTaskResolve();pendingTaskResolve=null;}}
+  send.disabled=workerActive;prompt.disabled=workerActive;startButton.disabled=workerActive||!ready||!ownerAuthenticated||!agentSelect.value;load.disabled=ready;
  }
 }
 load.addEventListener('click',()=>{
@@ -168,7 +168,7 @@ load.addEventListener('click',()=>{
 });
 form.addEventListener('submit',event=>{
  event.preventDefault();const text=prompt.value.trim();if(!text||!ready||busy||workerActive)return;
- history.push({role:'user',content:text});addMessage('user',text);prompt.value='';busy=true;send.disabled=true;prompt.disabled=true;status.textContent='Generating locally…';worker.postMessage({type:'generate',messages:history});
+ history.push({role:'user',content:text});addMessage('user',text);prompt.value='';busy=true;send.disabled=true;prompt.disabled=true;startButton.disabled=true;status.textContent='Generating locally…';worker.postMessage({type:'generate',messages:history});
 });
 provisionButton.addEventListener('click',provisionResearchAgent);
 startButton.addEventListener('click',startLocalWorker);
