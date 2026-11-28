@@ -201,3 +201,154 @@ def list_events(after: int = 0, limit: int = 100):
     with db() as conn:
         rows = conn.execute("SELECT * FROM events WHERE seq>? ORDER BY seq LIMIT ?", (max(0,after),limit)).fetchall()
     return {"items":[{**dict(r),"payload":json.loads(r["payload"])} for r in rows]}
+
+
+class SceneCreate(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    description: str = Field(default="", max_length=1000)
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class SceneObject(BaseModel):
+    object_id: str = Field(min_length=1, max_length=120)
+    asset: str = Field(min_length=1, max_length=240)
+    position: list[float] = Field(default_factory=lambda: [0.0, 0.0, 0.0], min_length=3, max_length=3)
+    rotation: list[float] = Field(default_factory=lambda: [0.0, 0.0, 0.0], min_length=3, max_length=3)
+    scale: list[float] = Field(default_factory=lambda: [1.0, 1.0, 1.0], min_length=3, max_length=3)
+    properties: dict[str, Any] = Field(default_factory=dict)
+
+
+class SceneObjectMutation(BaseModel):
+    object: SceneObject
+    expected_revision: int = Field(ge=1)
+
+
+class SceneMutation(BaseModel):
+    name: str | None = Field(default=None, min_length=1, max_length=120)
+    description: str | None = Field(default=None, max_length=1000)
+    metadata: dict[str, Any] | None = None
+    expected_revision: int = Field(ge=1)
+
+
+@app.get("/api/v1/world/snapshot", dependencies=[Depends(require_token)])
+def world_snapshot():
+    with db() as conn:
+        rows = conn.execute("SELECT * FROM world_state ORDER BY entity_id").fetchall()
+    entities = [{
+        "entity_id": row["entity_id"], "entity_type": row["entity_type"],
+        "data": json.loads(row["data"]), "revision": row["revision"],
+        "updated_at": row["updated_at"]
+    } for row in rows]
+    return {"schema_version": 1, "entities": entities, "count": len(entities)}
+
+
+@app.get("/api/v1/world/scenes", dependencies=[Depends(require_token)])
+def list_scenes():
+    with db() as conn:
+        rows = conn.execute("SELECT * FROM world_state WHERE entity_type='scene' ORDER BY entity_id").fetchall()
+    return {"items": [{
+        "scene_id": row["entity_id"].removeprefix("scene:"),
+        "data": json.loads(row["data"]), "revision": row["revision"],
+        "updated_at": row["updated_at"]
+    } for row in rows]}
+
+
+@app.post("/api/v1/world/scenes", status_code=201, dependencies=[Depends(require_token)])
+def create_scene(body: SceneCreate):
+    scene_id = str(uuid.uuid4())
+    now = time.time()
+    data = {"name": body.name, "description": body.description,
+            "metadata": body.metadata, "objects": []}
+    with db() as conn:
+        conn.execute("INSERT INTO world_state(entity_id,entity_type,data,revision,updated_at) VALUES(?,?,?,?,?)",
+                     (f"scene:{scene_id}", "scene", json.dumps(data), 1, now))
+        emit(conn, "WorldSceneCreated", {"scene_id": scene_id, "name": body.name})
+    return {"scene_id": scene_id, "data": data, "revision": 1, "updated_at": now}
+
+
+@app.get("/api/v1/world/scenes/{scene_id}", dependencies=[Depends(require_token)])
+def get_scene(scene_id: str):
+    with db() as conn:
+        row = conn.execute("SELECT * FROM world_state WHERE entity_id=? AND entity_type='scene'",
+                           (f"scene:{scene_id}",)).fetchone()
+    if not row:
+        raise HTTPException(status_code=404, detail="Scene not found")
+    return {"scene_id": scene_id, "data": json.loads(row["data"]),
+            "revision": row["revision"], "updated_at": row["updated_at"]}
+
+
+@app.put("/api/v1/world/scenes/{scene_id}", dependencies=[Depends(require_token)])
+def update_scene(scene_id: str, body: SceneMutation):
+    now = time.time()
+    with db() as conn:
+        row = conn.execute("SELECT data,revision FROM world_state WHERE entity_id=? AND entity_type='scene'",
+                           (f"scene:{scene_id}",)).fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail="Scene not found")
+        if row["revision"] != body.expected_revision:
+            raise HTTPException(status_code=409, detail="Scene revision conflict; fetch the latest scene before retrying")
+        data = json.loads(row["data"])
+        for key in ("name", "description", "metadata"):
+            value = getattr(body, key)
+            if value is not None:
+                data[key] = value
+        revision = row["revision"] + 1
+        conn.execute("UPDATE world_state SET data=?,revision=?,updated_at=? WHERE entity_id=?",
+                     (json.dumps(data), revision, now, f"scene:{scene_id}"))
+        emit(conn, "WorldRevisionCreated", {"scene_id": scene_id, "revision": revision})
+    return {"scene_id": scene_id, "data": data, "revision": revision, "updated_at": now}
+
+
+@app.put("/api/v1/world/scenes/{scene_id}/objects/{object_id}", dependencies=[Depends(require_token)])
+def upsert_scene_object(scene_id: str, object_id: str, body: SceneObjectMutation):
+    if body.object.object_id != object_id:
+        raise HTTPException(status_code=422, detail="Path object_id must match object.object_id")
+    now = time.time()
+    with db() as conn:
+        row = conn.execute("SELECT data,revision FROM world_state WHERE entity_id=? AND entity_type='scene'",
+                           (f"scene:{scene_id}",)).fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail="Scene not found")
+        if row["revision"] != body.expected_revision:
+            raise HTTPException(status_code=409, detail="Scene revision conflict; fetch the latest scene before retrying")
+        data = json.loads(row["data"])
+        objects = data.setdefault("objects", [])
+        obj = body.object.model_dump()
+        found = False
+        for index, existing in enumerate(objects):
+            if existing.get("object_id") == object_id:
+                objects[index] = obj
+                found = True
+                break
+        if not found:
+            objects.append(obj)
+        revision = row["revision"] + 1
+        conn.execute("UPDATE world_state SET data=?,revision=?,updated_at=? WHERE entity_id=?",
+                     (json.dumps(data), revision, now, f"scene:{scene_id}"))
+        emit(conn, "WorldObjectChanged", {"scene_id": scene_id, "object_id": object_id,
+                                          "operation": "updated" if found else "created", "revision": revision})
+    return {"scene_id": scene_id, "object": obj, "revision": revision, "updated_at": now}
+
+
+@app.delete("/api/v1/world/scenes/{scene_id}/objects/{object_id}", dependencies=[Depends(require_token)])
+def delete_scene_object(scene_id: str, object_id: str, expected_revision: int):
+    now = time.time()
+    with db() as conn:
+        row = conn.execute("SELECT data,revision FROM world_state WHERE entity_id=? AND entity_type='scene'",
+                           (f"scene:{scene_id}",)).fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail="Scene not found")
+        if row["revision"] != expected_revision:
+            raise HTTPException(status_code=409, detail="Scene revision conflict; fetch the latest scene before retrying")
+        data = json.loads(row["data"])
+        objects = data.setdefault("objects", [])
+        filtered = [obj for obj in objects if obj.get("object_id") != object_id]
+        if len(filtered) == len(objects):
+            raise HTTPException(status_code=404, detail="Object not found in scene")
+        data["objects"] = filtered
+        revision = row["revision"] + 1
+        conn.execute("UPDATE world_state SET data=?,revision=?,updated_at=? WHERE entity_id=?",
+                     (json.dumps(data), revision, now, f"scene:{scene_id}"))
+        emit(conn, "WorldObjectChanged", {"scene_id": scene_id, "object_id": object_id,
+                                          "operation": "deleted", "revision": revision})
+    return {"scene_id": scene_id, "deleted_object_id": object_id, "revision": revision, "updated_at": now}
