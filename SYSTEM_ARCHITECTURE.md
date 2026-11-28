@@ -70,5 +70,10 @@ A feature is not working because a file exists. It must have:
 
 ## Current verified state
 - The existing repository contains vr/index.html.
-- This document records the unified architecture and sequence.
-- This document alone does not establish that a persistent backend, Jarvis daemon, database, model fleet, native Quest package, or end-to-end integration is deployed. Those must be implemented and independently tested.
+- A FastAPI shared backend now exists under backend/app/main.py.
+- The backend persists task queue/checkpoints, versioned world entities, agent status, and append-only events in SQLite.
+- Bearer-token protection is required for every /api/v1 route; missing server configuration fails closed with HTTP 503.
+- Automated API tests and a GitHub Actions backend CI workflow have been added.
+- Docker packaging and operational setup documentation are present.
+- These files have been fetched back from GitHub to verify their contents.
+- CI execution, live deployment, persistent production storage, Quest-client integration, and end-to-end operation are NOT yet verified. GitHub Actions is a test runner, not the always-on backend host.
