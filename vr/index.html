@@ -139,14 +139,7 @@ function makeLabel(title,sub){const c=document.createElement('canvas');c.width=1
 // GhostCorp Living AI Core — organic neural canopy, not block geometry.
 const neuralCore=new THREE.Group();neuralCore.position.set(0,0,-2);world.add(neuralCore);
 const corePalette=[new THREE.Color(0x65f4ff),new THREE.Color(0xa38bff),new THREE.Color(0x78ffd5),new THREE.Color(0xffc27c)];
-const coreBranches=[
- {name:'AGENT WORKFORCE',x:-8,z:-2,c:0},{name:'RESEARCH & MEMORY',x:-6,z:-6,c:1},
- {name:'SOFTWARE FACTORY',x:-3.5,z:-8,c:0},{name:'MODEL OPERATIONS',x:0,z:-9,c:2},
- {name:'SECURITY & TRUST',x:3.5,z:-8,c:1},{name:'FINANCE CONTROLS',x:6,z:-6,c:3},
- {name:'COMMERCE & SALES',x:8,z:-2,c:2},{name:'DISTRIBUTED COMPUTE',x:8,z:3,c:0},
- {name:'MESH NETWORK',x:5,z:6,c:1},{name:'VR WORLD',x:1.5,z:8,c:2},
- {name:'PARTNERSHIPS',x:-3,z:7,c:3},{name:'RECOVERY SYSTEMS',x:-7,z:4,c:0}
-];
+
 const neuralPositions=[],neuralColors=[],neuralSizes=[];
 const white=new THREE.Color(0xeaffff);
 function addNeuralPoint(p,color,size=.045){neuralPositions.push(p.x,p.y,p.z);const c=color.clone().lerp(white,Math.random()*.58);neuralColors.push(c.r,c.g,c.b);neuralSizes.push(size)}
