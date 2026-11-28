@@ -151,24 +151,66 @@ const neuralPositions=[],neuralColors=[],neuralSizes=[];
 const white=new THREE.Color(0xeaffff);
 function addNeuralPoint(p,color,size=.045){neuralPositions.push(p.x,p.y,p.z);const c=color.clone().lerp(white,Math.random()*.58);neuralColors.push(c.r,c.g,c.b);neuralSizes.push(size)}
 function addFiber(points,color,radius=.009,opacity=.34){const curve=new THREE.CatmullRomCurve3(points);const material=new THREE.MeshBasicMaterial({color,transparent:true,opacity,blending:THREE.AdditiveBlending,depthWrite:false});return mesh(new THREE.TubeGeometry(curve,Math.max(18,points.length*5),radius,5,false),material,neuralCore)}
-// A tapered luminous trunk that naturally splits into fine dendritic branches.
-const trunkCurve=new THREE.CatmullRomCurve3([new THREE.Vector3(0,.1,0),new THREE.Vector3(.12,1.5,.08),new THREE.Vector3(-.18,3.1,0),new THREE.Vector3(.22,4.8,-.12),new THREE.Vector3(0,6.1,0)]);
-addFiber(trunkCurve.getPoints(24),0x50eaff,.12,.17);
-for(let i=0;i<1800;i++){const t=Math.random(),p=trunkCurve.getPoint(t),tan=trunkCurve.getTangent(t);const spread=.07+t*.23,a=Math.random()*Math.PI*2,r=Math.sqrt(Math.random())*spread;const n=new THREE.Vector3(-tan.y,tan.x,.1).normalize(),v=new THREE.Vector3().crossVectors(tan,n).normalize();p.addScaledVector(n,Math.cos(a)*r).addScaledVector(v,Math.sin(a)*r);addNeuralPoint(p,corePalette[0],.035+Math.random()*.035)}
-// Main department roots curve out of the living trunk.
+// Brain-like neural anatomy: two hemispheres, a horizontal bridge, and cross-linked clusters.
+// No central trunk or upward-growing branch silhouette: the network is a connected volume.
 const rootNodes=[];
-for(let i=0;i<coreBranches.length;i++){
- const d=coreBranches[i],color=corePalette[d.c];
- const start=new THREE.Vector3(0,4.5,0),mid=new THREE.Vector3(d.x*.35,5.5,d.z*.35),high=new THREE.Vector3(d.x*.76,7.1,d.z*.76),end=new THREE.Vector3(d.x,7.4,d.z);
- const curve=new THREE.CatmullRomCurve3([start,mid,high,end]);
- addFiber(curve.getPoints(26),color,.025,.48);
- for(let j=0;j<460;j++){const t=Math.random(),p=curve.getPoint(t),tan=curve.getTangent(t),spread=.04+t*.18,a=Math.random()*Math.PI*2,r=Math.sqrt(Math.random())*spread,n=new THREE.Vector3(-tan.y,tan.x,.12).normalize(),v=new THREE.Vector3().crossVectors(tan,n).normalize();p.addScaledVector(n,Math.cos(a)*r).addScaledVector(v,Math.sin(a)*r);addNeuralPoint(p,color,.025+Math.random()*.035)}
- // Fine side filaments growing from each branch like dendrites.
- for(let j=0;j<5;j++){const t=.35+j*.105,base=curve.getPoint(t),side=(j%2?1:-1),endTwig=base.clone().add(new THREE.Vector3(side*(.5+Math.random()*.8),.35+Math.random()*.9,(Math.random()-.5)*1.1));const twig=new THREE.CatmullRomCurve3([base,base.clone().lerp(endTwig,.42).add(new THREE.Vector3(0,.18,0)),endTwig]);addFiber(twig.getPoints(10),color,.008,.28);for(let k=0;k<34;k++)addNeuralPoint(twig.getPoint(Math.random()),color,.018+Math.random()*.02)}
- const node=mesh(new THREE.SphereGeometry(.16,18,14),new THREE.MeshBasicMaterial({color,transparent:true,opacity:.95}),neuralCore,[d.x,7.4,d.z]);
- const halo=mesh(new THREE.TorusGeometry(.29,.009,6,44),new THREE.MeshBasicMaterial({color,transparent:true,opacity:.7}),neuralCore,[d.x,7.4,d.z]);halo.rotation.x=Math.PI/2;
- const board=mesh(new THREE.PlaneGeometry(2.45,.48),makeLabel(d.name,'DEPARTMENT NODE'),neuralCore,[d.x,8.05,d.z]);board.lookAt(0,8.05,0);
+const clusterDefs=[
+ {name:'AGENT WORKFORCE',x:-4.15,y:8.45,z:-1.45,c:0},
+ {name:'RESEARCH & MEMORY',x:-3.15,y:9.8,z:-2.45,c:1},
+ {name:'SOFTWARE FACTORY',x:-1.8,y:10.65,z:-1.8,c:0},
+ {name:'MODEL OPERATIONS',x:-.85,y:9.65,z:-2.8,c:2},
+ {name:'SECURITY & TRUST',x:1.05,y:10.5,z:-2.25,c:1},
+ {name:'FINANCE CONTROLS',x:2.95,y:9.65,z:-2.1,c:3},
+ {name:'COMMERCE & SALES',x:4.1,y:8.55,z:-.8,c:2},
+ {name:'DISTRIBUTED COMPUTE',x:3.85,y:8.1,z:1.7,c:0},
+ {name:'MESH NETWORK',x:2.55,y:9.35,z:2.55,c:1},
+ {name:'VR WORLD',x:.8,y:10.15,z:2.65,c:2},
+ {name:'PARTNERSHIPS',x:-1.15,y:9.35,z:2.7,c:3},
+ {name:'RECOVERY SYSTEMS',x:-3.05,y:8.45,z:2.05,c:0}
+];
+
+function addFiber(points,color,radius=.009,opacity=.34){
+ const curve=new THREE.CatmullRomCurve3(points);
+ const material=new THREE.MeshBasicMaterial({color,transparent:true,opacity,blending:THREE.AdditiveBlending,depthWrite:false});
+ return mesh(new THREE.TubeGeometry(curve,Math.max(18,points.length*5),radius,5,false),material,neuralCore);
+}
+const clusterObjects=[];
+for(let i=0;i<clusterDefs.length;i++){
+ const d=clusterDefs[i],color=corePalette[d.c],center=new THREE.Vector3(d.x,d.y,d.z);
+ // Each knowledge domain is a dense local cluster, not a branch.
+ for(let j=0;j<150;j++){
+  const p=center.clone().add(new THREE.Vector3((Math.random()-.5)*1.25,(Math.random()-.5)*.9,(Math.random()-.5)*1.35));
+  addNeuralPoint(p,color,.018+Math.random()*.03);
+ }
+ const node=mesh(new THREE.SphereGeometry(.115,18,14),new THREE.MeshBasicMaterial({color,transparent:true,opacity:.96}),neuralCore,center.toArray());
+ const halo=mesh(new THREE.TorusGeometry(.23,.008,6,40),new THREE.MeshBasicMaterial({color,transparent:true,opacity:.62}),neuralCore,center.toArray());halo.rotation.x=Math.PI/2;
+ const board=mesh(new THREE.PlaneGeometry(2.15,.38),makeLabel(d.name,'CONNECTED KNOWLEDGE CLUSTER'),neuralCore,[d.x,d.y+.58,d.z]);
+ board.lookAt(0,d.y+.58,0);
  rootNodes.push({node,halo,color});
+ clusterObjects.push(center);
+}
+// Dense short-range synapses form a continuous network within each hemisphere.
+for(let i=0;i<clusterObjects.length;i++){
+ for(let step of [1,2,3]){
+  const j=(i+step)%clusterObjects.length;
+  const p1=clusterObjects[i],p2=clusterObjects[j],mid=p1.clone().lerp(p2,.5);
+  mid.y+=.18+Math.random()*.34;mid.z+=(Math.random()-.5)*.45;
+  addFiber([p1,mid,p2],i%4===0?0xffc27c:0x65eaff,.006,.23);
+ }
+}
+// The corpus-callosum-like bridge links both hemispheres across the middle.
+for(let i=0;i<36;i++){
+ const z=-2.1+i*.12,y=9.25+Math.sin(i*.31)*.32;
+ const p1=new THREE.Vector3(-2.75,y,z),p2=new THREE.Vector3(2.75,y+Math.sin(i*.23)*.18,z+.12);
+ const mid=p1.clone().lerp(p2,.5);mid.y+=.24+Math.sin(i*.7)*.12;
+ addFiber([p1,mid,p2],i%5===0?0xffc27c:0x73eaff,.007,.3);
+}
+// Long-range synapses cross-link distant clusters and weave through both lobes.
+for(let i=0;i<64;i++){
+ const ia=i%clusterObjects.length,ib=(ia+5+(i%4))%clusterObjects.length;
+ const p1=clusterObjects[ia].clone(),p2=clusterObjects[ib].clone();
+ const mid=p1.clone().lerp(p2,.5);mid.y+=.35+Math.random()*.8;
+ addFiber([p1,mid,p2],i%6===0?0xffc27c:0x73eaff,.005,.2);
 }
 // Large airy neural canopy: two asymmetric lobes of fine points, with open space between them.
 for(let i=0;i<15000;i++){
