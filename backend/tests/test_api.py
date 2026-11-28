@@ -48,3 +48,37 @@ def test_world_revision_and_agent_state(monkeypatch, tmp_path):
     assert client.get("/api/v1/world/scene:atrium", headers=headers()).json()["data"]["objects"][0]["id"] == "core"
     assert client.put("/api/v1/agents/jarvis", headers=headers(),
                       json={"status":"idle","data":{"mode":"local-first"}}).status_code == 200
+
+
+def test_world_scene_objects_revisions_and_conflict(monkeypatch, tmp_path):
+    client, _ = load_app(monkeypatch, tmp_path)
+    created = client.post("/api/v1/world/scenes", headers=headers(),
+                          json={"name":"Central Atrium","description":"Main headquarters"})
+    assert created.status_code == 201
+    scene_id = created.json()["scene_id"]
+    assert created.json()["revision"] == 1
+
+    obj = {"object_id":"central-core","asset":"assets/core.glb",
+           "position":[0,1,0],"rotation":[0,0,0],"scale":[1,1,1],
+           "properties":{"interactive":True}}
+    placed = client.put(f"/api/v1/world/scenes/{scene_id}/objects/central-core",
+                        headers=headers(), json={"object":obj,"expected_revision":1})
+    assert placed.status_code == 200
+    assert placed.json()["revision"] == 2
+
+    stale = client.put(f"/api/v1/world/scenes/{scene_id}/objects/central-core",
+                       headers=headers(), json={"object":obj,"expected_revision":1})
+    assert stale.status_code == 409
+
+    scene = client.get(f"/api/v1/world/scenes/{scene_id}", headers=headers()).json()
+    assert scene["revision"] == 2
+    assert scene["data"]["objects"][0]["object_id"] == "central-core"
+
+    deleted = client.delete(f"/api/v1/world/scenes/{scene_id}/objects/central-core",
+                            headers=headers(), params={"expected_revision":2})
+    assert deleted.status_code == 200
+    assert deleted.json()["revision"] == 3
+
+    snapshot = client.get("/api/v1/world/snapshot", headers=headers()).json()
+    assert snapshot["schema_version"] == 1
+    assert any(item["entity_id"] == f"scene:{scene_id}" for item in snapshot["entities"])
