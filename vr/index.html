@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070b14">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>GhostCorp VR — Immersive Headquarters</title>
 <meta name="description" content="Explore the GhostCorp immersive headquarters, designed for Meta Quest 3 and WebXR.">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -36,7 +40,7 @@ button:hover,a.btn:hover{transform:translateY(-2px);border-color:var(--cyan);bac
  <div class="bottom">
   <section class="glass welcome"><div class="eyebrow" id="eyebrow">WELCOME · OWNER EXPERIENCE</div><h1 id="heading">A headquarters beyond the screen.</h1><p id="copy">Explore the central atrium and department portals. Sign in to view private agent presence; use the Action Center for owner-approved business operations.</p></section>
   <div class="controls">
-   <a class="btn" id="ownerSignIn" href="/auth/github/start" hidden>OWNER SIGN-IN</a><button id="map">DEPARTMENTS</button><button id="devOpen">DEV WORKBENCH</button><a class="btn" href="./chat.html">GHOSTCORP AI CHAT</a><a class="btn" href="./action-center.html">ACTION CENTER</a><button id="reset">RECENTER</button><button id="enter" class="primary">ENTER QUEST VR</button><a class="btn" href="/">WEBSITE</a>
+   <a class="btn" id="ownerSignIn" href="/auth/github/start" hidden>OWNER SIGN-IN</a><button id="installApp">INSTALL / UPDATE</button><button id="map">DEPARTMENTS</button><button id="devOpen">DEV WORKBENCH</button><a class="btn" href="./chat.html">GHOSTCORP AI CHAT</a><a class="btn" href="./action-center.html">ACTION CENTER</a><button id="reset">RECENTER</button><button id="enter" class="primary">ENTER QUEST VR</button><a class="btn" href="/">WEBSITE</a>
   </div>
  </div>
  <div id="hint">QUEST 3 · Point + Trigger: tools/portals · Trigger at floor: teleport · Left stick: move · Right stick: snap turn</div>
@@ -51,11 +55,56 @@ button:hover,a.btn:hover{transform:translateY(-2px);border-color:var(--cyan);bac
  <button data-room="dream">Dream Realm<small>Agent sleep & sandbox · preview</small></button>
  </div></section>
 <section id="detail" class="glass" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="eyebrow">GHOSTCORP DIRECTORY</div><h2 id="detailTitle"></h2><p id="detailCopy"></p><div class="row"><button id="visit" class="primary">VISIT LOCATION</button><button id="close">CLOSE</button></div></section>
-<section id="devPanel" aria-label="GhostCorp VR developer workbench"><header><h2>GHOSTCORP / VR DEVELOPER WORKBENCH</h2><div class="devActions"><button id="devSave">SAVE DRAFT</button><button id="devDownload">DOWNLOAD FILE</button><button id="devPreview">PREVIEW</button><a href="https://github.dev/koalstingkdelaney-gif/ghostcorpnet-site" target="_blank" rel="noopener">OPEN GITHUB EDITOR</a><button id="devClose">CLOSE</button></div></header><div class="devActions"><label class="devNote" for="devFilename">File</label><input id="devFilename" value="index.html" maxlength="80"><span id="devState" class="devNote">Local draft · not published</span></div><textarea id="devCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Code editor"></textarea><div class="devNote">Edit with the Quest virtual keyboard. Save stores this draft on this headset. Download exports it. Open GitHub Editor to edit and commit the real website (GitHub sign-in and write access required). Local drafts do not change the live site.</div><iframe id="devPreviewFrame" title="Sandboxed project preview" sandbox="allow-scripts"></iframe></section><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}</script>
+<section id="devPanel" aria-label="GhostCorp VR developer workbench"><header><h2>GHOSTCORP / VR DEVELOPER WORKBENCH</h2><div class="devActions"><button id="devSave">SAVE DRAFT</button><button id="devDownload">DOWNLOAD FILE</button><button id="devPreview">PREVIEW</button><a href="https://github.dev/koalstingkdelaney-gif/ghostcorpnet-site/blob/main/vr/index.html" target="_blank" rel="noopener">OPEN GITHUB EDITOR</a><button id="devClose">CLOSE</button></div></header><div class="devActions"><label class="devNote" for="devFilename">File</label><input id="devFilename" value="index.html" maxlength="80"><span id="devState" class="devNote">Local draft · not published</span></div><textarea id="devCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Code editor"></textarea><div class="devNote">Edit and preview local drafts here. To publish a website update, open the exact VR source in GitHub Editor, sign in, commit your change, and let the existing Pages workflow deploy it. Never paste access tokens into this editor. Local drafts do not change the live site.</div><iframe id="devPreviewFrame" title="Sandboxed project preview" sandbox="allow-scripts"></iframe></section><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
 const $=s=>document.querySelector(s),status=$('#status'),stage=$('#stage'),nav=$('#nav'),detail=$('#detail');
 const devPanel=$('#devPanel'),devCode=$('#devCode'),devFilename=$('#devFilename'),devState=$('#devState');
+const installButton=$('#installApp');
+let installPrompt=null;
+let vrRegistration=null;
+window.addEventListener('beforeinstallprompt',event=>{
+ event.preventDefault();
+ installPrompt=event;
+ installButton.textContent='INSTALL GHOSTCORP';
+});
+window.addEventListener('appinstalled',()=>{
+ installPrompt=null;
+ installButton.textContent='GHOSTCORP INSTALLED';
+});
+async function registerVrApp(){
+ if(!('serviceWorker' in navigator))return;
+ try{
+  vrRegistration=await navigator.serviceWorker.register('./sw.js',{scope:'./'});
+  await vrRegistration.update();
+  vrRegistration.addEventListener('updatefound',()=>{
+   const worker=vrRegistration.installing;
+   if(worker)worker.addEventListener('statechange',()=>{
+    if(worker.state==='installed'&&navigator.serviceWorker.controller)installButton.textContent='UPDATE READY · RELOAD';
+   });
+  });
+ }catch(error){console.warn('GhostCorp offline cache unavailable',error);}
+}
+registerVrApp();
+window.addEventListener('focus',()=>{if(vrRegistration)vrRegistration.update().catch(()=>{});});
+installButton.addEventListener('click',async()=>{
+ if(installPrompt){
+  installPrompt.prompt();
+  const result=await installPrompt.userChoice;
+  installPrompt=null;
+  installButton.textContent=result.outcome==='accepted'?'INSTALLING…':'INSTALL / UPDATE';
+  return;
+ }
+ if(vrRegistration){
+  try{await vrRegistration.update();}catch(error){console.warn(error);}
+ }
+ const quest=/Quest|Oculus/i.test(navigator.userAgent);
+ const message=quest
+  ?'GhostCorp VR is ready as a hosted WebXR experience. For now, keep this page available in Meta Quest Browser and use its browser menu to save or install the site if that option is offered. A standalone Quest app package is a separate signed build and is not installed silently by a website.\n\nReload this page after a website update to load the newest build.'
+  :'GhostCorp VR is ready as an installable web app where your browser supports PWA installation. Use the browser Install option if no in-page prompt appears. Reload after website updates.';
+ alert(message);
+});
+
 const starterCode='<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>My GhostCorp Project</title>\n<style>body{font:16px system-ui;background:#101827;color:#eef;padding:2rem}</style>\n</head>\n<body>\n<h1>My GhostCorp project</h1>\n<p>Built from the GhostCorp VR workbench.</p>\n</body>\n</html>';
 function draftKey(){return 'ghostcorp-vr-draft:'+devFilename.value.trim()}
 function openDev(){devPanel.classList.add('open');nav.classList.remove('open');const saved=localStorage.getItem(draftKey());devCode.value=saved??starterCode;devState.textContent=saved?'Draft restored from this headset':'New local starter project'}
