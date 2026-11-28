@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111d"><title>GhostCorp · Owner Action Center</title>
+<style>
+:root{color-scheme:dark;--bg:#07111d;--panel:#102338;--line:#25445a;--cyan:#62e8ff;--muted:#a0b7c9;--text:#eff8ff;--green:#79e6b2;--red:#ff9d9d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 0%,#17364d,var(--bg) 58%);color:var(--text);font:15px/1.5 system-ui,sans-serif}
+header{position:sticky;top:0;background:#07111ded;border-bottom:1px solid var(--line);padding:14px max(16px,calc((100vw - 1120px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px;z-index:3}
+.brand{font-weight:900;letter-spacing:.12em;color:var(--cyan);font-size:.85rem}a{color:var(--cyan);text-decoration:none}main{max-width:1120px;margin:auto;padding:24px 16px 50px}
+h1{font-size:clamp(1.7rem,4vw,2.6rem);margin:4px 0}h2{font-size:1.1rem;margin:0 0 12px}.muted{color:var(--muted)}.small{font-size:.82rem;color:var(--muted)}
+.panel{background:linear-gradient(145deg,#102338f2,#0b1a29f2);border:1px solid var(--line);border-radius:16px;padding:17px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.stat{background:#081725;border:1px solid var(--line);border-radius:12px;padding:14px}.stat strong{display:block;font-size:1.55rem;color:var(--cyan)}
+button{background:#123b50;color:var(--text);border:1px solid #3b8198;border-radius:9px;padding:9px 13px;font:inherit;font-weight:700;cursor:pointer;margin:4px 6px 0 0}button:hover{border-color:var(--cyan)}button:disabled{opacity:.5}
+.item{border-top:1px solid var(--line);padding:13px 0}.item:first-of-type{border-top:0}.item p{white-space:pre-wrap;overflow-wrap:anywhere;margin:7px 0}.tag{font-size:.75rem;color:var(--cyan);letter-spacing:.08em}
+#gate{padding:28px;text-align:center}#message{white-space:pre-wrap;color:var(--muted);min-height:1.5em}
+.danger{color:var(--red)}.success{color:var(--green)}
+@media(max-width:560px){header{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="brand">GHOSTCORP / OWNER OPERATIONS</div><nav><a href="./index.html">VR WORLD</a> · <a href="/">PUBLIC SITE</a></nav></header>
+<main>
+  <div class="tag">PRIVATE CONTROL PLANE</div><h1>Owner Action Center</h1>
+  <p class="muted">One place to review customer problems, research, products, dream proposals and system health. Only authenticated owner sessions can load business records.</p>
+  <section id="gate" class="panel"><h2>Owner sign-in</h2><p id="gateText" class="muted">Checking secure owner session…</p><a id="signIn" href="/auth/github/start" hidden><button>Sign in with authorized GitHub account</button></a></section>
+  <div id="dashboard" hidden>
+    <div class="row"><span id="ownerLabel" class="small"></span><button id="refresh">Refresh</button><button id="logout">Sign out</button></div>
+    <div id="stats" class="grid"></div>
+    <section class="panel"><h2>Customer problems</h2><p class="small">Suggestions voluntarily submitted on the public website. Email is retained only when the submitter explicitly asked for a reply.</p><div id="problems"></div></section>
+    <section class="panel"><h2>Product pipeline</h2><p class="small">Owner-reviewed drafts and validation evidence. Approval prepares a listing; it does not publish or sell it.</p><div id="products"></div></section>
+    <section class="panel"><h2>Dream Realm review queue</h2><p class="small">Dream proposals cannot deploy, publish, contact customers or spend money on their own.</p><div id="dreams"></div></section>
+    <section class="panel"><h2>Agent lifecycle and task queue</h2><div id="runtime"></div></section>
+    <section class="panel"><h2>Current limitations</h2><div id="capabilities"></div></section>
+  </div>
+  <p id="message" role="status" aria-live="polite"></p>
+</main>
+<script type="module">
+const $=s=>document.querySelector(s);let csrf='';let loaded=false;
+async function api(path,options={}){const headers={'Content-Type':'application/json',...(options.headers||{})};if(options.method&&options.method!=='GET'&&csrf)headers['X-CSRF-Token']=csrf;const response=await fetch(path,{...options,headers,credentials:'same-origin'});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.detail||('Request failed: '+response.status));return data}
+function node(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=String(text);return el}
+function sectionItem(parent,title,detail,meta){const wrap=node('div','item');wrap.append(node('div','tag',meta||''));wrap.append(node('strong','',title||'Untitled'));wrap.append(node('p','muted',detail||''));parent.append(wrap);return wrap}
+function actionButton(parent,label,fn){const b=node('button','',label);b.addEventListener('click',async()=>{b.disabled=true;try{await fn();await loadDashboard();}catch(e){$('#message').textContent=e.message;b.disabled=false;}});parent.append(b)}
+async function loadDashboard(){
+ $('#message').textContent='Loading private owner data…';
+ const d=await api('/api/owner/action-center');
+ $('#dashboard').hidden=false;$('#gate').hidden=true;$('#ownerLabel').textContent='Signed in as '+($('#ownerLabel').dataset.owner||'GhostCorp owner');
+ const s=$('#stats');s.replaceChildren();
+ const cards=[
+  ['Queue tasks',d.queue.tasks_total||0],
+  ['New customer problems',(d.customer_problems.new||[]).length],
+  ['Product drafts',(d.product_drafts.items||[]).length],
+  ['Dream proposals pending',(d.dream_artifacts.items||[]).length],
+  ['Paid spend cap','$'+Number(d.health.spend_cap_usd||0).toFixed(2)],
+  ['Payments mode',d.health.payments_mode]
+ ];
+ for(const [label,value] of cards){const el=node('div','stat');el.append(node('span','small',label),node('strong','',value));s.append(el);}
+ const problems=$('#problems');problems.replaceChildren();
+ const allProblems=[...(d.customer_problems.new||[]),...(d.customer_problems.roadmap||[])];
+ if(!allProblems.length)problems.append(node('p','muted','No customer problem suggestions are waiting for review.'));
+ for(const p of allProblems){const item=sectionItem(problems,'Problem #'+p.id,p.problem,p.status+' · '+new Date(p.created_at*1000).toLocaleString());if(p.context)item.append(node('p','muted','Context: '+p.context));if(p.email&&p.contact_permission)item.append(node('p','small','Reply permission granted: '+p.email));if(p.status==='NEW'){actionButton(item,'Mark for roadmap',()=>api('/api/customer/problem-submissions/'+p.id+'/review',{method:'POST',body:JSON.stringify({status:'ROADMAP'})}));actionButton(item,'Mark reviewed',()=>api('/api/customer/problem-submissions/'+p.id+'/review',{method:'POST',body:JSON.stringify({status:'REVIEWED'})}));}}
+ const products=$('#products');products.replaceChildren();
+ const drafts=d.product_drafts.items||[];
+ if(!drafts.length)products.append(node('p','muted','No product drafts yet.'));
+ for(const p of drafts){const item=sectionItem(products,p.title,p.problem,p.status+' · '+p.format);item.append(node('p','muted','Audience: '+p.audience));item.append(node('p','muted','Proposed price: $'+(Number(p.proposed_price_cents||0)/100).toFixed(2)));if(p.validation?.checks){for(const check of p.validation.checks)item.append(node('p','small',(check.passed?'✓ ':'✕ ')+check.name+' — '+check.evidence));}if(p.status==='VALIDATION_RECORDED'&&p.validation?.all_passed){actionButton(item,'Approve for listing (does not publish)',()=>api('/api/products/drafts/'+p.id+'/decision',{method:'POST',body:JSON.stringify({decision:'APPROVED_FOR_LISTING'})}));}else if(p.status==='VALIDATION_RECORDED'&&!p.validation?.all_passed){actionButton(item,'Reject draft',()=>api('/api/products/drafts/'+p.id+'/decision',{method:'POST',body:JSON.stringify({decision:'REJECTED'})}));}}
+ const dreams=$('#dreams');dreams.replaceChildren();const artifacts=d.dream_artifacts.items||[];
+ if(!artifacts.length)dreams.append(node('p','muted','No dream proposals pending review.'));
+ for(const a of artifacts){const item=sectionItem(dreams,a.title,a.summary,a.artifact_type+' · Agent '+a.machine_id);actionButton(item,'Approve proposal',()=>api('/api/lifecycle/dream-artifacts/'+a.id+'/review',{method:'POST',body:JSON.stringify({decision:'APPROVED'})}));actionButton(item,'Reject proposal',()=>api('/api/lifecycle/dream-artifacts/'+a.id+'/review',{method:'POST',body:JSON.stringify({decision:'REJECTED'})}));}
+ $('#runtime').replaceChildren(node('p','', 'Queue mode: '+d.queue.mode),node('p','', 'Lifecycle mode: '+d.lifecycle.mode),node('p','muted','Agent presence: '+(d.world.mode||'not reported')));
+ $('#capabilities').replaceChildren();
+ for(const [k,v] of Object.entries(d.capability_status||{}))$('#capabilities').append(node('p','small',k.replaceAll('_',' ')+': '+v));
+ $('#message').textContent='Private data refreshed. No production actions were triggered.';
+}
+async function init(){
+ try{const auth=await api('/auth/me');if(!auth.authenticated){$('#gateText').textContent='Sign in using the authorized owner GitHub account. The OAuth application must be configured on the backend.';$('#signIn').hidden=false;return;}csrf=auth.csrf_token;$('#ownerLabel').dataset.owner=auth.owner;await loadDashboard();loaded=true;}
+ catch(e){$('#gateText').textContent='Owner sign-in or backend is not configured yet: '+e.message;$('#signIn').hidden=false;}
+}
+$('#refresh').addEventListener('click',()=>loadDashboard().catch(e=>$('#message').textContent=e.message));
+$('#logout').addEventListener('click',async()=>{try{await api('/auth/logout',{method:'POST',body:'{}'});location.href='/';}catch(e){$('#message').textContent=e.message;}});
+init();
+</script>
+</body></html>
