@@ -69,7 +69,7 @@ async function checkCapability(){
  load.disabled=!(secure&&gpu);
  if(!secure||!gpu){state.textContent='Unsupported in this browser';status.textContent='Use a secure HTTPS browser with WebGPU enabled. No cloud fallback is available.';}
 }
-function setReady(){ready=true;busy=false;state.textContent='LOCAL MODEL READY';status.textContent='Local inference is ready. Prompts stay in this browser.';load.disabled=true;prompt.disabled=false;send.disabled=false;label.textContent=MODEL;startButton.disabled=!ownerAuthenticated||!agentSelect.value;}
+function setReady(){ready=true;busy=false;state.textContent='LOCAL MODEL READY';status.textContent='Local inference is ready. Prompts stay in this browser.';load.disabled=true;prompt.disabled=false;send.disabled=false;label.textContent=MODEL;startButton.disabled=!ownerAuthenticated||!agentSelect.value;dreamButton.disabled=!ownerAuthenticated||!agentSelect.value;}
 async function refreshAgents(){
  if(!ownerAuthenticated)return;
  const data=await api('/api/owner/agents');
