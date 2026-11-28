@@ -82,3 +82,21 @@ def test_world_scene_objects_revisions_and_conflict(monkeypatch, tmp_path):
     snapshot = client.get("/api/v1/world/snapshot", headers=headers()).json()
     assert snapshot["schema_version"] == 1
     assert any(item["entity_id"] == f"scene:{scene_id}" for item in snapshot["entities"])
+
+
+def test_quest_gateway_is_private_by_default(monkeypatch, tmp_path):
+    client, _ = load_app(monkeypatch, tmp_path)
+    assert client.get("/auth/me").json()["authenticated"] is False
+    assert client.get("/api/vr/session").status_code == 401
+    assert client.get("/api/vr/world/snapshot").status_code == 401
+    assert client.get("/api/vr/events").status_code == 401
+
+
+def test_quest_gateway_does_not_claim_oauth_is_configured_without_secrets(monkeypatch, tmp_path):
+    for key in ("GITHUB_OAUTH_CLIENT_ID", "GITHUB_OAUTH_CLIENT_SECRET",
+                "GHOSTCORP_OWNER_GITHUB_LOGIN", "GHOSTCORP_SESSION_SECRET",
+                "GHOSTCORP_PUBLIC_ORIGIN"):
+        monkeypatch.delenv(key, raising=False)
+    client, _ = load_app(monkeypatch, tmp_path)
+    assert client.get("/auth/status").json()["configured"] is False
+    assert client.get("/auth/github/start").status_code == 503
