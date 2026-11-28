@@ -488,9 +488,46 @@ $('#reset').onclick=()=>{rig.position.set(0,0,0);rig.rotation.set(0,0,0);camera.
 renderer.domElement.addEventListener('pointerdown',e=>{if(renderer.xr.isPresenting)return;const p=new THREE.Vector2(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);raycaster.setFromCamera(p,camera);interact(raycaster.ray.origin,raycaster.ray.direction)});
 const keys={};addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if(e.key==='Escape'){detail.classList.remove('open');nav.classList.remove('open')}});addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
 let last=performance.now(),turnCooldown=0;
-function locomotion(dt){let forward=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0),strafe=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),turn=(keys.q?1:0)-(keys.e?1:0);
- if(renderer.xr.isPresenting){for(const source of renderer.xr.getSession()?.inputSources||[]){const gp=source.gamepad;if(!gp)continue;const axes=gp.axes;if(axes.length>=4){if(source.handedness==='left'){strafe+=Math.abs(axes[2]||0)>.12?axes[2]:axes[0]||0;forward-=Math.abs(axes[3]||0)>.12?axes[3]:axes[1]||0}else{const t=axes[2]||axes[0]||0;if(Math.abs(t)>.72&&turnCooldown<=0){rig.rotation.y-=Math.sign(t)*Math.PI/6;turnCooldown=.28}}}}}
- if(!renderer.xr.isPresenting&&Math.abs(turn)>.1&&turnCooldown<=0){rig.rotation.y+=Math.sign(turn)*Math.PI/6;mouseYaw=rig.rotation.y;turnCooldown=.28;}turnCooldown-=dt;const dir=new THREE.Vector3(0,0,-1).applyQuaternion(rig.quaternion);const side=new THREE.Vector3(1,0,0).applyQuaternion(rig.quaternion);const speed=renderer.xr.isPresenting?3.0:5.2;rig.position.addScaledVector(dir,THREE.MathUtils.clamp(forward,-1,1)*speed*dt);rig.position.addScaledVector(side,THREE.MathUtils.clamp(strafe,-1,1)*speed*dt);rig.position.x=THREE.MathUtils.clamp(rig.position.x,-32,32);rig.position.z=THREE.MathUtils.clamp(rig.position.z,-34,48)}
+let moveVelocity=new THREE.Vector3(),jumpWasDown=false;
+function locomotion(dt){
+ let forward=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0);
+ let strafe=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0);
+ let turn=(keys.q?1:0)-(keys.e?1:0),sprint=!!keys.shift,jump=!!keys[' '];
+ if(renderer.xr.isPresenting){
+  for(const source of renderer.xr.getSession()?.inputSources||[]){
+   const gp=source.gamepad;if(!gp)continue;const axes=gp.axes,buttons=gp.buttons||[];
+   if(source.handedness==='left'&&axes.length>=2){
+    const x=Math.abs(axes[2]||0)>.12?axes[2]:(axes[0]||0);
+    const y=Math.abs(axes[3]||0)>.12?axes[3]:(axes[1]||0);
+    if(Math.abs(x)>.12)strafe+=x;if(Math.abs(y)>.12)forward-=y;
+    sprint=sprint||!!buttons[3]?.pressed;
+    jump=jump||!!buttons[4]?.pressed;
+   }else if(source.handedness==='right'){
+    const t=axes[2]||axes[0]||0;
+    if(Math.abs(t)>.72&&turnCooldown<=0){rig.rotation.y-=Math.sign(t)*Math.PI/6;turnCooldown=.28;}
+    jump=jump||!!buttons[4]?.pressed;
+   }
+  }
+ }
+ if(!renderer.xr.isPresenting&&Math.abs(turn)>.1&&turnCooldown<=0){rig.rotation.y+=Math.sign(turn)*Math.PI/6;mouseYaw=rig.rotation.y;turnCooldown=.28;}
+ turnCooldown=Math.max(0,turnCooldown-dt);
+ const input=new THREE.Vector3(strafe,0,-forward);
+ if(input.lengthSq()>1)input.normalize();
+ input.applyQuaternion(rig.quaternion);
+ const maxSpeed=sprint?6.4:(renderer.xr.isPresenting?3.8:5.2);
+ const desiredX=input.x*maxSpeed,desiredZ=input.z*maxSpeed;
+ const accel=input.lengthSq()>.001?18:13;
+ const blend=1-Math.exp(-accel*dt);
+ moveVelocity.x=THREE.MathUtils.lerp(moveVelocity.x,desiredX,blend);
+ moveVelocity.z=THREE.MathUtils.lerp(moveVelocity.z,desiredZ,blend);
+ if(jump&&!jumpWasDown&&rig.position.y<=.001)moveVelocity.y=5.4;
+ jumpWasDown=jump;
+ moveVelocity.y-=14.5*dt;
+ rig.position.x+=moveVelocity.x*dt;rig.position.z+=moveVelocity.z*dt;rig.position.y+=moveVelocity.y*dt;
+ if(rig.position.y<0){rig.position.y=0;moveVelocity.y=0;}
+ rig.position.x=THREE.MathUtils.clamp(rig.position.x,-32,32);
+ rig.position.z=THREE.MathUtils.clamp(rig.position.z,-34,48);
+}
 function animate(){const now=performance.now(),dt=Math.min((now-last)/1000,.04);last=now;locomotion(dt);reactor.rotation.y+=dt*.16;reactor.rotation.x=Math.sin(now*.00025)*.08;neuralCore.rotation.y=Math.sin(now*.00012)*.025;neuralParticles.material.opacity=.78+Math.sin(now*.0014)*.12;coreHalo.rotation.z+=dt*.035;dreamCore.rotation.y+=dt*.12;dreamCore.rotation.x+=dt*.07;dreamHalo.rotation.z+=dt*.1;dreamDust.rotation.y+=dt*.025;for(const n of rootNodes){const pulse=.8+Math.sin(now*.0018+n.node.position.x)*.2;n.node.scale.setScalar(pulse);n.halo.rotation.z+=dt*.12;}ceilingGlow.rotation.y+=dt*.012;fill.intensity=38+Math.sin(now*.001)*4;const dp=dustGeo.attributes.position;for(let i=0;i<dustCount;i++){const k=i*3;dustPositions[k+1]+=(dustDrift[i]-.2)*dt;if(dustPositions[k+1]>16)dustPositions[k+1]=.3;if(dustPositions[k+1]<.3)dustPositions[k+1]=15.8;}dp.needsUpdate=true;renderer.render(scene,camera)}
 renderer.setAnimationLoop(animate);
 // Desktop mouse-look is enabled only after an explicit click; Quest uses controller sticks.
