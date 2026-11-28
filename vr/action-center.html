@@ -69,7 +69,7 @@ async function loadDashboard(){
  ];
  for(const [label,value] of cards){const el=node('div','stat');el.append(node('span','small',label),node('strong','',value));s.append(el);}
  const problems=$('#problems');problems.replaceChildren();
- const allProblems=[...(d.customer_problems.new||[]),...(d.customer_problems.roadmap||[])];
+ const allProblems=[...(d.customer_problems.new||[]),...(d.customer_problems.roadmap||[]),...(d.customer_problems.reviewed||[])];
  if(!allProblems.length)problems.append(node('p','muted','No customer problem suggestions are waiting for review.'));
  for(const p of allProblems){const item=sectionItem(problems,'Problem #'+p.id,p.problem,p.status+' · '+new Date(p.created_at*1000).toLocaleString());if(p.context)item.append(node('p','muted','Context: '+p.context));if(p.email&&p.contact_permission)item.append(node('p','small','Reply permission granted: '+p.email));if(p.status==='NEW'){actionButton(item,'Mark for roadmap',()=>api('/api/customer/problem-submissions/'+p.id+'/review',{method:'POST',body:JSON.stringify({status:'ROADMAP'})}));actionButton(item,'Mark reviewed',()=>api('/api/customer/problem-submissions/'+p.id+'/review',{method:'POST',body:JSON.stringify({status:'REVIEWED'})}));}
   if(p.status==='ROADMAP'||p.status==='REVIEWED'){
