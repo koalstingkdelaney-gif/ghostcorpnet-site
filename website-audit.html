@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07111d"><title>Request a GhostCorp Website Audit</title>
+<style>
+:root{color-scheme:dark;--bg:#07111d;--panel:#102338;--line:#25445a;--cyan:#62e8ff;--muted:#a0b7c9;--text:#eff8ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 0%,#17364d,var(--bg) 58%);color:var(--text);font:16px/1.5 system-ui,sans-serif}
+header{padding:18px max(18px,calc((100vw - 850px)/2));border-bottom:1px solid var(--line)}a{color:var(--cyan);text-decoration:none}main{max-width:850px;margin:auto;padding:30px 18px 60px}h1{font-size:clamp(2rem,5vw,3rem);line-height:1.08;margin:8px 0 14px}.muted{color:var(--muted)}.panel{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:20px;margin:18px 0}
+form{display:grid;gap:12px}label{font-weight:650}input,select{width:100%;padding:13px;border:1px solid var(--line);border-radius:9px;background:#071725;color:var(--text);font:inherit}button{padding:13px 18px;border:1px solid var(--cyan);border-radius:10px;background:#12617b;color:white;font:700 1rem system-ui;cursor:pointer}button:disabled{opacity:.5}.small{font-size:.85rem;color:var(--muted)}#status{min-height:1.5em;color:var(--muted)}.price{color:var(--cyan);font-weight:750}
+</style></head><body>
+<header><a href="/">← GhostCorp home</a></header><main>
+<div class="small">GHOSTCORP SERVICES</div><h1>Request a website audit</h1>
+<p class="muted">Tell us which service you're interested in. We review the request, audit the public website using safety and robots.txt checks, and prepare a proposal from the published rate card. Nothing is sent or changed automatically.</p>
+<section class="panel"><form id="serviceRequest">
+<label for="business">Business name</label><input id="business" required minlength="2" maxlength="100" autocomplete="organization">
+<label for="site">Public HTTPS website</label><input id="site" type="url" required placeholder="https://example.com">
+<label for="email">Email address</label><input id="email" type="email" required maxlength="254" autocomplete="email">
+<label for="package">Service</label><select id="package" required>
+<option value="AI Website">AI Website — $499 one-time</option>
+<option value="AI Front Desk">AI Front Desk — $299 setup + $149/month</option>
+<option value="Property Video Walkthroughs">Property Video Walkthroughs — $199 one-time</option>
+</select>
+<label style="display:flex;gap:10px;align-items:flex-start"><input id="consent" type="checkbox" style="width:auto;margin-top:5px" required><span>I give GhostCorp permission to contact me about this specific request. This is not permission for unrelated marketing.</span></label>
+<div aria-hidden="true" style="position:absolute;left:-10000px"><label for="fax">Leave empty</label><input id="fax" autocomplete="off" tabindex="-1"></div>
+<button type="submit">Submit service request</button><p id="status" role="status" aria-live="polite"></p>
+</form></section>
+<p class="small">Submitting a request does not create a contract, authorize work, or charge you. Any proposal requires your explicit approval. Payment must be completed through the existing approved Gumroad checkout before delivery begins. Please do not submit passwords or private customer data.</p>
+</main>
+<script type="module">
+const form=document.querySelector('#serviceRequest'),status=document.querySelector('#status'),button=form.querySelector('button');
+form.addEventListener('submit',async e=>{e.preventDefault();button.disabled=true;status.textContent='Submitting…';try{
+ const response=await fetch('/api/public/website-audit-requests',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({business_name:document.querySelector('#business').value,website_url:document.querySelector('#site').value,contact_email:document.querySelector('#email').value,package:document.querySelector('#package').value,contact_permission:document.querySelector('#consent').checked,company_fax:document.querySelector('#fax').value})});
+ const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.detail||'Request service is not available yet.');status.textContent='Request received. We will review it before any contact or work.';form.reset();
+ }catch(err){status.textContent=err.message;}finally{button.disabled=false;}});
+</script></body></html>
