@@ -1,0 +1,31 @@
+name: GhostCorp VR smoke checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "vr/**"
+      - "scripts/check-vr-pages.mjs"
+      - ".github/workflows/vr-smoke.yml"
+  pull_request:
+    paths:
+      - "vr/**"
+      - "scripts/check-vr-pages.mjs"
+      - ".github/workflows/vr-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-vr-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out GhostCorp site
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Parse and smoke-check VR pages
+        run: node scripts/check-vr-pages.mjs
