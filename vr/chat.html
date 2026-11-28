@@ -38,7 +38,7 @@ form{display:flex;gap:10px;margin-top:14px}textarea{flex:1;min-height:54px;max-h
   <section class="panel" aria-label="Local agent worker">
     <div class="row" style="justify-content:space-between"><strong>Local agent worker</strong><span id="ownerState" class="small">Owner session not checked</span></div>
     <p class="small">When signed in and the local model is ready, this headset can process approved researcher tasks from the GhostCorp queue. It runs only while this page stays open.</p>
-    <div class="row"><a id="ownerSignIn" href="/auth/github/start" hidden>Sign in with owner GitHub account</a><select id="agentSelect" aria-label="Research agent" disabled><option value="">No researcher agent</option></select><button id="provisionAgent" disabled>Create research agent</button><button id="startAgent" disabled>Start local worker</button><button id="stopAgent" disabled>Stop / sleep</button></div>
+    <div class="row"><a id="ownerSignIn" href="/auth/github/start" hidden>Sign in with owner GitHub account</a><select id="agentSelect" aria-label="Research agent" disabled><option value="">No researcher agent</option></select><button id="provisionAgent" disabled>Create research agent</button><button id="startAgent" disabled>Start local worker</button><button id="stopAgent" disabled>Stop / sleep</button><button id="dreamAgent" disabled>Sleep &amp; dream</button></div>
     <p id="agentStatus" class="small" role="status" aria-live="polite">Backend integration requires the same-origin API and configured owner sign-in.</p>
   </section>
   <section class="panel" aria-label="Chat">
@@ -54,14 +54,16 @@ form{display:flex;gap:10px;margin-top:14px}textarea{flex:1;min-height:54px;max-h
 <script type="module">
 const $=s=>document.querySelector(s);
 const state=$('#runtimeState'),status=$('#status'),capability=$('#capability'),load=$('#loadModel'),progress=$('#progress'),label=$('#downloadLabel'),form=$('#chatForm'),prompt=$('#prompt'),send=$('#send'),messagesEl=$('#messages');
-const ownerState=$('#ownerState'),agentSelect=$('#agentSelect'),provisionButton=$('#provisionAgent'),startButton=$('#startAgent'),stopButton=$('#stopAgent'),agentStatus=$('#agentStatus'),ownerSignIn=$('#ownerSignIn');
+const ownerState=$('#ownerState'),agentSelect=$('#agentSelect'),provisionButton=$('#provisionAgent'),startButton=$('#startAgent'),stopButton=$('#stopAgent'),dreamButton=$('#dreamAgent'),agentStatus=$('#agentStatus'),ownerSignIn=$('#ownerSignIn');
 const MODEL='SmolLM2-360M-Instruct-q4f32_1-MLC';
-let worker=null,ready=false,busy=false,csrf='',ownerAuthenticated=false,workerActive=false,activeTask=null,pendingTaskResolve=null;
+let worker=null,ready=false,busy=false,csrf='',ownerAuthenticated=false,workerActive=false,activeTask=null,activeDream=null,pendingTaskResolve=null;
 const history=[{role:'system',content:'You are the GhostCorp local assistant. Be useful, clear and honest. You run locally on the user device. You have no tools, no internet access, no business-system access, and cannot perform external actions. Do not claim to be sentient or to have taken actions you cannot perform.'}];
 const workerSystem='You are a GhostCorp research agent running locally on the owner headset. Produce careful, structured analysis. Do not invent sources, market facts, customer interviews, competitor findings, or evidence. Label assumptions and propose ways to verify them. You have no tools and must not contact people, make purchases, publish products, or perform external actions.';
-function addMessage(role,text){const el=document.createElement('div');el.className='message '+role;el.textContent=text;messagesEl.appendChild(el);messagesEl.scrollTop=messagesEl.scrollHeight}
-async function api(path,options={}){const headers={'Content-Type':'application/json',...(options.headers||{})};if(options.method&&options.method!=='GET'&&csrf)headers['X-CSRF-Token']=csrf;const response=await fetch(path,{...options,headers,credentials:'same-origin'});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.detail||('Request failed: '+response.status));return data}
+const dreamSystem='You are a GhostCorp agent in a bounded dream-realm ideation session. Combine supplied research into useful, feasible product and workflow proposals. Be creative but grounded. Separate facts from hypotheses, name missing evidence, estimate complexity qualitatively, and propose a low-cost validation experiment. Never claim external research, customer interviews, competitor checks or code execution that did not occur. Do not modify code, publish, contact anyone, spend money or take external actions.';
+function addMessage(role,text){const el=document.createElement('div');el.className='message '+role;el.textContent=text;messagesEl.appendChild(el);messagesEl.scrollTop=messagesEl.scrollHeight;}
+async function api(path,options={}){const headers={'Content-Type':'application/json',...(options.headers||{})};if(options.method&&options.method!=='GET'&&csrf)headers['X-CSRF-Token']=csrf;const response=await fetch(path,{...options,headers,credentials:'same-origin'});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.detail||('Request failed: '+response.status));return data;}
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+function updateButtons(){startButton.disabled=!ready||!ownerAuthenticated||!agentSelect.value||workerActive||busy;dreamButton.disabled=!ready||!ownerAuthenticated||!agentSelect.value||workerActive||busy;stopButton.disabled=!workerActive;}
 async function checkCapability(){
  const secure=window.isSecureContext,gpu=!!navigator.gpu;let storage='Browser storage estimate unavailable';
  try{if(navigator.storage?.estimate){const e=await navigator.storage.estimate();storage='Storage estimate: '+Math.round((e.quota||0)/1024/1024)+' MB quota · '+Math.round((e.usage||0)/1024/1024)+' MB used';}}catch{}
@@ -69,24 +71,19 @@ async function checkCapability(){
  load.disabled=!(secure&&gpu);
  if(!secure||!gpu){state.textContent='Unsupported in this browser';status.textContent='Use a secure HTTPS browser with WebGPU enabled. No cloud fallback is available.';}
 }
-function setReady(){ready=true;busy=false;state.textContent='LOCAL MODEL READY';status.textContent='Local inference is ready. Prompts stay in this browser.';load.disabled=true;prompt.disabled=false;send.disabled=false;label.textContent=MODEL;startButton.disabled=!ownerAuthenticated||!agentSelect.value;dreamButton.disabled=!ownerAuthenticated||!agentSelect.value;}
+function setReady(){ready=true;busy=false;state.textContent='LOCAL MODEL READY';status.textContent='Local inference is ready. Prompts stay in this browser.';load.disabled=true;prompt.disabled=false;send.disabled=false;label.textContent=MODEL;updateButtons();}
 async function refreshAgents(){
  if(!ownerAuthenticated)return;
  const data=await api('/api/owner/agents');
  const agents=(data.agents||[]).filter(a=>a.role==='researcher'&&a.status==='PROVISIONED');
  agentSelect.replaceChildren();
  for(const a of agents){const opt=document.createElement('option');opt.value=a.machine_id;opt.textContent=a.division_slug+' · '+a.machine_id+' · '+(a.lifecycle?.mode||'INITIALIZING');agentSelect.append(opt);}
- agentSelect.disabled=!agents.length;
- provisionButton.disabled=false;
- startButton.disabled=!(ready&&agents.length);
- if(!agents.length)agentStatus.textContent='No researcher agent is provisioned yet. Create one to process reviewed customer research tasks.';
- else agentStatus.textContent=agents.length+' researcher agent(s) available. Select one and start the local worker.';
+ agentSelect.disabled=!agents.length;provisionButton.disabled=false;updateButtons();
+ agentStatus.textContent=agents.length?agents.length+' researcher agent(s) available.':'No researcher agent is provisioned yet. Create one to process reviewed customer research and run bounded dream sessions.';
 }
 async function checkOwner(){
- try{
-  const auth=await api('/auth/me');
-  ownerAuthenticated=!!auth.authenticated;
-  if(!ownerAuthenticated){ownerState.textContent='Not signed in';ownerSignIn.hidden=false;agentStatus.textContent='Sign in with the authorized owner GitHub account to use the private task queue.';return;}
+ try{const auth=await api('/auth/me');ownerAuthenticated=!!auth.authenticated;
+  if(!ownerAuthenticated){ownerState.textContent='Not signed in';ownerSignIn.hidden=false;agentStatus.textContent='Sign in with the authorized owner GitHub account to use private research and dream sessions.';updateButtons();return;}
   csrf=auth.csrf_token;ownerState.textContent='Owner session active';ownerSignIn.hidden=true;await refreshAgents();
  }catch(e){ownerState.textContent='Backend unavailable';agentStatus.textContent='Owner worker unavailable: '+e.message;}
 }
@@ -99,9 +96,7 @@ async function provisionResearchAgent(){
   }
   const result=await api('/api/owner/agents/provision',{method:'POST',body:JSON.stringify({division_slug:'research-lab',role:'researcher'})});
   agentStatus.textContent='Research agent provisioned: '+result.machine_id+'. No machine secret was exposed to this page.';
-  await refreshAgents();
-  agentSelect.value=result.machine_id;
-  startButton.disabled=!ready;
+  await refreshAgents();agentSelect.value=result.machine_id;updateButtons();
  }catch(e){agentStatus.textContent='Could not provision agent: '+e.message;}
 }
 async function completeTask(task,content){
@@ -110,70 +105,89 @@ async function completeTask(task,content){
   agentStatus.textContent='Completed research task '+task.task_id+'. Result saved to the private Action Center.';
   addMessage('assistant','Research task '+task.task_id+' completed and saved to the private Action Center.\n\n'+content);
  }catch(e){agentStatus.textContent='Task result could not be saved: '+e.message+' The lease will expire and can be retried.';}
- finally{activeTask=null;busy=false;if(pendingTaskResolve){pendingTaskResolve();pendingTaskResolve=null;}send.disabled=workerActive;prompt.disabled=workerActive;}
+ finally{activeTask=null;busy=false;if(pendingTaskResolve){pendingTaskResolve();pendingTaskResolve=null;}send.disabled=workerActive;prompt.disabled=workerActive;updateButtons();}
 }
 async function localWorkerLoop(machineId){
  try{
   while(workerActive){
    const task=await api('/api/runtime/owner/claim',{method:'POST',body:JSON.stringify({machine_id:machineId})});
    if(!workerActive)break;
-   if(task.outcome==='no_matching_task'){agentStatus.textContent='Local worker awake · waiting for approved research tasks…';await sleep(4000);continue;}
+   if(task.outcome==='no_matching_task'){agentStatus.textContent='Local worker awake · waiting for reviewed research tasks…';await sleep(4000);continue;}
    activeTask={task_id:task.task_id,machine_id:machineId,lease_token:task.lease_token};
-   if(task.task_type!=='research_summary'){
-    await completeTask(activeTask,'Task blocked: this local worker only processes research_summary tasks.');
-    continue;
-   }
+   if(task.task_type!=='research_summary'){await completeTask(activeTask,'Task blocked: this local worker only processes research_summary tasks.');continue;}
    const taskPrompt=String(task.payload?.prompt||'');
    if(!taskPrompt){await completeTask(activeTask,'Task blocked: no research prompt was supplied.');continue;}
-   busy=true;send.disabled=true;prompt.disabled=true;agentStatus.textContent='Research agent is working on task '+task.task_id+' locally…';
+   busy=true;send.disabled=true;prompt.disabled=true;updateButtons();agentStatus.textContent='Research agent is working on task '+task.task_id+' locally…';
    worker.postMessage({type:'generate',messages:[{role:'system',content:workerSystem},{role:'user',content:taskPrompt}]});
    await new Promise(resolve=>pendingTaskResolve=resolve);
   }
  }catch(e){agentStatus.textContent='Local worker stopped after an API error: '+e.message;}
  finally{
-  workerActive=false;stopButton.disabled=true;startButton.disabled=!ready||!ownerAuthenticated||!agentSelect.value;send.disabled=false;prompt.disabled=false;
+  workerActive=false;stopButton.disabled=true;send.disabled=false;prompt.disabled=false;updateButtons();
   try{await api('/api/owner/agents/'+encodeURIComponent(machineId)+'/transition',{method:'POST',body:JSON.stringify({target:'SLEEPING',reason:'Local browser worker stopped'})});agentStatus.textContent+=' · Agent sleeping.';}catch{}
  }
 }
 async function startLocalWorker(){
- if(!ready||!ownerAuthenticated||!agentSelect.value||workerActive)return;
+ if(!ready||!ownerAuthenticated||!agentSelect.value||workerActive||busy)return;
  const machineId=agentSelect.value;
  try{
-  await api('/api/owner/agents/'+encodeURIComponent(machineId)+'/transition',{method:'POST',body:JSON.stringify({target:'WORKING',goal:'Research reviewed customer problems locally'})});
-  workerActive=true;startButton.disabled=true;stopButton.disabled=false;send.disabled=true;prompt.disabled=true;
-  agentStatus.textContent='Agent awake. Local model will process research tasks while this tab remains open.';
-  localWorkerLoop(machineId);
+  const registry=await api('/api/owner/agents');const current=(registry.agents||[]).find(a=>a.machine_id===machineId);let mode=current?.lifecycle?.mode||'INITIALIZING';
+  if(mode==='SLEEPING'){await api('/api/owner/agents/'+encodeURIComponent(machineId)+'/transition',{method:'POST',body:JSON.stringify({target:'WAKING',goal:'Resume local research work'})});mode='WAKING';}
+  if(mode!=='WORKING')await api('/api/owner/agents/'+encodeURIComponent(machineId)+'/transition',{method:'POST',body:JSON.stringify({target:'WORKING',goal:'Research reviewed customer problems locally'})});
+  workerActive=true;startButton.disabled=true;dreamButton.disabled=true;stopButton.disabled=false;send.disabled=true;prompt.disabled=true;
+  agentStatus.textContent='Agent awake. Local model processes tasks while this tab remains open.';localWorkerLoop(machineId);
  }catch(e){agentStatus.textContent='Could not wake researcher: '+e.message;}
 }
-async function stopLocalWorker(){if(!workerActive)return;workerActive=false;stopButton.disabled=true;agentStatus.textContent=activeTask?'Finishing current task before sleep…':'Putting researcher to sleep…';}
+async function saveDreamArtifact(dream,content){
+ try{
+  const result=await api('/api/owner/agents/'+encodeURIComponent(dream.machine_id)+'/dream-artifacts',{method:'POST',body:JSON.stringify({artifact_type:'product-opportunity',title:'Dream proposal · '+new Date().toISOString().slice(0,10),summary:content.slice(0,1000)||'Local dream session produced no content.',artifact:{content:content.slice(0,1800),source_task_ids:dream.source_task_ids,evidence_class:'MODEL_HYPOTHESIS',external_research:false,tools_executed:false}})});
+  await api('/api/owner/agents/'+encodeURIComponent(dream.machine_id)+'/transition',{method:'POST',body:JSON.stringify({target:'WAKING',goal:'Return from dream session'})});
+  await api('/api/owner/agents/'+encodeURIComponent(dream.machine_id)+'/transition',{method:'POST',body:JSON.stringify({target:'WORKING',goal:'Awake; awaiting next owner-approved task'})});
+  addMessage('assistant','Dream proposal #'+result.id+' saved for owner review. The agent has woken up.\n\n'+content);
+  agentStatus.textContent='Dream proposal saved to the Action Center. Agent awake; nothing was published or executed.';
+ }catch(e){try{await api('/api/owner/agents/'+encodeURIComponent(dream.machine_id)+'/transition',{method:'POST',body:JSON.stringify({target:'PAUSED',reason:'Dream artifact submission failed'})});}catch{}agentStatus.textContent='Dream proposal could not be saved: '+e.message;}
+ finally{activeDream=null;busy=false;send.disabled=false;prompt.disabled=false;updateButtons();}
+}
+async function startDreamSession(){
+ if(!ready||!ownerAuthenticated||!agentSelect.value||workerActive||busy||activeDream)return;
+ const machineId=agentSelect.value;
+ try{
+  const registry=await api('/api/owner/agents');const current=(registry.agents||[]).find(a=>a.machine_id===machineId);let mode=current?.lifecycle?.mode||'INITIALIZING';
+  if(mode==='INITIALIZING'||mode==='PAUSED'||mode==='WAKING'){await api('/api/owner/agents/'+encodeURIComponent(machineId)+'/transition',{method:'POST',body:JSON.stringify({target:'WORKING',goal:'Prepare bounded dream session'})});mode='WORKING';}
+  if(mode==='WORKING'){await api('/api/owner/agents/'+encodeURIComponent(machineId)+'/transition',{method:'POST',body:JSON.stringify({target:'SLEEPING',reason:'Entering bounded dream session'})});mode='SLEEPING';}
+  if(mode!=='SLEEPING')throw new Error('Agent must be sleeping before entering the dream session.');
+  await api('/api/owner/agents/'+encodeURIComponent(machineId)+'/transition',{method:'POST',body:JSON.stringify({target:'DREAMING',goal:'Generate reviewable product and workflow proposals'})});
+  const taskData=await api('/api/runtime/owner/tasks?limit=10');const recent=(taskData.items||[]).filter(t=>t.task_type==='research_summary'&&t.result?.content).slice(0,2);
+  const research=recent.map(t=>'TASK '+t.task_key+'\n'+String(t.result.content).slice(0,1000)).join('\n\n');
+  const taskPrompt='Create one strong, reviewable GhostCorp dream proposal. Use only the research excerpts below and general knowledge. If there are no excerpts, state that clearly and mark all market claims as hypotheses. Return a concise title, problem, proposed solution, target users, why it could matter, unknowns, risks, and a low-cost validation experiment. Do not claim sources or actions.\n\nRECENT RESEARCH:\n'+(research||'No completed research tasks are available yet.');
+  activeDream={machine_id:machineId,source_task_ids:recent.map(t=>t.id)};busy=true;updateButtons();send.disabled=true;prompt.disabled=true;
+  agentStatus.textContent='Agent is in DREAMING mode. Local model is generating a bounded proposal; no code is executed.';
+  worker.postMessage({type:'generate',messages:[{role:'system',content:dreamSystem},{role:'user',content:taskPrompt}]});
+ }catch(e){agentStatus.textContent='Could not start dream session: '+e.message;}
+}
 function onWorkerMessage(event){
  const d=event.data||{};
  if(d.type==='progress'){state.textContent='Downloading / preparing';progress.hidden=false;progress.value=Math.max(0,Math.min(1,d.progress||0));label.textContent=d.text||'Preparing model';status.textContent='Model initialization in progress. Keep this tab open.';}
  if(d.type==='ready'){progress.hidden=true;setReady();}
  if(d.type==='complete'){
   if(activeTask){completeTask(activeTask,d.content);return;}
-  busy=false;history.push({role:'assistant',content:d.content});addMessage('assistant',d.content);send.disabled=false;prompt.disabled=false;startButton.disabled=!ownerAuthenticated||!agentSelect.value;prompt.focus();
+  if(activeDream){saveDreamArtifact(activeDream,d.content);return;}
+  busy=false;history.push({role:'assistant',content:d.content});addMessage('assistant',d.content);send.disabled=false;prompt.disabled=false;updateButtons();prompt.focus();
  }
  if(d.type==='error'){
   busy=false;state.textContent='Initialization / generation failed';status.textContent=d.message||'Local model error';progress.hidden=true;
-  if(activeTask){agentStatus.textContent='Local generation failed; task lease will expire for retry.';activeTask=null;workerActive=false;if(pendingTaskResolve){pendingTaskResolve();pendingTaskResolve=null;}}
-  send.disabled=workerActive;prompt.disabled=workerActive;startButton.disabled=workerActive||!ready||!ownerAuthenticated||!agentSelect.value;load.disabled=ready;
+  if(activeTask){activeTask=null;workerActive=false;agentStatus.textContent='Local generation failed; task lease will expire for retry.';if(pendingTaskResolve){pendingTaskResolve();pendingTaskResolve=null;}}
+  if(activeDream){const dream=activeDream;activeDream=null;api('/api/owner/agents/'+encodeURIComponent(dream.machine_id)+'/transition',{method:'POST',body:JSON.stringify({target:'PAUSED',reason:'Dream generation failed'})}).catch(()=>{});agentStatus.textContent='Dream generation failed; agent paused.';}
+  send.disabled=workerActive;prompt.disabled=workerActive;updateButtons();load.disabled=ready;
  }
 }
-load.addEventListener('click',()=>{
- if(worker||!navigator.gpu)return;
- busy=true;load.disabled=true;state.textContent='Starting local runtime';status.textContent='Loading the WebGPU engine…';
- try{worker=new Worker('./ai/worker.js',{type:'module'});worker.onmessage=onWorkerMessage;worker.onerror=e=>{busy=false;state.textContent='Worker failed';status.textContent=e.message||'Could not start local inference worker.';load.disabled=false;};worker.postMessage({type:'load'});}
- catch(e){busy=false;state.textContent='Could not start';status.textContent=String(e.message||e);load.disabled=false;}
-});
-form.addEventListener('submit',event=>{
- event.preventDefault();const text=prompt.value.trim();if(!text||!ready||busy||workerActive)return;
- history.push({role:'user',content:text});addMessage('user',text);prompt.value='';busy=true;send.disabled=true;prompt.disabled=true;startButton.disabled=true;status.textContent='Generating locally…';worker.postMessage({type:'generate',messages:history});
-});
+load.addEventListener('click',()=>{if(worker||!navigator.gpu)return;busy=true;load.disabled=true;state.textContent='Starting local runtime';status.textContent='Loading the WebGPU engine…';try{worker=new Worker('./ai/worker.js',{type:'module'});worker.onmessage=onWorkerMessage;worker.onerror=e=>{busy=false;state.textContent='Worker failed';status.textContent=e.message||'Could not start local inference worker.';load.disabled=false;};worker.postMessage({type:'load'});}catch(e){busy=false;state.textContent='Could not start';status.textContent=String(e.message||e);load.disabled=false;}});
+form.addEventListener('submit',event=>{event.preventDefault();const text=prompt.value.trim();if(!text||!ready||busy||workerActive)return;history.push({role:'user',content:text});addMessage('user',text);prompt.value='';busy=true;send.disabled=true;prompt.disabled=true;updateButtons();status.textContent='Generating locally…';worker.postMessage({type:'generate',messages:history});});
 provisionButton.addEventListener('click',provisionResearchAgent);
 startButton.addEventListener('click',startLocalWorker);
-stopButton.addEventListener('click',stopLocalWorker);
-agentSelect.addEventListener('change',()=>{startButton.disabled=!(ready&&ownerAuthenticated&&agentSelect.value);});
+stopButton.addEventListener('click',()=>{if(!workerActive)return;workerActive=false;stopButton.disabled=true;agentStatus.textContent=activeTask?'Finishing current task before sleep…':'Putting researcher to sleep…';});
+dreamButton.addEventListener('click',startDreamSession);
+agentSelect.addEventListener('change',updateButtons);
 checkCapability();checkOwner();
 </script>
 </body>
