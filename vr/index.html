@@ -31,12 +31,12 @@ button:hover,a.btn:hover{transform:translateY(-2px);border-color:var(--cyan);bac
 <div id="hud">
  <div class="topbar">
   <div class="brand"><strong>GHOSTCORP <span style="display:inline;color:#fff">/</span> IMMERSIVE SYSTEMS</strong><span>PRIVATE HQ CONCEPT · QUEST 3 OPTIMIZED</span></div>
-  <div class="status" id="status">WORLD INITIALIZING</div>
+  <div class="status" id="status">WORLD INITIALIZING</div><div class="status" id="agentStatus">PRIVATE AGENT DATA LOCKED</div>
  </div>
  <div class="bottom">
-  <section class="glass welcome"><div class="eyebrow" id="eyebrow">WELCOME · OWNER EXPERIENCE</div><h1 id="heading">A headquarters beyond the screen.</h1><p id="copy">Explore the central atrium, visit department portals and discover the GhostCorp world. This is the visual foundation; live business systems are not connected yet.</p></section>
+  <section class="glass welcome"><div class="eyebrow" id="eyebrow">WELCOME · OWNER EXPERIENCE</div><h1 id="heading">A headquarters beyond the screen.</h1><p id="copy">Explore the central atrium and department portals. Sign in to view private agent presence; use the Action Center for owner-approved business operations.</p></section>
   <div class="controls">
-   <button id="map">DEPARTMENTS</button><button id="devOpen">DEV WORKBENCH</button><a class="btn" href="./chat.html">GHOSTCORP AI CHAT</a><a class="btn" href="./action-center.html">ACTION CENTER</a><button id="reset">RECENTER</button><button id="enter" class="primary">ENTER QUEST VR</button><a class="btn" href="/">WEBSITE</a>
+   <a class="btn" id="ownerSignIn" href="/auth/github/start" hidden>OWNER SIGN-IN</a><button id="map">DEPARTMENTS</button><button id="devOpen">DEV WORKBENCH</button><a class="btn" href="./chat.html">GHOSTCORP AI CHAT</a><a class="btn" href="./action-center.html">ACTION CENTER</a><button id="reset">RECENTER</button><button id="enter" class="primary">ENTER QUEST VR</button><a class="btn" href="/">WEBSITE</a>
   </div>
  </div>
  <div id="hint">QUEST 3 · Left stick: move · Right stick: turn · Trigger: interact · Desktop: WASD + mouse</div>
@@ -354,6 +354,28 @@ $('#enter').onclick=async()=>{try{if(!navigator.xr){status.textContent='WEBXR UN
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 status.textContent='3D WORLD READY · WEBXR CHECKING';
 if(navigator.xr)navigator.xr.isSessionSupported('immersive-vr').then(ok=>status.textContent=ok?'QUEST WEBXR READY':'3D READY · OPEN ON QUEST 3').catch(()=>status.textContent='3D WORLD READY');else status.textContent='3D WORLD READY · OPEN ON QUEST 3';
+
+async function connectPrivateAgentPresence(){
+ const statusEl=document.getElementById("agentStatus");
+ const signIn=document.getElementById("ownerSignIn");
+ const update=async()=>{
+  const response=await fetch("/api/world/snapshot",{credentials:"same-origin"});
+  if(!response.ok)throw new Error("Private world API is not reachable");
+  const data=await response.json();
+  const counts=data.counts||{total:0,live:0,simulated:0};
+  statusEl.textContent="AGENTS "+counts.total+" · LIVE "+counts.live+" · SIMULATED "+counts.simulated;
+ };
+ try{
+  const response=await fetch("/auth/me",{credentials:"same-origin"});
+  if(!response.ok)throw new Error("Owner sign-in service unavailable");
+  const auth=await response.json();
+  if(!auth.authenticated){statusEl.textContent="PRIVATE AGENT DATA LOCKED";signIn.hidden=false;return;}
+  signIn.hidden=true;
+  await update();
+  window.setInterval(()=>update().catch(()=>{statusEl.textContent="AGENT API DISCONNECTED";}),15000);
+ }catch(error){statusEl.textContent="BACKEND NOT CONNECTED";signIn.hidden=false;}
+}
+connectPrivateAgentPresence();
 </script>
 </body>
 </html>
