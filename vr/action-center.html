@@ -32,6 +32,7 @@ button{background:#123b50;color:var(--text);border:1px solid #3b8198;border-radi
     <section class="panel"><h2>Product pipeline</h2><p class="small">Owner-reviewed drafts and validation evidence. Approval prepares a listing; it does not publish or sell it.</p><div id="products"></div></section>
     <section class="panel"><h2>Dream Realm review queue</h2><p class="small">Dream proposals cannot deploy, publish, contact customers or spend money on their own.</p><div id="dreams"></div></section>
     <section class="panel"><h2>Agent lifecycle and task queue</h2><div id="runtime"></div></section>
+    <section class="panel"><h2>Website service requests</h2><p class="small">Customer-approved workflow: audit, proposal, one-time approval link, verified Gumroad payment, then manual delivery. No customer emails are sent automatically.</p><div id="serviceRequests"></div></section>
     <section class="panel"><h2>Research task results</h2><div id="researchResults"></div></section>
     <section class="panel"><h2>Current limitations</h2><div id="capabilities"></div></section>
   </div>
@@ -70,6 +71,27 @@ async function loadDashboard(){
  for(const a of artifacts){const item=sectionItem(dreams,a.title,a.summary,a.artifact_type+' · Agent '+a.machine_id);actionButton(item,'Approve proposal',()=>api('/api/lifecycle/dream-artifacts/'+a.id+'/review',{method:'POST',body:JSON.stringify({decision:'APPROVED'})}));actionButton(item,'Reject proposal',()=>api('/api/lifecycle/dream-artifacts/'+a.id+'/review',{method:'POST',body:JSON.stringify({decision:'REJECTED'})}));}
  $('#runtime').replaceChildren(node('p','', 'Queue mode: '+d.queue.mode),node('p','', 'Lifecycle mode: '+d.lifecycle.mode),node('p','muted','Agent presence: '+(d.world.mode||'not reported')));
  for(const agent of (d.agents?.agents||[])){const line=node('p','small',agent.machine_id+' · '+agent.division_slug+' · '+agent.role+' · '+(agent.lifecycle?.mode||'INITIALIZING'));$('#runtime').append(line);}
+ const serviceBox=$('#serviceRequests');serviceBox.replaceChildren();
+ const serviceItems=d.website_service_requests?.items||[];
+ if(!serviceItems.length)serviceBox.append(node('p','muted','No website service requests yet.'));
+ for(const req of serviceItems){
+  const item=sectionItem(serviceBox,'Request #'+req.id+' · '+req.business_name,req.website_url,req.status+' · '+req.package);
+  item.append(node('p','small','Contact permission recorded: '+req.contact_email));
+  if(req.audit?.findings)item.append(node('p','muted','Audit findings: '+req.audit.findings.join(' · ')));
+  if(req.proposal?.body)item.append(node('p','muted',req.proposal.body));
+  if(req.status==='RECEIVED')actionButton(item,'Run safe website audit',()=>api('/api/service/requests/'+req.id+'/audit',{method:'POST',body:'{}'}));
+  if(req.status==='AUDITED')actionButton(item,'Draft fixed-price proposal',()=>api('/api/service/requests/'+req.id+'/proposal',{method:'POST',body:'{}'}));
+  if(req.status==='PROPOSAL_READY')actionButton(item,'Create one-time customer approval link',async()=>{const result=await api('/api/service/requests/'+req.id+'/approval-link',{method:'POST',body:'{}'});const link=node('a','',result.approval_url);link.href=result.approval_url;link.target='_blank';link.rel='noopener';item.append(node('p','small','Copy and send this link manually; it expires in 7 days and is single-use.'));item.append(link);});
+  if(req.status==='CUSTOMER_APPROVED'||req.status==='IN_PROGRESS'){
+   const sale=node('input','');sale.placeholder='Verified Gumroad sale ID';sale.setAttribute('aria-label','Verified Gumroad sale ID');sale.style.cssText='width:100%;max-width:360px;padding:10px;margin-top:8px;background:#071725;color:#eff8ff;border:1px solid #25445a;border-radius:8px';item.append(sale);
+   if(req.status==='CUSTOMER_APPROVED')actionButton(item,'Start delivery (requires matching verified sale)',()=>{if(!sale.value.trim())throw new Error('Enter the verified Gumroad sale ID');return api('/api/service/requests/'+req.id+'/delivery',{method:'POST',body:JSON.stringify({status:'IN_PROGRESS',payment_sale_id:sale.value.trim()})});});
+   if(req.status==='IN_PROGRESS'){
+    const notes=node('textarea','');notes.placeholder='Delivery notes (required)';notes.style.cssText='display:block;width:100%;min-height:70px;margin-top:8px;padding:10px;background:#071725;color:#eff8ff;border:1px solid #25445a;border-radius:8px';item.append(notes);
+    const url=node('input','');url.placeholder='HTTPS deliverable URL';url.style.cssText=sale.style.cssText;item.append(url);
+    actionButton(item,'Mark delivered',()=>{if(!sale.value.trim())throw new Error('Enter the verified Gumroad sale ID');return api('/api/service/requests/'+req.id+'/delivery',{method:'POST',body:JSON.stringify({status:'DELIVERED',payment_sale_id:sale.value.trim(),notes:notes.value,deliverable_url:url.value})});});
+   }
+  }
+ }
  const research=$('#researchResults');research.replaceChildren();
  const tasks=(d.research_tasks||[]).filter(t=>t.task_type==='research_summary');
  if(!tasks.length)research.append(node('p','muted','No research tasks have been processed yet.'));
