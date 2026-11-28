@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "environment": "example-only",
+  "operating_mode": "founder_active",
+  "owner_approval_required_for_mode_change": true,
+  "never_infer_death_or_incapacity_from": [
+    "missed_check_in",
+    "account_inactivity",
+    "device_loss",
+    "network_outage",
+    "service_health_failure"
+  ],
+  "budget": {
+    "monthly_recurring_spend_usd": 0,
+    "paid_fallback_enabled": false,
+    "unknown_cost_behavior": "deny_and_alert",
+    "agent_may_change_budget": false
+  },
+  "agent_permissions": {
+    "default_tier": 1,
+    "allowed_tiers": [0, 1, 2],
+    "production_write_requires_human_approval": true,
+    "financial_actions_allowed": false,
+    "ownership_or_legal_actions_allowed": false,
+    "payout_destination_changes_allowed": false,
+    "customer_data_export_allowed": false
+  },
+  "approval_required_for": [
+    "production_deploy",
+    "new_paid_vendor",
+    "subscription_upgrade",
+    "purchase",
+    "refund_above_threshold",
+    "customer_outreach",
+    "contract_or_legal_commitment",
+    "payout_change",
+    "bank_or_payment_account_change",
+    "ownership_change",
+    "successor_access_grant",
+    "sensitive_data_export",
+    "record_deletion"
+  ],
+  "backup_policy": {
+    "encryption_required": true,
+    "independent_copies_target": 3,
+    "storage_systems_target": 2,
+    "offline_copy_required": true,
+    "restore_test_required": true,
+    "secrets_in_backup_manifest": false
+  },
+  "privacy": {
+    "public_world_contains_private_business_data": false,
+    "offline_cache_contains_customer_data": false,
+    "offline_cache_contains_financial_data": false,
+    "secrets_in_repository": false
+  },
+  "successor_workflow": {
+    "enabled": false,
+    "requires_human_legal_verification": true,
+    "requires_provider_specific_authority": true,
+    "shared_founder_credentials_permitted": false,
+    "start_with_read_only_access": true,
+    "all_privileged_actions_audited": true
+  },
+  "alerts": {
+    "notify_founder_first": true,
+    "notify_only_designated_contacts": true,
+    "include_secrets_or_private_records": false
+  },
+  "notes": [
+    "Example policy only; not wired to runtime enforcement.",
+    "Replace values only through reviewed and authorized changes.",
+    "Do not put names, phone numbers, addresses, account numbers, passwords, tokens, or recovery codes in this file."
+  ]
+}
