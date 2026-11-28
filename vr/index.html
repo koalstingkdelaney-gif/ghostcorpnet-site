@@ -39,7 +39,7 @@ button:hover,a.btn:hover{transform:translateY(-2px);border-color:var(--cyan);bac
    <a class="btn" id="ownerSignIn" href="/auth/github/start" hidden>OWNER SIGN-IN</a><button id="map">DEPARTMENTS</button><button id="devOpen">DEV WORKBENCH</button><a class="btn" href="./chat.html">GHOSTCORP AI CHAT</a><a class="btn" href="./action-center.html">ACTION CENTER</a><button id="reset">RECENTER</button><button id="enter" class="primary">ENTER QUEST VR</button><a class="btn" href="/">WEBSITE</a>
   </div>
  </div>
- <div id="hint">QUEST 3 · Left stick: move · Right stick: turn · Trigger: interact · Desktop: WASD + mouse</div>
+ <div id="hint">QUEST 3 · Point + Trigger: tools/portals · Trigger at floor: teleport · Left stick: move · Right stick: snap turn</div>
 </div>
 <section id="nav" class="glass" aria-label="Department navigation"><h2>EXPLORE THE CAMPUS</h2><div class="navgrid">
  <button data-room="atrium">Central Atrium<small>Headquarters core</small></button>
@@ -292,7 +292,7 @@ function navigateFromWorld(url){
 function runToolAction(action){
  if(action==='chat')return navigateFromWorld('./chat.html');
  if(action==='actions')return navigateFromWorld('./action-center.html');
- if(action==='dev'){openDev();status.textContent='DEVELOPER WORKBENCH OPEN';return}
+ if(action==='dev'){const active=renderer.xr.getSession();if(active&&renderer.xr.isPresenting&&!active.domOverlayState){active.end().catch(()=>{}).finally(()=>openDev());status.textContent='OPENING EDITOR IN BROWSER VIEW';return;}openDev();status.textContent='DEVELOPER WORKBENCH OPEN';return}
  if(action==='github')return navigateFromWorld('https://github.dev/koalstingkdelaney-gif/ghostcorpnet-site');
  if(action==='website')return navigateFromWorld('/');
  if(action==='status'){
