@@ -22,7 +22,11 @@ const expected = {
     "manifest.webmanifest",
     "serviceWorker.register",
     "OPEN GITHUB EDITOR",
-    "INSTALL / UPDATE"
+    "INSTALL / UPDATE",
+    "world-connection.js",
+    "ghostcorp:world-snapshot",
+    "renderRemoteWorld",
+    "moveVelocity"
   ],
   "vr/project-board.html": [
     "ghostcorp-project-board-v1",
@@ -108,6 +112,20 @@ try {
     else console.log("PASS: vr/sw.js");
     for (const token of ['"/api/"', '"/auth/"', "skipWaiting", "clients.claim"]) {
       if (!serviceWorker.includes(token)) fail("vr/sw.js missing safety/update marker: " + token);
+    }
+  }
+
+  const bridgePath = path.join(root, "vr/world-connection.js");
+  if (!fs.existsSync(bridgePath)) fail("Missing Quest world connection bridge: vr/world-connection.js");
+  else {
+    const bridge = fs.readFileSync(bridgePath, "utf8");
+    const bridgeFile = path.join(temp, "world-connection.mjs");
+    fs.writeFileSync(bridgeFile, bridge);
+    const bridgeCheck = spawnSync(process.execPath, ["--check", bridgeFile], { encoding: "utf8" });
+    if (bridgeCheck.status !== 0) fail("vr/world-connection.js syntax error:\\n" + (bridgeCheck.stderr || bridgeCheck.stdout));
+    else console.log("PASS: vr/world-connection.js");
+    for (const token of ["/api/vr/session", "/api/vr/world/snapshot", "ghostcorp:world-snapshot", "OWNER_SESSION_REQUIRED"]) {
+      if (!bridge.includes(token)) fail("Quest bridge missing safety/sync marker: " + token);
     }
   }
 
