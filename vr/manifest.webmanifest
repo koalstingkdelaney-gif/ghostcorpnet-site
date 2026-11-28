@@ -1,0 +1,30 @@
+{
+  "id": "https://ghostcorpnet.com/vr/",
+  "name": "GhostCorp Immersive Headquarters",
+  "short_name": "GhostCorp VR",
+  "description": "The GhostCorp immersive headquarters and owner development workspace.",
+  "start_url": "/vr/",
+  "scope": "/vr/",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
+  "orientation": "landscape",
+  "background_color": "#070b14",
+  "theme_color": "#070b14",
+  "categories": [
+    "productivity",
+    "developer",
+    "education"
+  ],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
