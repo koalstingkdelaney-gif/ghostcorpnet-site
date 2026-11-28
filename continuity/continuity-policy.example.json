@@ -18,7 +18,11 @@
   },
   "agent_permissions": {
     "default_tier": 1,
-    "allowed_tiers": [0, 1, 2],
+    "allowed_tiers": [
+      0,
+      1,
+      2
+    ],
     "production_write_requires_human_approval": true,
     "financial_actions_allowed": false,
     "ownership_or_legal_actions_allowed": false,
@@ -71,5 +75,13 @@
     "Example policy only; not wired to runtime enforcement.",
     "Replace values only through reviewed and authorized changes.",
     "Do not put names, phone numbers, addresses, account numbers, passwords, tokens, or recovery codes in this file."
-  ]
+  ],
+  "business_mode": {
+    "current_assumption": "sole_proprietorship",
+    "llc_setup": "on_hold_by_founder",
+    "trust_setup": "on_hold_by_founder",
+    "legal_entity_separate_from_owner": false,
+    "agent_may_change_structure": false,
+    "legal_status_requires_human_confirmation": true
+  }
 }
