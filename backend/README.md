@@ -53,3 +53,32 @@ All routes below require the same bearer token:
 - DELETE /api/v1/world/scenes/{scene_id}/objects/{object_id}?expected_revision=N — remove an object with revision protection.
 
 Every successful scene/object mutation increments the scene revision and emits an event. Stale writes return HTTP 409 so a reconnecting Quest client cannot silently overwrite newer changes. The server stores scene/object metadata and asset references; actual 3D asset files, rendering, collision/physics simulation, and live Quest synchronization still need their own client/runtime integration.
+
+
+## Owner-authenticated Quest gateway
+
+The backend includes a same-origin GitHub OAuth owner-session gateway for the Quest browser. It never returns the backend bearer token to browser JavaScript. Configure these values in the backend host's secret/environment settings:
+
+- `GITHUB_OAUTH_CLIENT_ID`: OAuth App client ID.
+- `GITHUB_OAUTH_CLIENT_SECRET`: OAuth App client secret; secret only.
+- `GHOSTCORP_OWNER_GITHUB_LOGIN`: exact GitHub login allowed to administer this GhostCorp instance.
+- `GHOSTCORP_SESSION_SECRET`: long random secret used to sign owner sessions.
+- `GHOSTCORP_PUBLIC_ORIGIN`: exact HTTPS origin, e.g. `https://ghostcorpnet.com`.
+- `GHOSTCORP_API_TOKEN`: separate backend service bearer token.
+- `GHOSTCORP_DB_PATH`: path on a persistent disk/volume.
+
+Set the GitHub OAuth App callback URL to `https://YOUR-ORIGIN/auth/github/callback`. Use the actual production origin; do not use a wildcard. The OAuth app must request only `read:user`. The server verifies the returned GitHub login against `GHOSTCORP_OWNER_GITHUB_LOGIN`, uses a signed, HttpOnly, Secure, SameSite=Lax session cookie, and exposes the private Quest snapshot/events only to that owner session.
+
+Browser/Quest routes:
+- `GET /auth/status`
+- `GET /auth/github/start`
+- `GET /auth/github/callback`
+- `GET /auth/me`
+- `POST /auth/logout`
+- `GET /api/vr/session`
+- `GET /api/vr/world/snapshot`
+- `GET /api/vr/events?after=<sequence>`
+
+The VR snapshot intentionally returns only world and scene entities; it does not expose task payloads, agent metadata, finance records, or customer records. Never enable permissive CORS or put the bearer token in the Quest bundle.
+
+**Deployment prerequisite:** The static website must route these same-origin paths to the FastAPI backend (or an equivalent trusted gateway) over HTTPS. The OAuth secrets and persistent database volume must be configured in the hosting provider. The repository changes alone do not create that routing, configure OAuth credentials, provision persistent storage, or deploy the backend.
