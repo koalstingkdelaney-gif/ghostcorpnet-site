@@ -130,7 +130,7 @@ $('#productDraftForm').addEventListener('submit',async event=>{
 });
 async function init(){
  try{const auth=await api('/auth/me');if(!auth.authenticated){$('#gateText').textContent='Sign in using the authorized owner GitHub account. The OAuth application must be configured on the backend.';$('#signIn').hidden=false;return;}csrf=auth.csrf_token;$('#ownerLabel').dataset.owner=auth.owner;await loadDashboard();loaded=true;}
- catch(e){$('#gateText').textContent='Owner sign-in or backend is not configured yet: '+e.message;$('#signIn').hidden=false;}
+ catch(e){$('#gateText').textContent='The private GhostCorp backend is not connected to this website yet. Business records and approval actions are unavailable until the FastAPI service is deployed and /auth plus /api are routed to this domain. No data was changed.';$('#signIn').hidden=true;}
 }
 $('#refresh').addEventListener('click',()=>loadDashboard().catch(e=>$('#message').textContent=e.message));
 $('#logout').addEventListener('click',async()=>{try{await api('/auth/logout',{method:'POST',body:'{}'});location.href='/';}catch(e){$('#message').textContent=e.message;}});
