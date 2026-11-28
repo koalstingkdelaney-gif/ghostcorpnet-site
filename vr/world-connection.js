@@ -32,6 +32,7 @@ function showCached() {
     const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
     if (cached) {
       label("OFFLINE · CACHED WORLD R" + (cached.max_revision || 0));
+      window.dispatchEvent(new CustomEvent("ghostcorp:world-snapshot", { detail: cached.snapshot }));
       return true;
     }
   } catch (_) {}
@@ -50,6 +51,7 @@ async function syncOnce() {
   }));
   if (Number.isInteger(snapshot.event_cursor)) cursor = Math.max(cursor, snapshot.event_cursor);
   label("WORLD CONNECTED · " + snapshot.entities.length + " ENTITIES · R" + maxRevision);
+  window.dispatchEvent(new CustomEvent("ghostcorp:world-snapshot", { detail: snapshot }));
 
   // Event polling is additive: snapshot remains the recovery source of truth.
   const events = await request("/api/vr/events?after=" + encodeURIComponent(cursor));
