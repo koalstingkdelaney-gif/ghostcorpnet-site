@@ -39,13 +39,13 @@ def test_task_checkpoint_persists_and_emits_event(monkeypatch, tmp_path):
 
 def test_world_revision_and_agent_state(monkeypatch, tmp_path):
     client, _ = load_app(monkeypatch, tmp_path)
-    first = client.put("/api/v1/world/scene:atrium", headers=headers(),
+    first = client.put("/api/v1/world/entities/scene:atrium", headers=headers(),
                        json={"entity_type":"scene","data":{"objects":[]}})
-    second = client.put("/api/v1/world/scene:atrium", headers=headers(),
+    second = client.put("/api/v1/world/entities/scene:atrium", headers=headers(),
                         json={"entity_type":"scene","data":{"objects":[{"id":"core"}]}})
     assert first.json()["revision"] == 1
     assert second.json()["revision"] == 2
-    assert client.get("/api/v1/world/scene:atrium", headers=headers()).json()["data"]["objects"][0]["id"] == "core"
+    assert client.get("/api/v1/world/entities/scene:atrium", headers=headers()).json()["data"]["objects"][0]["id"] == "core"
     assert client.put("/api/v1/agents/jarvis", headers=headers(),
                       json={"status":"idle","data":{"mode":"local-first"}}).status_code == 200
 
